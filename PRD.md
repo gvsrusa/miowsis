@@ -1,7 +1,7 @@
 # Product Requirements Document
 ## MIOwSIS - Micro-Investment Optimizer with Social Impact Scoring
 
-### Version 2.0 | December 2025
+### Version 2.0 | June 2025
 ### Updated with Comprehensive UX Design Improvements
 
 ---
