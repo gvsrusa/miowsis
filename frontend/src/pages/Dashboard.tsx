@@ -80,7 +80,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <Box>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
         <Typography variant="h4" fontWeight={600}>
           Dashboard
         </Typography>
@@ -94,7 +94,7 @@ const Dashboard: React.FC = () => {
       </Box>
 
       {/* Metrics Cards */}
-      <Grid container spacing={3} mb={3}>
+      <Grid container spacing={3} mb={4}>
         {metrics.map((metric, index) => (
           <Grid item xs={12} sm={6} lg={3} key={index}>
             <motion.div

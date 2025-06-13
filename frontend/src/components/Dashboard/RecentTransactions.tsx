@@ -137,6 +137,7 @@ const RecentTransactions: React.FC = () => {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
+              disableTypography
               primary={
                 <Box display="flex" justifyContent="space-between" alignItems="center">
                   <Box>

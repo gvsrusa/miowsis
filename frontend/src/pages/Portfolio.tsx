@@ -34,6 +34,9 @@ import {
 import { motion } from 'framer-motion';
 import { Doughnut, Line } from 'react-chartjs-2';
 import { useTheme } from '@mui/material/styles';
+import '@utils/chartConfig'; // Import Chart.js configuration
+import PerformanceAnalysis from '@components/Portfolio/PerformanceAnalysis';
+import PortfolioAnalysis from '@components/Portfolio/PortfolioAnalysis';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -45,7 +48,7 @@ function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
   return (
     <div hidden={value !== index} {...other}>
-      {value === index && <Box sx={{ py: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -322,56 +325,11 @@ const Portfolio: React.FC = () => {
         </TabPanel>
 
         <TabPanel value={tabValue} index={1}>
-          <Typography variant="h6" gutterBottom>
-            Performance Analysis
-          </Typography>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={4}>
-              <Card>
-                <CardContent>
-                  <Typography variant="subtitle2" color="textSecondary">
-                    1 Day Return
-                  </Typography>
-                  <Typography variant="h5" color="success.main">
-                    +1.02%
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Card>
-                <CardContent>
-                  <Typography variant="subtitle2" color="textSecondary">
-                    1 Month Return
-                  </Typography>
-                  <Typography variant="h5" color="success.main">
-                    +5.23%
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Card>
-                <CardContent>
-                  <Typography variant="subtitle2" color="textSecondary">
-                    YTD Return
-                  </Typography>
-                  <Typography variant="h5" color="success.main">
-                    +25.43%
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          </Grid>
+          <PerformanceAnalysis />
         </TabPanel>
 
         <TabPanel value={tabValue} index={2}>
-          <Typography variant="h6" gutterBottom>
-            Portfolio Analysis
-          </Typography>
-          <Typography variant="body1" color="textSecondary">
-            AI-powered portfolio analysis and recommendations coming soon...
-          </Typography>
+          <PortfolioAnalysis />
         </TabPanel>
       </Paper>
 

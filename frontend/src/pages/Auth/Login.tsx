@@ -86,6 +86,14 @@ const Login: React.FC = () => {
                 </Typography>
               </Box>
 
+              <Alert severity="info" sx={{ mb: 3 }}>
+                <Typography variant="body2">
+                  <strong>Demo Account:</strong><br />
+                  Email: demo@miowsis.com<br />
+                  Password: Demo123!
+                </Typography>
+              </Alert>
+
               {error && (
                 <Alert severity="error" sx={{ mb: 3 }}>
                   {error}
