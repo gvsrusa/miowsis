@@ -249,7 +249,7 @@ Our vision is to create the most accessible and impactful micro-investment platf
 
 **Step 2: Progressive Account Creation**
 - Email/phone with one-tap verification
-- Social login (Google, Apple, TikTok)
+- Social login (Google)
 - Behavioral biometric profile creation
 - Terms acceptance with plain language summary
 
