@@ -14,7 +14,8 @@ import {
   Badge,
   Fade,
   Collapse,
-  useTheme
+  useTheme,
+  Zoom
 } from '@mui/material';
 import {
   SmartToy,
@@ -23,7 +24,8 @@ import {
   Psychology,
   TipsAndUpdates,
   Minimize,
-  Chat
+  Chat,
+  ExpandLess
 } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAiChat } from '@hooks/useAiChat';
@@ -38,7 +40,8 @@ interface Message {
 
 const AiChatWidget: React.FC = () => {
   const theme = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const [messages, setMessages] = useState<Message[]>([
@@ -52,6 +55,7 @@ const AiChatWidget: React.FC = () => {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { sendMessage, isLoading } = useAiChat();
 
   const scrollToBottom = () => {
@@ -62,16 +66,47 @@ const AiChatWidget: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
+  // Calculate unread messages
   useEffect(() => {
-    if (!isOpen && messages.length > 1) {
-      const newMessages = messages.filter((msg, index) => 
-        msg.role === 'assistant' && index > 0
-      ).length;
-      setUnreadCount(newMessages);
+    if (!isExpanded) {
+      const assistantMessages = messages.filter(msg => msg.role === 'assistant');
+      const unread = assistantMessages.length - 1; // Subtract the initial message
+      setUnreadCount(unread > 0 ? unread : 0);
     } else {
       setUnreadCount(0);
     }
-  }, [messages, isOpen]);
+  }, [messages, isExpanded]);
+
+  const handleMouseEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (!isExpanded) {
+      hoverTimeoutRef.current = setTimeout(() => {
+        setIsHovered(false);
+      }, 300);
+    }
+  };
+
+  const handleOpen = () => {
+    setIsExpanded(true);
+    setIsHovered(true);
+    setIsMinimized(false);
+  };
+
+  const handleClose = () => {
+    setIsExpanded(false);
+    setIsHovered(false);
+    setIsMinimized(false);
+  };
+
+  const handleMinimize = () => {
+    setIsMinimized(!isMinimized);
+  };
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -128,14 +163,23 @@ const AiChatWidget: React.FC = () => {
 
   const handleSuggestionClick = (suggestion: string) => {
     setInput(suggestion);
-    handleSend();
+    setTimeout(() => handleSend(), 100);
   };
 
   return (
-    <>
-      {/* Floating Action Button */}
+    <Box
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      sx={{
+        position: 'fixed',
+        bottom: 24,
+        right: 24,
+        zIndex: 1300
+      }}
+    >
+      {/* Small Icon State */}
       <AnimatePresence>
-        {!isOpen && (
+        {!isExpanded && !isHovered && (
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -143,22 +187,50 @@ const AiChatWidget: React.FC = () => {
             transition={{ duration: 0.2 }}
           >
             <Fab
+              size="small"
               color="primary"
               aria-label="chat"
-              onClick={() => setIsOpen(true)}
+              onClick={handleOpen}
               sx={{
-                position: 'fixed',
-                bottom: 24,
-                right: 24,
                 background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
                 '&:hover': {
                   background: 'linear-gradient(45deg, #1976D2 30%, #00ACC1 90%)',
                 }
               }}
             >
-              <Badge badgeContent={unreadCount} color="error">
+              <Badge badgeContent={unreadCount} color="error" overlap="circular">
+                <Chat sx={{ fontSize: 20 }} />
+              </Badge>
+            </Fab>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Expanded Fab State (on hover, not clicked) */}
+      <AnimatePresence>
+        {!isExpanded && isHovered && (
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Fab
+              variant="extended"
+              color="primary"
+              aria-label="chat"
+              onClick={handleOpen}
+              sx={{
+                background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                '&:hover': {
+                  background: 'linear-gradient(45deg, #1976D2 30%, #00ACC1 90%)',
+                }
+              }}
+            >
+              <Badge badgeContent={unreadCount} color="error" sx={{ mr: 1 }}>
                 <Chat />
               </Badge>
+              AI Assistant
             </Fab>
           </motion.div>
         )}
@@ -166,18 +238,12 @@ const AiChatWidget: React.FC = () => {
 
       {/* Chat Window */}
       <AnimatePresence>
-        {isOpen && (
+        {isExpanded && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            style={{
-              position: 'fixed',
-              bottom: 90,
-              right: 24,
-              zIndex: 1300
-            }}
           >
             <Paper
               elevation={8}
@@ -201,9 +267,6 @@ const AiChatWidget: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  position: 'sticky',
-                  top: 0,
-                  zIndex: 10,
                   boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
                 }}
               >
@@ -229,14 +292,14 @@ const AiChatWidget: React.FC = () => {
                 <Box display="flex" gap={0.5}>
                   <IconButton
                     size="small"
-                    onClick={() => setIsMinimized(!isMinimized)}
+                    onClick={handleMinimize}
                     sx={{ color: 'white' }}
                   >
-                    <Minimize />
+                    {isMinimized ? <ExpandLess /> : <Minimize />}
                   </IconButton>
                   <IconButton
                     size="small"
-                    onClick={() => setIsOpen(false)}
+                    onClick={handleClose}
                     sx={{ color: 'white' }}
                   >
                     <Close />
@@ -244,8 +307,9 @@ const AiChatWidget: React.FC = () => {
                 </Box>
               </Box>
 
-              <Collapse in={!isMinimized} sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
+              {/* Chat Content */}
+              {!isMinimized && (
+                <>
                   {/* Messages */}
                   <Box
                     sx={{
@@ -394,13 +458,13 @@ const AiChatWidget: React.FC = () => {
                       </Typography>
                     </Box>
                   </Box>
-                </Box>
-              </Collapse>
+                </>
+              )}
             </Paper>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </Box>
   );
 };
 

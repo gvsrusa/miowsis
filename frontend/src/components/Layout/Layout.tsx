@@ -37,7 +37,6 @@ import {
   TrendingUp
 } from '@mui/icons-material';
 import { useAuth } from '@hooks/useAuth';
-import AiChatWidget from '@components/AiAssistant/AiChatWidget';
 import Logo from '@components/Logo/Logo';
 
 const drawerWidth = 240;
@@ -83,6 +82,8 @@ const Layout: React.FC = () => {
 
   const drawer = (
     <Box
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
       sx={{
         height: '100%',
         display: 'flex',
@@ -90,14 +91,13 @@ const Layout: React.FC = () => {
       }}
     >
       <Toolbar sx={{ 
-        position: 'relative',
         justifyContent: 'center',
         minHeight: 64
       }}>
         <Box sx={{ 
           display: 'flex', 
           alignItems: 'center', 
-          gap: 1,
+          gap: isExpanded ? 1 : 0,
           transition: 'all 0.3s ease'
         }}>
           <Logo sx={{ fontSize: isExpanded ? 32 : 40 }} />
@@ -107,28 +107,13 @@ const Layout: React.FC = () => {
               noWrap 
               component="div" 
               sx={{ 
-                fontWeight: 600,
-                overflow: 'hidden',
-                transition: 'all 0.3s ease'
+                fontWeight: 600
               }}
             >
               MIOwSIS
             </Typography>
           )}
         </Box>
-        {!isMobile && (
-          <IconButton
-            onClick={() => setSidebarExpanded(!sidebarExpanded)}
-            size="small"
-            sx={{
-              position: 'absolute',
-              right: 8,
-              transition: 'transform 0.3s ease'
-            }}
-          >
-            {isExpanded ? <ChevronLeft /> : <ChevronRight />}
-          </IconButton>
-        )}
       </Toolbar>
       <Divider />
       <List>
@@ -349,8 +334,6 @@ const Layout: React.FC = () => {
         <Outlet />
       </Box>
       
-      {/* AI Chat Widget */}
-      <AiChatWidget />
     </Box>
   );
 };

@@ -73,37 +73,10 @@ const Landing: React.FC = () => {
         <Container maxWidth="lg">
           <Box sx={{ 
             display: 'flex', 
-            justifyContent: 'space-between', 
+            justifyContent: 'center', 
             alignItems: 'center' 
           }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Logo variant="full" sx={{ height: 40, width: 'auto' }} />
-            </Box>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <Button 
-                component={RouterLink} 
-                to="/login" 
-                variant="text"
-                sx={{ color: 'white' }}
-              >
-                Login
-              </Button>
-              <Button 
-                component={RouterLink} 
-                to="/register" 
-                variant="outlined"
-                sx={{ 
-                  color: 'white', 
-                  borderColor: 'white',
-                  '&:hover': {
-                    borderColor: 'white',
-                    bgcolor: 'rgba(255, 255, 255, 0.1)'
-                  }
-                }}
-              >
-                Sign Up
-              </Button>
-            </Box>
+            <Logo variant="full" sx={{ height: 40, width: 'auto' }} />
           </Box>
         </Container>
       </Box>
