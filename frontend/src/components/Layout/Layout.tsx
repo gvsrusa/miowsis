@@ -18,7 +18,8 @@ import {
   Divider,
   useTheme,
   useMediaQuery,
-  Badge
+  Badge,
+  Tooltip
 } from '@mui/material';
 import {
   Menu as MenuIcon,
@@ -29,12 +30,18 @@ import {
   Settings,
   Logout,
   Person,
-  Notifications
+  Notifications,
+  SmartToy,
+  ChevronLeft,
+  ChevronRight,
+  TrendingUp
 } from '@mui/icons-material';
 import { useAuth } from '@hooks/useAuth';
 import AiChatWidget from '@components/AiAssistant/AiChatWidget';
+import Logo from '@components/Logo/Logo';
 
 const drawerWidth = 240;
+const miniDrawerWidth = 64;
 
 const menuItems = [
   { text: 'Dashboard', icon: <Dashboard />, path: '/dashboard' },
@@ -52,6 +59,8 @@ const Layout: React.FC = () => {
   const { user, logout } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
+  const [hovering, setHovering] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -70,39 +79,100 @@ const Layout: React.FC = () => {
     logout();
   };
 
+  const isExpanded = sidebarExpanded || hovering;
+
   const drawer = (
-    <Box>
-      <Toolbar>
-        <Typography variant="h6" noWrap component="div" sx={{ fontWeight: 600 }}>
-          MIOwSIS
-        </Typography>
+    <Box
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
+      <Toolbar sx={{ 
+        position: 'relative',
+        justifyContent: 'center',
+        minHeight: 64
+      }}>
+        <Box sx={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: 1,
+          transition: 'all 0.3s ease'
+        }}>
+          <Logo sx={{ fontSize: isExpanded ? 32 : 40 }} />
+          {isExpanded && (
+            <Typography 
+              variant="h6" 
+              noWrap 
+              component="div" 
+              sx={{ 
+                fontWeight: 600,
+                overflow: 'hidden',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              MIOwSIS
+            </Typography>
+          )}
+        </Box>
+        {!isMobile && (
+          <IconButton
+            onClick={() => setSidebarExpanded(!sidebarExpanded)}
+            size="small"
+            sx={{
+              position: 'absolute',
+              right: 8,
+              transition: 'transform 0.3s ease'
+            }}
+          >
+            {isExpanded ? <ChevronLeft /> : <ChevronRight />}
+          </IconButton>
+        )}
       </Toolbar>
       <Divider />
       <List>
         {menuItems.map((item) => (
-          <ListItem
-            button
+          <Tooltip
             key={item.text}
-            onClick={() => navigate(item.path)}
-            selected={location.pathname === item.path}
-            sx={{
-              '&.Mui-selected': {
-                backgroundColor: theme.palette.primary.main + '20',
-                '&:hover': {
-                  backgroundColor: theme.palette.primary.main + '30'
-                }
-              }
-            }}
+            title={!isExpanded ? item.text : ''}
+            placement="right"
+            arrow
           >
-            <ListItemIcon
+            <ListItem
+              button
+              onClick={() => navigate(item.path)}
+              selected={location.pathname === item.path}
               sx={{
-                color: location.pathname === item.path ? theme.palette.primary.main : 'inherit'
+                '&.Mui-selected': {
+                  backgroundColor: theme.palette.primary.main + '20',
+                  '&:hover': {
+                    backgroundColor: theme.palette.primary.main + '30'
+                  }
+                },
+                justifyContent: isExpanded ? 'initial' : 'center',
+                px: 2.5
               }}
             >
-              {item.icon}
-            </ListItemIcon>
-            <ListItemText primary={item.text} />
-          </ListItem>
+              <ListItemIcon
+                sx={{
+                  color: location.pathname === item.path ? theme.palette.primary.main : 'inherit',
+                  minWidth: 0,
+                  mr: isExpanded ? 3 : 'auto',
+                  justifyContent: 'center'
+                }}
+              >
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText 
+                primary={item.text} 
+                sx={{ 
+                  opacity: isExpanded ? 1 : 0,
+                  display: isExpanded ? 'initial' : 'none'
+                }} 
+              />
+            </ListItem>
+          </Tooltip>
         ))}
       </List>
     </Box>
@@ -114,11 +184,15 @@ const Layout: React.FC = () => {
       <AppBar
         position="fixed"
         sx={{
-          width: { md: `calc(100% - ${drawerWidth}px)` },
-          ml: { md: `${drawerWidth}px` },
+          width: { md: `calc(100% - ${isExpanded ? drawerWidth : miniDrawerWidth}px)` },
+          ml: { md: `${isExpanded ? drawerWidth : miniDrawerWidth}px` },
           bgcolor: 'background.paper',
           color: 'text.primary',
-          boxShadow: 1
+          boxShadow: 1,
+          transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          })
         }}
       >
         <Toolbar>
@@ -131,6 +205,53 @@ const Layout: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
+          
+          {/* Page Title and Portfolio Info */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+            <Typography variant="h6" sx={{ fontWeight: 500 }}>
+              {menuItems.find(item => item.path === location.pathname)?.text || 'Dashboard'}
+            </Typography>
+            {!isMobile && (
+              <Box sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: 2,
+                ml: 3,
+                p: 1,
+                px: 2,
+                borderRadius: 2,
+                bgcolor: 'background.default'
+              }}>
+                <Box>
+                  <Typography variant="caption" color="text.secondary">
+                    Portfolio Value
+                  </Typography>
+                  <Typography variant="h6" sx={{ fontWeight: 600, color: 'primary.main' }}>
+                    $12,450.32
+                  </Typography>
+                </Box>
+                <Divider orientation="vertical" flexItem />
+                <Box>
+                  <Typography variant="caption" color="text.secondary">
+                    Today's Change
+                  </Typography>
+                  <Typography 
+                    variant="h6" 
+                    sx={{ 
+                      fontWeight: 600, 
+                      color: 'success.main',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 0.5
+                    }}
+                  >
+                    <TrendingUp sx={{ fontSize: 18 }} />
+                    +2.3%
+                  </Typography>
+                </Box>
+              </Box>
+            )}
+          </Box>
           
           <Box sx={{ flexGrow: 1 }} />
           
@@ -182,7 +303,12 @@ const Layout: React.FC = () => {
       
       <Box
         component="nav"
-        sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
+        sx={{ 
+          width: { md: isExpanded ? drawerWidth : miniDrawerWidth }, 
+          flexShrink: { md: 0 } 
+        }}
+        onMouseEnter={() => !isMobile && setHovering(true)}
+        onMouseLeave={() => !isMobile && setHovering(false)}
       >
         <Drawer
           variant={isMobile ? 'temporary' : 'permanent'}
@@ -194,7 +320,12 @@ const Layout: React.FC = () => {
           sx={{
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
-              width: drawerWidth
+              width: isExpanded ? drawerWidth : miniDrawerWidth,
+              transition: theme.transitions.create('width', {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.enteringScreen,
+              }),
+              overflowX: 'hidden'
             }
           }}
         >
@@ -207,7 +338,11 @@ const Layout: React.FC = () => {
         sx={{
           flexGrow: 1,
           p: 3,
-          width: { md: `calc(100% - ${drawerWidth}px)` }
+          width: { md: `calc(100% - ${isExpanded ? drawerWidth : miniDrawerWidth}px)` },
+          transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          })
         }}
       >
         <Toolbar />

@@ -17,7 +17,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  ListItemSecondary,
+  ListItemSecondaryAction,
   IconButton,
   Avatar,
   Chip,
@@ -35,7 +35,6 @@ import {
   CardContent,
   Stack,
   InputAdornment,
-  Tooltip,
   Tab,
   Tabs
 } from '@mui/material';
@@ -51,24 +50,16 @@ import {
   Lock,
   AccountBalance,
   CreditCard,
-  Fingerprint,
-  TwoFactorOutlined,
   DarkMode,
   LightMode,
-  NotificationsActive,
-  NotificationsOff,
   Edit,
   Delete,
   Add,
   Check,
   Close,
-  Info,
   Warning,
-  PhotoCamera,
-  Visibility,
-  VisibilityOff
+  PhotoCamera
 } from '@mui/icons-material';
-import { motion } from 'framer-motion';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -88,7 +79,6 @@ function TabPanel(props: TabPanelProps) {
 const Settings: React.FC = () => {
   const theme = useTheme();
   const [tabValue, setTabValue] = useState(0);
-  const [showPassword, setShowPassword] = useState(false);
   const [twoFactorDialog, setTwoFactorDialog] = useState(false);
   const [deleteAccountDialog, setDeleteAccountDialog] = useState(false);
   const [addPaymentDialog, setAddPaymentDialog] = useState(false);
@@ -135,7 +125,7 @@ const Settings: React.FC = () => {
     roundupEnabled: true,
     roundupMultiplier: 2,
     esgPreference: 'high',
-    excludedSectors: []
+    excludedSectors: [] as string[]
   });
 
   // Payment methods
@@ -145,14 +135,36 @@ const Settings: React.FC = () => {
       type: 'bank',
       name: 'Chase Checking ****1234',
       isDefault: true,
-      icon: <AccountBalance />
+      icon: <AccountBalance />,
+      verified: true,
+      lastUsed: '2024-06-10'
     },
     {
       id: '2',
       type: 'card',
       name: 'Visa ****5678',
       isDefault: false,
-      icon: <CreditCard />
+      icon: <CreditCard />,
+      verified: true,
+      lastUsed: '2024-06-05'
+    },
+    {
+      id: '3',
+      type: 'bank',
+      name: 'Wells Fargo Savings ****9876',
+      isDefault: false,
+      icon: <AccountBalance />,
+      verified: true,
+      lastUsed: '2024-05-28'
+    },
+    {
+      id: '4',
+      type: 'card',
+      name: 'Mastercard ****4321',
+      isDefault: false,
+      icon: <CreditCard />,
+      verified: false,
+      lastUsed: null
     }
   ]);
 
@@ -188,7 +200,7 @@ const Settings: React.FC = () => {
       <Paper sx={{ mb: 4 }}>
         <Tabs
           value={tabValue}
-          onChange={(e, newValue) => setTabValue(newValue)}
+          onChange={(_, newValue) => setTabValue(newValue)}
           variant="scrollable"
           scrollButtons="auto"
         >
@@ -365,7 +377,7 @@ const Settings: React.FC = () => {
                       control={
                         <Switch
                           checked={security.twoFactorEnabled}
-                          onChange={(e) => handleEnable2FA()}
+                          onChange={() => handleEnable2FA()}
                         />
                       }
                       label={
@@ -444,7 +456,7 @@ const Settings: React.FC = () => {
                     </ListItemIcon>
                     <ListItemText
                       primary="iPhone 13 Pro"
-                      secondary="Last active: 2 minutes ago"
+                      secondary="New York, NY • Last active: 2 minutes ago"
                     />
                     <Chip label="Current" size="small" color="primary" />
                   </ListItem>
@@ -454,13 +466,30 @@ const Settings: React.FC = () => {
                     </ListItemIcon>
                     <ListItemText
                       primary="Chrome on MacBook"
-                      secondary="Last active: 1 hour ago"
+                      secondary="New York, NY • Last active: 1 hour ago"
+                    />
+                    <IconButton size="small">
+                      <Close />
+                    </IconButton>
+                  </ListItem>
+                  <ListItem>
+                    <ListItemIcon>
+                      <Smartphone />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="Android App"
+                      secondary="Brooklyn, NY • Last active: 3 days ago"
                     />
                     <IconButton size="small">
                       <Close />
                     </IconButton>
                   </ListItem>
                 </List>
+                <Box mt={2}>
+                  <Button variant="outlined" color="error" fullWidth>
+                    Sign Out All Other Sessions
+                  </Button>
+                </Box>
               </CardContent>
             </Card>
           </Grid>
@@ -601,28 +630,49 @@ const Settings: React.FC = () => {
               </Button>
             </Box>
             <List>
-              {paymentMethods.map((method) => (
-                <ListItem key={method.id} divider>
+              {paymentMethods.map((method, index) => (
+                <ListItem key={method.id} divider={index < paymentMethods.length - 1}>
                   <ListItemIcon>
                     <Avatar sx={{ bgcolor: theme.palette.primary.main + '20' }}>
                       {method.icon}
                     </Avatar>
                   </ListItemIcon>
                   <ListItemText
-                    primary={method.name}
-                    secondary={method.isDefault ? 'Default payment method' : ''}
+                    primary={
+                      <Box display="flex" alignItems="center" gap={1}>
+                        {method.name}
+                        {!method.verified && (
+                          <Chip label="Verify" size="small" color="warning" icon={<Warning />} />
+                        )}
+                      </Box>
+                    }
+                    secondary={
+                      <Box>
+                        {method.isDefault && <Typography variant="caption">Default payment method</Typography>}
+                        {method.lastUsed && (
+                          <Typography variant="caption" color="textSecondary">
+                            {method.isDefault && ' • '}Last used: {new Date(method.lastUsed).toLocaleDateString()}
+                          </Typography>
+                        )}
+                      </Box>
+                    }
                   />
-                  <ListItemSecondary>
+                  <ListItemSecondaryAction>
                     {method.isDefault && (
                       <Chip label="Default" size="small" color="primary" sx={{ mr: 1 }} />
+                    )}
+                    {!method.isDefault && (
+                      <Button size="small" sx={{ mr: 1 }}>
+                        Make Default
+                      </Button>
                     )}
                     <IconButton size="small">
                       <Edit />
                     </IconButton>
-                    <IconButton size="small" color="error">
+                    <IconButton size="small" color="error" disabled={method.isDefault}>
                       <Delete />
                     </IconButton>
-                  </ListItemSecondary>
+                  </ListItemSecondaryAction>
                 </ListItem>
               ))}
             </List>
@@ -661,7 +711,7 @@ const Settings: React.FC = () => {
                 </Typography>
                 <Slider
                   value={preferences.esgPreference === 'high' ? 100 : preferences.esgPreference === 'medium' ? 50 : 0}
-                  onChange={(e, value) => {
+                  onChange={(_, value) => {
                     const esgPref = value === 100 ? 'high' : value === 50 ? 'medium' : 'low';
                     setPreferences({ ...preferences, esgPreference: esgPref });
                   }}
@@ -741,7 +791,7 @@ const Settings: React.FC = () => {
                       </Typography>
                       <Slider
                         value={preferences.roundupMultiplier}
-                        onChange={(e, value) => setPreferences({ ...preferences, roundupMultiplier: value as number })}
+                        onChange={(_, value) => setPreferences({ ...preferences, roundupMultiplier: value as number })}
                         min={1}
                         max={10}
                         marks
@@ -750,6 +800,47 @@ const Settings: React.FC = () => {
                     </Box>
                   )}
                 </Stack>
+              </CardContent>
+            </Card>
+          </Grid>
+          
+          {/* Sector Exclusions */}
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  Sector Exclusions
+                </Typography>
+                <Typography variant="body2" color="textSecondary" mb={2}>
+                  Select sectors you want to exclude from your investments
+                </Typography>
+                <Grid container spacing={1}>
+                  {[
+                    { value: 'tobacco', label: 'Tobacco', icon: '🚬' },
+                    { value: 'alcohol', label: 'Alcohol', icon: '🍺' },
+                    { value: 'gambling', label: 'Gambling', icon: '🎰' },
+                    { value: 'weapons', label: 'Weapons', icon: '🔫' },
+                    { value: 'fossil-fuels', label: 'Fossil Fuels', icon: '⛽' },
+                    { value: 'nuclear', label: 'Nuclear', icon: '☢️' },
+                    { value: 'adult', label: 'Adult Entertainment', icon: '🔞' },
+                    { value: 'cannabis', label: 'Cannabis', icon: '🌿' }
+                  ].map((sector) => (
+                    <Grid item xs={6} sm={4} md={3} key={sector.value}>
+                      <Chip
+                        label={`${sector.icon} ${sector.label}`}
+                        onClick={() => {
+                          const newExclusions = preferences.excludedSectors.includes(sector.value)
+                            ? preferences.excludedSectors.filter(s => s !== sector.value)
+                            : [...preferences.excludedSectors, sector.value];
+                          setPreferences({ ...preferences, excludedSectors: newExclusions });
+                        }}
+                        color={preferences.excludedSectors.includes(sector.value) ? 'error' : 'default'}
+                        variant={preferences.excludedSectors.includes(sector.value) ? 'filled' : 'outlined'}
+                        sx={{ width: '100%' }}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
               </CardContent>
             </Card>
           </Grid>
@@ -869,6 +960,62 @@ const Settings: React.FC = () => {
         <DialogActions>
           <Button onClick={() => setDeleteAccountDialog(false)}>Cancel</Button>
           <Button variant="contained" color="error">Delete Account</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Add Payment Method Dialog */}
+      <Dialog open={addPaymentDialog} onClose={() => setAddPaymentDialog(false)} maxWidth="sm" fullWidth>
+        <DialogTitle>Add Payment Method</DialogTitle>
+        <DialogContent>
+          <Stack spacing={3} sx={{ mt: 2 }}>
+            <FormControl fullWidth>
+              <InputLabel>Payment Type</InputLabel>
+              <Select label="Payment Type" defaultValue="bank">
+                <MenuItem value="bank">Bank Account</MenuItem>
+                <MenuItem value="card">Debit/Credit Card</MenuItem>
+              </Select>
+            </FormControl>
+            
+            <TextField
+              fullWidth
+              label="Account/Card Number"
+              placeholder="Enter account or card number"
+            />
+            
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <TextField
+                  fullWidth
+                  label="Routing Number"
+                  placeholder="9 digits"
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  fullWidth
+                  label="Account Type"
+                  select
+                  defaultValue="checking"
+                >
+                  <MenuItem value="checking">Checking</MenuItem>
+                  <MenuItem value="savings">Savings</MenuItem>
+                </TextField>
+              </Grid>
+            </Grid>
+            
+            <FormControlLabel
+              control={<Switch defaultChecked />}
+              label="Set as default payment method"
+            />
+            
+            <Alert severity="info" icon={<Lock />}>
+              Your payment information is encrypted and secure. We use bank-level security to protect your data.
+            </Alert>
+          </Stack>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setAddPaymentDialog(false)}>Cancel</Button>
+          <Button variant="contained">Add Payment Method</Button>
         </DialogActions>
       </Dialog>
     </Box>

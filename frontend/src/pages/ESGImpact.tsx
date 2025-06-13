@@ -49,7 +49,8 @@ import {
   Download,
   EmojiEvents,
   LocalFlorist,
-  PublicOutlined
+  PublicOutlined,
+  Remove
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { Doughnut, Bar, Line, Radar } from 'react-chartjs-2';
@@ -155,6 +156,66 @@ const ESGImpact: React.FC = () => {
       funded: 30000,
       goal: 50000,
       supporters: 145
+    },
+    {
+      id: '4',
+      title: 'Ocean Cleanup Technology',
+      organization: 'Blue Planet Initiative',
+      category: 'environmental',
+      impact: 'Removing 1000 tons of plastic from oceans',
+      funded: 120000,
+      goal: 150000,
+      supporters: 567
+    },
+    {
+      id: '5',
+      title: 'Affordable Housing Development',
+      organization: 'Community First Housing',
+      category: 'social',
+      impact: 'Building 200 affordable homes for families',
+      funded: 2500000,
+      goal: 3000000,
+      supporters: 892
+    },
+    {
+      id: '6',
+      title: 'Reforestation Project Amazon',
+      organization: 'Forest Forever Foundation',
+      category: 'environmental',
+      impact: 'Planting 1 million trees in deforested areas',
+      funded: 89000,
+      goal: 100000,
+      supporters: 445
+    },
+    {
+      id: '7',
+      title: 'Youth Mentorship Program',
+      organization: 'Future Leaders Network',
+      category: 'social',
+      impact: 'Mentoring 1000 at-risk youth',
+      funded: 67000,
+      goal: 80000,
+      supporters: 321
+    },
+    {
+      id: '8',
+      title: 'Supply Chain Transparency',
+      organization: 'Ethical Trade Coalition',
+      category: 'governance',
+      impact: 'Tracking ethical sourcing for 500 companies',
+      funded: 45000,
+      goal: 75000,
+      supporters: 234
+    },
+    {
+      id: '9',
+      title: 'Wind Farm Development',
+      organization: 'Clean Energy Ventures',
+      category: 'environmental',
+      impact: 'Generating 50MW of clean energy',
+      funded: 5000000,
+      goal: 6000000,
+      supporters: 1234
     }
   ];
 
@@ -183,6 +244,54 @@ const ESGImpact: React.FC = () => {
       icon: <Gavel />,
       date: '2024-03-10',
       rarity: 'common'
+    },
+    {
+      id: '4',
+      title: 'Ocean Protector',
+      description: 'Helped remove 100kg of ocean plastic',
+      icon: <WaterDrop />,
+      date: '2024-06-01',
+      rarity: 'rare'
+    },
+    {
+      id: '5',
+      title: 'Education Advocate',
+      description: 'Funded education for 50 students',
+      icon: <School />,
+      date: '2024-05-28',
+      rarity: 'epic'
+    },
+    {
+      id: '6',
+      title: 'First Impact',
+      description: 'Made your first ESG-focused investment',
+      icon: <EmojiEvents />,
+      date: '2024-01-15',
+      rarity: 'common'
+    },
+    {
+      id: '7',
+      title: 'Carbon Negative',
+      description: 'Portfolio became carbon negative',
+      icon: <Forest />,
+      date: '2024-06-10',
+      rarity: 'legendary'
+    },
+    {
+      id: '8',
+      title: 'Diversity Champion',
+      description: '80% portfolio in diverse-led companies',
+      icon: <Diversity3 />,
+      date: '2024-05-22',
+      rarity: 'rare'
+    },
+    {
+      id: '9',
+      title: 'Healthcare Hero',
+      description: 'Improved healthcare access for 1000 people',
+      icon: <HealthAndSafety />,
+      date: '2024-04-30',
+      rarity: 'epic'
     }
   ];
 
@@ -645,6 +754,360 @@ const ESGImpact: React.FC = () => {
                 </List>
               </CardContent>
             </Card>
+          </Grid>
+        </Grid>
+      )}
+
+      {tabValue === 2 && (
+        <Grid container spacing={3}>
+          {/* Social Impact Overview */}
+          <Grid item xs={12} md={8}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  Social Impact Metrics
+                </Typography>
+                <Box height={300}>
+                  <Bar
+                    data={{
+                      labels: ['Job Creation', 'Education', 'Healthcare', 'Community Development', 'Diversity & Inclusion'],
+                      datasets: [
+                        {
+                          label: 'Your Portfolio',
+                          data: [85, 78, 82, 90, 88],
+                          backgroundColor: theme.palette.info.main,
+                          borderRadius: 8
+                        },
+                        {
+                          label: 'Industry Average',
+                          data: [65, 60, 70, 68, 72],
+                          backgroundColor: theme.palette.grey[400],
+                          borderRadius: 8
+                        }
+                      ]
+                    }}
+                    options={{
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      plugins: {
+                        legend: {
+                          position: 'bottom'
+                        }
+                      },
+                      scales: {
+                        y: {
+                          beginAtZero: true,
+                          max: 100
+                        }
+                      }
+                    }}
+                  />
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Social Impact Stats */}
+          <Grid item xs={12} md={4}>
+            <Stack spacing={2}>
+              <Card>
+                <CardContent>
+                  <Box display="flex" alignItems="center" gap={2}>
+                    <Avatar sx={{ bgcolor: theme.palette.info.main, width: 48, height: 48 }}>
+                      <Groups />
+                    </Avatar>
+                    <Box>
+                      <Typography variant="h4" fontWeight={600}>
+                        156
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        Jobs Created
+                      </Typography>
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+              
+              <Card>
+                <CardContent>
+                  <Box display="flex" alignItems="center" gap={2}>
+                    <Avatar sx={{ bgcolor: theme.palette.secondary.main, width: 48, height: 48 }}>
+                      <School />
+                    </Avatar>
+                    <Box>
+                      <Typography variant="h4" fontWeight={600}>
+                        23
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        Students Educated
+                      </Typography>
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent>
+                  <Box display="flex" alignItems="center" gap={2}>
+                    <Avatar sx={{ bgcolor: theme.palette.success.main, width: 48, height: 48 }}>
+                      <HealthAndSafety />
+                    </Avatar>
+                    <Box>
+                      <Typography variant="h4" fontWeight={600}>
+                        1,250
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        Healthcare Access
+                      </Typography>
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Stack>
+          </Grid>
+
+          {/* Diversity & Inclusion */}
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  Diversity & Inclusion Performance
+                </Typography>
+                <Grid container spacing={3}>
+                  <Grid item xs={12} md={6}>
+                    <List>
+                      <ListItem>
+                        <ListItemIcon>
+                          <Diversity3 color="primary" />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary="Board Diversity"
+                          secondary="89% of portfolio companies have diverse boards"
+                        />
+                        <Chip label="Excellent" color="success" />
+                      </ListItem>
+                      <Divider />
+                      <ListItem>
+                        <ListItemIcon>
+                          <Groups color="secondary" />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary="Gender Equity"
+                          secondary="45% female leadership representation"
+                        />
+                        <Chip label="Good" color="info" />
+                      </ListItem>
+                      <Divider />
+                      <ListItem>
+                        <ListItemIcon>
+                          <Work color="info" />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary="Fair Labor Practices"
+                          secondary="100% companies with fair wage policies"
+                        />
+                        <Chip label="Certified" color="success" />
+                      </ListItem>
+                    </List>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box height={250}>
+                      <Doughnut
+                        data={{
+                          labels: ['Women-led', 'Minority-led', 'Youth-led', 'Veteran-led', 'Other'],
+                          datasets: [{
+                            label: 'Leadership Distribution',
+                            data: [35, 25, 15, 10, 15],
+                            backgroundColor: [
+                              theme.palette.primary.main,
+                              theme.palette.secondary.main,
+                              theme.palette.info.main,
+                              theme.palette.warning.main,
+                              theme.palette.grey[400]
+                            ]
+                          }]
+                        }}
+                        options={{
+                          responsive: true,
+                          maintainAspectRatio: false,
+                          plugins: {
+                            legend: {
+                              position: 'right'
+                            }
+                          }
+                        }}
+                      />
+                    </Box>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      )}
+
+      {tabValue === 3 && (
+        <Grid container spacing={3}>
+          {/* Governance Score Breakdown */}
+          <Grid item xs={12} md={6}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  Governance Score Breakdown
+                </Typography>
+                <Box height={300}>
+                  <Radar
+                    data={{
+                      labels: ['Board Independence', 'Executive Compensation', 'Shareholder Rights', 'Audit Quality', 'Ethics & Compliance', 'Transparency'],
+                      datasets: [{
+                        label: 'Your Portfolio',
+                        data: [82, 75, 88, 90, 78, 85],
+                        borderColor: theme.palette.warning.main,
+                        backgroundColor: theme.palette.warning.main + '40',
+                        pointBackgroundColor: theme.palette.warning.main
+                      }]
+                    }}
+                    options={{
+                      responsive: true,
+                      maintainAspectRatio: false,
+                      scales: {
+                        r: {
+                          beginAtZero: true,
+                          max: 100
+                        }
+                      },
+                      plugins: {
+                        legend: {
+                          display: false
+                        }
+                      }
+                    }}
+                  />
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Governance Metrics */}
+          <Grid item xs={12} md={6}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  Key Governance Metrics
+                </Typography>
+                <Stack spacing={2}>
+                  <Paper variant="outlined" sx={{ p: 2 }}>
+                    <Box display="flex" justifyContent="space-between" alignItems="center">
+                      <Box>
+                        <Typography variant="subtitle2">Board Independence</Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Average independent directors
+                        </Typography>
+                      </Box>
+                      <Box textAlign="right">
+                        <Typography variant="h5" fontWeight={600} color="primary">
+                          82%
+                        </Typography>
+                        <Chip label="+5%" size="small" color="success" />
+                      </Box>
+                    </Box>
+                  </Paper>
+
+                  <Paper variant="outlined" sx={{ p: 2 }}>
+                    <Box display="flex" justifyContent="space-between" alignItems="center">
+                      <Box>
+                        <Typography variant="subtitle2">CEO Pay Ratio</Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          CEO to median employee pay
+                        </Typography>
+                      </Box>
+                      <Box textAlign="right">
+                        <Typography variant="h5" fontWeight={600} color="primary">
+                          45:1
+                        </Typography>
+                        <Chip label="Fair" size="small" color="info" />
+                      </Box>
+                    </Box>
+                  </Paper>
+
+                  <Paper variant="outlined" sx={{ p: 2 }}>
+                    <Box display="flex" justifyContent="space-between" alignItems="center">
+                      <Box>
+                        <Typography variant="subtitle2">Audit Committee</Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          Financial experts on committee
+                        </Typography>
+                      </Box>
+                      <Box textAlign="right">
+                        <Typography variant="h5" fontWeight={600} color="primary">
+                          100%
+                        </Typography>
+                        <Chip label="Compliant" size="small" color="success" />
+                      </Box>
+                    </Box>
+                  </Paper>
+                </Stack>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Company Governance Ratings */}
+          <Grid item xs={12}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  Portfolio Company Governance Ratings
+                </Typography>
+                <List>
+                  {[
+                    { name: 'Apple Inc.', rating: 92, trend: 'up', issues: 'None' },
+                    { name: 'Microsoft Corp.', rating: 88, trend: 'stable', issues: 'None' },
+                    { name: 'Amazon.com Inc.', rating: 75, trend: 'down', issues: 'Board diversity concerns' },
+                    { name: 'Alphabet Inc.', rating: 82, trend: 'up', issues: 'Dual-class structure' },
+                    { name: 'Tesla Inc.', rating: 68, trend: 'stable', issues: 'Board independence' },
+                    { name: 'Johnson & Johnson', rating: 91, trend: 'up', issues: 'None' },
+                    { name: 'Visa Inc.', rating: 86, trend: 'stable', issues: 'None' },
+                    { name: 'Meta Platforms', rating: 70, trend: 'down', issues: 'Shareholder voting rights' },
+                    { name: 'Berkshire Hathaway', rating: 79, trend: 'stable', issues: 'Succession planning' },
+                    { name: 'NVIDIA Corp.', rating: 84, trend: 'up', issues: 'None' }
+                  ].map((company, index) => (
+                    <React.Fragment key={index}>
+                      <ListItem>
+                        <ListItemAvatar>
+                          <Avatar sx={{ bgcolor: theme.palette.grey[200] }}>
+                            <Business />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                          primary={company.name}
+                          secondary={company.issues}
+                        />
+                        <Box display="flex" alignItems="center" gap={2}>
+                          <Box textAlign="center">
+                            <Typography variant="h6" fontWeight={600}>
+                              {company.rating}
+                            </Typography>
+                            <Rating value={company.rating / 20} readOnly size="small" />
+                          </Box>
+                          {company.trend === 'up' && <TrendingUp color="success" />}
+                          {company.trend === 'down' && <TrendingDown color="error" />}
+                          {company.trend === 'stable' && <Remove color="action" />}
+                        </Box>
+                      </ListItem>
+                      {index < 9 && <Divider />}
+                    </React.Fragment>
+                  ))}
+                </List>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          {/* Governance Alerts */}
+          <Grid item xs={12}>
+            <Alert severity="warning" sx={{ mb: 2 }}>
+              <AlertTitle>Governance Alert</AlertTitle>
+              3 companies in your portfolio have upcoming shareholder votes on executive compensation. Review and vote to maintain governance standards.
+            </Alert>
           </Grid>
         </Grid>
       )}

@@ -20,6 +20,7 @@ import {
   AccountBalance,
   ShowChart
 } from '@mui/icons-material';
+import Logo from '@components/Logo/Logo';
 
 const features = [
   {
@@ -60,6 +61,53 @@ const Landing: React.FC = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
+      {/* Navigation Bar */}
+      <Box sx={{ 
+        position: 'absolute', 
+        top: 0, 
+        left: 0, 
+        right: 0, 
+        zIndex: 10,
+        p: 2
+      }}>
+        <Container maxWidth="lg">
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center' 
+          }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Logo variant="full" sx={{ height: 40, width: 'auto' }} />
+            </Box>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <Button 
+                component={RouterLink} 
+                to="/login" 
+                variant="text"
+                sx={{ color: 'white' }}
+              >
+                Login
+              </Button>
+              <Button 
+                component={RouterLink} 
+                to="/register" 
+                variant="outlined"
+                sx={{ 
+                  color: 'white', 
+                  borderColor: 'white',
+                  '&:hover': {
+                    borderColor: 'white',
+                    bgcolor: 'rgba(255, 255, 255, 0.1)'
+                  }
+                }}
+              >
+                Sign Up
+              </Button>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
       {/* Hero Section */}
       <Box
         sx={{

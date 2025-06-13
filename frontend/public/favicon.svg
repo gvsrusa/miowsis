@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+  <defs>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2196F3" />
+      <stop offset="100%" stop-color="#4CAF50" />
+    </linearGradient>
+    <linearGradient id="iconLeafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4CAF50" />
+      <stop offset="100%" stop-color="#8BC34A" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main circle -->
+  <circle cx="25" cy="25" r="22" fill="url(#iconGradient)" opacity="0.15" />
+  
+  <!-- Growth chart bars -->
+  <rect x="15" y="30" width="4" height="10" fill="url(#iconGradient)" rx="1" />
+  <rect x="23" y="25" width="4" height="15" fill="url(#iconGradient)" rx="1" />
+  <rect x="31" y="20" width="4" height="20" fill="url(#iconGradient)" rx="1" />
+  
+  <!-- Leaf symbol -->
+  <path
+    d="M25 15 Q20 10 15 15 Q15 25 25 25 Q35 25 35 15 Q30 10 25 15"
+    fill="url(#iconLeafGradient)"
+    opacity="0.8"
+  />
+</svg>

@@ -1,27 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Box,
-  Card,
-  CardContent,
-  CardHeader,
   IconButton,
   TextField,
   Typography,
   Avatar,
   Fab,
-  Zoom,
   Chip,
   CircularProgress,
   Divider,
-  InputAdornment
+  InputAdornment,
+  Paper,
+  Badge,
+  Fade,
+  Collapse,
+  useTheme
 } from '@mui/material';
 import {
   SmartToy,
   Send,
   Close,
-  Refresh,
   Psychology,
-  TipsAndUpdates
+  TipsAndUpdates,
+  Minimize,
+  Chat
 } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAiChat } from '@hooks/useAiChat';
@@ -35,7 +37,10 @@ interface Message {
 }
 
 const AiChatWidget: React.FC = () => {
+  const theme = useTheme();
   const [isOpen, setIsOpen] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -56,6 +61,17 @@ const AiChatWidget: React.FC = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    if (!isOpen && messages.length > 1) {
+      const newMessages = messages.filter((msg, index) => 
+        msg.role === 'assistant' && index > 0
+      ).length;
+      setUnreadCount(newMessages);
+    } else {
+      setUnreadCount(0);
+    }
+  }, [messages, isOpen]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -118,214 +134,269 @@ const AiChatWidget: React.FC = () => {
   return (
     <>
       {/* Floating Action Button */}
-      <Zoom in={!isOpen}>
-        <Fab
-          color="primary"
-          aria-label="AI Assistant"
-          sx={{
-            position: 'fixed',
-            bottom: 24,
-            right: 24,
-            background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-            '&:hover': {
-              transform: 'scale(1.1)'
-            }
-          }}
-          onClick={() => setIsOpen(true)}
-        >
-          <SmartToy />
-        </Fab>
-      </Zoom>
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Fab
+              color="primary"
+              aria-label="chat"
+              onClick={() => setIsOpen(true)}
+              sx={{
+                position: 'fixed',
+                bottom: 24,
+                right: 24,
+                background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                '&:hover': {
+                  background: 'linear-gradient(45deg, #1976D2 30%, #00ACC1 90%)',
+                }
+              }}
+            >
+              <Badge badgeContent={unreadCount} color="error">
+                <Chat />
+              </Badge>
+            </Fab>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 100, scale: 0.8 }}
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 100, scale: 0.8 }}
+            exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.3 }}
             style={{
               position: 'fixed',
-              bottom: 24,
+              bottom: 90,
               right: 24,
               zIndex: 1300
             }}
           >
-            <Card
+            <Paper
+              elevation={8}
               sx={{
-                width: { xs: '90vw', sm: 400 },
-                height: { xs: '80vh', sm: 600 },
-                maxHeight: '80vh',
+                width: 380,
+                height: isMinimized ? 'auto' : 500,
+                maxHeight: 'calc(100vh - 120px)',
                 display: 'flex',
                 flexDirection: 'column',
-                boxShadow: 6
+                borderRadius: 2,
+                overflow: 'hidden',
+                position: 'relative'
               }}
             >
-              <CardHeader
-                avatar={
+              {/* Header */}
+              <Box
+                sx={{
+                  background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                  color: 'white',
+                  p: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  position: 'sticky',
+                  top: 0,
+                  zIndex: 10,
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                   <Avatar
                     sx={{
-                      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)'
+                      bgcolor: 'rgba(255, 255, 255, 0.2)',
+                      width: 36,
+                      height: 36
                     }}
                   >
                     <Psychology />
                   </Avatar>
-                }
-                title="MIOwSIS AI Assistant"
-                subheader="Your personal investment advisor"
-                action={
-                  <IconButton onClick={() => setIsOpen(false)}>
-                    <Close />
-                  </IconButton>
-                }
-                sx={{
-                  background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
-                }}
-              />
-
-              <CardContent
-                sx={{
-                  flex: 1,
-                  overflowY: 'auto',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  p: 2
-                }}
-              >
-                {messages.map((message, index) => (
-                  <Box
-                    key={message.id}
-                    sx={{
-                      display: 'flex',
-                      justifyContent: message.role === 'user' ? 'flex-end' : 'flex-start',
-                      mb: 2
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        maxWidth: '80%',
-                        display: 'flex',
-                        flexDirection: message.role === 'user' ? 'row-reverse' : 'row',
-                        alignItems: 'flex-start',
-                        gap: 1
-                      }}
-                    >
-                      <Avatar
-                        sx={{
-                          width: 32,
-                          height: 32,
-                          bgcolor: message.role === 'user' ? 'primary.main' : 'secondary.main'
-                        }}
-                      >
-                        {message.role === 'user' ? 'U' : <SmartToy />}
-                      </Avatar>
-                      <Box
-                        sx={{
-                          bgcolor: message.role === 'user' ? 'primary.main' : 'grey.100',
-                          color: message.role === 'user' ? 'white' : 'text.primary',
-                          borderRadius: 2,
-                          p: 2,
-                          position: 'relative',
-                          '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: 8,
-                            [message.role === 'user' ? 'right' : 'left']: -8,
-                            width: 0,
-                            height: 0,
-                            borderStyle: 'solid',
-                            borderWidth: message.role === 'user' ? '8px 0 8px 8px' : '8px 8px 8px 0',
-                            borderColor: message.role === 'user'
-                              ? 'transparent transparent transparent primary.main'
-                              : 'transparent grey.100 transparent transparent'
-                          }
-                        }}
-                      >
-                        <Typography variant="body2">
-                          {message.content}
-                        </Typography>
-                        <Typography variant="caption" sx={{ opacity: 0.7, mt: 1, display: 'block' }}>
-                          {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </Box>
-                ))}
-
-                {isTyping && (
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ml: 5 }}>
-                    <CircularProgress size={16} />
-                    <Typography variant="body2" color="textSecondary">
-                      AI is thinking...
+                  <Box>
+                    <Typography variant="subtitle1" fontWeight={600}>
+                      AI Assistant
+                    </Typography>
+                    <Typography variant="caption" sx={{ opacity: 0.9 }}>
+                      {isTyping ? 'Typing...' : 'Online'}
                     </Typography>
                   </Box>
-                )}
-
-                <div ref={messagesEndRef} />
-              </CardContent>
-
-              {/* Quick Suggestions */}
-              {messages.length === 1 && (
-                <Box sx={{ px: 2, pb: 1 }}>
-                  <Typography variant="caption" color="textSecondary" gutterBottom>
-                    Quick questions:
-                  </Typography>
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                    {suggestions.map((suggestion, index) => (
-                      <Chip
-                        key={index}
-                        label={suggestion}
-                        size="small"
-                        onClick={() => handleSuggestionClick(suggestion)}
-                        sx={{
-                          cursor: 'pointer',
-                          '&:hover': {
-                            bgcolor: 'primary.light',
-                            color: 'white'
-                          }
-                        }}
-                      />
-                    ))}
-                  </Box>
                 </Box>
-              )}
-
-              <Divider />
-
-              {/* Input Area */}
-              <Box sx={{ p: 2 }}>
-                <TextField
-                  fullWidth
-                  multiline
-                  maxRows={3}
-                  placeholder="Ask me anything about investing..."
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  disabled={isLoading}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          onClick={handleSend}
-                          disabled={!input.trim() || isLoading}
-                          color="primary"
-                        >
-                          <Send />
-                        </IconButton>
-                      </InputAdornment>
-                    )
-                  }}
-                />
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1 }}>
-                  <TipsAndUpdates sx={{ fontSize: 16, color: 'text.secondary' }} />
-                  <Typography variant="caption" color="textSecondary">
-                    I can help with portfolio analysis, ESG investing, and financial education
-                  </Typography>
+                <Box display="flex" gap={0.5}>
+                  <IconButton
+                    size="small"
+                    onClick={() => setIsMinimized(!isMinimized)}
+                    sx={{ color: 'white' }}
+                  >
+                    <Minimize />
+                  </IconButton>
+                  <IconButton
+                    size="small"
+                    onClick={() => setIsOpen(false)}
+                    sx={{ color: 'white' }}
+                  >
+                    <Close />
+                  </IconButton>
                 </Box>
               </Box>
-            </Card>
+
+              <Collapse in={!isMinimized} sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
+                  {/* Messages */}
+                  <Box
+                    sx={{
+                      flex: 1,
+                      overflowY: 'auto',
+                      overflowX: 'hidden',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      p: 2,
+                      bgcolor: 'grey.50'
+                    }}
+                  >
+                    {messages.map((message) => (
+                      <Fade in key={message.id}>
+                        <Box
+                          sx={{
+                            display: 'flex',
+                            justifyContent: message.role === 'user' ? 'flex-end' : 'flex-start',
+                            mb: 2
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              maxWidth: '80%',
+                              display: 'flex',
+                              flexDirection: message.role === 'user' ? 'row-reverse' : 'row',
+                              alignItems: 'flex-start',
+                              gap: 1
+                            }}
+                          >
+                            {message.role === 'assistant' && (
+                              <Avatar
+                                sx={{
+                                  width: 28,
+                                  height: 28,
+                                  bgcolor: 'secondary.main'
+                                }}
+                              >
+                                <SmartToy sx={{ fontSize: 18 }} />
+                              </Avatar>
+                            )}
+                            <Box
+                              sx={{
+                                bgcolor: message.role === 'user' ? 'primary.main' : 'white',
+                                color: message.role === 'user' ? 'white' : 'text.primary',
+                                borderRadius: 2,
+                                p: 1.5,
+                                boxShadow: 1
+                              }}
+                            >
+                              <Typography variant="body2">
+                                {message.content}
+                              </Typography>
+                              <Typography variant="caption" sx={{ opacity: 0.7, mt: 0.5, display: 'block' }}>
+                                {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                              </Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </Fade>
+                    ))}
+
+                    {isTyping && (
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Avatar sx={{ width: 28, height: 28, bgcolor: 'secondary.main' }}>
+                          <SmartToy sx={{ fontSize: 18 }} />
+                        </Avatar>
+                        <Box sx={{ bgcolor: 'white', borderRadius: 2, p: 1.5, boxShadow: 1 }}>
+                          <Box sx={{ display: 'flex', gap: 0.5 }}>
+                            <CircularProgress size={8} />
+                            <CircularProgress size={8} sx={{ animationDelay: '0.1s' }} />
+                            <CircularProgress size={8} sx={{ animationDelay: '0.2s' }} />
+                          </Box>
+                        </Box>
+                      </Box>
+                    )}
+
+                    <div ref={messagesEndRef} />
+                  </Box>
+
+                  {/* Quick Suggestions */}
+                  {messages.length === 1 && (
+                    <Box sx={{ px: 2, pb: 1, bgcolor: 'grey.50' }}>
+                      <Typography variant="caption" color="textSecondary" gutterBottom>
+                        Quick questions:
+                      </Typography>
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {suggestions.map((suggestion, index) => (
+                          <Chip
+                            key={index}
+                            label={suggestion}
+                            size="small"
+                            onClick={() => handleSuggestionClick(suggestion)}
+                            sx={{
+                              cursor: 'pointer',
+                              fontSize: '0.75rem',
+                              '&:hover': {
+                                bgcolor: 'primary.light',
+                                color: 'white'
+                              }
+                            }}
+                          />
+                        ))}
+                      </Box>
+                    </Box>
+                  )}
+
+                  <Divider />
+
+                  {/* Input Area */}
+                  <Box sx={{ p: 2, bgcolor: 'background.paper' }}>
+                    <TextField
+                      fullWidth
+                      multiline
+                      maxRows={3}
+                      placeholder="Ask me anything..."
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      onKeyPress={handleKeyPress}
+                      disabled={isLoading}
+                      size="small"
+                      sx={{
+                        '& .MuiOutlinedInput-root': {
+                          borderRadius: 3
+                        }
+                      }}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={handleSend}
+                              disabled={!input.trim() || isLoading}
+                              color="primary"
+                              size="small"
+                            >
+                              <Send fontSize="small" />
+                            </IconButton>
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 1 }}>
+                      <TipsAndUpdates sx={{ fontSize: 14, color: 'text.secondary' }} />
+                      <Typography variant="caption" color="textSecondary">
+                        Powered by AI • Always learning
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              </Collapse>
+            </Paper>
           </motion.div>
         )}
       </AnimatePresence>

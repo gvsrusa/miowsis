@@ -69,7 +69,7 @@ const Portfolio: React.FC = () => {
       gain: 378.12,
       gainPercent: 12.37,
       esgScore: 82,
-      allocation: 28.5
+      allocation: 10.2
     },
     {
       symbol: 'ICLN',
@@ -81,43 +81,223 @@ const Portfolio: React.FC = () => {
       gain: 162.03,
       gainPercent: 19.44,
       esgScore: 95,
-      allocation: 8.3
+      allocation: 3.0
     },
     {
       symbol: 'AAPL',
       name: 'Apple Inc.',
       shares: 5.5,
       avgCost: 150.00,
-      currentPrice: 180.50,
-      value: 992.75,
-      gain: 167.75,
-      gainPercent: 20.33,
+      currentPrice: 195.50,
+      value: 1075.25,
+      gain: 250.25,
+      gainPercent: 30.33,
       esgScore: 87,
-      allocation: 8.2
+      allocation: 3.2
     },
     {
       symbol: 'MSFT',
       name: 'Microsoft Corporation',
       shares: 8.25,
       avgCost: 300.00,
-      currentPrice: 380.00,
-      value: 3135.00,
-      gain: 660.00,
-      gainPercent: 26.67,
-      esgScore: 89,
-      allocation: 26.0
+      currentPrice: 415.25,
+      value: 3425.81,
+      gain: 950.81,
+      gainPercent: 38.42,
+      esgScore: 92,
+      allocation: 10.2
     },
     {
       symbol: 'TSLA',
       name: 'Tesla Inc.',
       shares: 2.1,
       avgCost: 800.00,
-      currentPrice: 250.00,
-      value: 525.00,
-      gain: -1155.00,
-      gainPercent: -68.75,
+      currentPrice: 245.30,
+      value: 515.13,
+      gain: -1164.87,
+      gainPercent: -69.35,
+      esgScore: 78,
+      allocation: 1.5
+    },
+    {
+      symbol: 'GOOGL',
+      name: 'Alphabet Inc.',
+      shares: 3.75,
+      avgCost: 140.00,
+      currentPrice: 175.35,
+      value: 657.56,
+      gain: 132.56,
+      gainPercent: 25.25,
+      esgScore: 88,
+      allocation: 2.0
+    },
+    {
+      symbol: 'JNJ',
+      name: 'Johnson & Johnson',
+      shares: 12.5,
+      avgCost: 155.00,
+      currentPrice: 148.90,
+      value: 1861.25,
+      gain: -76.25,
+      gainPercent: -3.94,
       esgScore: 91,
-      allocation: 4.4
+      allocation: 5.5
+    },
+    {
+      symbol: 'VOO',
+      name: 'Vanguard S&P 500 ETF',
+      shares: 10.0,
+      avgCost: 380.00,
+      currentPrice: 435.50,
+      value: 4355.00,
+      gain: 555.00,
+      gainPercent: 14.61,
+      esgScore: 84,
+      allocation: 13.0
+    },
+    {
+      symbol: 'AMZN',
+      name: 'Amazon.com Inc.',
+      shares: 4.8,
+      avgCost: 165.00,
+      currentPrice: 178.90,
+      value: 858.72,
+      gain: 66.72,
+      gainPercent: 8.42,
+      esgScore: 79,
+      allocation: 2.6
+    },
+    {
+      symbol: 'BRK.B',
+      name: 'Berkshire Hathaway Inc.',
+      shares: 6.0,
+      avgCost: 320.00,
+      currentPrice: 368.40,
+      value: 2210.40,
+      gain: 290.40,
+      gainPercent: 15.13,
+      esgScore: 83,
+      allocation: 6.6
+    },
+    {
+      symbol: 'NVDA',
+      name: 'NVIDIA Corporation',
+      shares: 1.5,
+      avgCost: 450.00,
+      currentPrice: 890.50,
+      value: 1335.75,
+      gain: 660.75,
+      gainPercent: 97.89,
+      esgScore: 85,
+      allocation: 4.0
+    },
+    {
+      symbol: 'META',
+      name: 'Meta Platforms Inc.',
+      shares: 2.25,
+      avgCost: 320.00,
+      currentPrice: 467.80,
+      value: 1052.55,
+      gain: 332.55,
+      gainPercent: 46.19,
+      esgScore: 75,
+      allocation: 3.1
+    },
+    {
+      symbol: 'PG',
+      name: 'Procter & Gamble Co.',
+      shares: 8.0,
+      avgCost: 145.00,
+      currentPrice: 152.30,
+      value: 1218.40,
+      gain: 58.40,
+      gainPercent: 5.03,
+      esgScore: 88,
+      allocation: 3.6
+    },
+    {
+      symbol: 'DIS',
+      name: 'Walt Disney Company',
+      shares: 7.5,
+      avgCost: 110.00,
+      currentPrice: 105.20,
+      value: 789.00,
+      gain: -36.00,
+      gainPercent: -4.36,
+      esgScore: 86,
+      allocation: 2.4
+    },
+    {
+      symbol: 'VZ',
+      name: 'Verizon Communications',
+      shares: 25.0,
+      avgCost: 42.00,
+      currentPrice: 39.85,
+      value: 996.25,
+      gain: -53.75,
+      gainPercent: -5.12,
+      esgScore: 81,
+      allocation: 3.0
+    },
+    {
+      symbol: 'QCLN',
+      name: 'First Trust NASDAQ Clean Edge ETF',
+      shares: 18.5,
+      avgCost: 52.00,
+      currentPrice: 58.75,
+      value: 1086.88,
+      gain: 124.88,
+      gainPercent: 12.99,
+      esgScore: 93,
+      allocation: 3.2
+    },
+    {
+      symbol: 'TAN',
+      name: 'Invesco Solar ETF',
+      shares: 12.0,
+      avgCost: 78.00,
+      currentPrice: 85.40,
+      value: 1024.80,
+      gain: 88.80,
+      gainPercent: 9.49,
+      esgScore: 96,
+      allocation: 3.1
+    },
+    {
+      symbol: 'XOM',
+      name: 'Exxon Mobil Corporation',
+      shares: 10.0,
+      avgCost: 95.00,
+      currentPrice: 112.50,
+      value: 1125.00,
+      gain: 175.00,
+      gainPercent: 18.42,
+      esgScore: 65,
+      allocation: 3.4
+    },
+    {
+      symbol: 'BAC',
+      name: 'Bank of America Corp.',
+      shares: 30.0,
+      avgCost: 32.00,
+      currentPrice: 35.60,
+      value: 1068.00,
+      gain: 108.00,
+      gainPercent: 11.25,
+      esgScore: 80,
+      allocation: 3.2
+    },
+    {
+      symbol: 'V',
+      name: 'Visa Inc.',
+      shares: 3.5,
+      avgCost: 220.00,
+      currentPrice: 268.90,
+      value: 941.15,
+      gain: 171.15,
+      gainPercent: 22.22,
+      esgScore: 86,
+      allocation: 2.8
     }
   ];
 
@@ -139,14 +319,23 @@ const Portfolio: React.FC = () => {
   };
 
   const performanceData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
       {
         label: 'Portfolio Value',
-        data: [10000, 10500, 11200, 10800, 11500, 12543],
+        data: [28000, 28500, 29200, 28800, 30500, 31543, 32100, 31800, 33200, 33800, 34500, 33542],
         borderColor: theme.palette.primary.main,
         backgroundColor: theme.palette.primary.main + '20',
-        tension: 0.4
+        tension: 0.4,
+        fill: true
+      },
+      {
+        label: 'S&P 500 Benchmark',
+        data: [28000, 28300, 28900, 29100, 29800, 30200, 30500, 30300, 31000, 31200, 31800, 31500],
+        borderColor: theme.palette.grey[500],
+        backgroundColor: theme.palette.grey[500] + '20',
+        tension: 0.4,
+        borderDash: [5, 5]
       }
     ]
   };
@@ -188,7 +377,20 @@ const Portfolio: React.FC = () => {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                      legend: { display: false }
+                      legend: { 
+                        display: true,
+                        position: 'bottom'
+                      }
+                    },
+                    scales: {
+                      y: {
+                        beginAtZero: false,
+                        ticks: {
+                          callback: function(value) {
+                            return '$' + value.toLocaleString();
+                          }
+                        }
+                      }
                     }
                   }}
                 />

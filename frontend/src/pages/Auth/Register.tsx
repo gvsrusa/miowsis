@@ -28,6 +28,7 @@ import {
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { AppDispatch, RootState } from '@/store';
+import Logo from '@components/Logo/Logo';
 import { register as registerUser, clearError } from '@/store/slices/authSlice';
 
 interface RegisterFormData {
@@ -123,6 +124,9 @@ const Register: React.FC = () => {
           <Card>
             <CardContent sx={{ p: 4 }}>
               <Box textAlign="center" mb={4}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+                  <Logo sx={{ fontSize: 64 }} />
+                </Box>
                 <Typography variant="h4" fontWeight={600} gutterBottom>
                   Create Your Account
                 </Typography>
