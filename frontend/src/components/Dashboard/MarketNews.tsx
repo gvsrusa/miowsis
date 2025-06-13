@@ -9,7 +9,7 @@ import {
   Link,
   Avatar
 } from '@mui/material';
-import { Eco, TrendingUp, Article } from '@mui/icons-material';
+import { NaturePeople, TrendingUp, Article } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
 interface NewsItem {
@@ -70,7 +70,7 @@ const MarketNews: React.FC = () => {
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'esg':
-        return <Eco />;
+        return <NaturePeople />;
       case 'market':
         return <TrendingUp />;
       default:

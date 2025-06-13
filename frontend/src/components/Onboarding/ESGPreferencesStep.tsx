@@ -16,7 +16,7 @@ import {
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import {
-  Eco,
+  NaturePeople,
   Groups,
   AccountBalance,
   LocalFlorist,
@@ -41,7 +41,7 @@ const categories: ESGCategory[] = [
     id: 'environmental',
     title: 'Environmental',
     description: 'Companies fighting climate change and protecting our planet',
-    icon: <Eco />,
+    icon: <NaturePeople />,
     color: '#4CAF50',
     examples: ['Carbon reduction', 'Renewable energy', 'Sustainable practices'],
     image: '/esg/environmental.jpg'

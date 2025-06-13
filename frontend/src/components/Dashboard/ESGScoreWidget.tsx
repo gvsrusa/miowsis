@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, LinearProgress, Chip, useTheme } from '@mui/material';
-import { Eco, Groups, AccountBalance } from '@mui/icons-material';
+import { NaturePeople, Groups, AccountBalance } from '@mui/icons-material';
 
 interface ESGCategory {
   name: string;
@@ -17,7 +17,7 @@ const ESGScoreWidget: React.FC = () => {
     {
       name: 'Environmental',
       score: 92,
-      icon: <Eco />,
+      icon: <NaturePeople />,
       color: theme.palette.success.main,
       description: 'Carbon footprint, renewable energy usage'
     },

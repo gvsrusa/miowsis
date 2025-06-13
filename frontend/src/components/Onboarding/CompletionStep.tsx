@@ -16,7 +16,7 @@ import {
 import {
   CheckCircle,
   TrendingUp,
-  Eco,
+  NaturePeople,
   Security,
   Speed,
   Celebration,
@@ -37,7 +37,7 @@ const CompletionStep: React.FC = () => {
       description: `Your ${data.riskTolerance} portfolio is ready to grow`
     },
     {
-      icon: <Eco />,
+      icon: <NaturePeople />,
       title: 'ESG Preferences Set',
       description: 'Investing in companies that match your values'
     },

@@ -13,7 +13,7 @@ import {
   TrendingUp,
   TrendingDown,
   AttachMoney,
-  Eco
+  NaturePeople
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
@@ -89,7 +89,7 @@ const RecentTransactions: React.FC = () => {
       case 'dividend':
         return <AttachMoney />;
       case 'roundup':
-        return <Eco />;
+        return <NaturePeople />;
       default:
         return <AttachMoney />;
     }

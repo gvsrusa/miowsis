@@ -16,7 +16,7 @@ import {
   TrendingDown,
   Add,
   MoreVert,
-  Eco,
+  NaturePeople,
   AccountBalance,
   ShowChart,
   Timeline
@@ -63,7 +63,7 @@ const Dashboard: React.FC = () => {
       value: '87/100',
       change: 3,
       changeLabel: '+3 points',
-      icon: <Eco />,
+      icon: <NaturePeople />,
       color: theme.palette.secondary.main
     },
     {

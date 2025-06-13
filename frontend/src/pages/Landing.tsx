@@ -14,7 +14,7 @@ import {
 import { motion } from 'framer-motion';
 import {
   TrendingUp,
-  Eco,
+  NaturePeople,
   Security,
   Speed,
   AccountBalance,
@@ -28,7 +28,7 @@ const features = [
     description: 'Start investing with as little as $1. Round up your purchases automatically.'
   },
   {
-    icon: <Eco fontSize="large" />,
+    icon: <NaturePeople fontSize="large" />,
     title: 'ESG Impact Scoring',
     description: 'See the real-world impact of your investments on environment and society.'
   },

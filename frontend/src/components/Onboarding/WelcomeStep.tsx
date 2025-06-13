@@ -3,7 +3,7 @@ import { Box, Typography, Avatar, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import {
   TrendingUp,
-  Eco,
+  NaturePeople,
   Security,
   Psychology
 } from '@mui/icons-material';
@@ -16,7 +16,7 @@ const features = [
     description: 'Start with as little as $1 and watch your wealth grow'
   },
   {
-    icon: <Eco />,
+    icon: <NaturePeople />,
     title: 'ESG Focused',
     description: 'Invest in companies that align with your values'
   },

@@ -24,7 +24,7 @@ import {
   Menu as MenuIcon,
   Dashboard,
   AccountBalance,
-  Eco,
+  NaturePeople,
   Receipt,
   Settings,
   Logout,
@@ -39,7 +39,7 @@ const drawerWidth = 240;
 const menuItems = [
   { text: 'Dashboard', icon: <Dashboard />, path: '/dashboard' },
   { text: 'Portfolio', icon: <AccountBalance />, path: '/portfolio' },
-  { text: 'ESG Impact', icon: <Eco />, path: '/impact' },
+  { text: 'ESG Impact', icon: <NaturePeople />, path: '/impact' },
   { text: 'Transactions', icon: <Receipt />, path: '/transactions' },
   { text: 'Settings', icon: <Settings />, path: '/settings' }
 ];
