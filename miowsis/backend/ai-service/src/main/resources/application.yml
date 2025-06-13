@@ -1,0 +1,65 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: ai-service
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: ai-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.miowsis.*"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+
+# OpenAI Configuration
+openai:
+  api-key: ${OPENAI_API_KEY:your-api-key}
+  model: ${AI_MODEL:gpt-4}
+  max-tokens: 1000
+  temperature: 0.7
+  timeout: 60s
+
+# Langchain Configuration
+langchain:
+  vectorstore:
+    type: pgvector
+    connection-url: ${VECTOR_DB_URL:jdbc:postgresql://localhost:5432/miowsis_vectors}
+    embedding-dimension: 1536
+
+# Feature Flags
+features:
+  streaming-enabled: true
+  context-enrichment: true
+  conversation-history: true
+  embeddings-cache: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+logging:
+  level:
+    com.miowsis: DEBUG
+    com.theokanning: DEBUG

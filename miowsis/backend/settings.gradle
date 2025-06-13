@@ -1,0 +1,12 @@
+rootProject.name = 'miowsis-backend'
+
+include 'user-service'
+include 'portfolio-service'
+include 'trading-service'
+include 'esg-service'
+include 'banking-service'
+include 'notification-service'
+include 'analytics-service'
+include 'ai-service'
+include 'api-gateway'
+include 'config-server'

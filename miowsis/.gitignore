@@ -1,0 +1,107 @@
+# Dependencies
+node_modules/
+**/node_modules/
+package-lock.json
+yarn.lock
+
+# Environment files
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build output
+dist/
+build/
+target/
+out/
+*.class
+*.jar
+*.war
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+
+# Java/Spring Boot
+.gradle/
+gradle/
+!gradle-wrapper.jar
+.springBeans
+.sts4-cache/
+
+# React/Frontend
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+
+# Docker
+docker-compose.override.yml
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.cache
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+
+# Uploads and generated files
+uploads/
+public/uploads/
+static/uploads/
+media/
+
+# Documentation build
+docs/_build/
+docs/.doctrees/
+
+# Monitoring and profiling
+*.hprof
+*.jfr
+.profiler/

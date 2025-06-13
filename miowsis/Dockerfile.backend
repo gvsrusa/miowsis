@@ -1,0 +1,49 @@
+# Build stage
+FROM gradle:8-jdk17-alpine as builder
+
+WORKDIR /app
+
+# Copy gradle files
+COPY backend/build.gradle backend/settings.gradle ./
+COPY backend/gradle ./gradle
+
+# Download dependencies
+RUN gradle dependencies --no-daemon
+
+# Copy source code
+COPY backend/ .
+
+# Build the application
+ARG SERVICE_NAME
+RUN gradle :${SERVICE_NAME}:bootJar --no-daemon
+
+# Production stage
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+# Create non-root user
+RUN groupadd -r miowsis && useradd -r -g miowsis miowsis
+
+# Copy jar from builder
+ARG SERVICE_NAME
+COPY --from=builder /app/${SERVICE_NAME}/build/libs/*.jar app.jar
+
+# Change ownership
+RUN chown -R miowsis:miowsis /app
+
+# Switch to non-root user
+USER miowsis
+
+# Expose port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=30s --retries=3 \
+  CMD wget --quiet --tries=1 --spider http://localhost:8080/actuator/health || exit 1
+
+# JVM options for container environment
+ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0"
+
+# Start the application
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
