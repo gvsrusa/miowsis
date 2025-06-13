@@ -466,10 +466,10 @@ Our vision is to create the most accessible and impactful micro-investment platf
 ## Document Control
 
 **Version**: 2.0  
-**Last Updated**: December 2025  
+**Last Updated**: June 2025  
 **Status**: Final Draft with UX Enhancements  
 **Owner**: Product Management Team  
-**Next Review**: March 2026  
+**Next Review**: December 2026  
 
 **Approval**:
 - [ ] Product Management
