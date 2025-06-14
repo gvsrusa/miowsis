@@ -269,7 +269,7 @@ const Layout: React.FC = () => {
               horizontal: 'right'
             }}
           >
-            <MenuItem onClick={() => { handleProfileMenuClose(); navigate('/profile'); }}>
+            <MenuItem onClick={() => { handleProfileMenuClose(); navigate('/settings'); }}>
               <ListItemIcon>
                 <Person fontSize="small" />
               </ListItemIcon>
