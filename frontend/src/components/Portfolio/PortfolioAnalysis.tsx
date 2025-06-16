@@ -47,6 +47,7 @@ import {
 import { Radar, PolarArea, Doughnut } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
 import '@utils/chartConfig';
+import PortfolioOptimization from './PortfolioOptimization';
 
 interface RiskMetric {
   name: string;
@@ -473,30 +474,7 @@ const PortfolioAnalysis: React.FC = () => {
       )}
 
       {analysisView === 'optimization' && (
-        <>
-          {/* Optimization Opportunities */}
-          <Alert severity="success" icon={<AutoGraph />} sx={{ mb: 4 }}>
-            <AlertTitle>Optimization Potential Identified</AlertTitle>
-            By implementing our recommendations, you could potentially improve your risk-adjusted returns by 15% and reduce portfolio volatility by 12%.
-          </Alert>
-
-          <Card>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Portfolio Optimization Simulator
-              </Typography>
-              <Typography variant="body2" color="textSecondary" mb={3}>
-                See how different allocation strategies could improve your portfolio performance
-              </Typography>
-              
-              <Box display="flex" justifyContent="center" alignItems="center" height={200}>
-                <Typography color="textSecondary">
-                  Interactive optimization tool coming soon...
-                </Typography>
-              </Box>
-            </CardContent>
-          </Card>
-        </>
+        <PortfolioOptimization />
       )}
     </Box>
   );
