@@ -689,6 +689,108 @@ Always fetch documentation for these libraries when working on:
 
 ---
 
+## 13. Research and Information Gathering with Perplexity MCP
+
+### Using Perplexity for Comprehensive Research
+
+**IMPORTANT**: When you need to research topics, best practices, industry trends, or any information not available in local documentation, use Perplexity MCP for intelligent search and analysis.
+
+#### When to Use Perplexity MCP
+
+Use Perplexity for researching:
+1. **Industry Best Practices**: Current fintech trends, ESG investing strategies
+2. **Technical Solutions**: Architecture patterns, performance optimization techniques
+3. **Compliance & Regulations**: Latest financial regulations, security standards
+4. **User Experience Research**: UX patterns in fintech, accessibility guidelines
+5. **Market Analysis**: Competitor features, market trends, user expectations
+6. **Problem Solving**: Debugging complex issues, finding solutions to technical challenges
+
+#### Perplexity MCP Tools
+
+1. **Quick Search** (`mcp__perplexity__search`)
+   - Use for simple queries and basic information lookup
+   - Best for straightforward questions
+   - Example: "What are the latest WCAG accessibility guidelines for fintech apps?"
+
+2. **Complex Reasoning** (`mcp__perplexity__reason`)
+   - Use for multi-step tasks, comparisons, and problem-solving
+   - Best for analyzing trade-offs and making decisions
+   - Example: "Compare different approaches for implementing real-time portfolio updates in React"
+
+3. **Deep Research** (`mcp__perplexity__deep_research`)
+   - Use for comprehensive analysis and detailed reports
+   - Best for in-depth understanding of complex topics
+   - Example: "Research comprehensive ESG scoring methodologies for micro-investment platforms"
+
+#### Research Workflow
+
+1. **Identify Research Need**
+   - Technical implementation questions
+   - Best practice inquiries
+   - Regulatory compliance checks
+   - Performance optimization strategies
+
+2. **Choose Appropriate Tool**
+   ```
+   Simple query → mcp__perplexity__search
+   Complex analysis → mcp__perplexity__reason
+   Comprehensive research → mcp__perplexity__deep_research
+   ```
+
+3. **Apply Research Findings**
+   - Validate against project requirements
+   - Adapt recommendations to MIOwSIS context
+   - Document key insights for team reference
+
+#### Example Research Scenarios
+
+**Scenario 1: Implementing WebGL Animations**
+```
+Use: mcp__perplexity__search
+Query: "WebGL performance optimization techniques for financial dashboards"
+Apply: Implement recommended techniques in Three.js visualizations
+```
+
+**Scenario 2: ESG Scoring Algorithm**
+```
+Use: mcp__perplexity__deep_research
+Query: "ESG scoring methodologies for micro-investment platforms with real-time impact tracking"
+Apply: Design MIOwSIS ESG scoring system based on research
+```
+
+**Scenario 3: Regulatory Compliance**
+```
+Use: mcp__perplexity__reason
+Query: "Compare KYC requirements for micro-investment platforms across US, EU, and UK markets"
+Apply: Implement appropriate compliance measures
+```
+
+#### Research Integration Guidelines
+
+1. **Verify Information**
+   - Cross-reference with official documentation
+   - Consider publication dates for relevance
+   - Validate against project constraints
+
+2. **Adapt to Context**
+   - Tailor findings to MIOwSIS requirements
+   - Consider our specific user personas
+   - Align with our technical stack
+
+3. **Document Insights**
+   - Note key findings in code comments
+   - Update team knowledge base
+   - Share relevant discoveries
+
+### Benefits of Research-Driven Development
+- Stay current with industry standards
+- Implement proven solutions
+- Avoid common pitfalls
+- Make informed technical decisions
+- Ensure regulatory compliance
+
+---
+
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.
 NEVER create files unless they're absolutely necessary for achieving your goal.
