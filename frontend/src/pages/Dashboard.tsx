@@ -80,10 +80,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <Box>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
-        <Typography variant="h4" fontWeight={600}>
-          Dashboard
-        </Typography>
+      <Box display="flex" justifyContent="flex-end" alignItems="center" mb={4}>
         <Button
           variant="contained"
           startIcon={<Add />}

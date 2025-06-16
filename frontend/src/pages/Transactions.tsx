@@ -460,10 +460,7 @@ const Transactions: React.FC = () => {
   return (
     <Box>
       {/* Header */}
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
-        <Typography variant="h4" fontWeight={600}>
-          Transactions
-        </Typography>
+      <Box display="flex" justifyContent="flex-end" mb={4}>
         <Box display="flex" gap={2}>
           <Button variant="outlined" startIcon={<Print />}>
             Print

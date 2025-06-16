@@ -384,10 +384,7 @@ const ESGImpact: React.FC = () => {
   return (
     <Box>
       {/* Header */}
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
-        <Typography variant="h4" fontWeight={600}>
-          ESG Impact Dashboard
-        </Typography>
+      <Box display="flex" justifyContent="flex-end" mb={4}>
         <Box display="flex" gap={2}>
           <Button variant="outlined" startIcon={<Share />}>
             Share Impact

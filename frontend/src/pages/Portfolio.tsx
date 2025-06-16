@@ -342,10 +342,7 @@ const Portfolio: React.FC = () => {
 
   return (
     <Box>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
-        <Typography variant="h4" fontWeight={600}>
-          Portfolio
-        </Typography>
+      <Box display="flex" justifyContent="flex-end" mb={3}>
         <Box display="flex" gap={2}>
           <Button
             variant="outlined"

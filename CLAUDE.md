@@ -481,3 +481,216 @@ Our vision is to create the most accessible and impactful micro-investment platf
 ---
 
 *This PRD serves as the primary reference for all teams involved in developing the MIOwSIS platform. The version 2.0 update incorporates comprehensive UX design improvements to set new industry standards for fintech user experience.*
+
+---
+
+## 11. Automated UI Testing and Refinement Instructions
+
+### UI Development Workflow with Playwright MCP
+
+When working on UI changes, follow this automated testing and refinement workflow:
+
+#### 1. Initial UI Implementation
+- Implement the UI changes based on the PRD requirements
+- Ensure all components follow the design system guidelines
+
+#### 2. Automated Visual Testing
+**IMPORTANT**: After making any UI changes, you MUST use Playwright MCP to:
+
+1. **Navigate to the changed page**:
+   ```
+   Use mcp__playwright__browser_navigate to go to the page
+   ```
+
+2. **Take screenshots**:
+   ```
+   Use mcp__playwright__browser_take_screenshot to capture the current UI state
+   ```
+
+3. **Analyze the UI**:
+   - Check if the layout matches the design requirements
+   - Verify spacing, alignment, and visual hierarchy
+   - Ensure animations are smooth (60fps minimum)
+   - Validate color contrast ratios (9.66:1 for WCAG AAA)
+
+4. **Test interactions**:
+   ```
+   Use mcp__playwright__browser_click for button interactions
+   Use mcp__playwright__browser_type for form inputs
+   Use mcp__playwright__browser_hover for hover states
+   ```
+
+5. **Check responsiveness**:
+   ```
+   Use mcp__playwright__browser_resize to test different screen sizes:
+   - Mobile: 375x667 (iPhone SE)
+   - Tablet: 768x1024 (iPad)
+   - Desktop: 1920x1080
+   ```
+
+#### 3. Automated Refinement Loop
+If the UI doesn't meet standards, automatically:
+
+1. **Identify issues** from the screenshot:
+   - Misaligned elements
+   - Incorrect spacing
+   - Color contrast problems
+   - Missing animations
+   - Broken responsive layouts
+
+2. **Make corrections** in the code:
+   - Adjust CSS properties
+   - Fix component structure
+   - Update animation timing
+   - Correct responsive breakpoints
+
+3. **Re-test** with Playwright:
+   - Take new screenshots
+   - Compare with requirements
+   - Repeat until satisfied
+
+#### 4. Accessibility Testing
+Use Playwright to verify:
+- Tab navigation flow
+- Screen reader compatibility
+- Keyboard shortcuts
+- Focus indicators
+
+#### 5. Performance Validation
+- Measure page load times
+- Check animation frame rates
+- Verify smooth scrolling
+- Test interaction responsiveness
+
+### Example Workflow Script
+
+When implementing a new dashboard widget:
+
+1. Implement the widget component
+2. Run Playwright test:
+   ```
+   - Navigate to dashboard
+   - Take screenshot of widget
+   - Click interactive elements
+   - Check hover states
+   - Resize browser to test responsiveness
+   - Take screenshots at each breakpoint
+   ```
+3. If issues found:
+   - Fix the code
+   - Re-run tests
+   - Continue until UI meets all requirements
+
+### Success Criteria
+The UI is considered satisfactory when:
+- All visual elements align with design system
+- Animations run at 60fps
+- Responsive behavior works correctly
+- Accessibility standards are met
+- No visual bugs in screenshots
+- User interactions feel smooth and intuitive
+
+### Required Playwright MCP Tools
+- `mcp__playwright__browser_navigate` - Navigate to pages
+- `mcp__playwright__browser_take_screenshot` - Capture UI state
+- `mcp__playwright__browser_click` - Test interactions
+- `mcp__playwright__browser_type` - Test form inputs
+- `mcp__playwright__browser_hover` - Test hover states
+- `mcp__playwright__browser_resize` - Test responsiveness
+- `mcp__playwright__browser_wait_for` - Wait for animations
+- `mcp__playwright__browser_snapshot` - Get accessibility tree
+
+---
+
+## 12. Component Development with Latest Documentation
+
+### Using Context7 MCP for Up-to-Date Library Documentation
+
+**IMPORTANT**: Before adding or modifying components, ALWAYS fetch the latest documentation using Context7 MCP to ensure you're using current best practices and APIs.
+
+#### Workflow for Component Development
+
+1. **Identify the Libraries/Frameworks in Use**
+   - Check package.json for installed dependencies
+   - Review existing components to understand the tech stack
+   - Common libraries in this project: React, React Native, Three.js, D3.js, Framer Motion
+
+2. **Fetch Latest Documentation**
+   Before implementing any component, use Context7 MCP:
+   
+   ```
+   Step 1: Resolve library ID
+   Use mcp__context7__resolve-library-id with the library name
+   Example: "react", "framer-motion", "three.js", "d3"
+   
+   Step 2: Get documentation
+   Use mcp__context7__get-library-docs with the resolved ID
+   Include relevant topics like "hooks", "components", "animations"
+   ```
+
+3. **Review Documentation Before Implementation**
+   - Check for deprecated methods
+   - Look for new recommended patterns
+   - Understand performance best practices
+   - Review accessibility guidelines
+
+4. **Implementation Guidelines**
+   - Follow the patterns from the latest documentation
+   - Use recommended hooks and APIs
+   - Implement according to current best practices
+   - Avoid deprecated or outdated approaches
+
+#### Example Workflow
+
+When adding a new animated dashboard widget:
+
+1. **Check current libraries**:
+   ```
+   - React for component structure
+   - Framer Motion for animations
+   - D3.js for data visualization
+   ```
+
+2. **Fetch documentation**:
+   ```
+   - mcp__context7__resolve-library-id for "framer-motion"
+   - mcp__context7__get-library-docs with topic "animations"
+   - mcp__context7__resolve-library-id for "d3"
+   - mcp__context7__get-library-docs with topic "charts"
+   ```
+
+3. **Implement based on latest docs**:
+   - Use latest React hooks (useId, useSyncExternalStore if recommended)
+   - Apply current Framer Motion animation patterns
+   - Follow D3.js v7+ best practices
+
+#### Required Context7 MCP Tools
+- `mcp__context7__resolve-library-id` - Find the correct library ID
+- `mcp__context7__get-library-docs` - Fetch up-to-date documentation
+
+### Documentation Priority List
+
+Always fetch documentation for these libraries when working on:
+
+1. **UI Components**: React, React Native
+2. **Animations**: Framer Motion, Lottie
+3. **Data Visualization**: D3.js, Three.js
+4. **State Management**: Check if Redux/Zustand/Context is used
+5. **Styling**: Check CSS-in-JS library (styled-components, emotion)
+6. **Forms**: React Hook Form, Formik (if used)
+7. **Testing**: Jest, React Testing Library, Playwright
+
+### Benefits of This Approach
+- Ensures use of latest APIs and best practices
+- Avoids deprecated methods
+- Implements performance optimizations
+- Follows current accessibility standards
+- Reduces technical debt
+
+---
+
+# important-instruction-reminders
+Do what has been asked; nothing more, nothing less.
+NEVER create files unless they're absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
