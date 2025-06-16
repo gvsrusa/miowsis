@@ -689,82 +689,6 @@ Always fetch documentation for these libraries when working on:
 
 ---
 
-## 13. Research and Information Gathering with Perplexity MCP
-
-### Using Perplexity for Comprehensive Research
-
-**IMPORTANT**: When you need to research topics, best practices, industry trends, or any information not available in local documentation, use Perplexity MCP for intelligent search and analysis.
-
-#### When to Use Perplexity MCP
-
-Use Perplexity for researching:
-1. **Industry Best Practices**: Current fintech trends, ESG investing strategies
-2. **Technical Solutions**: Architecture patterns, performance optimization techniques
-3. **Compliance & Regulations**: Latest financial regulations, security standards
-4. **User Experience Research**: UX patterns in fintech, accessibility guidelines
-5. **Market Analysis**: Competitor features, market trends, user expectations
-6. **Problem Solving**: Debugging complex issues, finding solutions to technical challenges
-
-#### Perplexity MCP Tools
-
-1. **Quick Search** (`mcp__perplexity__search`)
-   - Use for simple queries and basic information lookup
-   - Best for straightforward questions
-   - Example: "What are the latest WCAG accessibility guidelines for fintech apps?"
-
-2. **Complex Reasoning** (`mcp__perplexity__reason`)
-   - Use for multi-step tasks, comparisons, and problem-solving
-   - Best for analyzing trade-offs and making decisions
-   - Example: "Compare different approaches for implementing real-time portfolio updates in React"
-
-3. **Deep Research** (`mcp__perplexity__deep_research`)
-   - Use for comprehensive analysis and detailed reports
-   - Best for in-depth understanding of complex topics
-   - Example: "Research comprehensive ESG scoring methodologies for micro-investment platforms"
-
-#### Research Workflow
-
-1. **Identify Research Need**
-   - Technical implementation questions
-   - Best practice inquiries
-   - Regulatory compliance checks
-   - Performance optimization strategies
-
-2. **Choose Appropriate Tool**
-   ```
-   Simple query → mcp__perplexity__search
-   Complex analysis → mcp__perplexity__reason
-   Comprehensive research → mcp__perplexity__deep_research
-   ```
-
-3. **Apply Research Findings**
-   - Validate against project requirements
-   - Adapt recommendations to MIOwSIS context
-   - Document key insights for team reference
-
-#### Example Research Scenarios
-
-**Scenario 1: Implementing WebGL Animations**
-```
-Use: mcp__perplexity__search
-Query: "WebGL performance optimization techniques for financial dashboards"
-Apply: Implement recommended techniques in Three.js visualizations
-```
-
-**Scenario 2: ESG Scoring Algorithm**
-```
-Use: mcp__perplexity__deep_research
-Query: "ESG scoring methodologies for micro-investment platforms with real-time impact tracking"
-Apply: Design MIOwSIS ESG scoring system based on research
-```
-
-**Scenario 3: Regulatory Compliance**
-```
-Use: mcp__perplexity__reason
-Query: "Compare KYC requirements for micro-investment platforms across US, EU, and UK markets"
-Apply: Implement appropriate compliance measures
-```
-
 #### Research Integration Guidelines
 
 1. **Verify Information**
@@ -791,8 +715,145 @@ Apply: Implement appropriate compliance measures
 
 ---
 
+## 14. Dependency Management and Automatic Installation
+
+### Automatic Dependency Installation
+
+**IMPORTANT**: When adding new dependencies to the project, ALWAYS automatically install them after updating package.json to ensure the development environment stays synchronized.
+
+#### Workflow for Adding Dependencies
+
+1. **Identify Required Dependencies**
+   - Determine which packages are needed for the feature
+   - Check if similar functionality already exists in the project
+   - Verify compatibility with existing dependencies
+
+2. **Update package.json**
+   - Add dependencies to the appropriate section (dependencies or devDependencies)
+   - Use specific version numbers when possible to ensure consistency
+
+3. **Automatically Install Dependencies**
+   ```bash
+   # For frontend dependencies (if applicable, figure out the exact folder structure)
+   cd frontend && npm install
+   
+   # For backend dependencies (if applicable)
+   cd backend && npm install
+   
+   # For root-level dependencies
+   npm install
+   ```
+
+4. **Verify Installation**
+   - Check that node_modules is updated
+   - Verify no installation errors occurred
+   - Test that the new dependency works as expected
+
+#### Frontend-Specific Dependency Management
+
+When working on frontend features:
+
+1. **Always navigate to frontend directory first**:
+   ```bash
+   cd frontend
+   ```
+
+2. **Add dependencies with npm**:
+   ```bash
+   # For production dependencies
+   npm install package-name
+   
+   # For development dependencies
+   npm install --save-dev package-name
+   ```
+
+3. **Common frontend dependencies to auto-install**:
+   - UI Libraries: `framer-motion`, `@radix-ui/*`, `clsx`
+   - Visualization: `d3`, `three`, `@react-three/fiber`
+   - State Management: `zustand`, `@tanstack/react-query`
+   - Forms: `react-hook-form`, `zod`
+   - Utilities: `date-fns`, `lodash-es`
+
+#### Backend-Specific Dependency Management
+
+When working on backend features:
+
+1. **Navigate to backend directory**:
+   ```bash
+   cd backend
+   ```
+
+2. **Install dependencies appropriately**:
+   ```bash
+   npm install package-name
+   ```
+
+#### Best Practices
+
+1. **Always Install After Adding**
+   - Never leave package.json out of sync with node_modules
+   - Install immediately after modifying package.json
+
+2. **Check for Conflicts**
+   - Review npm output for peer dependency warnings
+   - Resolve version conflicts before proceeding
+
+3. **Update Lock Files**
+   - Ensure package-lock.json is updated
+   - This maintains consistency across environments
+
+4. **Clean Installation When Needed**
+   ```bash
+   # If encountering issues
+   rm -rf node_modules package-lock.json
+   npm install
+   ```
+
+### Example Workflow
+
+When adding a new animation library to frontend:
+
+1. **Navigate to frontend**:
+   ```bash
+   cd frontend
+   ```
+
+2. **Install the dependency**:
+   ```bash
+   npm install framer-motion
+   ```
+
+3. **Verify installation**:
+   ```bash
+   # Check package.json was updated
+   # Verify node_modules contains the package
+   # Test import in a component
+   ```
+
+4. **Use in code**:
+   ```jsx
+   import { motion } from 'framer-motion';
+   ```
+
+### Automated Installation Commands
+
+Include these in your workflow:
+```bash
+# After any package.json modification in frontend
+cd frontend && npm install
+
+# After any package.json modification in backend
+cd backend && npm install
+
+# For monorepo root dependencies
+npm install
+```
+
+---
+
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.
 NEVER create files unless they're absolutely necessary for achieving your goal.
 ALWAYS prefer editing an existing file to creating a new one.
 NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
+ALWAYS run npm install after modifying package.json to keep dependencies synchronized.

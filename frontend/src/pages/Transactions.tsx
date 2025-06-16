@@ -60,8 +60,9 @@ import {
 } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { motion } from 'framer-motion';
+import dayjs, { Dayjs } from 'dayjs';
 
 interface Transaction {
   id: string;
@@ -94,12 +95,21 @@ const Transactions: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [customStartDate, setCustomStartDate] = useState<Dayjs | null>(null);
+  const [customEndDate, setCustomEndDate] = useState<Dayjs | null>(null);
 
-  // Mock transaction data
+  // Mock transaction data - using dynamic dates relative to current date
+  const today = new Date();
+  const getDateString = (daysAgo: number) => {
+    const date = new Date(today);
+    date.setDate(today.getDate() - daysAgo);
+    return date.toISOString().split('T')[0];
+  };
+
   const transactions: Transaction[] = [
     {
       id: '1',
-      date: '2024-06-13',
+      date: getDateString(0), // Today
       time: '09:30:00',
       type: 'buy',
       status: 'completed',
@@ -116,7 +126,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '2',
-      date: '2024-06-12',
+      date: getDateString(1), // Yesterday
       time: '14:15:00',
       type: 'roundup',
       status: 'completed',
@@ -128,7 +138,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '3',
-      date: '2024-06-10',
+      date: getDateString(3), // 3 days ago
       time: '10:00:00',
       type: 'dividend',
       status: 'completed',
@@ -141,7 +151,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '4',
-      date: '2024-06-08',
+      date: getDateString(5), // 5 days ago
       time: '11:45:00',
       type: 'sell',
       status: 'pending',
@@ -157,7 +167,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '5',
-      date: '2024-06-05',
+      date: getDateString(8), // 8 days ago
       time: '16:00:00',
       type: 'deposit',
       status: 'completed',
@@ -169,7 +179,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '6',
-      date: '2024-06-04',
+      date: getDateString(10), // 10 days ago
       time: '13:22:00',
       type: 'buy',
       status: 'completed',
@@ -186,7 +196,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '7',
-      date: '2024-06-03',
+      date: getDateString(12), // 12 days ago
       time: '09:45:00',
       type: 'roundup',
       status: 'completed',
@@ -198,7 +208,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '8',
-      date: '2024-06-01',
+      date: getDateString(15), // 15 days ago
       time: '15:30:00',
       type: 'buy',
       status: 'completed',
@@ -214,7 +224,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '9',
-      date: '2024-05-30',
+      date: getDateString(20), // 20 days ago
       time: '10:15:00',
       type: 'dividend',
       status: 'completed',
@@ -227,7 +237,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '10',
-      date: '2024-05-28',
+      date: getDateString(25), // 25 days ago
       time: '14:00:00',
       type: 'fee',
       status: 'completed',
@@ -238,7 +248,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '11',
-      date: '2024-05-25',
+      date: getDateString(30), // 30 days ago
       time: '11:30:00',
       type: 'sell',
       status: 'completed',
@@ -255,7 +265,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '12',
-      date: '2024-05-22',
+      date: getDateString(35), // 35 days ago
       time: '09:00:00',
       type: 'withdrawal',
       status: 'completed',
@@ -267,7 +277,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '13',
-      date: '2024-05-20',
+      date: getDateString(40), // 40 days ago
       time: '15:45:00',
       type: 'buy',
       status: 'completed',
@@ -283,7 +293,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '14',
-      date: '2024-05-18',
+      date: getDateString(45), // 45 days ago
       time: '12:30:00',
       type: 'roundup',
       status: 'completed',
@@ -295,7 +305,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '15',
-      date: '2024-05-15',
+      date: getDateString(50), // 50 days ago
       time: '10:00:00',
       type: 'dividend',
       status: 'completed',
@@ -308,7 +318,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '16',
-      date: '2024-05-12',
+      date: getDateString(60), // 60 days ago
       time: '14:20:00',
       type: 'buy',
       status: 'failed',
@@ -325,7 +335,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '17',
-      date: '2024-05-10',
+      date: getDateString(70), // 70 days ago
       time: '16:00:00',
       type: 'deposit',
       status: 'completed',
@@ -337,7 +347,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '18',
-      date: '2024-05-08',
+      date: getDateString(80), // 80 days ago
       time: '11:15:00',
       type: 'buy',
       status: 'completed',
@@ -353,7 +363,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '19',
-      date: '2024-05-05',
+      date: getDateString(90), // 90 days ago
       time: '09:30:00',
       type: 'roundup',
       status: 'completed',
@@ -365,7 +375,7 @@ const Transactions: React.FC = () => {
     },
     {
       id: '20',
-      date: '2024-05-01',
+      date: getDateString(100), // 100 days ago
       time: '15:00:00',
       type: 'buy',
       status: 'completed',
@@ -409,7 +419,60 @@ const Transactions: React.FC = () => {
     const matchesType = filterType.length === 0 || filterType.includes(transaction.type);
     const matchesStatus = filterStatus === 'all' || transaction.status === filterStatus;
     
-    return matchesSearch && matchesType && matchesStatus;
+    // Date range filtering
+    let matchesDate = true;
+    const transactionDate = new Date(transaction.date);
+    transactionDate.setHours(0, 0, 0, 0); // Reset time to start of day for comparison
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    switch (dateRange) {
+      case 'today':
+        matchesDate = transactionDate.getTime() === today.getTime();
+        break;
+      case 'week':
+        const weekAgo = new Date(today);
+        weekAgo.setDate(today.getDate() - 7);
+        matchesDate = transactionDate >= weekAgo && transactionDate <= today;
+        break;
+      case 'month':
+        const monthAgo = new Date(today);
+        monthAgo.setMonth(today.getMonth() - 1);
+        matchesDate = transactionDate >= monthAgo && transactionDate <= today;
+        break;
+      case 'year':
+        const yearAgo = new Date(today);
+        yearAgo.setFullYear(today.getFullYear() - 1);
+        matchesDate = transactionDate >= yearAgo && transactionDate <= today;
+        break;
+      case 'custom':
+        if (customStartDate && customEndDate) {
+          const startDate = customStartDate.toDate();
+          startDate.setHours(0, 0, 0, 0);
+          const endDate = customEndDate.toDate();
+          endDate.setHours(23, 59, 59, 999);
+          matchesDate = transactionDate >= startDate && transactionDate <= endDate;
+        } else {
+          matchesDate = true; // Show all if dates not selected
+        }
+        break;
+      case 'all':
+      default:
+        matchesDate = true;
+        break;
+    }
+    
+    return matchesSearch && matchesType && matchesStatus && matchesDate;
+  }).sort((a, b) => {
+    // Sort by date
+    const dateA = new Date(a.date + ' ' + a.time);
+    const dateB = new Date(b.date + ' ' + b.time);
+    
+    if (sortOrder === 'desc') {
+      return dateB.getTime() - dateA.getTime(); // Newest first
+    } else {
+      return dateA.getTime() - dateB.getTime(); // Oldest first
+    }
   });
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -638,10 +701,49 @@ const Transactions: React.FC = () => {
             </ToggleButtonGroup>
           </Grid>
         </Grid>
+        
+        {/* Custom Date Range Pickers */}
+        {dateRange === 'custom' && (
+          <Grid container spacing={2} sx={{ mt: 2 }}>
+            <Grid item xs={12} md={6}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="Start Date"
+                  value={customStartDate}
+                  onChange={(newValue) => setCustomStartDate(newValue)}
+                  slotProps={{
+                    textField: {
+                      fullWidth: true,
+                      variant: 'outlined'
+                    }
+                  }}
+                  maxDate={customEndDate || dayjs()}
+                />
+              </LocalizationProvider>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DatePicker
+                  label="End Date"
+                  value={customEndDate}
+                  onChange={(newValue) => setCustomEndDate(newValue)}
+                  slotProps={{
+                    textField: {
+                      fullWidth: true,
+                      variant: 'outlined'
+                    }
+                  }}
+                  minDate={customStartDate || undefined}
+                  maxDate={dayjs()}
+                />
+              </LocalizationProvider>
+            </Grid>
+          </Grid>
+        )}
       </Paper>
 
       {/* Transactions Table */}
-      <Paper>
+      <Paper sx={{ mt: dateRange === 'custom' ? 2 : 0 }}>
         <TableContainer>
           <Table>
             <TableHead>
