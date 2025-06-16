@@ -27,7 +27,7 @@ export interface AuthResponse {
     lastName: string;
     profileImage?: string;
     emailVerified: boolean;
-    kycStatus: string;
+    kycStatus: 'pending' | 'verified' | 'rejected';
     onboardingComplete: boolean;
     biometricEnabled: boolean;
   };

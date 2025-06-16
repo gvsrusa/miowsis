@@ -851,9 +851,123 @@ npm install
 
 ---
 
+## 15. Automatic TypeScript Error Detection and Resolution
+
+### TypeScript Error Checking After File Changes
+
+**IMPORTANT**: After making ANY changes to TypeScript files (.ts, .tsx), you MUST automatically check for and fix TypeScript errors, including unused imports and type errors.
+
+#### Workflow for TypeScript Error Resolution
+
+1. **After Every File Change**
+   - Save the file
+   - Run TypeScript compiler to check for errors
+   - Identify and fix all issues automatically
+
+2. **Common TypeScript Issues to Fix**
+   - **Unused imports**: Remove any imports that are not used in the file
+   - **Type errors**: Fix missing type annotations or incorrect types
+   - **Implicit any types**: Add proper type annotations
+   - **Missing return types**: Add return type annotations to functions
+   - **Undefined variables**: Ensure all variables are properly declared
+   - **Missing interface properties**: Add required properties to interfaces
+
+3. **Automatic Error Detection Commands**
+   ```bash
+   # For frontend TypeScript checking
+   cd frontend && npx tsc --noEmit
+   
+   # For specific file checking
+   cd frontend && npx tsc --noEmit src/path/to/file.tsx
+   
+   # Check and show all errors
+   cd frontend && npx tsc --noEmit --pretty
+   ```
+
+4. **Automatic Import Cleanup**
+   - Use VS Code diagnostics to identify unused imports
+   - Remove them immediately after detection
+   - Ensure all remaining imports are necessary
+
+5. **Type Error Resolution Process**
+   - Run TypeScript check after each file modification
+   - Parse the error output
+   - Navigate to each error location
+   - Apply appropriate fixes:
+     - Add missing types
+     - Fix type mismatches
+     - Remove unused code
+     - Add missing imports
+
+#### Example Workflow
+
+After editing a component file:
+
+1. **Check for TypeScript errors**:
+   ```bash
+   cd frontend && npx tsc --noEmit
+   ```
+
+2. **If errors are found**:
+   - Parse each error message
+   - Identify the file and line number
+   - Apply the appropriate fix
+   - Re-run the check until no errors remain
+
+3. **Common fixes**:
+   ```typescript
+   // Before: Unused import
+   import { useState, useEffect } from 'react';
+   
+   // After: Remove unused import
+   import { useState } from 'react';
+   
+   // Before: Missing type
+   const handleClick = (value) => { ... }
+   
+   // After: Add proper type
+   const handleClick = (value: string) => { ... }
+   ```
+
+### Best Practices
+
+1. **Check Immediately**
+   - Don't wait to accumulate changes
+   - Fix errors as soon as they're introduced
+
+2. **Use IDE Diagnostics**
+   - Leverage mcp__ide__getDiagnostics for real-time error detection
+   - Fix issues before they accumulate
+
+3. **Maintain Clean Code**
+   - No unused imports
+   - No implicit any types
+   - All functions have return types
+   - All variables are properly typed
+
+4. **Regular Validation**
+   - Run full project type check periodically
+   - Ensure no errors slip through
+
+### Automated TypeScript Commands
+
+Include in your workflow after every file change:
+```bash
+# Check TypeScript errors in frontend
+cd frontend && npx tsc --noEmit
+
+# Use IDE diagnostics for immediate feedback
+mcp__ide__getDiagnostics
+
+# Fix errors immediately upon detection
+```
+
+---
+
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.
 NEVER create files unless they're absolutely necessary for achieving your goal.
 ALWAYS prefer editing an existing file to creating a new one.
 NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
 ALWAYS run npm install after modifying package.json to keep dependencies synchronized.
+ALWAYS check for TypeScript errors after modifying any .ts or .tsx file and fix them automatically.

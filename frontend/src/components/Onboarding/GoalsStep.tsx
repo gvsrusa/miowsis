@@ -8,7 +8,8 @@ import {
   CardContent,
   Chip,
   TextField,
-  InputAdornment
+  InputAdornment,
+  Avatar
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import {
