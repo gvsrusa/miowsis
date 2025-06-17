@@ -1,0 +1,13 @@
+{
+  "objective": "complete backend and frontend integration",
+  "strategy": "auto",
+  "mode": "centralized",
+  "maxAgents": 5,
+  "timeout": 60,
+  "parallel": true,
+  "monitor": false,
+  "output": "json",
+  "outputDir": "./reports",
+  "timestamp": "2025-06-17T13:29:29.693Z",
+  "id": "swarm-auto-centralized-1750166969694"
+}

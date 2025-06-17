@@ -5,6 +5,9 @@ import { AnimatePresence } from 'framer-motion';
 import { useAuth } from './hooks/useAuth';
 import Layout from './components/Layout/Layout';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+import PageErrorBoundary from './components/ErrorBoundary/PageErrorBoundary';
+import NotificationStack from './components/Notifications/NotificationStack';
 
 // Lazy load pages for better performance
 const Landing = lazy(() => import('./pages/Landing'));
@@ -36,35 +39,38 @@ function App() {
   }
 
   return (
-    <AnimatePresence mode="wait">
-      <Suspense fallback={<LoadingFallback />}>
-        <Routes>
-          {/* Public routes */}
-          <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+    <ErrorBoundary>
+      <NotificationStack />
+      <AnimatePresence mode="wait">
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes>
+            {/* Public routes */}
+            <Route path="/" element={<PageErrorBoundary><Landing /></PageErrorBoundary>} />
+            <Route path="/login" element={<PageErrorBoundary><Login /></PageErrorBoundary>} />
+            <Route path="/register" element={<PageErrorBoundary><Register /></PageErrorBoundary>} />
 
-          {/* Protected routes */}
-          <Route
-            element={
-              <ProtectedRoute>
-                <Layout />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/impact" element={<ESGImpact />} />
-            <Route path="/transactions" element={<Transactions />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/onboarding" element={<Onboarding />} />
-          </Route>
+            {/* Protected routes */}
+            <Route
+              element={
+                <ProtectedRoute>
+                  <Layout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="/dashboard" element={<PageErrorBoundary><Dashboard /></PageErrorBoundary>} />
+              <Route path="/portfolio" element={<PageErrorBoundary><Portfolio /></PageErrorBoundary>} />
+              <Route path="/impact" element={<PageErrorBoundary><ESGImpact /></PageErrorBoundary>} />
+              <Route path="/transactions" element={<PageErrorBoundary><Transactions /></PageErrorBoundary>} />
+              <Route path="/settings" element={<PageErrorBoundary><Settings /></PageErrorBoundary>} />
+              <Route path="/onboarding" element={<PageErrorBoundary><Onboarding /></PageErrorBoundary>} />
+            </Route>
 
-          {/* Fallback */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Suspense>
-    </AnimatePresence>
+            {/* Fallback */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
+      </AnimatePresence>
+    </ErrorBoundary>
   );
 }
 

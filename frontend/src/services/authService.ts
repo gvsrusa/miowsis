@@ -1,84 +1,95 @@
-import axios from 'axios';
+import { api } from './api/apiClient';
+import { API_CONFIG, buildUrl } from '@/config/api.config';
 import { mockAuthService } from './mockAuthService';
+import type {
+  LoginCredentials,
+  RegisterData,
+  AuthResponse
+} from './api/types';
 
-const API_URL = '/api/users/auth';
-const USE_MOCK = true; // Set to false when backend is available
-
-export interface LoginCredentials {
-  email: string;
-  password: string;
-}
-
-export interface RegisterData {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber?: string;
-}
-
-export interface AuthResponse {
-  accessToken: string;
-  refreshToken: string;
-  user: {
-    id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    profileImage?: string;
-    emailVerified: boolean;
-    kycStatus: 'pending' | 'verified' | 'rejected';
-    onboardingComplete: boolean;
-    biometricEnabled: boolean;
-  };
-}
+// Re-export types for backward compatibility
+export type { LoginCredentials, RegisterData, AuthResponse } from './api/types';
 
 class AuthService {
   async login(credentials: LoginCredentials): Promise<{ data: AuthResponse }> {
-    if (USE_MOCK) {
+    if (API_CONFIG.useMock) {
       return mockAuthService.login(credentials) as Promise<{ data: AuthResponse }>;
     }
-    const response = await axios.post(`${API_URL}/login`, credentials);
-    return response;
+    const data = await api.post<AuthResponse>(
+      API_CONFIG.endpoints.auth.login,
+      credentials
+    );
+    return { data };
   }
 
   async register(userData: RegisterData): Promise<{ data: AuthResponse }> {
-    if (USE_MOCK) {
+    if (API_CONFIG.useMock) {
       return mockAuthService.register(userData) as Promise<{ data: AuthResponse }>;
     }
-    const response = await axios.post(`${API_URL}/register`, userData);
-    return response;
+    const data = await api.post<AuthResponse>(
+      API_CONFIG.endpoints.auth.register,
+      userData
+    );
+    return { data };
   }
 
   async logout(): Promise<void> {
-    if (USE_MOCK) {
+    if (API_CONFIG.useMock) {
       return mockAuthService.logout();
     }
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      await axios.post(`${API_URL}/logout`, null, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-    }
+    await api.post(API_CONFIG.endpoints.auth.logout);
   }
 
   async refreshToken(refreshToken: string): Promise<{ data: AuthResponse }> {
-    if (USE_MOCK) {
+    if (API_CONFIG.useMock) {
       return mockAuthService.refreshToken(refreshToken) as Promise<{ data: AuthResponse }>;
     }
-    const response = await axios.post(`${API_URL}/refresh`, { refreshToken });
-    return response;
+    const data = await api.post<AuthResponse>(
+      API_CONFIG.endpoints.auth.refresh,
+      { refreshToken }
+    );
+    return { data };
   }
 
   async verifyToken(): Promise<{ data: AuthResponse }> {
-    if (USE_MOCK) {
+    if (API_CONFIG.useMock) {
       return mockAuthService.verifyToken() as Promise<{ data: AuthResponse }>;
     }
-    const token = localStorage.getItem('accessToken');
-    const response = await axios.get(`${API_URL}/verify`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    return response;
+    const data = await api.get<AuthResponse>(
+      API_CONFIG.endpoints.auth.verify
+    );
+    return { data };
+  }
+
+  async verifyEmail(token: string): Promise<string> {
+    if (API_CONFIG.useMock) {
+      return 'Email verified successfully';
+    }
+    return api.post(
+      buildUrl(API_CONFIG.endpoints.auth.verifyEmail, { token })
+    );
+  }
+
+  async forgotPassword(email: string): Promise<string> {
+    if (API_CONFIG.useMock) {
+      return 'Password reset link sent to email';
+    }
+    return api.post(
+      API_CONFIG.endpoints.auth.forgotPassword,
+      null,
+      { params: { email } }
+    );
+  }
+
+  async resetPassword(token: string, newPassword: string): Promise<string> {
+    if (API_CONFIG.useMock) {
+      return 'Password reset successfully';
+    }
+    return api.post(
+      API_CONFIG.endpoints.auth.resetPassword,
+      null,
+      { params: { token, newPassword } }
+    );
   }
 }
 

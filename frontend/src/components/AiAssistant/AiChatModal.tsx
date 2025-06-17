@@ -14,17 +14,24 @@ import {
   InputAdornment,
   Drawer,
   useTheme,
-  useMediaQuery
+  useMediaQuery,
+  Alert,
+  Button
 } from '@mui/material';
 import {
   SmartToy,
   Send,
   Close,
   Psychology,
-  TipsAndUpdates
+  TipsAndUpdates,
+  Refresh,
+  TrendingUp,
+  AccountBalance,
+  NaturePeople
 } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAiChat } from '@hooks/useAiChat';
+import { useCreateChatSession, useSendChatMessage, useChatSession, usePortfolioInsights } from '@/hooks/api';
+import type { ChatSession, ChatMessage as ChatMessageType } from '@/services/api/types';
 
 interface Message {
   id: string;
@@ -42,18 +49,54 @@ interface AiChatModalProps {
 const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      role: 'assistant',
-      content: "Hi! I'm your MIOwSIS AI assistant. I can help you with investment advice, explain financial concepts, analyze your portfolio, and answer questions about ESG investing. How can I help you today?",
-      timestamp: new Date()
-    }
-  ]);
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { sendMessage, isLoading } = useAiChat();
+
+  // API hooks
+  const { mutate: createSession, isPending: isCreatingSession } = useCreateChatSession();
+  const { mutate: sendMessage, isPending: isSending } = useSendChatMessage();
+  const { data: sessionData } = useChatSession(sessionId || '');
+  const { data: insights } = usePortfolioInsights();
+
+  // Initialize session when modal opens
+  useEffect(() => {
+    if (open && !sessionId) {
+      createSession(undefined, {
+        onSuccess: (data: ChatSession) => {
+          setSessionId(data.id);
+          setMessages([{
+            id: '1',
+            role: 'assistant',
+            content: "Hi! I'm your MIOwSIS AI assistant. I can help you with investment advice, explain financial concepts, analyze your portfolio, and answer questions about ESG investing. How can I help you today?",
+            timestamp: new Date()
+          }]);
+        },
+        onError: () => {
+          setMessages([{
+            id: '1',
+            role: 'assistant',
+            content: "Hi! I'm currently having trouble connecting to the AI service, but I'm here to help. Please try again in a moment.",
+            timestamp: new Date()
+          }]);
+        }
+      });
+    }
+  }, [open, sessionId, createSession]);
+
+  // Load messages from session data
+  useEffect(() => {
+    if (sessionData?.messages && sessionData.messages.length > 0) {
+      const formattedMessages: Message[] = sessionData.messages.map((msg: any) => ({
+        id: msg.id,
+        role: msg.role,
+        content: msg.content,
+        timestamp: new Date(msg.timestamp)
+      }));
+      setMessages(formattedMessages);
+    }
+  }, [sessionData]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -63,8 +106,8 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+  const handleSend = () => {
+    if (!input.trim() || isSending || !sessionId) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -75,31 +118,30 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
 
     setMessages(prev => [...prev, userMessage]);
     setInput('');
-    setIsTyping(true);
 
-    try {
-      const response = await sendMessage(input);
-      
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: response.message,
-        timestamp: new Date()
-      };
-
-      setMessages(prev => [...prev, assistantMessage]);
-    } catch (error) {
-      console.error('Failed to get AI response:', error);
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: "I'm sorry, I couldn't process your request right now. Please try again.",
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      setIsTyping(false);
-    }
+    sendMessage(
+      { sessionId, message: input },
+      {
+        onSuccess: (response: ChatMessageType) => {
+          const assistantMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            role: 'assistant',
+            content: response.content,
+            timestamp: new Date()
+          };
+          setMessages(prev => [...prev, assistantMessage]);
+        },
+        onError: () => {
+          const errorMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            role: 'assistant',
+            content: "I'm sorry, I couldn't process your request right now. Please try again.",
+            timestamp: new Date()
+          };
+          setMessages(prev => [...prev, errorMessage]);
+        }
+      }
+    );
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -116,10 +158,14 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
     "Best sustainable investments"
   ];
 
+  const insightsSuggestions = insights?.slice(0, 2).map(i => i.title) || [];
+
   const handleSuggestionClick = (suggestion: string) => {
     setInput(suggestion);
-    handleSend();
+    setTimeout(() => handleSend(), 100); // Small delay to ensure input is set
   };
+
+  const isLoading = isCreatingSession || isSending;
 
   const chatContent = (
     <>
@@ -169,7 +215,7 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
                   position: 'relative'
                 }}
               >
-                <Typography variant="body2">
+                <Typography variant="body2" style={{ whiteSpace: 'pre-wrap' }}>
                   {message.content}
                 </Typography>
                 <Typography variant="caption" sx={{ opacity: 0.7, mt: 1, display: 'block' }}>
@@ -180,7 +226,7 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
           </Box>
         ))}
 
-        {isTyping && (
+        {isSending && (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ml: 5 }}>
             <CircularProgress size={16} />
             <Typography variant="body2" color="textSecondary">
@@ -193,7 +239,7 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
       </Box>
 
       {/* Quick Suggestions */}
-      {messages.length === 1 && (
+      {messages.length <= 2 && !isCreatingSession && (
         <Box sx={{ px: 2, pb: 1 }}>
           <Typography variant="caption" color="textSecondary" gutterBottom>
             Quick questions:
@@ -215,6 +261,32 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
               />
             ))}
           </Box>
+          
+          {insightsSuggestions.length > 0 && (
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="caption" color="textSecondary" gutterBottom>
+                Based on your portfolio:
+              </Typography>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 0.5 }}>
+                {insightsSuggestions.map((suggestion: string, index: number) => (
+                  <Chip
+                    key={`insight-${index}`}
+                    label={suggestion}
+                    size="small"
+                    color="secondary"
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    sx={{
+                      cursor: 'pointer',
+                      '&:hover': {
+                        bgcolor: 'secondary.dark',
+                        color: 'white'
+                      }
+                    }}
+                  />
+                ))}
+              </Box>
+            </Box>
+          )}
         </Box>
       )}
 
@@ -230,13 +302,13 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          disabled={isLoading}
+          disabled={isLoading || !sessionId}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
                   onClick={handleSend}
-                  disabled={!input.trim() || isLoading}
+                  disabled={!input.trim() || isLoading || !sessionId}
                   color="primary"
                 >
                   <Send />
@@ -251,6 +323,28 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
             I can help with portfolio analysis, ESG investing, and financial education
           </Typography>
         </Box>
+        
+        {/* Portfolio Insights */}
+        {insights && insights.length > 0 && (
+          <Box sx={{ mt: 2, p: 1.5, bgcolor: 'grey.50', borderRadius: 1 }}>
+            <Typography variant="caption" fontWeight={500} gutterBottom display="block">
+              Portfolio Insights:
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+              {insights.slice(0, 3).map((insight, index) => (
+                <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                  {insight.type === 'PERFORMANCE' && <TrendingUp sx={{ fontSize: 16, color: 'success.main' }} />}
+                  {insight.type === 'ESG' && <NaturePeople sx={{ fontSize: 16, color: 'secondary.main' }} />}
+                  {insight.type === 'RISK' && <AccountBalance sx={{ fontSize: 16, color: 'warning.main' }} />}
+                  {insight.type === 'OPPORTUNITY' && <Psychology sx={{ fontSize: 16, color: 'primary.main' }} />}
+                  <Typography variant="caption">
+                    {insight.title}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        )}
       </Box>
     </>
   );
@@ -287,9 +381,20 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
               </Typography>
             </Box>
           </Box>
-          <IconButton onClick={onClose}>
-            <Close />
-          </IconButton>
+          <Box>
+            <IconButton 
+              onClick={() => {
+                setSessionId(null);
+                setMessages([]);
+              }}
+              size="small"
+            >
+              <Refresh />
+            </IconButton>
+            <IconButton onClick={onClose}>
+              <Close />
+            </IconButton>
+          </Box>
         </Box>
         <Divider />
         {chatContent}
@@ -327,6 +432,16 @@ const AiChatModal: React.FC<AiChatModalProps> = ({ open, onClose }) => {
               Your personal investment advisor
             </Typography>
           </Box>
+          <IconButton 
+            onClick={() => {
+              setSessionId(null);
+              setMessages([]);
+            }}
+            size="small"
+            sx={{ mr: 1 }}
+          >
+            <Refresh />
+          </IconButton>
           <IconButton
             aria-label="close"
             onClick={onClose}

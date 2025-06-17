@@ -62,6 +62,22 @@ const portfolioSlice = createSlice({
           state.portfolio.holdings[index] = action.payload;
         }
       }
+    },
+    setPortfolio: (state, action: PayloadAction<Portfolio | null>) => {
+      state.portfolio = action.payload;
+      state.error = null;
+    },
+    setHoldings: (state, action: PayloadAction<Holding[]>) => {
+      if (state.portfolio) {
+        state.portfolio.holdings = action.payload;
+      }
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
+    setError: (state, action: PayloadAction<string | null>) => {
+      state.error = action.payload;
+      state.isLoading = false;
     }
   },
   extraReducers: (builder) => {
@@ -81,5 +97,5 @@ const portfolioSlice = createSlice({
   }
 });
 
-export const { updateHolding } = portfolioSlice.actions;
+export const { updateHolding, setPortfolio, setHoldings, setLoading, setError } = portfolioSlice.actions;
 export default portfolioSlice.reducer;

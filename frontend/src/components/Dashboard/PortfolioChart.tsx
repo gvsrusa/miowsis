@@ -1,7 +1,8 @@
-import React from 'react';
-import { Box, useTheme } from '@mui/material';
+import React, { useMemo } from 'react';
+import { Box, useTheme, Skeleton } from '@mui/material';
 import { Line } from 'react-chartjs-2';
 import '@utils/chartConfig'; // Import centralized Chart.js configuration
+import { usePortfolioPerformance } from '@/hooks/api';
 
 interface PortfolioChartProps {
   timeRange: string;
@@ -9,33 +10,39 @@ interface PortfolioChartProps {
 
 const PortfolioChart: React.FC<PortfolioChartProps> = ({ timeRange }) => {
   const theme = useTheme();
+  const { data: performance, isLoading } = usePortfolioPerformance(timeRange);
 
-  // Generate mock data based on time range
-  const generateData = () => {
-    const dataPoints = timeRange === '1D' ? 24 : timeRange === '1W' ? 7 : 30;
-    const labels = Array.from({ length: dataPoints }, (_, i) => {
-      if (timeRange === '1D') return `${i}:00`;
-      if (timeRange === '1W') return ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][i];
-      return `Day ${i + 1}`;
+  // Process performance data for chart
+  const chartDataAndLabels = useMemo(() => {
+    if (!performance?.history || performance.history.length === 0) {
+      // Return empty data if no performance data
+      return { labels: [], data: [] };
+    }
+
+    const labels = performance.history.map((point: any) => {
+      const date = new Date(point.date);
+      if (timeRange === '1D') {
+        return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      } else if (timeRange === '1W') {
+        return date.toLocaleDateString('en-US', { weekday: 'short' });
+      } else if (timeRange === '1M') {
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      } else {
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      }
     });
 
-    const baseValue = 10000;
-    const data = Array.from({ length: dataPoints }, (_, i) => {
-      const randomChange = (Math.random() - 0.3) * 200;
-      return baseValue + (i * 50) + randomChange;
-    });
+    const data = performance.history.map((point: any) => point.value);
 
     return { labels, data };
-  };
-
-  const { labels, data } = generateData();
+  }, [performance, timeRange]);
 
   const chartData = {
-    labels,
+    labels: chartDataAndLabels.labels,
     datasets: [
       {
         label: 'Portfolio Value',
-        data,
+        data: chartDataAndLabels.data,
         fill: true,
         borderColor: theme.palette.primary.main,
         backgroundColor: theme.palette.primary.main + '20',
@@ -98,6 +105,14 @@ const PortfolioChart: React.FC<PortfolioChartProps> = ({ timeRange }) => {
       intersect: false
     }
   };
+
+  if (isLoading) {
+    return (
+      <Box sx={{ height: 400, position: 'relative' }}>
+        <Skeleton variant="rectangular" width="100%" height={400} />
+      </Box>
+    );
+  }
 
   return (
     <Box sx={{ height: 400, position: 'relative' }}>

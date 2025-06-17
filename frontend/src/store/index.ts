@@ -4,6 +4,7 @@ import portfolioReducer from './slices/portfolioSlice';
 import esgReducer from './slices/esgSlice';
 import notificationReducer from './slices/notificationSlice';
 import onboardingReducer from './slices/onboardingSlice';
+import chatReducer from './slices/chatSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     portfolio: portfolioReducer,
     esg: esgReducer,
     notification: notificationReducer,
-    onboarding: onboardingReducer
+    onboarding: onboardingReducer,
+    chat: chatReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

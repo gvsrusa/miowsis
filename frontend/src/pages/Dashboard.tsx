@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Box,
   Grid,
@@ -9,7 +9,9 @@ import {
   IconButton,
   Button,
   Chip,
-  useTheme
+  useTheme,
+  Skeleton,
+  Alert
 } from '@mui/material';
 import {
   TrendingUp,
@@ -27,6 +29,7 @@ import ESGScoreWidget from '@components/Dashboard/ESGScoreWidget';
 import RecentTransactions from '@components/Dashboard/RecentTransactions';
 import MarketNews from '@components/Dashboard/MarketNews';
 import QuickActions from '@components/Dashboard/QuickActions';
+import { usePortfolio, usePortfolioPerformance, useESGScore } from '@/hooks/api';
 
 interface DashboardMetric {
   title: string;
@@ -35,48 +38,80 @@ interface DashboardMetric {
   changeLabel: string;
   icon: React.ReactNode;
   color: string;
+  isLoading?: boolean;
 }
 
 const Dashboard: React.FC = () => {
   const theme = useTheme();
   const [timeRange, setTimeRange] = useState('1W');
 
-  const metrics: DashboardMetric[] = [
-    {
-      title: 'Total Portfolio Value',
-      value: '$12,543.67',
-      change: 5.23,
-      changeLabel: '+$612.34',
-      icon: <AccountBalance />,
-      color: theme.palette.primary.main
-    },
-    {
-      title: 'Today\'s Gain/Loss',
-      value: '+$123.45',
-      change: 1.02,
-      changeLabel: '+1.02%',
-      icon: <ShowChart />,
-      color: theme.palette.success.main
-    },
-    {
-      title: 'ESG Impact Score',
-      value: '87/100',
-      change: 3,
-      changeLabel: '+3 points',
-      icon: <NaturePeople />,
-      color: theme.palette.secondary.main
-    },
-    {
-      title: 'Monthly Returns',
-      value: '+8.34%',
-      change: 8.34,
-      changeLabel: '+$982.12',
-      icon: <Timeline />,
-      color: theme.palette.info.main
-    }
-  ];
+  // Fetch data using React Query hooks
+  const { data: portfolio, isLoading: portfolioLoading, error: portfolioError } = usePortfolio();
+  const { data: performance, isLoading: performanceLoading } = usePortfolioPerformance(timeRange);
+  const { data: esgScore, isLoading: esgLoading } = useESGScore();
+
+  // Calculate metrics from real data
+  const metrics: DashboardMetric[] = useMemo(() => {
+    const totalValue = portfolio?.totalValue || 0;
+    const dailyChangeValue = performance?.dailyChange || { amount: 0, percentage: 0 };
+    const monthlyReturnValue = performance?.monthlyReturn || { amount: 0, percentage: 0 };
+    const dailyChange = typeof dailyChangeValue === 'number' ? { amount: dailyChangeValue, percentage: 0 } : dailyChangeValue;
+    const monthlyReturn = typeof monthlyReturnValue === 'number' ? { amount: monthlyReturnValue, percentage: 0 } : monthlyReturnValue;
+    const esgValue = esgScore?.totalScore || 0;
+    const esgChange = esgScore?.monthlyChange || 0;
+
+    return [
+      {
+        title: 'Total Portfolio Value',
+        value: portfolioLoading ? '...' : `$${totalValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+        change: dailyChange.percentage,
+        changeLabel: `${dailyChange.amount >= 0 ? '+' : ''}$${Math.abs(dailyChange.amount).toFixed(2)}`,
+        icon: <AccountBalance />,
+        color: theme.palette.primary.main,
+        isLoading: portfolioLoading
+      },
+      {
+        title: 'Today\'s Gain/Loss',
+        value: performanceLoading ? '...' : `${dailyChange.amount >= 0 ? '+' : ''}$${Math.abs(dailyChange.amount).toFixed(2)}`,
+        change: dailyChange.percentage,
+        changeLabel: `${dailyChange.percentage >= 0 ? '+' : ''}${dailyChange.percentage.toFixed(2)}%`,
+        icon: <ShowChart />,
+        color: dailyChange.amount >= 0 ? theme.palette.success.main : theme.palette.error.main,
+        isLoading: performanceLoading
+      },
+      {
+        title: 'ESG Impact Score',
+        value: esgLoading ? '...' : `${Math.round(esgValue)}/100`,
+        change: esgChange,
+        changeLabel: `${esgChange >= 0 ? '+' : ''}${esgChange} points`,
+        icon: <NaturePeople />,
+        color: theme.palette.secondary.main,
+        isLoading: esgLoading
+      },
+      {
+        title: 'Monthly Returns',
+        value: performanceLoading ? '...' : `${monthlyReturn.percentage >= 0 ? '+' : ''}${monthlyReturn.percentage.toFixed(2)}%`,
+        change: monthlyReturn.percentage,
+        changeLabel: `${monthlyReturn.amount >= 0 ? '+' : ''}$${Math.abs(monthlyReturn.amount).toFixed(2)}`,
+        icon: <Timeline />,
+        color: monthlyReturn.percentage >= 0 ? theme.palette.success.main : theme.palette.error.main,
+        isLoading: performanceLoading
+      }
+    ];
+  }, [portfolio, performance, esgScore, portfolioLoading, performanceLoading, esgLoading, theme]);
 
   const timeRanges = ['1D', '1W', '1M', '3M', '1Y', 'ALL'];
+
+  // Show error alert if there's a critical error
+  if (portfolioError) {
+    return (
+      <Box>
+        <Alert severity="error" sx={{ mb: 2 }}>
+          Failed to load portfolio data. Please try refreshing the page.
+        </Alert>
+      </Box>
+    );
+  }
 
   return (
     <Box>
@@ -114,24 +149,34 @@ const Dashboard: React.FC = () => {
                       <Typography color="textSecondary" gutterBottom variant="body2">
                         {metric.title}
                       </Typography>
-                      <Typography variant="h5" component="div" fontWeight={600}>
-                        {metric.value}
-                      </Typography>
-                      <Box display="flex" alignItems="center" mt={1}>
-                        {metric.change >= 0 ? (
-                          <TrendingUp sx={{ color: theme.palette.success.main, fontSize: 20 }} />
-                        ) : (
-                          <TrendingDown sx={{ color: theme.palette.error.main, fontSize: 20 }} />
-                        )}
-                        <Typography
-                          variant="body2"
-                          sx={{
-                            color: metric.change >= 0 ? theme.palette.success.main : theme.palette.error.main,
-                            ml: 0.5
-                          }}
-                        >
-                          {metric.changeLabel}
+                      {metric.isLoading ? (
+                        <Skeleton variant="text" width={120} height={32} />
+                      ) : (
+                        <Typography variant="h5" component="div" fontWeight={600}>
+                          {metric.value}
                         </Typography>
+                      )}
+                      <Box display="flex" alignItems="center" mt={1}>
+                        {metric.isLoading ? (
+                          <Skeleton variant="text" width={80} height={20} />
+                        ) : (
+                          <>
+                            {metric.change >= 0 ? (
+                              <TrendingUp sx={{ color: theme.palette.success.main, fontSize: 20 }} />
+                            ) : (
+                              <TrendingDown sx={{ color: theme.palette.error.main, fontSize: 20 }} />
+                            )}
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: metric.change >= 0 ? theme.palette.success.main : theme.palette.error.main,
+                                ml: 0.5
+                              }}
+                            >
+                              {metric.changeLabel}
+                            </Typography>
+                          </>
+                        )}
                       </Box>
                     </Box>
                     <Box

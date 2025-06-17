@@ -1,6 +1,7 @@
-import React from 'react';
-import { Box, Typography, LinearProgress, Chip, useTheme } from '@mui/material';
+import React, { useMemo } from 'react';
+import { Box, Typography, LinearProgress, Chip, useTheme, Skeleton } from '@mui/material';
 import { NaturePeople, Groups, AccountBalance } from '@mui/icons-material';
+import { usePortfolioESG } from '@/hooks/api';
 
 interface ESGCategory {
   name: string;
@@ -12,34 +13,91 @@ interface ESGCategory {
 
 const ESGScoreWidget: React.FC = () => {
   const theme = useTheme();
+  const { data: esgData, isLoading } = usePortfolioESG();
 
-  const categories: ESGCategory[] = [
-    {
-      name: 'Environmental',
-      score: 92,
-      icon: <NaturePeople />,
-      color: theme.palette.success.main,
-      description: 'Carbon footprint, renewable energy usage'
-    },
-    {
-      name: 'Social',
-      score: 85,
-      icon: <Groups />,
-      color: theme.palette.info.main,
-      description: 'Employee welfare, community impact'
-    },
-    {
-      name: 'Governance',
-      score: 78,
-      icon: <AccountBalance />,
-      color: theme.palette.warning.main,
-      description: 'Board diversity, ethical practices'
+  const categories: ESGCategory[] = useMemo(() => {
+    if (!esgData) {
+      return [
+        {
+          name: 'Environmental',
+          score: 0,
+          icon: <NaturePeople />,
+          color: theme.palette.success.main,
+          description: 'Loading...'
+        },
+        {
+          name: 'Social',
+          score: 0,
+          icon: <Groups />,
+          color: theme.palette.info.main,
+          description: 'Loading...'
+        },
+        {
+          name: 'Governance',
+          score: 0,
+          icon: <AccountBalance />,
+          color: theme.palette.warning.main,
+          description: 'Loading...'
+        }
+      ];
     }
-  ];
 
-  const overallScore = Math.round(
-    categories.reduce((sum, cat) => sum + cat.score, 0) / categories.length
-  );
+    return [
+      {
+        name: 'Environmental',
+        score: Math.round(esgData.environmentalScore || 0),
+        icon: <NaturePeople />,
+        color: theme.palette.success.main,
+        description: esgData.environmentalDetails || 'Carbon footprint, renewable energy usage'
+      },
+      {
+        name: 'Social',
+        score: Math.round(esgData.socialScore || 0),
+        icon: <Groups />,
+        color: theme.palette.info.main,
+        description: esgData.socialDetails || 'Employee welfare, community impact'
+      },
+      {
+        name: 'Governance',
+        score: Math.round(esgData.governanceScore || 0),
+        icon: <AccountBalance />,
+        color: theme.palette.warning.main,
+        description: esgData.governanceDetails || 'Board diversity, ethical practices'
+      }
+    ];
+  }, [esgData, theme]);
+
+  const overallScore = useMemo(() => {
+    if (!esgData) return 0;
+    return Math.round(esgData.totalScore || 0);
+  }, [esgData]);
+
+  const getScoreDescription = (score: number) => {
+    if (score >= 90) return 'Excellent ESG credentials';
+    if (score >= 70) return 'Good ESG performance';
+    if (score >= 50) return 'Moderate ESG rating';
+    return 'ESG improvement needed';
+  };
+
+  if (isLoading) {
+    return (
+      <Box>
+        <Box textAlign="center" mb={4}>
+          <Skeleton variant="circular" width={120} height={120} sx={{ margin: '0 auto' }} />
+          <Skeleton variant="text" width={200} sx={{ margin: '16px auto' }} />
+        </Box>
+        <Box>
+          {[1, 2, 3].map((i) => (
+            <Box key={i} mb={3}>
+              <Skeleton variant="text" width="100%" height={30} />
+              <Skeleton variant="rectangular" width="100%" height={8} sx={{ borderRadius: 4, mt: 1 }} />
+              <Skeleton variant="text" width="60%" height={20} />
+            </Box>
+          ))}
+        </Box>
+      </Box>
+    );
+  }
 
   return (
     <Box>
@@ -79,7 +137,7 @@ const ESGScoreWidget: React.FC = () => {
           </Box>
         </Box>
         <Typography variant="body2" color="textSecondary" mt={2}>
-          Your portfolio has excellent ESG credentials
+          {getScoreDescription(overallScore)}
         </Typography>
       </Box>
 
@@ -132,6 +190,20 @@ const ESGScoreWidget: React.FC = () => {
           </Box>
         ))}
       </Box>
+
+      {/* ESG Insights */}
+      {esgData?.insights && esgData.insights.length > 0 && (
+        <Box mt={3} p={2} bgcolor={theme.palette.grey[50]} borderRadius={2}>
+          <Typography variant="body2" fontWeight={500} mb={1}>
+            ESG Insights
+          </Typography>
+          {esgData.insights.map((insight: string, index: number) => (
+            <Typography key={index} variant="caption" color="textSecondary" display="block" mb={0.5}>
+              • {insight}
+            </Typography>
+          ))}
+        </Box>
+      )}
     </Box>
   );
 };
