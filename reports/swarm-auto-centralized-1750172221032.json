@@ -1,0 +1,13 @@
+{
+  "objective": "i see lot of issues or lint/typescript errors across frontend application. please fix them",
+  "strategy": "auto",
+  "mode": "centralized",
+  "maxAgents": 5,
+  "timeout": 60,
+  "parallel": true,
+  "monitor": false,
+  "output": "json",
+  "outputDir": "./reports",
+  "timestamp": "2025-06-17T14:57:01.031Z",
+  "id": "swarm-auto-centralized-1750172221032"
+}

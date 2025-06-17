@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -18,12 +19,16 @@ public class EmailService {
     
     private final KafkaTemplate<String, Object> kafkaTemplate;
     
+    @Value("${miowsis.email.kafka.enabled:true}")
+    private boolean kafkaEnabled;
+    
     @Value("${app.frontend.url:http://localhost:3000}")
     private String frontendUrl;
     
     @Value("${app.email.from:noreply@miowsis.com}")
     private String fromEmail;
     
+    @Async
     public void sendVerificationEmail(User user) {
         String verificationToken = UUID.randomUUID().toString();
         String verificationLink = frontendUrl + "/verify-email?token=" + verificationToken;
@@ -39,12 +44,22 @@ public class EmailService {
         ));
         
         // Store token in cache/database for verification
-        // For now, just send to Kafka
-        kafkaTemplate.send("email-events", "send-email", emailData);
-        
-        log.info("Verification email sent to: {}", user.getEmail());
+        // For now, just send to Kafka if enabled
+        if (kafkaEnabled) {
+            try {
+                kafkaTemplate.send("email-events", "send-email", emailData);
+                log.info("Verification email sent to Kafka for: {}", user.getEmail());
+            } catch (Exception e) {
+                log.warn("Failed to send email to Kafka for user: {}. Error: {}", user.getEmail(), e.getMessage());
+                // Fallback: Log email for manual processing or direct email service
+                log.info("Email fallback - Verification email for: {} with token: {}", user.getEmail(), verificationToken);
+            }
+        } else {
+            log.info("Kafka disabled - Verification email simulated for: {} with token: {}", user.getEmail(), verificationToken);
+        }
     }
     
+    @Async
     public void sendPasswordResetEmail(User user, String resetToken) {
         String resetLink = frontendUrl + "/reset-password?token=" + resetToken;
         
@@ -58,11 +73,20 @@ public class EmailService {
             "resetLink", resetLink
         ));
         
-        kafkaTemplate.send("email-events", "send-email", emailData);
-        
-        log.info("Password reset email sent to: {}", user.getEmail());
+        if (kafkaEnabled) {
+            try {
+                kafkaTemplate.send("email-events", "send-email", emailData);
+                log.info("Password reset email sent to Kafka for: {}", user.getEmail());
+            } catch (Exception e) {
+                log.warn("Failed to send password reset email to Kafka for user: {}. Error: {}", user.getEmail(), e.getMessage());
+                log.info("Email fallback - Password reset email for: {} with reset link: {}", user.getEmail(), resetLink);
+            }
+        } else {
+            log.info("Kafka disabled - Password reset email simulated for: {} with reset link: {}", user.getEmail(), resetLink);
+        }
     }
     
+    @Async
     public void sendWelcomeEmail(User user) {
         Map<String, Object> emailData = new HashMap<>();
         emailData.put("to", user.getEmail());
@@ -74,8 +98,16 @@ public class EmailService {
             "dashboardLink", frontendUrl + "/dashboard"
         ));
         
-        kafkaTemplate.send("email-events", "send-email", emailData);
-        
-        log.info("Welcome email sent to: {}", user.getEmail());
+        if (kafkaEnabled) {
+            try {
+                kafkaTemplate.send("email-events", "send-email", emailData);
+                log.info("Welcome email sent to Kafka for: {}", user.getEmail());
+            } catch (Exception e) {
+                log.warn("Failed to send welcome email to Kafka for user: {}. Error: {}", user.getEmail(), e.getMessage());
+                log.info("Email fallback - Welcome email for: {} with dashboard link: {}", user.getEmail(), frontendUrl + "/dashboard");
+            }
+        } else {
+            log.info("Kafka disabled - Welcome email simulated for: {} with dashboard link: {}", user.getEmail(), frontendUrl + "/dashboard");
+        }
     }
 }

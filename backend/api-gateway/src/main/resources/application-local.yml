@@ -1,0 +1,88 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      enabled: false
+      import-check:
+        enabled: false
+    discovery:
+      enabled: false
+    gateway:
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 5s
+      routes:
+        - id: user-service-auth
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - RewritePath=/api/auth/(?<segment>.*), /auth/${segment}
+        
+        - id: user-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - RewritePath=/api/users/(?<segment>.*), /users/${segment}
+        
+        - id: portfolio-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/portfolio/**
+          filters:
+            - RewritePath=/api/portfolio/(?<segment>.*), /${segment}
+        
+        - id: ai-service
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/ai/**
+          filters:
+            - RewritePath=/api/ai/(?<segment>.*), /${segment}
+        
+        - id: esg-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/api/esg/**
+          filters:
+            - RewritePath=/api/esg/(?<segment>.*), /${segment}
+      
+      default-filters:
+        - name: Retry
+          args:
+            retries: 3
+            statuses: BAD_GATEWAY
+            methods: GET,POST
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: false
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000ms
+  
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisReactiveAutoConfiguration
+
+eureka:
+  client:
+    enabled: false
+
+jwt:
+  secret: mySecretKey123456789012345678901234567890
+  expiration: 86400000
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO

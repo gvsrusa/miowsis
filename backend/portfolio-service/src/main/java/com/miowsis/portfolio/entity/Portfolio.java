@@ -67,9 +67,11 @@ public class Portfolio {
     private Integer governanceScore;
 
     @OneToMany(mappedBy = "portfolio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
     private List<Holding> holdings = new ArrayList<>();
 
     @Column(name = "is_active")
+    @Builder.Default
     private boolean isActive = true;
 
     @Column(name = "created_at")

@@ -16,6 +16,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { RootState, AppDispatch } from '@/store';
 import { nextStep, previousStep, completeOnboarding } from '@/store/slices/onboardingSlice';
+import { userService } from '@/services/userService';
 import WelcomeStep from '@components/Onboarding/WelcomeStep';
 import GoalsStep from '@components/Onboarding/GoalsStep';
 import RiskProfileStep from '@components/Onboarding/RiskProfileStep';
@@ -30,10 +31,22 @@ const Onboarding: React.FC = () => {
     (state: RootState) => state.onboarding
   );
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (currentStep === steps.length - 1) {
-      dispatch(completeOnboarding());
-      navigate('/dashboard');
+      try {
+        // Mark onboarding as complete in Redux state
+        dispatch(completeOnboarding());
+        
+        // Persist onboarding completion to backend
+        await userService.completeOnboarding();
+        
+        // Navigate to dashboard
+        navigate('/dashboard');
+      } catch (error) {
+        console.error('Failed to complete onboarding:', error);
+        // Still navigate to dashboard even if backend call fails
+        navigate('/dashboard');
+      }
     } else {
       dispatch(nextStep());
     }

@@ -1,0 +1,50 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-service
+  cloud:
+    config:
+      enabled: false
+      import-check:
+        enabled: false
+    discovery:
+      enabled: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/miowsis
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  kafka:
+    producer:
+      retries: 0
+      request-timeout-ms: 100
+      max-block-ms: 100
+
+eureka:
+  client:
+    enabled: false
+
+jwt:
+  secret: mySecretKey123456789012345678901234567890
+  expiration: 86400000
+
+logging:
+  level:
+    com.miowsis.user: DEBUG
+
+miowsis:
+  events:
+    kafka:
+      enabled: false
+  email:
+    kafka:
+      enabled: false

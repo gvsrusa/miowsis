@@ -44,8 +44,9 @@ public class AiAssistantController {
     @GetMapping("/portfolio/recommendations")
     @Operation(summary = "Get AI-powered portfolio recommendations")
     public Mono<PortfolioRecommendation> getPortfolioRecommendations(
-            @RequestHeader("X-User-Id") UUID userId) {
-        return portfolioAdvisorService.getRecommendations(userId);
+            @RequestHeader("X-User-Id") UUID userId,
+            @RequestParam(defaultValue = "moderate") String riskProfile) {
+        return portfolioAdvisorService.getRecommendations(userId, riskProfile);
     }
     
     @PostMapping("/portfolio/optimize")
@@ -59,8 +60,8 @@ public class AiAssistantController {
     @GetMapping("/insights/market")
     @Operation(summary = "Get AI-generated market insights")
     public Mono<MarketInsights> getMarketInsights(
-            @RequestParam(defaultValue = "GENERAL") String sector) {
-        return marketInsightsService.getInsights(sector);
+            @RequestParam(defaultValue = "GENERAL") String sectors) {
+        return marketInsightsService.getMarketInsights(sectors);
     }
     
     @GetMapping("/insights/esg-trends")
@@ -73,7 +74,7 @@ public class AiAssistantController {
     @Operation(summary = "Get AI analysis of a specific company")
     public Mono<CompanyAnalysis> analyzeCompany(
             @Valid @RequestBody CompanyAnalysisRequest request) {
-        return marketInsightsService.analyzeCompany(request.getSymbol());
+        return marketInsightsService.analyzeCompany(request);
     }
     
     @PostMapping("/goals/advice")

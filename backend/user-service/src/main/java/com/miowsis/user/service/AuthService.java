@@ -11,6 +11,7 @@ import com.miowsis.user.repository.UserRepository;
 import com.miowsis.user.security.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -36,6 +37,9 @@ public class AuthService {
     private final UserMapper userMapper;
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final EmailService emailService;
+    
+    @Value("${miowsis.events.kafka.enabled:true}")
+    private boolean kafkaEventsEnabled;
 
     @Transactional
     public AuthResponse register(RegisterRequest request) {
@@ -67,7 +71,7 @@ public class AuthService {
         emailService.sendVerificationEmail(user);
 
         // Publish user created event
-        kafkaTemplate.send("user-events", "user.created", 
+        sendEventSafely("user-events", "user.created", 
             Map.of("userId", user.getId(), "email", user.getEmail()));
 
         // Generate tokens
@@ -100,7 +104,7 @@ public class AuthService {
             String refreshToken = jwtTokenProvider.generateRefreshToken(user);
 
             // Publish login event
-            kafkaTemplate.send("user-events", "user.login", 
+            sendEventSafely("user-events", "user.login", 
                 Map.of("userId", user.getId(), "timestamp", LocalDateTime.now()));
 
             return AuthResponse.builder()
@@ -139,7 +143,7 @@ public class AuthService {
         String email = jwtTokenProvider.getEmailFromToken(token);
         User user = userRepository.findByEmail(email).orElse(null);
         if (user != null) {
-            kafkaTemplate.send("user-events", "user.logout", 
+            sendEventSafely("user-events", "user.logout", 
                 Map.of("userId", user.getId(), "timestamp", LocalDateTime.now()));
         }
     }
@@ -187,10 +191,25 @@ public class AuthService {
             user.setFailedLoginAttempts(user.getFailedLoginAttempts() + 1);
             if (user.getFailedLoginAttempts() >= 5) {
                 user.setAccountLocked(true);
-                kafkaTemplate.send("user-events", "user.locked", 
+                sendEventSafely("user-events", "user.locked", 
                     Map.of("userId", user.getId(), "reason", "Too many failed login attempts"));
             }
             userRepository.save(user);
         });
+    }
+    
+    private void sendEventSafely(String topic, String key, Map<String, Object> payload) {
+        if (kafkaEventsEnabled) {
+            try {
+                kafkaTemplate.send(topic, key, payload);
+                log.debug("Event sent to Kafka: topic={}, key={}", topic, key);
+            } catch (Exception e) {
+                log.warn("Failed to send event to Kafka: topic={}, key={}, error={}", topic, key, e.getMessage());
+                // Log event for potential replay or alternative processing
+                log.info("Event fallback: topic={}, key={}, payload={}", topic, key, payload);
+            }
+        } else {
+            log.debug("Kafka events disabled - Event not sent: topic={}, key={}", topic, key);
+        }
     }
 }

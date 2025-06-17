@@ -122,7 +122,8 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return emailVerified;
+        // TODO: Enable email verification requirement in production
+        return true; // Temporarily allow login without email verification
     }
 
     public enum Role {

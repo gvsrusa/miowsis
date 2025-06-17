@@ -1,0 +1,13 @@
+{
+  "objective": "Access to XMLHttpRequest at 'http://localhost:8080/api/users/auth/login' from origin 'http://127.0.0.1:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+  "strategy": "auto",
+  "mode": "centralized",
+  "maxAgents": 5,
+  "timeout": 60,
+  "parallel": true,
+  "monitor": false,
+  "output": "json",
+  "outputDir": "./reports",
+  "timestamp": "2025-06-17T16:45:56.445Z",
+  "id": "swarm-auto-centralized-1750178756446"
+}

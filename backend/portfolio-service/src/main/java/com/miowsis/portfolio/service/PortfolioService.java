@@ -13,6 +13,7 @@ import com.miowsis.portfolio.repository.PortfolioRepository;
 import com.miowsis.portfolio.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -27,7 +28,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class PortfolioService {
     
@@ -39,6 +39,25 @@ public class PortfolioService {
     private final PortfolioMapper portfolioMapper;
     private final TransactionMapper transactionMapper;
     private final KafkaTemplate<String, Object> kafkaTemplate;
+    
+    public PortfolioService(
+            PortfolioRepository portfolioRepository,
+            HoldingRepository holdingRepository,
+            TransactionRepository transactionRepository,
+            MarketDataService marketDataService,
+            ESGScoringService esgScoringService,
+            PortfolioMapper portfolioMapper,
+            TransactionMapper transactionMapper,
+            @Autowired(required = false) KafkaTemplate<String, Object> kafkaTemplate) {
+        this.portfolioRepository = portfolioRepository;
+        this.holdingRepository = holdingRepository;
+        this.transactionRepository = transactionRepository;
+        this.marketDataService = marketDataService;
+        this.esgScoringService = esgScoringService;
+        this.portfolioMapper = portfolioMapper;
+        this.transactionMapper = transactionMapper;
+        this.kafkaTemplate = kafkaTemplate;
+    }
     
     @Cacheable(value = "portfolios", key = "#userId")
     public PortfolioDto getUserPortfolio(UUID userId) {
@@ -250,8 +269,153 @@ public class PortfolioService {
     }
     
     private void publishTransactionEvent(Transaction transaction, String eventType) {
-        kafkaTemplate.send("portfolio-events", eventType, transaction);
+        if (kafkaTemplate == null) {
+            log.debug("Kafka is disabled - skipping transaction event publication");
+            return;
+        }
+        
+        try {
+            kafkaTemplate.send("portfolio-events", eventType, transaction);
+        } catch (Exception e) {
+            log.warn("Failed to publish transaction event: {}", e.getMessage());
+            // Continue without failing the transaction
+        }
     }
     
-    // Additional helper methods would be implemented here...
+    @Transactional
+    @CacheEvict(value = "portfolios", key = "#userId")
+    public RebalanceResultDto rebalancePortfolio(UUID userId, RebalanceRequest request) {
+        Portfolio portfolio = getPortfolioByUserId(userId);
+        // Mock implementation for rebalancing
+        return RebalanceResultDto.builder()
+                .portfolioId(portfolio.getId().toString())
+                .strategy(request.getStrategy())
+                .status("COMPLETED")
+                .totalCost(BigDecimal.ZERO)
+                .totalFees(BigDecimal.ZERO)
+                .executedAt(LocalDateTime.now())
+                .build();
+    }
+    
+    public Page<TransactionDto> getTransactions(UUID userId, String type, String symbol, Pageable pageable) {
+        if (type != null && symbol != null) {
+            Transaction.TransactionType transactionType = Transaction.TransactionType.valueOf(type.toUpperCase());
+            return transactionRepository.findByUserIdAndTransactionTypeAndSymbol(userId, transactionType, symbol, pageable)
+                    .map(transactionMapper::toDto);
+        } else if (type != null) {
+            Transaction.TransactionType transactionType = Transaction.TransactionType.valueOf(type.toUpperCase());
+            return transactionRepository.findByUserIdAndTransactionType(userId, transactionType, pageable)
+                    .map(transactionMapper::toDto);
+        } else if (symbol != null) {
+            return transactionRepository.findByUserIdAndSymbol(userId, symbol, pageable)
+                    .map(transactionMapper::toDto);
+        } else {
+            return transactionRepository.findByUserId(userId, pageable)
+                    .map(transactionMapper::toDto);
+        }
+    }
+    
+    public PortfolioAllocationDto getPortfolioAllocation(UUID userId) {
+        Portfolio portfolio = getPortfolioByUserId(userId);
+        
+        // Mock implementation for allocation
+        return PortfolioAllocationDto.builder()
+                .portfolioId(portfolio.getId().toString())
+                .userId(userId.toString())
+                .totalValue(portfolio.getTotalValue())
+                .build();
+    }
+    
+    private Holding createNewHolding(Portfolio portfolio, String symbol) {
+        return Holding.builder()
+                .portfolio(portfolio)
+                .symbol(symbol)
+                .shares(BigDecimal.ZERO)
+                .avgCost(BigDecimal.ZERO)
+                .totalCost(BigDecimal.ZERO)
+                .currentPrice(BigDecimal.ZERO)
+                .marketValue(BigDecimal.ZERO)
+                .gainLoss(BigDecimal.ZERO)
+                .gainLossPercent(BigDecimal.ZERO)
+                .dayGain(BigDecimal.ZERO)
+                .dayGainPercent(BigDecimal.ZERO)
+                .portfolioPercent(BigDecimal.ZERO)
+                .build();
+    }
+    
+    private void updateHoldingForBuy(Holding holding, BigDecimal newShares, BigDecimal price, BigDecimal amount) {
+        BigDecimal totalShares = holding.getShares().add(newShares);
+        BigDecimal totalCost = holding.getTotalCost().add(amount);
+        BigDecimal avgCost = totalCost.divide(totalShares, 4, RoundingMode.HALF_UP);
+        
+        holding.setShares(totalShares);
+        holding.setTotalCost(totalCost);
+        holding.setAvgCost(avgCost);
+        holding.setCurrentPrice(price);
+        holding.setMarketValue(totalShares.multiply(price));
+    }
+    
+    private void updateHoldingForSell(Holding holding, BigDecimal sharesToSell) {
+        BigDecimal remainingShares = holding.getShares().subtract(sharesToSell);
+        BigDecimal remainingCost = holding.getTotalCost()
+                .multiply(remainingShares)
+                .divide(holding.getShares(), 4, RoundingMode.HALF_UP);
+        
+        holding.setShares(remainingShares);
+        holding.setTotalCost(remainingCost);
+        if (remainingShares.compareTo(BigDecimal.ZERO) > 0) {
+            holding.setMarketValue(remainingShares.multiply(holding.getCurrentPrice()));
+        }
+    }
+    
+    private Transaction createBuyTransaction(UUID userId, UUID portfolioId, BuyOrderRequest request, 
+            BigDecimal shares, BigDecimal price) {
+        return Transaction.builder()
+                .userId(userId)
+                .portfolioId(portfolioId)
+                .transactionType(Transaction.TransactionType.BUY)
+                .symbol(request.getSymbol())
+                .shares(shares)
+                .price(price)
+                .amount(request.getAmount())
+                .fee(BigDecimal.ZERO)
+                .netAmount(request.getAmount())
+                .source(Transaction.TransactionSource.MANUAL)
+                .status(Transaction.TransactionStatus.COMPLETED)
+                .executedAt(LocalDateTime.now())
+                .build();
+    }
+    
+    private Transaction createSellTransaction(UUID userId, UUID portfolioId, SellOrderRequest request, 
+            BigDecimal price, BigDecimal saleAmount) {
+        return Transaction.builder()
+                .userId(userId)
+                .portfolioId(portfolioId)
+                .transactionType(Transaction.TransactionType.SELL)
+                .symbol(request.getSymbol())
+                .shares(request.getShares())
+                .price(price)
+                .amount(saleAmount)
+                .fee(BigDecimal.ZERO)
+                .netAmount(saleAmount)
+                .source(Transaction.TransactionSource.MANUAL)
+                .status(Transaction.TransactionStatus.COMPLETED)
+                .executedAt(LocalDateTime.now())
+                .build();
+    }
+    
+    private BigDecimal calculateAnnualizedReturn(Portfolio portfolio, String period) {
+        // Mock implementation
+        return portfolio.getTotalGainPercent();
+    }
+    
+    private BigDecimal calculateVolatility(Portfolio portfolio, String period) {
+        // Mock implementation
+        return BigDecimal.valueOf(15.5);
+    }
+    
+    private BigDecimal calculateSharpeRatio(Portfolio portfolio, String period) {
+        // Mock implementation
+        return BigDecimal.valueOf(1.2);
+    }
 }

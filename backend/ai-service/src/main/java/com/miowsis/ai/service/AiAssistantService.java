@@ -115,7 +115,7 @@ public class AiAssistantService {
                                     sink.next(ChatStreamResponse.builder()
                                             .content("")
                                             .isComplete(true)
-                                            .conversationId(UUID.randomUUID().toString())
+                                            .messageId(UUID.randomUUID().toString())
                                             .build());
                                     sink.complete();
                                 })
@@ -140,19 +140,22 @@ public class AiAssistantService {
             4. Potential challenges and how to overcome them
             5. ESG investment options that align with this goal
             """, 
-            request.getGoal(),
-            request.getCurrentPortfolioValue(),
-            request.getMonthlyInvestment(),
-            request.getTimeHorizon(),
+            request.getGoalType(),
+            request.getTargetAmount(),
+            request.getMonthlyContribution(),
+            request.getTimeHorizonYears(),
             request.getRiskTolerance()
         );
         
         return generateResponse(prompt)
                 .map(response -> GoalAdvice.builder()
-                        .goal(request.getGoal())
-                        .advice(response)
-                        .recommendedActions(extractActionItems(response))
-                        .estimatedTimeToGoal(calculateTimeToGoal(request))
+                        .goalType(request.getGoalType())
+                        .targetAmount(request.getTargetAmount())
+                        .recommendedMonthlyContribution(request.getMonthlyContribution())
+                        .timeToGoal(calculateTimeToGoal(request))
+                        .strategies(extractActionItems(response))
+                        .riskAssessment("Based on " + request.getRiskTolerance() + " risk profile")
+                        .probabilityOfSuccess(0.75)
                         .build());
     }
     
@@ -174,44 +177,34 @@ public class AiAssistantService {
                         .concept(concept)
                         .explanation(response)
                         .relatedConcepts(extractRelatedConcepts(response))
-                        .difficulty(complexityLevel)
+                        .complexityLevel(complexityLevel)
                         .build());
     }
     
-    private Mono<String> enrichContext(UUID userId, ChatRequest request) {
-        return contextService.getUserContext(userId)
-                .map(context -> String.format("""
-                    User Context:
-                    - Portfolio Value: $%.2f
-                    - ESG Score: %d
-                    - Investment Goals: %s
-                    - Risk Profile: %s
-                    - Recent Activity: %s
-                    """,
-                    context.getPortfolioValue(),
-                    context.getEsgScore(),
-                    String.join(", ", context.getGoals()),
-                    context.getRiskProfile(),
-                    context.getRecentActivity()
-                ));
+    private Mono<Map<String, Object>> enrichContext(UUID userId, ChatRequest request) {
+        return Mono.just(contextService.enrichContext(userId, request));
     }
     
-    private List<ChatMessage> buildMessages(UUID userId, ChatRequest request, String context) {
+    private List<ChatMessage> buildMessages(UUID userId, ChatRequest request, Map<String, Object> context) {
         List<ChatMessage> messages = new ArrayList<>();
         
         // System message
         messages.add(new ChatMessage(ChatMessageRole.SYSTEM.value(), SYSTEM_PROMPT));
         
-        // Add context
-        messages.add(new ChatMessage(ChatMessageRole.SYSTEM.value(), context));
+        // Add context as JSON string
+        String contextStr = "User Context: " + context.toString();
+        messages.add(new ChatMessage(ChatMessageRole.SYSTEM.value(), contextStr));
         
         // Add chat history (last 5 messages)
-        List<ChatHistory> history = chatHistoryRepository.findTop5ByUserIdOrderByTimestampDesc(userId);
+        List<ChatHistory> history = chatHistoryRepository.findByUserIdOrderByCreatedAtDesc(userId)
+                .stream()
+                .limit(5)
+                .collect(Collectors.toList());
         Collections.reverse(history);
         
         for (ChatHistory chat : history) {
             messages.add(new ChatMessage(ChatMessageRole.USER.value(), chat.getUserMessage()));
-            messages.add(new ChatMessage(ChatMessageRole.ASSISTANT.value(), chat.getAssistantResponse()));
+            messages.add(new ChatMessage(ChatMessageRole.ASSISTANT.value(), chat.getAiResponse()));
         }
         
         // Add current message
@@ -239,11 +232,12 @@ public class AiAssistantService {
         ChatHistory history = ChatHistory.builder()
                 .userId(userId)
                 .userMessage(userMessage)
-                .assistantResponse(assistantResponse)
-                .timestamp(LocalDateTime.now())
+                .aiResponse(assistantResponse)
+                .sessionId(UUID.randomUUID().toString())
+                .messageType("chat")
                 .build();
         
-        chatHistoryRepository.save(history).subscribe();
+        chatHistoryRepository.save(history);
     }
     
     private List<String> generateSuggestions(String response) {
@@ -279,8 +273,9 @@ public class AiAssistantService {
     
     private String calculateTimeToGoal(GoalAdviceRequest request) {
         // Simple calculation based on goal amount and monthly investment
-        if (request.getGoalAmount() != null && request.getMonthlyInvestment() > 0) {
-            double monthsNeeded = request.getGoalAmount() / request.getMonthlyInvestment();
+        if (request.getTargetAmount() != null && request.getMonthlyContribution() != null && 
+            request.getMonthlyContribution().doubleValue() > 0) {
+            double monthsNeeded = request.getTargetAmount().doubleValue() / request.getMonthlyContribution().doubleValue();
             int years = (int) (monthsNeeded / 12);
             int months = (int) (monthsNeeded % 12);
             return String.format("%d years, %d months", years, months);

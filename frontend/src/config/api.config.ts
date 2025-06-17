@@ -12,14 +12,14 @@ export const API_CONFIG = {
   endpoints: {
     // User Service endpoints
     auth: {
-      register: '/api/users/auth/register',
-      login: '/api/users/auth/login',
-      logout: '/api/users/auth/logout',
-      refresh: '/api/users/auth/refresh',
-      verify: '/api/users/auth/verify',
-      verifyEmail: '/api/users/auth/verify-email',
-      forgotPassword: '/api/users/auth/forgot-password',
-      resetPassword: '/api/users/auth/reset-password'
+      register: '/api/auth/register',
+      login: '/api/auth/login',
+      logout: '/api/auth/logout',
+      refresh: '/api/auth/refresh',
+      verify: '/api/auth/verify',
+      verifyEmail: '/api/auth/verify-email',
+      forgotPassword: '/api/auth/forgot-password',
+      resetPassword: '/api/auth/reset-password'
     },
     
     // Portfolio Service endpoints
