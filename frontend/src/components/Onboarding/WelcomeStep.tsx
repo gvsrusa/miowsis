@@ -63,7 +63,7 @@ const WelcomeStep: React.FC = () => {
         Welcome to Your Financial Future
       </Typography>
       <Typography variant="body1" color="textSecondary" sx={{ mb: 4, maxWidth: 600, mx: 'auto' }}>
-        Let's get you started on your investment journey. This quick setup will help us personalize
+        Let&apos;s get you started on your investment journey. This quick setup will help us personalize
         your experience and build a portfolio that matches your goals and values.
       </Typography>
 

@@ -149,7 +149,7 @@ const CompletionStep: React.FC = () => {
             What happens next?
           </Typography>
           <Typography variant="body2" sx={{ mb: 2 }}>
-            1. We'll process your initial deposit
+            1. We&apos;ll process your initial deposit
           </Typography>
           <Typography variant="body2" sx={{ mb: 2 }}>
             2. Your portfolio will be automatically diversified across ESG-focused investments

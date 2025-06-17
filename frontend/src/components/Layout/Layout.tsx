@@ -218,7 +218,7 @@ const Layout: React.FC = () => {
                 <Divider orientation="vertical" flexItem />
                 <Box>
                   <Typography variant="caption" color="text.secondary">
-                    Today's Change
+                    Today&apos;s Change
                   </Typography>
                   <Typography 
                     variant="h6" 

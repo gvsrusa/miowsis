@@ -238,7 +238,7 @@ export const ApiOptimizationExample: React.FC = () => {
               </Typography>
               <Typography variant="body2" color="text.secondary" paragraph>
                 Batches multiple API calls into a single request. Instead of 5 separate
-                requests for stock quotes, they're combined into one.
+                requests for stock quotes, they&apos;re combined into one.
               </Typography>
               <Divider sx={{ my: 2 }} />
               {loading === 'batching' && <CircularProgress size={24} />}

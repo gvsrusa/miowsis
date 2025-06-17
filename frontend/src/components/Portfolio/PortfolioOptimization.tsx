@@ -474,7 +474,7 @@ const PortfolioOptimization: React.FC = () => {
             {/* Success Alert */}
             <Alert severity="success" icon={<CheckCircle />} sx={{ mb: 4 }}>
               <AlertTitle>Optimization Complete!</AlertTitle>
-              Based on your parameters, we've identified an optimal portfolio allocation that could improve your risk-adjusted returns by <strong>23%</strong> while increasing your ESG score to <strong>85/100</strong>.
+              Based on your parameters, we&apos;ve identified an optimal portfolio allocation that could improve your risk-adjusted returns by <strong>23%</strong> while increasing your ESG score to <strong>85/100</strong>.
             </Alert>
 
             {/* Scenario Comparison */}

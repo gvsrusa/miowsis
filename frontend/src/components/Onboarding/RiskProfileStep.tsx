@@ -98,10 +98,10 @@ const RiskProfileStep: React.FC = () => {
   return (
     <Box>
       <Typography variant="h5" gutterBottom fontWeight={600} textAlign="center">
-        What's your risk tolerance?
+        What&apos;s your risk tolerance?
       </Typography>
       <Typography variant="body1" color="textSecondary" textAlign="center" sx={{ mb: 4 }}>
-        We'll use this to build a portfolio that matches your comfort level
+        We&apos;ll use this to build a portfolio that matches your comfort level
       </Typography>
 
       {/* Risk Profile Cards */}
@@ -208,7 +208,7 @@ const RiskProfileStep: React.FC = () => {
             Loss Tolerance
           </Typography>
           <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-            What's the maximum temporary loss you could tolerate?
+            What&apos;s the maximum temporary loss you could tolerate?
           </Typography>
           <FormControl component="fieldset">
             <RadioGroup
@@ -258,8 +258,8 @@ const RiskProfileStep: React.FC = () => {
             Important Note
           </Typography>
           <Typography variant="caption" color="warning.dark">
-            All investments carry risk. Past performance doesn't guarantee future results. 
-            We'll help you build a diversified portfolio to manage risk, but losses are possible.
+            All investments carry risk. Past performance doesn&apos;t guarantee future results. 
+            We&apos;ll help you build a diversified portfolio to manage risk, but losses are possible.
           </Typography>
         </Box>
       </Box>

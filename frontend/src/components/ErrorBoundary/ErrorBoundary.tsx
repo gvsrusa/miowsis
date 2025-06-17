@@ -99,7 +99,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
                 Oops! Something went wrong
               </Typography>
               <Typography variant="body1" color="text.secondary" paragraph>
-                We're sorry for the inconvenience. An unexpected error occurred.
+                We&apos;re sorry for the inconvenience. An unexpected error occurred.
                 Please try refreshing the page or contact support if the problem persists.
               </Typography>
               

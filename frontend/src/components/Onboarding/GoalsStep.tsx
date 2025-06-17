@@ -119,7 +119,7 @@ const GoalsStep: React.FC = () => {
         What are your investment goals?
       </Typography>
       <Typography variant="body1" color="textSecondary" textAlign="center" sx={{ mb: 4 }}>
-        Select all that apply. We'll help you create a portfolio to achieve them.
+        Select all that apply. We&apos;ll help you create a portfolio to achieve them.
       </Typography>
 
       <Grid container spacing={2} sx={{ mb: 4 }}>

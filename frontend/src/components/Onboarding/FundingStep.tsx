@@ -75,7 +75,7 @@ const FundingStep: React.FC = () => {
         Fund Your Account
       </Typography>
       <Typography variant="body1" color="textSecondary" textAlign="center" sx={{ mb: 4 }}>
-        Choose how you'd like to add money to start investing
+        Choose how you&apos;d like to add money to start investing
       </Typography>
 
       {/* Funding Methods */}

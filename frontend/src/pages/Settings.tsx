@@ -946,7 +946,7 @@ const Settings: React.FC = () => {
             This action cannot be undone. All your data will be permanently deleted.
           </Alert>
           <Typography variant="body2">
-            To confirm, please type "DELETE" below:
+            To confirm, please type &quot;DELETE&quot; below:
           </Typography>
           <TextField
             fullWidth

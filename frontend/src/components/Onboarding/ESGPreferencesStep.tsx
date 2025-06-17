@@ -241,7 +241,7 @@ const ESGPreferencesStep: React.FC = () => {
           Exclude Specific Sectors (Optional)
         </Typography>
         <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-          Select industries you don't want to invest in
+          Select industries you don&apos;t want to invest in
         </Typography>
         <Grid container spacing={2}>
           {excludableSectors.map((sector) => (
