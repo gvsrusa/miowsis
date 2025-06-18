@@ -1,1362 +1,246 @@
-# Product Requirements Document
-## MIOwSIS - Micro-Investment Optimizer with Social Impact Scoring
-
-### Version 3.0 | December 2025
-### Updated with Next.js Architecture and Test-Driven Development
-
----
-
-## 1. Executive Summary and Product Vision
-
-### Executive Summary
-
-MIOwSIS (Micro-Investment Optimizer with Social Impact Scoring) is a next-generation fintech platform that democratizes sustainable investing through automated micro-investments and comprehensive ESG integration. By combining intelligent round-up technology, AI-powered portfolio optimization, real-time social impact scoring, and revolutionary user experience design, the platform enables everyday investors to build wealth while aligning their investments with their values.
-
-### Product Vision
-
-**"Empowering millions to invest spare change for financial growth and positive global impact"**
-
-Our vision is to create the most accessible and impactful micro-investment platform that transforms how people think about investing—from a complex, exclusive activity to an automated, inclusive, and purpose-driven financial habit. By 2028, we aim to manage $5B in assets under management (AUM) while directing billions toward sustainable companies and initiatives.
-
-### Strategic Objectives
-
-1. **Accessibility**: Enable anyone to start investing with as little as $1
-2. **Automation**: Make investing effortless through intelligent automation
-3. **Impact**: Provide transparent ESG scoring and real-world impact metrics
-4. **Education**: Build financial literacy through integrated learning experiences
-5. **Trust**: Establish industry-leading security and regulatory compliance
-6. **Experience**: Set new industry standards for fintech UX design
-
----
-
-## 2. User Personas and Market Analysis
-
-### Primary User Personas
-
-#### Persona 1: The Conscious Millennial
-- **Age**: 25-35
-- **Income**: $35,000-$75,000
-- **Tech Savvy**: High
-- **Investment Experience**: Beginner
-- **Values**: Sustainability, social justice, transparency
-- **Pain Points**: Limited disposable income, complex investment options, desire for ethical investing
-- **Goals**: Build wealth gradually, support causes they believe in
-- **UX Expectations**: Instagram-quality visuals, instant gratification, social features
-
-#### Persona 2: The Time-Pressed Professional
-- **Age**: 30-45
-- **Income**: $75,000-$150,000
-- **Tech Savvy**: Medium-High
-- **Investment Experience**: Intermediate
-- **Values**: Efficiency, growth, social responsibility
-- **Pain Points**: No time for active investing, wants automated solutions
-- **Goals**: Passive wealth building, portfolio diversification
-- **UX Expectations**: One-tap actions, voice controls, AI-powered insights
-
-#### Persona 3: The Impact-Focused Gen Z
-- **Age**: 18-24
-- **Income**: $15,000-$35,000
-- **Tech Savvy**: Very High
-- **Investment Experience**: None
-- **Values**: Climate action, social equity, authenticity
-- **Pain Points**: Student debt, limited funds, distrust of traditional finance
-- **Goals**: Make a difference while learning to invest
-- **UX Expectations**: TikTok-style discovery, gamification, AR/VR features
-
-### Market Analysis
-
-**Market Size and Growth**
-- Global robo-advisor market: $1.4 trillion AUM (2024), projected $5.9 trillion by 2030
-- ESG investing market: $35 trillion globally, growing 15% annually
-- Micro-investing apps: 20M+ users in US, 35% annual growth rate
-
-**Competitive Landscape**
-- **Direct Competitors**: Acorns ($5B AUM), Stash ($3B AUM), Qapital
-- **ESG-Focused**: Betterment (Impact portfolios), Wealthsimple (SRI options)
-- **Traditional Robo-Advisors**: Wealthfront, Schwab Intelligent Portfolios
-
-**Market Opportunity**
-- 73% of millennials willing to pay more for sustainable products
-- Only 23% of Americans feel confident about investing
-- $68 trillion wealth transfer to millennials by 2030
-
----
-
-## 3. Detailed Functional Requirements
-
-### 3.1 Web Platform and Mobile Applications
-
-#### Web Platform Features
-
-**Next-Generation Dashboard Components**
-- **Modular Widget System**: Drag-and-drop interface with AI-powered content prioritization
-- **Real-time Data Visualization**: WebGL-accelerated charts with D3.js for millions of data points
-- **Portfolio Overview**: Interactive 3D visualization with gesture controls
-- **ESG Impact Dashboard**: Animated impact maps and storytelling visualizations
-- **Investment Performance**: Alternative visualizations (heat maps, network graphs, particle systems)
-- **Goal Tracking**: Visual progress indicators with celebration animations
-- **Market News**: AI-curated ESG-focused content with sentiment analysis
-
-**Account Management**
-- Profile settings with visual customization options
-- Bank account management with instant verification
-- Investment strategy configuration with AI recommendations
-- Document center with smart categorization
-- Advanced security controls with behavioral biometrics
-
-**Educational Hub**
-- Interactive investment tutorials with gamification
-- ESG education modules with AR/VR experiences
-- AI-powered market insights and personalized learning paths
-- Live webinars with interactive Q&A
-- Community forums with reputation systems
-
-#### Mobile Application Features (iOS/Android)
-
-**Core Functionality**
-- **Advanced Biometric Authentication**: Face ID, Touch ID, behavioral biometrics, voice recognition
-- **One-tap Investment Actions**: Gesture-based controls with haptic feedback
-- **Smart Notifications**: AI-timed push notifications based on user behavior
-- **Progressive Web App**: Offline functionality with background sync
-- **Widget Support**: Customizable home screen widgets with live data
-
-**Revolutionary Mobile Features**
-- **Swipe-to-Invest**: TikTok-style discovery of ESG opportunities
-- **Voice-First Interface**: Natural language portfolio management
-- **AR Portfolio Visualization**: Point camera to see investment opportunities
-- **Shake-to-Refresh**: Physical gestures for portfolio updates
-- **Force Touch Actions**: Deep press for detailed analytics
-- **Apple Vision Pro Support**: Spatial portfolio management
-
-### 3.2 Revolutionary Onboarding Experience
-
-#### Progressive Disclosure 2.0
-- **Context-Aware Revelation**: Information revealed based on user behavior
-- **30-Second Micro-Interactions**: Bite-sized KYC steps with contextual explanations
-- **Instant Gratification**: Demo environment available within 60 seconds
-- **Progressive KYC**: Start investing before full verification
-
-#### Animation Framework
-- **Micro-interaction Timing**: 200-500ms for immediate feedback
-- **Progress Visualization**: Breathing progress rings with particle celebrations
-- **Success Celebrations**: 1.5-2.5 second confetti animations
-- **Easing Functions**: Ease-out cubic (0.25, 0.46, 0.45, 0.94) for natural movement
-
-### 3.3 AI-Powered Features
-
-#### Conversational AI Integration
-- **GPT-Powered Assistant**: Natural language queries and recommendations
-- **Predictive UI Elements**: Interface adapts to anticipated user needs
-- **Behavioral Personalization**: Real-time refinement of interactions
-- **Context-Aware Help**: Reduces support needs by 60%
-
-#### Advanced Machine Learning
-- User behavior prediction for cash flow forecasting
-- Market regime detection for dynamic allocation
-- Natural language processing for sentiment analysis
-- Anomaly detection for fraud prevention
-- Emotion recognition for market stress detection
-
-### 3.4 Revolutionary ESG Experience
-
-#### Gamified Impact System
-- **Impact Points**: Earn points for sustainable investments
-- **Virtual Forest Growth**: Investments nurture digital trees representing real impact
-- **Social Competition**: Friends view and celebrate ESG achievements
-- **Real-World Connection**: Live feeds showing actual impact projects
-- **Achievement Badges**: Progress from "ESG Starter" to "Sustainability Champion"
-
-#### Visual ESG Customization
-- **Three-Tier Selection**: Climate, Social, Governance with compelling imagery
-- **Slider-Based Controls**: Real-time portfolio composition updates
-- **Progressive Complexity**: Simple themes expanding to detailed factors
-- **Interactive Impact Maps**: Visualize where investments create change
-- **AR Impact Visualization**: See real-world impact through camera
-
-### 3.5 Behavioral Design Integration
-
-#### Habit Formation Mechanics
-- **Smart Notification Timing**: Personalized based on behavior (17% higher engagement)
-- **Loss Aversion Framing**: "Missing out on $X in ESG returns" (26% improvement)
-- **Social Proof Elements**: "85% of users your age increased ESG investments" (31% boost)
-- **Variable Rewards**: Unpredictable gains and achievement celebrations
-
-#### Engagement Features
-- Daily check-in streaks with visual rewards
-- Investment consistency tracking
-- Community challenges for ESG goals
-- Integrated educational content
-- Breathing exercises during market volatility
-
----
-
-## 4. Technical Requirements
-
-### 4.1 Enhanced System Architecture
-
-#### Next.js Full-Stack Architecture
-
-**Core Architecture Decisions**
-- **Monolithic Next.js Application**: Leverage Next.js as a full-stack framework instead of microservices for faster development and easier deployment
-- **API Routes**: Use Next.js API routes for all backend functionality
-- **Server Components**: Default to React Server Components for better performance
-- **Edge Runtime**: Use Edge Runtime for latency-sensitive operations
-
-**Application Modules** (within Next.js app)
-- **Authentication Module**: NextAuth.js with JWT tokens and session management
-- **Portfolio Module**: Server-side portfolio calculations with real-time updates via Server-Sent Events
-- **Trading Module**: API routes for order management with webhook integrations
-- **ESG Module**: Server Components for scoring with client-side visualizations
-- **Banking Module**: Secure API routes with Plaid integration
-- **Notification Module**: Server Actions for email/push with background jobs
-- **Analytics Module**: Server-side analytics with client-side dashboards
-- **AI Module**: Edge Functions for real-time AI features
-
-**Enhanced Technology Stack**
-- **Frontend & Backend**: Next.js 14+ with TypeScript (full-stack framework)
-  - App Router for server components and improved performance
-  - API Routes for backend functionality
-  - Turbopack for faster development builds
-  - React Server Components for optimal rendering
-- **UI Libraries**: 
-  - Tailwind CSS for styling
-  - shadcn/ui for component library
-  - Framer Motion for animations
-  - Three.js for 3D visualizations
-  - D3.js for data visualizations
-  - Recharts for financial charts
-- **State Management**: 
-  - Zustand for client state
-  - TanStack Query for server state
-  - Server Actions for mutations
-- **Testing Framework**:
-  - Jest for unit tests
-  - React Testing Library for component tests
-  - Playwright for E2E tests
-  - MSW (Mock Service Worker) for API mocking
-- **Databases**: 
-  - PostgreSQL with Prisma ORM
-  - Redis for caching
-  - Supabase for real-time features
-- **Authentication**: NextAuth.js (Auth.js)
-- **Deployment**: Vercel (optimized for Next.js)
-- **Development Tools**:
-  - TypeScript for type safety
-  - ESLint & Prettier for code quality
-  - Husky for pre-commit hooks
-  - GitHub Actions for CI/CD
-
-### 4.2 Performance Requirements
-
-#### Enhanced Response Time SLAs
-
-**API Performance**
-- Authentication: <50ms (improved from 100ms)
-- Portfolio queries: <100ms (improved from 200ms)
-- Trade execution: <300ms (improved from 500ms)
-- Complex calculations: <500ms (improved from 1000ms)
-- Animation frame rate: 60fps minimum
-
-**Page Load Times**
-- Mobile app launch: <1.5 seconds (improved from 2 seconds)
-- Web dashboard: <2 seconds (improved from 3 seconds)
-- Subsequent pages: <500ms (improved from 1 second)
-- Skeleton screens for perceived performance
-
----
-
-## 5. Revolutionary User Experience Requirements
-
-### 5.1 Enhanced User Flows
-
-#### Revolutionary Onboarding Flow
-
-**Step 1: Instant Value (0-60 seconds)**
-- Animated welcome with value proposition
-- Demo portfolio preview without registration
-- ESG impact visualization teaser
-- "Start Investing" CTA with biometric quick-start
-
-**Step 2: Progressive Account Creation**
-- Email/phone with one-tap verification
-- Social login (Google)
-- Behavioral biometric profile creation
-- Terms acceptance with plain language summary
-
-**Step 3: Contextual KYC (30-second chunks)**
-- Progressive disclosure of requirements
-- Real-time ID verification with AR guidance
-- Liveness detection with gamified interaction
-- Background verification while user explores
-
-**Step 4: AI-Powered Profile Building**
-- Conversational financial assessment
-- Visual risk tolerance calibration
-- Goal setting with interactive scenarios
-- Predictive profile suggestions
-
-**Step 5: Gamified ESG Onboarding**
-- Values discovery through swipe interactions
-- Impact visualization with AR preview
-- Social cause matching algorithm
-- Virtual forest planting ceremony
-
-**Step 6: Frictionless Funding**
-- Instant bank verification
-- Round-up preview with live examples
-- Voice-activated funding options
-- Celebration animation for first deposit
-
-### 5.2 Next-Generation Dashboard Design
-
-#### Adaptive Interface Architecture
-
-**Modular Dashboard System**
-- AI-arranged widgets based on usage patterns
-- Drag-and-drop customization with snap grids
-- Context-aware content surfacing
-- Personalized data density controls
-
-**Advanced Visualizations**
-- **Portfolio Galaxy**: 3D representation of holdings
-- **Impact Heatmaps**: Geographic ESG impact visualization
-- **Performance Particles**: Animated return representations
-- **Network Graphs**: Portfolio correlation insights
-- **Time Machine**: Scrub through portfolio history
-
-**Micro-Interactions**
-- Spring physics for all animations
-- Haptic feedback for key actions
-- Sound design for transactions
-- Celebration moments for milestones
-
-### 5.3 Mobile-First Innovation
-
-#### Thumb-Zone Optimization
-- 75% of actions accessible by thumb
-- Dynamic UI adapting to hand position
-- Gesture shortcuts for power users
-- Voice fallback for accessibility
-
-#### Revolutionary Gestures
-- **Swipe to Invest**: Browse opportunities like social media
-- **Pinch to Rebalance**: Intuitive portfolio adjustments
-- **Shake for Support**: Instant help activation
-- **Long-Press Intelligence**: Deep insights on demand
-
-### 5.4 Accessibility Excellence
-
-#### Beyond WCAG Standards
-- **Target**: WCAG 2.2 AAA compliance
-- **Contrast**: 9.66:1 ratios with elegant design
-- **Cognitive Access**: Simplified navigation modes
-- **Neurodiverse Features**: Reduced animation options
-- **Multi-Modal Interface**: Voice, gesture, eye-tracking
-
-#### Inclusive Design Implementation
-- Screen reader optimization (JAWS, NVDA, VoiceOver)
-- Braille display compatibility
-- Dyslexia-friendly typography options
-- Customizable interface complexity
-- Plain language financial explanations
-
-### 5.5 Behavioral Design Patterns
-
-#### Engagement Psychology
-- **Hook Model Implementation**: Trigger → Action → Variable Reward → Investment
-- **Streak Mechanics**: Daily engagement rewards
-- **Social Proof**: Community investment trends
-- **Loss Aversion**: Opportunity cost visualizations
-- **Cognitive Load Management**: Progressive complexity
-
-#### Trust-Building Features
-- Transparent fee visualization
-- Real-time security indicators
-- Educational tooltips
-- Undo functionality for non-critical actions
-- Clear communication during market volatility
-
----
-
-## 6. Enhanced Success Metrics and KPIs
-
-### UX-Specific Metrics
-
-**Onboarding Performance**
-- Completion rate: Target 75% (vs. 32% industry average)
-- Time to first investment: Under 5 minutes
-- Drop-off analysis by step: <10% per step
-- Demo-to-signup conversion: 40%
-
-**Engagement Metrics**
-- Daily active users: 45% of MAU
-- Average session duration: 8 minutes
-- Feature discovery rate: 70% within first week
-- Gesture adoption rate: 60% of users
-
-**Experience Quality**
-- App store rating: 4.8+ stars
-- Customer effort score: <2.0
-- Rage click rate: <0.5%
-- Animation performance: 60fps on 90% of devices
-
----
-
-## 7. Development Phases and Milestones (Updated)
-
-### Phase 1: UX Foundation (Months 1-3)
-
-**Design System Development**
-- Component library creation
-- Animation framework implementation
-- Accessibility foundation
-- Design token system
-
-**Prototyping & Testing**
-- High-fidelity prototypes
-- User testing with all personas
-- A/B testing framework
-- Performance benchmarking
-
-### Phase 2: Core Experience (Months 4-6)
-
-**Revolutionary Features**
-- Progressive onboarding implementation
-- AI-powered personalization
-- Basic gamification elements
-- Voice interaction MVP
-
-### Phase 3: Advanced Features (Months 7-9)
-
-**Innovation Implementation**
-- AR/VR experiences
-- Advanced behavioral biometrics
-- Full gamification system
-- Social investing features
-
-### Phase 4: Optimization & Scale (Months 10-12)
-
-**Experience Refinement**
-- Performance optimization
-- Personalization fine-tuning
-- Accessibility audit and improvements
-- International experience adaptation
-
----
-
-## 8. Risk Assessment and Mitigation Strategies (Updated)
-
-### UX-Specific Risks
-
-**Risk**: Complexity overwhelming new investors
-- **Mitigation**: Progressive disclosure, AI-guided experiences
-- **Monitoring**: User flow analytics, drop-off tracking
-
-**Risk**: Gamification encouraging risky behavior
-- **Mitigation**: Educational content, cooling-off periods, responsible design
-- **Monitoring**: Investment pattern analysis, behavioral analytics
-
-**Risk**: Accessibility compliance challenges
-- **Mitigation**: Early and continuous testing, expert consultation
-- **Monitoring**: Automated accessibility testing, user feedback
-
----
-
-## 9. Compliance and Regulatory Requirements
-
-[Previous content remains unchanged]
-
----
-
-## 10. Appendices
-
-### Appendix A: Technical Architecture Diagrams
-[Detailed system architecture diagrams would be included here]
-
-### Appendix B: User Interface Mockups
-[High-fidelity mockups for key screens would be included here]
-
-### Appendix C: API Documentation
-[Comprehensive API documentation would be included here]
-
-### Appendix D: Compliance Checklist
-[Detailed compliance requirements by jurisdiction would be included here]
-
-### Appendix E: Vendor Evaluation Matrix
-[Comparison of technology and service providers would be included here]
-
-### Appendix F: UX Design System Documentation
-[Component library, animation guidelines, and accessibility standards]
-
-### Appendix G: Behavioral Design Framework
-[Detailed psychological principles and implementation guidelines]
-
----
-
-## Document Control
-
-**Version**: 3.0  
-**Last Updated**: June 2025  
-**Status**: Final Draft with Next.js Architecture and TDD  
-**Owner**: Product Management Team  
-**Next Review**: December 2026  
-
-**Approval**:
-- [ ] Product Management
-- [ ] Engineering
-- [ ] Legal/Compliance
-- [ ] Executive Team
-- [ ] UX Design Team
-- [ ] Architecture Team (Added)
-
----
-
-*This PRD serves as the primary reference for all teams involved in developing the MIOwSIS platform. The version 3.0 update incorporates Next.js as the core framework with TypeScript and a test-driven development approach to ensure code quality and maintainability.*
-
----
-
-## 11. Next.js Project Setup and Development Guidelines
-
-### Initial Project Setup
-
-**IMPORTANT**: Always use the official Next.js templates and follow the latest documentation from https://nextjs.org/
-
-#### Project Initialization
+# Claude Code Configuration
+
+## Build Commands
+- `npm run build`: Build the project
+- `npm run test`: Run the full test suite
+- `npm run lint`: Run ESLint and format checks
+- `npm run typecheck`: Run TypeScript type checking
+- `./claude-flow --help`: Show all available commands
+
+## Claude-Flow Complete Command Reference
+
+### Core System Commands
+- `./claude-flow start [--ui] [--port 3000] [--host localhost]`: Start orchestration system with optional web UI
+- `./claude-flow status`: Show comprehensive system status
+- `./claude-flow monitor`: Real-time system monitoring dashboard
+- `./claude-flow config <subcommand>`: Configuration management (show, get, set, init, validate)
+
+### Agent Management
+- `./claude-flow agent spawn <type> [--name <name>]`: Create AI agents (researcher, coder, analyst, etc.)
+- `./claude-flow agent list`: List all active agents
+- `./claude-flow spawn <type>`: Quick agent spawning (alias for agent spawn)
+
+### Task Orchestration
+- `./claude-flow task create <type> [description]`: Create and manage tasks
+- `./claude-flow task list`: View active task queue
+- `./claude-flow workflow <file>`: Execute workflow automation files
+
+### Memory Management
+- `./claude-flow memory store <key> <data>`: Store persistent data across sessions
+- `./claude-flow memory get <key>`: Retrieve stored information
+- `./claude-flow memory list`: List all memory keys
+- `./claude-flow memory export <file>`: Export memory to file
+- `./claude-flow memory import <file>`: Import memory from file
+- `./claude-flow memory stats`: Memory usage statistics
+- `./claude-flow memory cleanup`: Clean unused memory entries
+
+### SPARC Development Modes
+- `./claude-flow sparc "<task>"`: Run orchestrator mode (default)
+- `./claude-flow sparc run <mode> "<task>"`: Run specific SPARC mode
+- `./claude-flow sparc tdd "<feature>"`: Test-driven development mode
+- `./claude-flow sparc modes`: List all 17 available SPARC modes
+
+Available SPARC modes: orchestrator, coder, researcher, tdd, architect, reviewer, debugger, tester, analyzer, optimizer, documenter, designer, innovator, swarm-coordinator, memory-manager, batch-executor, workflow-manager
+
+### Swarm Coordination
+- `./claude-flow swarm "<objective>" [options]`: Multi-agent swarm coordination
+- `--strategy`: research, development, analysis, testing, optimization, maintenance
+- `--mode`: centralized, distributed, hierarchical, mesh, hybrid
+- `--max-agents <n>`: Maximum number of agents (default: 5)
+- `--parallel`: Enable parallel execution
+- `--monitor`: Real-time monitoring
+- `--output <format>`: json, sqlite, csv, html
+
+### MCP Server Integration
+- `./claude-flow mcp start [--port 3000] [--host localhost]`: Start MCP server
+- `./claude-flow mcp status`: Show MCP server status
+- `./claude-flow mcp tools`: List available MCP tools
+
+### Claude Integration
+- `./claude-flow claude auth`: Authenticate with Claude API
+- `./claude-flow claude models`: List available Claude models
+- `./claude-flow claude chat`: Interactive chat mode
+
+### Session Management
+- `./claude-flow session`: Manage terminal sessions
+- `./claude-flow repl`: Start interactive REPL mode
+
+### Enterprise Features
+- `./claude-flow project <subcommand>`: Project management (Enterprise)
+- `./claude-flow deploy <subcommand>`: Deployment operations (Enterprise)
+- `./claude-flow cloud <subcommand>`: Cloud infrastructure management (Enterprise)
+- `./claude-flow security <subcommand>`: Security and compliance tools (Enterprise)
+- `./claude-flow analytics <subcommand>`: Analytics and insights (Enterprise)
+
+### Project Initialization
+- `./claude-flow init`: Initialize Claude-Flow project
+- `./claude-flow init --sparc`: Initialize with full SPARC development environment
+
+## Quick Start Workflows
+
+### Research Workflow
 ```bash
-# Create a new Next.js project with TypeScript and Turbopack
-npx create-next-app@latest miowsis --typescript --tailwind --turbo --app --src-dir --import-alias "@/*"
+# Start a research swarm with distributed coordination
+./claude-flow swarm "Research modern web frameworks" --strategy research --mode distributed --parallel --monitor
 
-# Project structure options:
-# ✓ TypeScript
-# ✓ ESLint
-# ✓ Tailwind CSS
-# ✓ `src/` directory
-# ✓ App Router
-# ✓ Turbopack
-# ✓ Import alias (@/*)
+# Or use SPARC researcher mode for focused research
+./claude-flow sparc run researcher "Analyze React vs Vue vs Angular performance characteristics"
+
+# Store findings in memory for later use
+./claude-flow memory store "research_findings" "Key insights from framework analysis"
 ```
 
-#### Recommended Project Structure
-```
-miowsis/
-├── src/
-│   ├── app/                    # App Router pages and layouts
-│   │   ├── (auth)/            # Auth group routes
-│   │   ├── (dashboard)/       # Dashboard group routes
-│   │   ├── api/               # API routes
-│   │   ├── layout.tsx         # Root layout
-│   │   └── page.tsx           # Home page
-│   ├── components/            # Reusable components
-│   │   ├── ui/               # UI components (shadcn/ui)
-│   │   ├── features/         # Feature-specific components
-│   │   └── layouts/          # Layout components
-│   ├── lib/                   # Utility functions and configurations
-│   │   ├── prisma.ts         # Prisma client
-│   │   ├── auth.ts           # Auth configuration
-│   │   └── utils.ts          # Helper functions
-│   ├── hooks/                 # Custom React hooks
-│   ├── stores/                # Zustand stores
-│   ├── types/                 # TypeScript type definitions
-│   └── styles/                # Global styles
-├── prisma/                    # Database schema and migrations
-├── public/                    # Static assets
-├── tests/                     # Test files
-│   ├── unit/                 # Unit tests
-│   ├── integration/          # Integration tests
-│   └── e2e/                  # End-to-end tests
-├── .env.local                 # Environment variables
-├── next.config.js             # Next.js configuration
-├── tailwind.config.ts         # Tailwind configuration
-├── tsconfig.json              # TypeScript configuration
-└── jest.config.js             # Jest configuration
+### Development Workflow
+```bash
+# Start orchestration system with web UI
+./claude-flow start --ui --port 3000
+
+# Run TDD workflow for new feature
+./claude-flow sparc tdd "User authentication system with JWT tokens"
+
+# Development swarm for complex projects
+./claude-flow swarm "Build e-commerce API with payment integration" --strategy development --mode hierarchical --max-agents 8 --monitor
+
+# Check system status
+./claude-flow status
 ```
 
-### Test-Driven Development (TDD) Approach
+### Analysis Workflow
+```bash
+# Analyze codebase performance
+./claude-flow sparc run analyzer "Identify performance bottlenecks in current codebase"
 
-#### 1. TDD Workflow for Next.js Components
+# Data analysis swarm
+./claude-flow swarm "Analyze user behavior patterns from logs" --strategy analysis --mode mesh --parallel --output sqlite
 
-**Always follow the Red-Green-Refactor cycle:**
+# Store analysis results
+./claude-flow memory store "performance_analysis" "Bottlenecks identified in database queries"
+```
 
-1. **Red**: Write a failing test first
-2. **Green**: Write minimal code to pass the test
-3. **Refactor**: Improve code quality while keeping tests green
+### Maintenance Workflow
+```bash
+# System maintenance with safety controls
+./claude-flow swarm "Update dependencies and security patches" --strategy maintenance --mode centralized --monitor
 
-#### 2. Testing Setup
+# Security review
+./claude-flow sparc run reviewer "Security audit of authentication system"
+
+# Export maintenance logs
+./claude-flow memory export maintenance_log.json
+```
+
+## Integration Patterns
+
+### Memory-Driven Coordination
+Use Memory to coordinate information across multiple SPARC modes and swarm operations:
 
 ```bash
-# Install testing dependencies
-npm install --save-dev jest @testing-library/react @testing-library/jest-dom @testing-library/user-event
-npm install --save-dev @types/jest jest-environment-jsdom
-npm install --save-dev msw @mswjs/data
+# Store architecture decisions
+./claude-flow memory store "system_architecture" "Microservices with API Gateway pattern"
+
+# All subsequent operations can reference this decision
+./claude-flow sparc run coder "Implement user service based on system_architecture in memory"
+./claude-flow sparc run tester "Create integration tests for microservices architecture"
 ```
 
-#### 3. Example TDD Workflow
+### Multi-Stage Development
+Coordinate complex development through staged execution:
 
-**Step 1: Write the test first**
-```typescript
-// tests/unit/components/PortfolioCard.test.tsx
-import { render, screen } from '@testing-library/react';
-import { PortfolioCard } from '@/components/features/PortfolioCard';
+```bash
+# Stage 1: Research and planning
+./claude-flow sparc run researcher "Research authentication best practices"
+./claude-flow sparc run architect "Design authentication system architecture"
 
-describe('PortfolioCard', () => {
-  it('should display portfolio value', () => {
-    render(<PortfolioCard value={1000} currency="USD" />);
-    expect(screen.getByText('$1,000.00')).toBeInTheDocument();
-  });
+# Stage 2: Implementation
+./claude-flow sparc tdd "User registration and login functionality"
+./claude-flow sparc run coder "Implement JWT token management"
 
-  it('should show positive change in green', () => {
-    render(<PortfolioCard value={1000} change={5.5} />);
-    const changeElement = screen.getByText('+5.5%');
-    expect(changeElement).toHaveClass('text-green-600');
-  });
-});
+# Stage 3: Testing and deployment
+./claude-flow sparc run tester "Comprehensive security testing"
+./claude-flow swarm "Deploy authentication system" --strategy maintenance --mode centralized
 ```
 
-**Step 2: Implement the component**
-```typescript
-// src/components/features/PortfolioCard.tsx
-interface PortfolioCardProps {
-  value: number;
-  currency?: string;
-  change?: number;
-}
+### Enterprise Integration
+For enterprise environments with additional tooling:
 
-export function PortfolioCard({ value, currency = 'USD', change }: PortfolioCardProps) {
-  const formattedValue = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency,
-  }).format(value);
+```bash
+# Project management integration
+./claude-flow project create "authentication-system"
+./claude-flow project switch "authentication-system"
 
-  return (
-    <div className="rounded-lg border p-6">
-      <p className="text-2xl font-bold">{formattedValue}</p>
-      {change !== undefined && (
-        <p className={change >= 0 ? 'text-green-600' : 'text-red-600'}>
-          {change >= 0 ? '+' : ''}{change}%
-        </p>
-      )}
-    </div>
-  );
-}
+# Security compliance
+./claude-flow security scan
+./claude-flow security audit
+
+# Analytics and monitoring
+./claude-flow analytics dashboard
+./claude-flow deploy production --monitor
 ```
 
-#### 4. API Route Testing
+## Advanced Batch Tool Patterns
 
-```typescript
-// tests/unit/api/portfolio.test.ts
-import { GET } from '@/app/api/portfolio/route';
-import { prisma } from '@/lib/prisma';
+### TodoWrite Coordination
+Always use TodoWrite for complex task coordination:
 
-jest.mock('@/lib/prisma', () => ({
-  prisma: {
-    portfolio: {
-      findUnique: jest.fn(),
-    },
+```javascript
+TodoWrite([
+  {
+    id: "architecture_design",
+    content: "Design system architecture and component interfaces",
+    status: "pending",
+    priority: "high",
+    dependencies: [],
+    estimatedTime: "60min",
+    assignedAgent: "architect"
   },
-}));
-
-describe('GET /api/portfolio', () => {
-  it('should return portfolio data', async () => {
-    const mockPortfolio = { id: '1', value: 1000, userId: 'user1' };
-    (prisma.portfolio.findUnique as jest.Mock).mockResolvedValue(mockPortfolio);
-
-    const response = await GET();
-    const data = await response.json();
-
-    expect(response.status).toBe(200);
-    expect(data).toEqual(mockPortfolio);
-  });
-});
+  {
+    id: "frontend_development", 
+    content: "Develop React components and user interface",
+    status: "pending",
+    priority: "medium",
+    dependencies: ["architecture_design"],
+    estimatedTime: "120min",
+    assignedAgent: "frontend_team"
+  }
+]);
 ```
 
-#### 5. E2E Testing with Playwright
+### Task and Memory Integration
+Launch coordinated agents with shared memory:
 
-```typescript
-// tests/e2e/onboarding.spec.ts
-import { test, expect } from '@playwright/test';
+```javascript
+// Store architecture in memory
+Task("System Architect", "Design architecture and store specs in Memory");
 
-test.describe('User Onboarding', () => {
-  test('should complete onboarding flow', async ({ page }) => {
-    await page.goto('/');
-    
-    // Test progressive disclosure
-    await expect(page.getByText('Start Investing')).toBeVisible();
-    await page.click('text=Start Investing');
-    
-    // Test email signup
-    await page.fill('input[type="email"]', 'test@example.com');
-    await page.click('text=Continue');
-    
-    // Verify navigation to dashboard
-    await expect(page).toHaveURL('/dashboard');
-  });
-});
+// Other agents use memory for coordination
+Task("Frontend Team", "Develop UI using Memory architecture specs");
+Task("Backend Team", "Implement APIs according to Memory specifications");
 ```
 
-### Development Best Practices
-
-#### 1. Component Development
-- Always start with tests
-- Use Server Components by default
-- Use Client Components only when needed (interactivity, browser APIs)
-- Implement proper loading and error states
-
-#### 2. Data Fetching
-```typescript
-// Server Component with data fetching
-async function PortfolioDashboard() {
-  const portfolio = await prisma.portfolio.findUnique({
-    where: { userId: session.user.id }
-  });
-
-  return <PortfolioCard data={portfolio} />;
-}
-```
-
-#### 3. Type Safety
-- Define types for all props and API responses
-- Use Prisma's generated types for database models
-- Create shared type definitions in `src/types/`
-
-#### 4. Performance Optimization
-- Use dynamic imports for heavy components
-- Implement proper image optimization with next/image
-- Use React.memo() for expensive components
-- Leverage Turbopack for faster development builds
-
-### Continuous Integration
-
-```yaml
-# .github/workflows/ci.yml
-name: CI
-on: [push, pull_request]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run type-check
-      - run: npm run test
-      - run: npm run test:e2e
-```
-
----
-
-## 12. Automated UI Testing and Refinement Instructions
-
-### UI Development Workflow with Playwright MCP
-
-When working on UI changes, follow this automated testing and refinement workflow:
-
-#### 1. Initial UI Implementation
-- Implement the UI changes based on the PRD requirements
-- Ensure all components follow the design system guidelines
-
-#### 2. Automated Visual Testing
-**IMPORTANT**: After making any UI changes, you MUST use Playwright MCP to:
-
-1. **Navigate to the changed page**:
-   ```
-   Use mcp__playwright__browser_navigate to go to the page
-   ```
-
-2. **Take screenshots**:
-   ```
-   Use mcp__playwright__browser_take_screenshot to capture the current UI state
-   ```
-
-3. **Analyze the UI**:
-   - Check if the layout matches the design requirements
-   - Verify spacing, alignment, and visual hierarchy
-   - Ensure animations are smooth (60fps minimum)
-   - Validate color contrast ratios (9.66:1 for WCAG AAA)
-
-4. **Test interactions**:
-   ```
-   Use mcp__playwright__browser_click for button interactions
-   Use mcp__playwright__browser_type for form inputs
-   Use mcp__playwright__browser_hover for hover states
-   ```
-
-5. **Check responsiveness**:
-   ```
-   Use mcp__playwright__browser_resize to test different screen sizes:
-   - Mobile: 375x667 (iPhone SE)
-   - Tablet: 768x1024 (iPad)
-   - Desktop: 1920x1080
-   ```
-
-#### 3. Automated Refinement Loop
-If the UI doesn't meet standards, automatically:
-
-1. **Identify issues** from the screenshot:
-   - Misaligned elements
-   - Incorrect spacing
-   - Color contrast problems
-   - Missing animations
-   - Broken responsive layouts
-
-2. **Make corrections** in the code:
-   - Adjust CSS properties
-   - Fix component structure
-   - Update animation timing
-   - Correct responsive breakpoints
-
-3. **Re-test** with Playwright:
-   - Take new screenshots
-   - Compare with requirements
-   - Repeat until satisfied
-
-#### 4. Accessibility Testing
-Use Playwright to verify:
-- Tab navigation flow
-- Screen reader compatibility
-- Keyboard shortcuts
-- Focus indicators
-
-#### 5. Performance Validation
-- Measure page load times
-- Check animation frame rates
-- Verify smooth scrolling
-- Test interaction responsiveness
-
-### Example Workflow Script
-
-When implementing a new dashboard widget:
-
-1. Implement the widget component
-2. Run Playwright test:
-   ```
-   - Navigate to dashboard
-   - Take screenshot of widget
-   - Click interactive elements
-   - Check hover states
-   - Resize browser to test responsiveness
-   - Take screenshots at each breakpoint
-   ```
-3. If issues found:
-   - Fix the code
-   - Re-run tests
-   - Continue until UI meets all requirements
-
-### Success Criteria
-The UI is considered satisfactory when:
-- All visual elements align with design system
-- Animations run at 60fps
-- Responsive behavior works correctly
-- Accessibility standards are met
-- No visual bugs in screenshots
-- User interactions feel smooth and intuitive
-
-### Required Playwright MCP Tools
-- `mcp__playwright__browser_navigate` - Navigate to pages
-- `mcp__playwright__browser_take_screenshot` - Capture UI state
-- `mcp__playwright__browser_click` - Test interactions
-- `mcp__playwright__browser_type` - Test form inputs
-- `mcp__playwright__browser_hover` - Test hover states
-- `mcp__playwright__browser_resize` - Test responsiveness
-- `mcp__playwright__browser_wait_for` - Wait for animations
-- `mcp__playwright__browser_snapshot` - Get accessibility tree
-
----
-
-## 12. Component Development with Latest Documentation
-
-### Using Context7 MCP for Up-to-Date Library Documentation
-
-**IMPORTANT**: Before adding or modifying components, ALWAYS fetch the latest documentation using Context7 MCP to ensure you're using current best practices and APIs.
-
-#### Workflow for Component Development
-
-1. **Identify the Libraries/Frameworks in Use**
-   - Check package.json for installed dependencies
-   - Review existing components to understand the tech stack
-   - Common libraries in this project: React, React Native, Three.js, D3.js, Framer Motion
-
-2. **Fetch Latest Documentation**
-   Before implementing any component, use Context7 MCP:
-   
-   ```
-   Step 1: Resolve library ID
-   Use mcp__context7__resolve-library-id with the library name
-   Example: "react", "framer-motion", "three.js", "d3"
-   
-   Step 2: Get documentation
-   Use mcp__context7__get-library-docs with the resolved ID
-   Include relevant topics like "hooks", "components", "animations"
-   ```
-
-3. **Review Documentation Before Implementation**
-   - Check for deprecated methods
-   - Look for new recommended patterns
-   - Understand performance best practices
-   - Review accessibility guidelines
-
-4. **Implementation Guidelines**
-   - Follow the patterns from the latest documentation
-   - Use recommended hooks and APIs
-   - Implement according to current best practices
-   - Avoid deprecated or outdated approaches
-
-#### Example Workflow
-
-When adding a new animated dashboard widget:
-
-1. **Check current libraries**:
-   ```
-   - React for component structure
-   - Framer Motion for animations
-   - D3.js for data visualization
-   ```
-
-2. **Fetch documentation**:
-   ```
-   - mcp__context7__resolve-library-id for "framer-motion"
-   - mcp__context7__get-library-docs with topic "animations"
-   - mcp__context7__resolve-library-id for "d3"
-   - mcp__context7__get-library-docs with topic "charts"
-   ```
-
-3. **Implement based on latest docs**:
-   - Use latest React hooks (useId, useSyncExternalStore if recommended)
-   - Apply current Framer Motion animation patterns
-   - Follow D3.js v7+ best practices
-
-#### Required Context7 MCP Tools
-- `mcp__context7__resolve-library-id` - Find the correct library ID
-- `mcp__context7__get-library-docs` - Fetch up-to-date documentation
-
-### Documentation Priority List
-
-Always fetch documentation for these libraries when working on:
-
-1. **UI Components**: React, React Native
-2. **Animations**: Framer Motion, Lottie
-3. **Data Visualization**: D3.js, Three.js
-4. **State Management**: Check if Redux/Zustand/Context is used
-5. **Styling**: Check CSS-in-JS library (styled-components, emotion)
-6. **Forms**: React Hook Form, Formik (if used)
-7. **Testing**: Jest, React Testing Library, Playwright
-
-### Benefits of This Approach
-- Ensures use of latest APIs and best practices
-- Avoids deprecated methods
-- Implements performance optimizations
-- Follows current accessibility standards
-- Reduces technical debt
-
----
-## 13. Research and Information Gathering with Perplexity MCP
-
-### Using Perplexity for Comprehensive Research
-
-**IMPORTANT**: When you need to research topics, best practices, industry trends, or any information not available in local documentation, use Perplexity MCP for intelligent search and analysis. If Perplexity MCP is not available, use the WebSearch tool as a fallback option.
-
-#### When to Use Perplexity MCP
-
-Use Perplexity for researching:
-1. **Industry Best Practices**: Current fintech trends, ESG investing strategies
-2. **Technical Solutions**: Architecture patterns, performance optimization techniques
-3. **Compliance & Regulations**: Latest financial regulations, security standards
-4. **User Experience Research**: UX patterns in fintech, accessibility guidelines
-5. **Market Analysis**: Competitor features, market trends, user expectations
-6. **Problem Solving**: Debugging complex issues, finding solutions to technical challenges
-
-#### Perplexity MCP Tools
-
-1. **Quick Search** (`mcp__perplexity__search`)
-   - Use for simple queries and basic information lookup
-   - Best for straightforward questions
-   - Example: "What are the latest WCAG accessibility guidelines for fintech apps?"
-
-2. **Complex Reasoning** (`mcp__perplexity__reason`)
-   - Use for multi-step tasks, comparisons, and problem-solving
-   - Best for analyzing trade-offs and making decisions
-   - Example: "Compare different approaches for implementing real-time portfolio updates in React"
-
-3. **Deep Research** (`mcp__perplexity__deep_research`)
-   - Use for comprehensive analysis and detailed reports
-   - Best for in-depth understanding of complex topics
-   - Example: "Research comprehensive ESG scoring methodologies for micro-investment platforms"
-
-#### Research Workflow
-
-1. **Identify Research Need**
-   - Technical implementation questions
-   - Best practice inquiries
-   - Regulatory compliance checks
-   - Performance optimization strategies
-
-2. **Choose Appropriate Tool**
-   ```
-   # Primary option (if available):
-   Simple query → mcp__perplexity__search
-   Complex analysis → mcp__perplexity__reason
-   Comprehensive research → mcp__perplexity__deep_research
-   
-   # Fallback option (if Perplexity MCP is not available):
-   Use WebSearch tool for general queries
-   ```
-
-3. **Apply Research Findings**
-   - Validate against project requirements
-   - Adapt recommendations to MIOwSIS context
-   - Document key insights for team reference
-
-#### Example Research Scenarios
-
-**Scenario 1: Implementing WebGL Animations**
-```
-Use: mcp__perplexity__search
-Query: "WebGL performance optimization techniques for financial dashboards"
-Apply: Implement recommended techniques in Three.js visualizations
-```
-
-**Scenario 2: ESG Scoring Algorithm**
-```
-Use: mcp__perplexity__deep_research
-Query: "ESG scoring methodologies for micro-investment platforms with real-time impact tracking"
-Apply: Design MIOwSIS ESG scoring system based on research
-```
-
-**Scenario 3: Regulatory Compliance**
-```
-Use: mcp__perplexity__reason
-Query: "Compare KYC requirements for micro-investment platforms across US, EU, and UK markets"
-Apply: Implement appropriate compliance measures
-```
-
-#### Research Integration Guidelines
-
-1. **Verify Information**
-   - Cross-reference with official documentation
-   - Consider publication dates for relevance
-   - Validate against project constraints
-
-2. **Adapt to Context**
-   - Tailor findings to MIOwSIS requirements
-   - Consider our specific user personas
-   - Align with our technical stack
-
-3. **Document Insights**
-   - Note key findings in code comments
-   - Update team knowledge base
-   - Share relevant discoveries
-
-### WebSearch Fallback Guidelines
-
-When Perplexity MCP is not available, use the WebSearch tool:
-
-1. **WebSearch Capabilities**
-   - General web queries for technical information
-   - Finding documentation and guides
-   - Researching best practices
-   - Looking up current standards
-
-2. **WebSearch Usage**
-   ```
-   Use: WebSearch
-   Query: "Your search query here"
-   Allowed/Blocked domains: Optional filtering
-   ```
-
-3. **Limitations vs Perplexity**
-   - Less sophisticated analysis
-   - No multi-step reasoning
-   - Basic search results only
-   - Still valuable for quick lookups
-
-### Benefits of Research-Driven Development
-- Stay current with industry standards
-- Implement proven solutions
-- Avoid common pitfalls
-- Make informed technical decisions
-- Ensure regulatory compliance
-
----
-#### Research Integration Guidelines
-
-1. **Verify Information**
-   - Cross-reference with official documentation
-   - Consider publication dates for relevance
-   - Validate against project constraints
-
-2. **Adapt to Context**
-   - Tailor findings to MIOwSIS requirements
-   - Consider our specific user personas
-   - Align with our technical stack
-
-3. **Document Insights**
-   - Note key findings in code comments
-   - Update team knowledge base
-   - Share relevant discoveries
-
-### Benefits of Research-Driven Development
-- Stay current with industry standards
-- Implement proven solutions
-- Avoid common pitfalls
-- Make informed technical decisions
-- Ensure regulatory compliance
-
----
-
-## 14. Dependency Management and Automatic Installation
-
-### Automatic Dependency Installation
-
-**IMPORTANT**: When adding new dependencies to the project, ALWAYS automatically install them after updating package.json to ensure the development environment stays synchronized.
-
-#### Workflow for Adding Dependencies
-
-1. **Identify Required Dependencies**
-   - Determine which packages are needed for the feature
-   - Check if similar functionality already exists in the project
-   - Verify compatibility with existing dependencies
-
-2. **Update package.json**
-   - Add dependencies to the appropriate section (dependencies or devDependencies)
-   - Use specific version numbers when possible to ensure consistency
-
-3. **Automatically Install Dependencies**
-   ```bash
-   # For frontend dependencies (if applicable, figure out the exact folder structure)
-   cd frontend && npm install
-   
-   # For backend dependencies (if applicable)
-   cd backend && npm install
-   
-   # For root-level dependencies
-   npm install
-   ```
-
-4. **Verify Installation**
-   - Check that node_modules is updated
-   - Verify no installation errors occurred
-   - Test that the new dependency works as expected
-
-#### Frontend-Specific Dependency Management
-
-When working on frontend features:
-
-1. **Always navigate to frontend directory first**:
-   ```bash
-   cd frontend
-   ```
-
-2. **Add dependencies with npm**:
-   ```bash
-   # For production dependencies
-   npm install package-name
-   
-   # For development dependencies
-   npm install --save-dev package-name
-   ```
-
-3. **Common frontend dependencies to auto-install**:
-   - UI Libraries: `framer-motion`, `@radix-ui/*`, `clsx`
-   - Visualization: `d3`, `three`, `@react-three/fiber`
-   - State Management: `zustand`, `@tanstack/react-query`
-   - Forms: `react-hook-form`, `zod`
-   - Utilities: `date-fns`, `lodash-es`
-
-#### Backend-Specific Dependency Management
-
-When working on backend features:
-
-1. **Navigate to backend directory**:
-   ```bash
-   cd backend
-   ```
-
-2. **Install dependencies appropriately**:
-   ```bash
-   npm install package-name
-   ```
-
-#### Best Practices
-
-1. **Always Install After Adding**
-   - Never leave package.json out of sync with node_modules
-   - Install immediately after modifying package.json
-
-2. **Check for Conflicts**
-   - Review npm output for peer dependency warnings
-   - Resolve version conflicts before proceeding
-
-3. **Update Lock Files**
-   - Ensure package-lock.json is updated
-   - This maintains consistency across environments
-
-4. **Clean Installation When Needed**
-   ```bash
-   # If encountering issues
-   rm -rf node_modules package-lock.json
-   npm install
-   ```
-
-### Example Workflow
-
-When adding a new animation library to frontend:
-
-1. **Navigate to frontend**:
-   ```bash
-   cd frontend
-   ```
-
-2. **Install the dependency**:
-   ```bash
-   npm install framer-motion
-   ```
-
-3. **Verify installation**:
-   ```bash
-   # Check package.json was updated
-   # Verify node_modules contains the package
-   # Test import in a component
-   ```
-
-4. **Use in code**:
-   ```jsx
-   import { motion } from 'framer-motion';
-   ```
-
-### Automated Installation Commands
-
-Include these in your workflow:
-```bash
-# After any package.json modification in frontend
-cd frontend && npm install
-
-# After any package.json modification in backend
-cd backend && npm install
-
-# For monorepo root dependencies
-npm install
-```
-
----
-
-## 15. Automatic TypeScript Error Detection and Resolution
-
-### TypeScript Error Checking After File Changes
-
-**IMPORTANT**: After making ANY changes to TypeScript files (.ts, .tsx), you MUST automatically check for and fix TypeScript errors, including unused imports and type errors.
-
-#### Workflow for TypeScript Error Resolution
-
-1. **After Every File Change**
-   - Save the file
-   - Run TypeScript compiler to check for errors
-   - Identify and fix all issues automatically
-
-2. **Common TypeScript Issues to Fix**
-   - **Unused imports**: Remove any imports that are not used in the file
-   - **Type errors**: Fix missing type annotations or incorrect types
-   - **Implicit any types**: Add proper type annotations
-   - **Missing return types**: Add return type annotations to functions
-   - **Undefined variables**: Ensure all variables are properly declared
-   - **Missing interface properties**: Add required properties to interfaces
-
-3. **Automatic Error Detection Commands**
-   ```bash
-   # For frontend TypeScript checking
-   cd frontend && npx tsc --noEmit
-   
-   # For specific file checking
-   cd frontend && npx tsc --noEmit src/path/to/file.tsx
-   
-   # Check and show all errors
-   cd frontend && npx tsc --noEmit --pretty
-   ```
-
-4. **Automatic Import Cleanup**
-   - Use VS Code diagnostics to identify unused imports
-   - Remove them immediately after detection
-   - Ensure all remaining imports are necessary
-
-5. **Type Error Resolution Process**
-   - Run TypeScript check after each file modification
-   - Parse the error output
-   - Navigate to each error location
-   - Apply appropriate fixes:
-     - Add missing types
-     - Fix type mismatches
-     - Remove unused code
-     - Add missing imports
-
-#### Example Workflow
-
-After editing a component file:
-
-1. **Check for TypeScript errors**:
-   ```bash
-   cd frontend && npx tsc --noEmit
-   ```
-
-2. **If errors are found**:
-   - Parse each error message
-   - Identify the file and line number
-   - Apply the appropriate fix
-   - Re-run the check until no errors remain
-
-3. **Common fixes**:
-   ```typescript
-   // Before: Unused import
-   import { useState, useEffect } from 'react';
-   
-   // After: Remove unused import
-   import { useState } from 'react';
-   
-   // Before: Missing type
-   const handleClick = (value) => { ... }
-   
-   // After: Add proper type
-   const handleClick = (value: string) => { ... }
-   ```
-
-### Best Practices
-
-1. **Check Immediately**
-   - Don't wait to accumulate changes
-   - Fix errors as soon as they're introduced
-
-2. **Use IDE Diagnostics**
-   - Leverage mcp__ide__getDiagnostics for real-time error detection
-   - Fix issues before they accumulate
-
-3. **Maintain Clean Code**
-   - No unused imports
-   - No implicit any types
-   - All functions have return types
-   - All variables are properly typed
-
-4. **Regular Validation**
-   - Run full project type check periodically
-   - Ensure no errors slip through
-
-### Automated TypeScript Commands
-
-Include in your workflow after every file change:
-```bash
-# Check TypeScript errors in frontend
-cd frontend && npx tsc --noEmit
-
-# Use IDE diagnostics for immediate feedback
-mcp__ide__getDiagnostics
-
-# Fix errors immediately upon detection
-```
-
----
-
-# important-instruction-reminders
-Do what has been asked; nothing more, nothing less.
-NEVER create files unless they're absolutely necessary for achieving your goal.
-ALWAYS prefer editing an existing file to creating a new one.
-NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
-ALWAYS run npm install after modifying package.json to keep dependencies synchronized.
-ALWAYS check for TypeScript errors after modifying any .ts or .tsx file and fix them automatically.
+## Code Style Preferences
+- Use ES modules (import/export) syntax
+- Destructure imports when possible
+- Use TypeScript for all new code
+- Follow existing naming conventions
+- Add JSDoc comments for public APIs
+- Use async/await instead of Promise chains
+- Prefer const/let over var
+
+## Workflow Guidelines
+- Always run typecheck after making code changes
+- Run tests before committing changes
+- Use meaningful commit messages
+- Create feature branches for new functionality
+- Ensure all tests pass before merging
+
+## Important Notes
+- **Use TodoWrite extensively** for all complex task coordination
+- **Leverage Task tool** for parallel agent execution on independent work
+- **Store all important information in Memory** for cross-agent coordination
+- **Use batch file operations** whenever reading/writing multiple files
+- **Check .claude/commands/** for detailed command documentation
+- **All swarm operations include automatic batch tool coordination**
+- **Monitor progress** with TodoRead during long-running operations
+- **Enable parallel execution** with --parallel flags for maximum efficiency
+
+This configuration ensures optimal use of Claude Code's batch tools for swarm orchestration and parallel task execution with full Claude-Flow capabilities.
