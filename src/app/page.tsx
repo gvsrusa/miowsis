@@ -1,103 +1,193 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { ArrowRight, BarChart3, Globe, Shield, Sparkles, TrendingUp } from 'lucide-react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { useSession } from 'next-auth/react'
+
+export default function HomePage() {
+  const { data: session } = useSession()
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary-50 via-primary-100 to-background dark:from-primary-950 dark:via-background dark:to-background">
+        <div className="container mx-auto px-4 py-24 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl">
+              Invest Your Spare Change
+              <span className="block text-primary-600 dark:text-primary-400">
+                For a Better Tomorrow
+              </span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600 dark:text-gray-300">
+              MIOwSIS democratizes sustainable investing through automated micro-investments
+              and ESG integration. Start your journey with as little as $1.
+            </p>
+            <div className="mt-10 flex items-center justify-center gap-x-6">
+              {session ? (
+                <Button size="lg" asChild>
+                  <Link href="/dashboard">
+                    Go to Dashboard
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              ) : (
+                <>
+                  <Button size="lg" asChild>
+                    <Link href="/auth/signin">
+                      Get Started
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" size="lg" asChild>
+                    <Link href="#features">Learn More</Link>
+                  </Button>
+                </>
+              )}
+            </div>
+          </motion.div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        
+        {/* Animated Background */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
+            <div className="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-primary-400 to-primary-600 opacity-30" />
+          </div>
+          <div className="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
+            <div className="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-primary-400 to-primary-600 opacity-30" />
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+              Smart Investing Made Simple
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+              Powerful features designed to make sustainable investing accessible to everyone
+            </p>
+          </div>
+          
+          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-100 dark:bg-primary-900">
+                      <feature.icon className="h-6 w-6 text-primary-600 dark:text-primary-400" />
+                    </div>
+                    <CardTitle className="mt-4">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription>{feature.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="bg-gray-50 dark:bg-gray-900 py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 md:grid-cols-4">
+            {stats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-4xl font-bold text-primary-600 dark:text-primary-400">
+                  {stat.value}
+                </div>
+                <div className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <Card className="bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+            <CardContent className="p-12 text-center">
+              <h2 className="text-3xl font-bold">
+                Ready to Start Your Investment Journey?
+              </h2>
+              <p className="mt-4 text-lg opacity-90">
+                Join thousands of investors making a difference with every dollar
+              </p>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="mt-8"
+                asChild
+              >
+                <Link href="/auth/signin">
+                  Create Free Account
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
     </div>
-  );
+  )
 }
+
+const features = [
+  {
+    title: 'Micro-Investments',
+    description: 'Start investing with as little as $1. Round up your purchases and invest the spare change automatically.',
+    icon: TrendingUp,
+  },
+  {
+    title: 'ESG Integration',
+    description: 'Invest in companies that align with your values. Track environmental, social, and governance impact.',
+    icon: Globe,
+  },
+  {
+    title: 'AI-Powered Insights',
+    description: 'Get personalized investment recommendations based on your goals, risk tolerance, and market conditions.',
+    icon: Sparkles,
+  },
+  {
+    title: 'Real-Time Analytics',
+    description: 'Monitor your portfolio performance with beautiful visualizations and detailed analytics.',
+    icon: BarChart3,
+  },
+  {
+    title: 'Bank-Level Security',
+    description: 'Your investments are protected with industry-leading security and encryption standards.',
+    icon: Shield,
+  },
+  {
+    title: 'Automated Rebalancing',
+    description: 'Keep your portfolio optimized with automatic rebalancing based on your investment strategy.',
+    icon: TrendingUp,
+  },
+]
+
+const stats = [
+  { value: '$5B+', label: 'Assets Under Management' },
+  { value: '2M+', label: 'Active Investors' },
+  { value: '98%', label: 'Customer Satisfaction' },
+  { value: '15%', label: 'Average Annual Return' },
+]
