@@ -1,8 +1,8 @@
 # Product Requirements Document
 ## MIOwSIS - Micro-Investment Optimizer with Social Impact Scoring
 
-### Version 2.0 | June 2025
-### Updated with Comprehensive UX Design Improvements
+### Version 3.0 | December 2025
+### Updated with Next.js Architecture and Test-Driven Development
 
 ---
 
@@ -194,27 +194,57 @@ Our vision is to create the most accessible and impactful micro-investment platf
 
 ### 4.1 Enhanced System Architecture
 
-#### Microservices Architecture
+#### Next.js Full-Stack Architecture
 
-**Core Services**
-- User Service: Authentication, profile management, behavioral biometrics
-- Portfolio Service: Holdings, valuations, performance, 3D visualization
-- Trading Service: Order management, execution, voice trading
-- ESG Service: Scoring, analytics, reporting, gamification engine
-- Banking Service: Account aggregation, transfers, instant verification
-- Notification Service: Email, push, SMS, AI-timed delivery
-- Analytics Service: Reporting, insights, predictive analytics
-- AI Service: NLP, computer vision, recommendation engine
+**Core Architecture Decisions**
+- **Monolithic Next.js Application**: Leverage Next.js as a full-stack framework instead of microservices for faster development and easier deployment
+- **API Routes**: Use Next.js API routes for all backend functionality
+- **Server Components**: Default to React Server Components for better performance
+- **Edge Runtime**: Use Edge Runtime for latency-sensitive operations
+
+**Application Modules** (within Next.js app)
+- **Authentication Module**: NextAuth.js with JWT tokens and session management
+- **Portfolio Module**: Server-side portfolio calculations with real-time updates via Server-Sent Events
+- **Trading Module**: API routes for order management with webhook integrations
+- **ESG Module**: Server Components for scoring with client-side visualizations
+- **Banking Module**: Secure API routes with Plaid integration
+- **Notification Module**: Server Actions for email/push with background jobs
+- **Analytics Module**: Server-side analytics with client-side dashboards
+- **AI Module**: Edge Functions for real-time AI features
 
 **Enhanced Technology Stack**
-- **Backend**: Java/Spring Boot, Python (ML services), Node.js (real-time)
-- **Frontend**: React (web), React Native (mobile), Three.js (3D), D3.js (visualizations)
-- **Databases**: PostgreSQL (primary), MongoDB (documents), TimescaleDB (time-series), Neo4j (graph)
-- **Message Queue**: Apache Kafka
-- **Cache**: Redis with intelligent prefetching
-- **Container**: Docker/Kubernetes with auto-scaling
-- **Cloud**: AWS (primary), Azure (DR), Edge computing for AR/VR
-- **Animation**: Lottie, Framer Motion, GPU acceleration
+- **Frontend & Backend**: Next.js 14+ with TypeScript (full-stack framework)
+  - App Router for server components and improved performance
+  - API Routes for backend functionality
+  - Turbopack for faster development builds
+  - React Server Components for optimal rendering
+- **UI Libraries**: 
+  - Tailwind CSS for styling
+  - shadcn/ui for component library
+  - Framer Motion for animations
+  - Three.js for 3D visualizations
+  - D3.js for data visualizations
+  - Recharts for financial charts
+- **State Management**: 
+  - Zustand for client state
+  - TanStack Query for server state
+  - Server Actions for mutations
+- **Testing Framework**:
+  - Jest for unit tests
+  - React Testing Library for component tests
+  - Playwright for E2E tests
+  - MSW (Mock Service Worker) for API mocking
+- **Databases**: 
+  - PostgreSQL with Prisma ORM
+  - Redis for caching
+  - Supabase for real-time features
+- **Authentication**: NextAuth.js (Auth.js)
+- **Deployment**: Vercel (optimized for Next.js)
+- **Development Tools**:
+  - TypeScript for type safety
+  - ESLint & Prettier for code quality
+  - Husky for pre-commit hooks
+  - GitHub Actions for CI/CD
 
 ### 4.2 Performance Requirements
 
@@ -465,9 +495,9 @@ Our vision is to create the most accessible and impactful micro-investment platf
 
 ## Document Control
 
-**Version**: 2.0  
+**Version**: 3.0  
 **Last Updated**: June 2025  
-**Status**: Final Draft with UX Enhancements  
+**Status**: Final Draft with Next.js Architecture and TDD  
 **Owner**: Product Management Team  
 **Next Review**: December 2026  
 
@@ -476,15 +506,247 @@ Our vision is to create the most accessible and impactful micro-investment platf
 - [ ] Engineering
 - [ ] Legal/Compliance
 - [ ] Executive Team
-- [ ] UX Design Team (Added)
+- [ ] UX Design Team
+- [ ] Architecture Team (Added)
 
 ---
 
-*This PRD serves as the primary reference for all teams involved in developing the MIOwSIS platform. The version 2.0 update incorporates comprehensive UX design improvements to set new industry standards for fintech user experience.*
+*This PRD serves as the primary reference for all teams involved in developing the MIOwSIS platform. The version 3.0 update incorporates Next.js as the core framework with TypeScript and a test-driven development approach to ensure code quality and maintainability.*
 
 ---
 
-## 11. Automated UI Testing and Refinement Instructions
+## 11. Next.js Project Setup and Development Guidelines
+
+### Initial Project Setup
+
+**IMPORTANT**: Always use the official Next.js templates and follow the latest documentation from https://nextjs.org/
+
+#### Project Initialization
+```bash
+# Create a new Next.js project with TypeScript and Turbopack
+npx create-next-app@latest miowsis --typescript --tailwind --turbo --app --src-dir --import-alias "@/*"
+
+# Project structure options:
+# ✓ TypeScript
+# ✓ ESLint
+# ✓ Tailwind CSS
+# ✓ `src/` directory
+# ✓ App Router
+# ✓ Turbopack
+# ✓ Import alias (@/*)
+```
+
+#### Recommended Project Structure
+```
+miowsis/
+├── src/
+│   ├── app/                    # App Router pages and layouts
+│   │   ├── (auth)/            # Auth group routes
+│   │   ├── (dashboard)/       # Dashboard group routes
+│   │   ├── api/               # API routes
+│   │   ├── layout.tsx         # Root layout
+│   │   └── page.tsx           # Home page
+│   ├── components/            # Reusable components
+│   │   ├── ui/               # UI components (shadcn/ui)
+│   │   ├── features/         # Feature-specific components
+│   │   └── layouts/          # Layout components
+│   ├── lib/                   # Utility functions and configurations
+│   │   ├── prisma.ts         # Prisma client
+│   │   ├── auth.ts           # Auth configuration
+│   │   └── utils.ts          # Helper functions
+│   ├── hooks/                 # Custom React hooks
+│   ├── stores/                # Zustand stores
+│   ├── types/                 # TypeScript type definitions
+│   └── styles/                # Global styles
+├── prisma/                    # Database schema and migrations
+├── public/                    # Static assets
+├── tests/                     # Test files
+│   ├── unit/                 # Unit tests
+│   ├── integration/          # Integration tests
+│   └── e2e/                  # End-to-end tests
+├── .env.local                 # Environment variables
+├── next.config.js             # Next.js configuration
+├── tailwind.config.ts         # Tailwind configuration
+├── tsconfig.json              # TypeScript configuration
+└── jest.config.js             # Jest configuration
+```
+
+### Test-Driven Development (TDD) Approach
+
+#### 1. TDD Workflow for Next.js Components
+
+**Always follow the Red-Green-Refactor cycle:**
+
+1. **Red**: Write a failing test first
+2. **Green**: Write minimal code to pass the test
+3. **Refactor**: Improve code quality while keeping tests green
+
+#### 2. Testing Setup
+
+```bash
+# Install testing dependencies
+npm install --save-dev jest @testing-library/react @testing-library/jest-dom @testing-library/user-event
+npm install --save-dev @types/jest jest-environment-jsdom
+npm install --save-dev msw @mswjs/data
+```
+
+#### 3. Example TDD Workflow
+
+**Step 1: Write the test first**
+```typescript
+// tests/unit/components/PortfolioCard.test.tsx
+import { render, screen } from '@testing-library/react';
+import { PortfolioCard } from '@/components/features/PortfolioCard';
+
+describe('PortfolioCard', () => {
+  it('should display portfolio value', () => {
+    render(<PortfolioCard value={1000} currency="USD" />);
+    expect(screen.getByText('$1,000.00')).toBeInTheDocument();
+  });
+
+  it('should show positive change in green', () => {
+    render(<PortfolioCard value={1000} change={5.5} />);
+    const changeElement = screen.getByText('+5.5%');
+    expect(changeElement).toHaveClass('text-green-600');
+  });
+});
+```
+
+**Step 2: Implement the component**
+```typescript
+// src/components/features/PortfolioCard.tsx
+interface PortfolioCardProps {
+  value: number;
+  currency?: string;
+  change?: number;
+}
+
+export function PortfolioCard({ value, currency = 'USD', change }: PortfolioCardProps) {
+  const formattedValue = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+  }).format(value);
+
+  return (
+    <div className="rounded-lg border p-6">
+      <p className="text-2xl font-bold">{formattedValue}</p>
+      {change !== undefined && (
+        <p className={change >= 0 ? 'text-green-600' : 'text-red-600'}>
+          {change >= 0 ? '+' : ''}{change}%
+        </p>
+      )}
+    </div>
+  );
+}
+```
+
+#### 4. API Route Testing
+
+```typescript
+// tests/unit/api/portfolio.test.ts
+import { GET } from '@/app/api/portfolio/route';
+import { prisma } from '@/lib/prisma';
+
+jest.mock('@/lib/prisma', () => ({
+  prisma: {
+    portfolio: {
+      findUnique: jest.fn(),
+    },
+  },
+}));
+
+describe('GET /api/portfolio', () => {
+  it('should return portfolio data', async () => {
+    const mockPortfolio = { id: '1', value: 1000, userId: 'user1' };
+    (prisma.portfolio.findUnique as jest.Mock).mockResolvedValue(mockPortfolio);
+
+    const response = await GET();
+    const data = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(data).toEqual(mockPortfolio);
+  });
+});
+```
+
+#### 5. E2E Testing with Playwright
+
+```typescript
+// tests/e2e/onboarding.spec.ts
+import { test, expect } from '@playwright/test';
+
+test.describe('User Onboarding', () => {
+  test('should complete onboarding flow', async ({ page }) => {
+    await page.goto('/');
+    
+    // Test progressive disclosure
+    await expect(page.getByText('Start Investing')).toBeVisible();
+    await page.click('text=Start Investing');
+    
+    // Test email signup
+    await page.fill('input[type="email"]', 'test@example.com');
+    await page.click('text=Continue');
+    
+    // Verify navigation to dashboard
+    await expect(page).toHaveURL('/dashboard');
+  });
+});
+```
+
+### Development Best Practices
+
+#### 1. Component Development
+- Always start with tests
+- Use Server Components by default
+- Use Client Components only when needed (interactivity, browser APIs)
+- Implement proper loading and error states
+
+#### 2. Data Fetching
+```typescript
+// Server Component with data fetching
+async function PortfolioDashboard() {
+  const portfolio = await prisma.portfolio.findUnique({
+    where: { userId: session.user.id }
+  });
+
+  return <PortfolioCard data={portfolio} />;
+}
+```
+
+#### 3. Type Safety
+- Define types for all props and API responses
+- Use Prisma's generated types for database models
+- Create shared type definitions in `src/types/`
+
+#### 4. Performance Optimization
+- Use dynamic imports for heavy components
+- Implement proper image optimization with next/image
+- Use React.memo() for expensive components
+- Leverage Turbopack for faster development builds
+
+### Continuous Integration
+
+```yaml
+# .github/workflows/ci.yml
+name: CI
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run type-check
+      - run: npm run test
+      - run: npm run test:e2e
+```
+
+---
+
+## 12. Automated UI Testing and Refinement Instructions
 
 ### UI Development Workflow with Playwright MCP
 

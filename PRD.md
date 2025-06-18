@@ -1,8 +1,8 @@
 # Product Requirements Document
 ## MIOwSIS - Micro-Investment Optimizer with Social Impact Scoring
 
-### Version 2.0 | June 2025
-### Updated with Comprehensive UX Design Improvements
+### Version 3.0 | June 2025
+### Updated with Next.js Architecture and Test-Driven Development
 
 ---
 
@@ -194,27 +194,57 @@ Our vision is to create the most accessible and impactful micro-investment platf
 
 ### 4.1 Enhanced System Architecture
 
-#### Microservices Architecture
+#### Next.js Full-Stack Architecture
 
-**Core Services**
-- User Service: Authentication, profile management, behavioral biometrics
-- Portfolio Service: Holdings, valuations, performance, 3D visualization
-- Trading Service: Order management, execution, voice trading
-- ESG Service: Scoring, analytics, reporting, gamification engine
-- Banking Service: Account aggregation, transfers, instant verification
-- Notification Service: Email, push, SMS, AI-timed delivery
-- Analytics Service: Reporting, insights, predictive analytics
-- AI Service: NLP, computer vision, recommendation engine
+**Core Architecture Decisions**
+- **Monolithic Next.js Application**: Leverage Next.js as a full-stack framework instead of microservices for faster development and easier deployment
+- **API Routes**: Use Next.js API routes for all backend functionality
+- **Server Components**: Default to React Server Components for better performance
+- **Edge Runtime**: Use Edge Runtime for latency-sensitive operations
+
+**Application Modules** (within Next.js app)
+- **Authentication Module**: NextAuth.js with JWT tokens and session management
+- **Portfolio Module**: Server-side portfolio calculations with real-time updates via Server-Sent Events
+- **Trading Module**: API routes for order management with webhook integrations
+- **ESG Module**: Server Components for scoring with client-side visualizations
+- **Banking Module**: Secure API routes with Plaid integration
+- **Notification Module**: Server Actions for email/push with background jobs
+- **Analytics Module**: Server-side analytics with client-side dashboards
+- **AI Module**: Edge Functions for real-time AI features
 
 **Enhanced Technology Stack**
-- **Backend**: Java/Spring Boot, Python (ML services), Node.js (real-time)
-- **Frontend**: React (web), React Native (mobile), Three.js (3D), D3.js (visualizations)
-- **Databases**: PostgreSQL (primary), MongoDB (documents), TimescaleDB (time-series), Neo4j (graph)
-- **Message Queue**: Apache Kafka
-- **Cache**: Redis with intelligent prefetching
-- **Container**: Docker/Kubernetes with auto-scaling
-- **Cloud**: AWS (primary), Azure (DR), Edge computing for AR/VR
-- **Animation**: Lottie, Framer Motion, GPU acceleration
+- **Frontend & Backend**: Next.js 14+ with TypeScript (full-stack framework)
+  - App Router for server components and improved performance
+  - API Routes for backend functionality
+  - Turbopack for faster development builds
+  - React Server Components for optimal rendering
+- **UI Libraries**: 
+  - Tailwind CSS for styling
+  - shadcn/ui for component library
+  - Framer Motion for animations
+  - Three.js for 3D visualizations
+  - D3.js for data visualizations
+  - Recharts for financial charts
+- **State Management**: 
+  - Zustand for client state
+  - TanStack Query for server state
+  - Server Actions for mutations
+- **Testing Framework**:
+  - Jest for unit tests
+  - React Testing Library for component tests
+  - Playwright for E2E tests
+  - MSW (Mock Service Worker) for API mocking
+- **Databases**: 
+  - PostgreSQL with Prisma ORM
+  - Redis for caching
+  - Supabase for real-time features
+- **Authentication**: NextAuth.js (Auth.js)
+- **Deployment**: Vercel (optimized for Next.js)
+- **Development Tools**:
+  - TypeScript for type safety
+  - ESLint & Prettier for code quality
+  - Husky for pre-commit hooks
+  - GitHub Actions for CI/CD
 
 ### 4.2 Performance Requirements
 
@@ -465,19 +495,20 @@ Our vision is to create the most accessible and impactful micro-investment platf
 
 ## Document Control
 
-**Version**: 2.0  
-**Last Updated**: June 2025  
-**Status**: Final Draft with UX Enhancements  
+**Version**: 3.0  
+**Last Updated**: December 2025  
+**Status**: Final Draft with Next.js Architecture and TDD  
 **Owner**: Product Management Team  
-**Next Review**: December 2026  
+**Next Review**: June 2026  
 
 **Approval**:
 - [ ] Product Management
 - [ ] Engineering
 - [ ] Legal/Compliance
 - [ ] Executive Team
-- [ ] UX Design Team (Added)
+- [ ] UX Design Team
+- [ ] Architecture Team (Added)
 
 ---
 
-*This PRD serves as the primary reference for all teams involved in developing the MIOwSIS platform. The version 2.0 update incorporates comprehensive UX design improvements to set new industry standards for fintech user experience.*
+*This PRD serves as the primary reference for all teams involved in developing the MIOwSIS platform. The version 3.0 update incorporates Next.js as the core framework with TypeScript and a test-driven development approach to ensure code quality and maintainability.*
