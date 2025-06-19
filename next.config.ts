@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
           {
             key: "Access-Control-Allow-Origin",
             value: process.env.NODE_ENV === "development" 
-              ? "http://localhost:3000,http://127.0.0.1:3000,https://localhost:3000"
+              ? "http://localhost:3000"
               : process.env.NEXT_PUBLIC_APP_URL || "*"
           },
           {
@@ -149,7 +149,17 @@ const nextConfig: NextConfig = {
       "lucide-react",
       "framer-motion"
     ]
-  }
+  },
+  
+  // Allow development origins to prevent cross-origin warnings
+  allowedDevOrigins: [
+    "http://localhost:3000",
+    "http://localhost:3001", 
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:3001",
+    "https://localhost:3000",
+    "https://localhost:3001"
+  ]
 };
 
 export default nextConfig;

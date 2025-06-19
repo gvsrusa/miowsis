@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-06-19T15:16:53.699Z",
+  "timestamp": "2025-06-19T18:05:28.907Z",
   "version": "1.0",
   "entries": [
     {
@@ -98,7 +98,7 @@
       },
       "createdAt": "1970-01-01T00:00:00.000Z",
       "updatedAt": "1970-01-01T00:00:00.000Z",
-      "lastAccessedAt": "2025-06-19T15:12:17.712Z"
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z"
     },
     {
       "id": "entry_mc34s2dn_vp7r0t77h",
@@ -112,7 +112,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:40:24.587Z",
       "updatedAt": "2025-06-19T08:40:24.587Z",
-      "lastAccessedAt": "2025-06-19T15:12:17.712Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
       "version": 1,
       "size": 2044,
       "compressed": true,
@@ -132,7 +132,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:46:24.054Z",
       "updatedAt": "2025-06-19T08:46:24.054Z",
-      "lastAccessedAt": "2025-06-19T15:12:17.712Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
       "version": 1,
       "size": 1271,
       "compressed": true,
@@ -152,7 +152,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:48:14.403Z",
       "updatedAt": "2025-06-19T08:48:14.403Z",
-      "lastAccessedAt": "2025-06-19T15:12:17.712Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
       "version": 1,
       "size": 342,
       "compressed": false,
@@ -163,7 +163,7 @@
     {
       "id": "entry_mc352szc_amhyel5jj",
       "key": "swarm-auto-centralized-1750322788231/auth-reviewer/config-analysis",
-      "value": "\"# NextAuth Configuration Analysis\\n\\n## Issues Found:\\n\\n### 1. Email Provider Configuration - INCOMPLETE\\nLocation: /workspaces/miowsis/src/lib/auth.ts (lines 12-22)\\n\\nCurrent email provider config:\\n```typescript\\nEmailProvider({\\n  server: {\\n    host: process.env.EMAIL_SERVER_HOST,\\n    port: process.env.EMAIL_SERVER_PORT,\\n    auth: {\\n      user: process.env.EMAIL_SERVER_USER,\\n      pass: process.env.EMAIL_SERVER_PASSWORD,\\n    },\\n  },\\n  from: process.env.EMAIL_FROM,\\n})\\n```\\n\\n**Critical Issues:**\\n- Missing `server.secure` field (should be true for TLS/SSL)\\n- Port is a string but should be number\\n- No fallback values for missing env vars\\n- Missing additional SMTP configuration options\\n\\n### 2. Environment Variables - MISSING\\nRequired env vars for email provider not found in any .env files:\\n- EMAIL_SERVER_HOST\\n- EMAIL_SERVER_PORT  \\n- EMAIL_SERVER_USER\\n- EMAIL_SERVER_PASSWORD\\n- EMAIL_FROM\\n\\n### 3. Nodemailer Integration - INCOMPLETE\\n- nodemailer v6.10.1 is installed\\n- NotificationService has email channel but it's commented out (line 698)\\n- No actual email service implementation\\n\\n### 4. Dependencies Status - GOOD\\n- next-auth v4.24.11 ✓\\n- nodemailer v6.10.1 ✓\\n- @types/nodemailer v6.4.17 ✓\\n\\n## Recommendations:\\n\\n1. **Fix Email Provider Config**: Add proper SMTP configuration with secure settings\\n2. **Add Environment Variables**: Set up email server credentials\\n3. **Implement Email Service**: Create actual email sending functionality\\n4. **Add Email Templates**: Create proper email templates for auth emails\\n5. **Add Error Handling**: Implement proper error handling for email failures\\n\\n## Required Environment Variables to Add:\\n```\\nEMAIL_SERVER_HOST=smtp.gmail.com\\nEMAIL_SERVER_PORT=587\\nEMAIL_SERVER_USER=your-email@gmail.com\\nEMAIL_SERVER_PASSWORD=your-app-password\\nEMAIL_FROM=noreply@yourdomain.com\\n```\"",
+      "value": "# NextAuth Configuration Analysis\n\n## Issues Found:\n\n### 1. Email Provider Configuration - INCOMPLETE\nLocation: /workspaces/miowsis/src/lib/auth.ts (lines 12-22)\n\nCurrent email provider config:\n```typescript\nEmailProvider({\n  server: {\n    host: process.env.EMAIL_SERVER_HOST,\n    port: process.env.EMAIL_SERVER_PORT,\n    auth: {\n      user: process.env.EMAIL_SERVER_USER,\n      pass: process.env.EMAIL_SERVER_PASSWORD,\n    },\n  },\n  from: process.env.EMAIL_FROM,\n})\n```\n\n**Critical Issues:**\n- Missing `server.secure` field (should be true for TLS/SSL)\n- Port is a string but should be number\n- No fallback values for missing env vars\n- Missing additional SMTP configuration options\n\n### 2. Environment Variables - MISSING\nRequired env vars for email provider not found in any .env files:\n- EMAIL_SERVER_HOST\n- EMAIL_SERVER_PORT  \n- EMAIL_SERVER_USER\n- EMAIL_SERVER_PASSWORD\n- EMAIL_FROM\n\n### 3. Nodemailer Integration - INCOMPLETE\n- nodemailer v6.10.1 is installed\n- NotificationService has email channel but it's commented out (line 698)\n- No actual email service implementation\n\n### 4. Dependencies Status - GOOD\n- next-auth v4.24.11 ✓\n- nodemailer v6.10.1 ✓\n- @types/nodemailer v6.4.17 ✓\n\n## Recommendations:\n\n1. **Fix Email Provider Config**: Add proper SMTP configuration with secure settings\n2. **Add Environment Variables**: Set up email server credentials\n3. **Implement Email Service**: Create actual email sending functionality\n4. **Add Email Templates**: Create proper email templates for auth emails\n5. **Add Error Handling**: Implement proper error handling for email failures\n\n## Required Environment Variables to Add:\n```\nEMAIL_SERVER_HOST=smtp.gmail.com\nEMAIL_SERVER_PORT=587\nEMAIL_SERVER_USER=your-email@gmail.com\nEMAIL_SERVER_PASSWORD=your-app-password\nEMAIL_FROM=noreply@yourdomain.com\n```",
       "type": "string",
       "namespace": "default",
       "tags": [],
@@ -172,7 +172,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:48:45.624Z",
       "updatedAt": "2025-06-19T08:48:45.624Z",
-      "lastAccessedAt": "2025-06-19T15:12:17.712Z",
+      "lastAccessedAt": "2025-06-19T18:03:04.084Z",
       "version": 1,
       "size": 1966,
       "compressed": true,
@@ -192,7 +192,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:49:20.256Z",
       "updatedAt": "2025-06-19T08:49:20.256Z",
-      "lastAccessedAt": "2025-06-19T15:12:17.712Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
       "version": 1,
       "size": 3970,
       "compressed": true,
@@ -212,7 +212,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:50:03.132Z",
       "updatedAt": "2025-06-19T08:50:03.132Z",
-      "lastAccessedAt": "2025-06-19T15:12:17.712Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
       "version": 1,
       "size": 1284,
       "compressed": true,
@@ -373,7 +373,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:50:00.000Z",
       "updatedAt": "2025-06-19T08:50:00.000Z",
-      "lastAccessedAt": "2025-06-19T15:12:17.712Z",
+      "lastAccessedAt": "2025-06-19T18:03:15.002Z",
       "version": 1,
       "size": 3970,
       "compressed": false,
@@ -393,7 +393,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:13:45.282Z",
       "updatedAt": "2025-06-19T15:13:45.282Z",
-      "lastAccessedAt": "2025-06-19T15:13:45.282Z",
+      "lastAccessedAt": "2025-06-19T18:02:55.918Z",
       "version": 1,
       "size": 219,
       "compressed": false,
@@ -413,7 +413,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:13:56.102Z",
       "updatedAt": "2025-06-19T15:13:56.102Z",
-      "lastAccessedAt": "2025-06-19T15:13:56.102Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
       "version": 1,
       "size": 296,
       "compressed": false,
@@ -433,7 +433,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:14:08.217Z",
       "updatedAt": "2025-06-19T15:14:08.217Z",
-      "lastAccessedAt": "2025-06-19T15:14:08.217Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
       "version": 1,
       "size": 358,
       "compressed": false,
@@ -453,23 +453,270 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:16:53.696Z",
       "updatedAt": "2025-06-19T15:16:53.696Z",
-      "lastAccessedAt": "2025-06-19T15:16:53.696Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
       "version": 1,
       "size": 1435,
       "compressed": true,
       "checksum": "7e46f28f6ffc923dbc55c5096f990d12046917077e6bb4b6a703a7c7f4dbc818",
       "references": [],
       "dependencies": []
+    },
+    {
+      "id": "entry_mc3j005d_bpmum5xag",
+      "key": "swarm-auto-centralized-1750345851264/auth-agent/admin-routes",
+      "value": {
+        "protected_admin_routes": [
+          "/admin",
+          "/admin/users",
+          "/admin/analytics",
+          "/admin/content",
+          "/api/admin",
+          "/api/admin/users",
+          "/api/admin/metrics"
+        ],
+        "role_hierarchy": {
+          "user": 1,
+          "premium": 2,
+          "moderator": 3,
+          "admin": 4
+        },
+        "role_permissions": {
+          "admin": [
+            "all"
+          ],
+          "moderator": [
+            "view_analytics",
+            "manage_content"
+          ],
+          "premium": [
+            "enhanced_features"
+          ],
+          "user": [
+            "basic_features"
+          ]
+        }
+      },
+      "type": "object",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-19T15:18:29.569Z",
+      "updatedAt": "2025-06-19T15:18:29.569Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "version": 1,
+      "size": 377,
+      "compressed": false,
+      "checksum": "1d84eb355c8f8bb1e78b6f555b8967fe1ef40e4b741aefcd0055fc1c21c0a957",
+      "references": [],
+      "dependencies": []
+    },
+    {
+      "id": "entry_mc3j08qi_wyk4ofj5z",
+      "key": "swarm-auto-centralized-1750345851264/auth-agent/rbac-middleware",
+      "value": {
+        "description": "Role-based access control middleware implementation",
+        "file_path": "/workspaces/miowsis/src/lib/rbac.ts",
+        "features": [
+          "Role hierarchy support",
+          "Route-based permissions",
+          "API route protection",
+          "NextAuth integration",
+          "Supabase profile role checking"
+        ],
+        "usage": "Import withRoleAuth for API routes, checkRouteAccess for middleware"
+      },
+      "type": "object",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-19T15:18:40.698Z",
+      "updatedAt": "2025-06-19T15:18:40.698Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "version": 1,
+      "size": 369,
+      "compressed": false,
+      "checksum": "1429471ad1d7d94d2ce8cb957b127ce67a4c2820b1e38b40cf53b7e8f2a01158",
+      "references": [],
+      "dependencies": []
+    },
+    {
+      "id": "entry_mc3j0j0q_6yo1k2gba",
+      "key": "swarm-auto-centralized-1750345851264/validation-agent/security-validation-results",
+      "value": "{\"timestamp\":\"2025-06-19T15:30:00Z\",\"validation_status\":\"COMPLETED\",\"summary\":{\"csrf_protection\":\"IMPLEMENTED\",\"role_based_access\":\"IMPLEMENTED\",\"jwt_expiration\":\"CONFIGURED\",\"security_headers\":\"PARTIALLY_IMPLEMENTED\",\"build_configuration\":\"ENFORCED\"},\"detailed_findings\":{\"csrf_protection\":{\"status\":\"FOUND_AND_VALIDATED\",\"location\":\"/src/lib/security/csrf.ts\",\"features\":[\"Token generation using crypto.randomBytes (32 bytes)\",\"Token expiration (1 hour)\",\"Constant-time comparison to prevent timing attacks\",\"Cookie and header-based token handling\",\"Middleware factory for route protection\",\"Session-based token storage\",\"GET/HEAD request exemption\"],\"api_endpoint\":\"/src/app/api/auth/csrf/route.ts\",\"issues\":[\"Uses in-memory storage (should use Redis/DB in production)\",\"crypto.timingSafeEqual type error needs fixing\"]},\"role_based_access\":{\"status\":\"FOUND_AND_VALIDATED\",\"location\":\"/src/lib/rbac.ts\",\"features\":[\"Role hierarchy: user < premium < moderator < admin\",\"Route-based role configuration\",\"Database integration with Supabase profiles table\",\"Middleware helper withRoleAuth for API routes\",\"Client-side hook placeholder (useRoleCheck)\",\"Admin and moderator route protection\"],\"protected_routes\":[\"/admin (admin only)\",\"/admin/users (admin only)\",\"/admin/analytics (admin, moderator)\",\"/admin/content (admin, moderator)\",\"/api/admin/* (various roles)\"],\"issues\":[\"Client-side useRoleCheck not fully implemented\",\"Some TypeScript errors with unused parameters\"]},\"jwt_configuration\":{\"status\":\"PROPERLY_CONFIGURED\",\"location\":\"/src/lib/auth.ts\",\"settings\":{\"session_strategy\":\"jwt\",\"session_max_age\":\"30 days\",\"session_update_age\":\"24 hours\",\"jwt_max_age\":\"30 days\"},\"features\":[\"Role fetching on sign-in\",\"User ID and role in JWT token\",\"Session includes user role\",\"Email provider validation\",\"Custom auth pages configured\"],\"issues\":[\"nodemailer.createTransporter typo (should be createTransport)\"]},\"security_headers\":{\"status\":\"PARTIALLY_IMPLEMENTED\",\"location\":\"next.config.ts\",\"implemented\":{\"X-Frame-Options\":\"DENY\",\"X-Content-Type-Options\":\"nosniff\",\"Referrer-Policy\":\"strict-origin-when-cross-origin\",\"CORS_headers\":\"Configured for API routes\"},\"missing\":[\"Content-Security-Policy\",\"Strict-Transport-Security\",\"X-XSS-Protection (deprecated but still useful)\",\"Permissions-Policy\"],\"recommendations\":[\"Add CSP header to prevent XSS attacks\",\"Add HSTS header for HTTPS enforcement\",\"Add Permissions-Policy to control browser features\"]},\"build_configuration\":{\"status\":\"SECURITY_ENFORCED\",\"changes\":{\"eslint.ignoreDuringBuilds\":\"Changed from true to false\",\"typescript.ignoreBuildErrors\":\"Changed from true to false\"},\"impact\":\"Build will now fail on ESLint errors or TypeScript errors\",\"current_errors\":{\"typescript\":12,\"eslint\":\"93 errors, 201 warnings\"}}},\"tests_created\":{\"csrf_tests\":{\"file\":\"/src/lib/security/__tests__/csrf.test.ts\",\"coverage\":[\"Token generation uniqueness\",\"Token storage and retrieval\",\"Token expiration handling\",\"Constant-time comparison\",\"Request token extraction (header/cookie)\",\"Cookie security settings\",\"Middleware protection logic\",\"GET/HEAD exemption\"],\"test_count\":26},\"rbac_tests\":{\"file\":\"/src/lib/__tests__/rbac.test.ts\",\"coverage\":[\"Role hierarchy validation\",\"Database role fetching\",\"Route access checking\",\"API middleware authentication\",\"Multiple role support\",\"Error handling\"],\"test_count\":23},\"jwt_tests\":{\"file\":\"/src/lib/__tests__/auth-jwt.test.ts\",\"coverage\":[\"Session configuration\",\"JWT configuration\",\"Token callbacks\",\"Session callbacks\",\"SignIn validation\",\"Expiration settings\"],\"test_count\":20},\"security_header_tests\":{\"file\":\"/src/__tests__/security-headers.test.ts\",\"coverage\":[\"API CORS headers\",\"Security headers presence\",\"Missing headers identification\",\"Build configuration\",\"Image security\",\"Production optimizations\"],\"test_count\":19}},\"other_agents_work\":{\"note\":\"Task requested validation of security features, but other agents worked on different issues\",\"actual_work\":[\"TypeScript configuration and enablement\",\"ESLint configuration for different environments\",\"Build execution and dev server setup\",\"Nodemailer dependency installation\",\"Email authentication configuration\",\"Environment variable validation\",\"TypeScript error fixes\"],\"nodemailer_fix\":\"VALIDATED_AS_WORKING\"},\"recommendations\":[\"Fix TypeScript errors in security modules\",\"Implement Redis/DB storage for CSRF tokens in production\",\"Add missing security headers (CSP, HSTS, Permissions-Policy)\",\"Complete client-side role checking implementation\",\"Fix nodemailer typo in auth.ts\",\"Add integration tests for full security flow\",\"Consider implementing rate limiting\",\"Add security audit logging\"],\"overall_assessment\":{\"security_posture\":\"GOOD\",\"csrf_protection\":\"IMPLEMENTED_WITH_MINOR_ISSUES\",\"rbac\":\"WELL_IMPLEMENTED\",\"jwt_security\":\"PROPERLY_CONFIGURED\",\"missing_elements\":[\"Some security headers\",\"Production-ready CSRF token storage\",\"Complete client-side RBAC\"],\"test_coverage\":\"COMPREHENSIVE\"}}",
+      "type": "object",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-19T15:18:54.026Z",
+      "updatedAt": "2025-06-19T15:18:54.026Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "version": 1,
+      "size": 5383,
+      "compressed": true,
+      "checksum": "af7fd2969c5901950ce44d5302344092c6047000b9ad53fe973bdf97dec6c2d5",
+      "references": [],
+      "dependencies": []
+    },
+    {
+      "id": "entry_mc3j0lg3_7ju3wfq4u",
+      "key": "swarm-auto-centralized-1750345851264/auth-agent/integration-points",
+      "value": {
+        "middleware_updates": [
+          {
+            "file": "/workspaces/miowsis/src/middleware.ts",
+            "changes": [
+              "Added checkRouteAccess import",
+              "Implemented role checking for admin routes",
+              "Added Database typing for Supabase client"
+            ]
+          },
+          {
+            "file": "/workspaces/miowsis/src/lib/auth.ts",
+            "changes": [
+              "Import getUserRole from rbac",
+              "Fetch user role in JWT callback",
+              "Add role to session"
+            ]
+          }
+        ],
+        "type_definitions": {
+          "file": "/workspaces/miowsis/src/types/next-auth.d.ts",
+          "changes": [
+            "Extended Session interface with role",
+            "Extended JWT interface with role"
+          ]
+        },
+        "api_routes": [
+          {
+            "path": "/api/admin/users",
+            "methods": [
+              "GET",
+              "PATCH"
+            ],
+            "roles": [
+              "admin"
+            ]
+          },
+          {
+            "path": "/api/admin/metrics",
+            "methods": [
+              "GET"
+            ],
+            "roles": [
+              "admin",
+              "moderator"
+            ]
+          }
+        ],
+        "admin_pages": [
+          {
+            "path": "/admin",
+            "component": "AdminDashboard",
+            "roles": [
+              "admin",
+              "moderator"
+            ]
+          },
+          {
+            "path": "/admin/users",
+            "component": "AdminUsersPage",
+            "roles": [
+              "admin"
+            ]
+          }
+        ]
+      },
+      "type": "object",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-19T15:18:57.171Z",
+      "updatedAt": "2025-06-19T15:18:57.171Z",
+      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "version": 1,
+      "size": 871,
+      "compressed": false,
+      "checksum": "1391522e5d4481a63ad490919be48ad5940d7fff002ed488e80e63114f3cabe6",
+      "references": [],
+      "dependencies": []
+    },
+    {
+      "id": "entry_mc3ox7bm_92gve4vfr",
+      "key": "swarm-auto-centralized-1750356084712/oauth-debugger/findings",
+      "value": "{\"timestamp\":\"2025-06-19T18:03:50Z\",\"debugger\":\"OAuth Debugger Agent\",\"issue\":\"Google sign-in 404 whitelabel error page\",\"root_cause_analysis\":{\"primary_issue\":\"NextAuth Google OAuth callback URL mismatch\",\"findings\":[{\"type\":\"configuration\",\"severity\":\"high\",\"description\":\"Google OAuth is configured in NextAuth but may have incorrect redirect URI\",\"evidence\":\"Google provider is enabled in auth.ts but receiving 404 on callback\"},{\"type\":\"environment\",\"severity\":\"medium\",\"description\":\"GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET need to be verified\",\"evidence\":\"Auth validation shows warnings for missing Google OAuth credentials\"},{\"type\":\"routing\",\"severity\":\"high\",\"description\":\"NextAuth callback route is properly configured at /api/auth/[...nextauth]/route.ts\",\"evidence\":\"Route handler exists and exports GET and POST handlers correctly\"}]},\"solution\":{\"immediate_actions\":[\"1. Verify GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET are set in .env.local\",\"2. Ensure Google Cloud Console has correct redirect URI: http://localhost:3000/api/auth/callback/google\",\"3. Check NEXTAUTH_URL environment variable matches your development URL\",\"4. Verify Google OAuth app is not in test mode with restricted users\"],\"google_console_settings\":{\"authorized_redirect_uris\":[\"http://localhost:3000/api/auth/callback/google\",\"https://YOUR_PRODUCTION_DOMAIN/api/auth/callback/google\"],\"javascript_origins\":[\"http://localhost:3000\",\"https://YOUR_PRODUCTION_DOMAIN\"]}},\"code_locations\":{\"auth_config\":\"/workspaces/miowsis/src/lib/auth.ts\",\"nextauth_route\":\"/workspaces/miowsis/src/app/api/auth/[...nextauth]/route.ts\",\"signin_page\":\"/workspaces/miowsis/src/app/auth/signin/page.tsx\",\"error_page\":\"/workspaces/miowsis/src/app/auth/error/page.tsx\",\"middleware\":\"/workspaces/miowsis/src/middleware.ts\"},\"next_steps\":[\"Check Google Cloud Console OAuth 2.0 Client configuration\",\"Verify environment variables are properly loaded\",\"Test with explicit NEXTAUTH_URL setting\",\"Enable NextAuth debug mode for detailed logs\"]}",
+      "type": "object",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-19T18:04:16.594Z",
+      "updatedAt": "2025-06-19T18:04:16.594Z",
+      "lastAccessedAt": "2025-06-19T18:04:16.594Z",
+      "version": 1,
+      "size": 2159,
+      "compressed": true,
+      "checksum": "8c5795d4ec26b76a59fb9622d2c9f33abd6045b3bb72c739704db737f0b0af9d",
+      "references": [],
+      "dependencies": []
+    },
+    {
+      "id": "entry_mc3oxizl_vac1687dv",
+      "key": "swarm-auto-centralized-1750356084712/config-analyzer/analysis",
+      "value": "{\"application_type\":\"Next.js with NextAuth.js\",\"not_spring_boot\":true,\"oauth_configuration\":{\"providers_configured\":[\"Google OAuth\",\"Email\"],\"google_oauth\":{\"client_id_configured\":\"Using environment variable GOOGLE_CLIENT_ID\",\"client_secret_configured\":\"Using environment variable GOOGLE_CLIENT_SECRET\",\"validation\":\"Provider only enabled if valid credentials are present\",\"redirect_uri\":\"Default NextAuth pattern: /api/auth/callback/google\"},\"email_provider\":{\"smtp_configured\":true,\"server_host\":\"smtp.gmail.com (default)\",\"server_port\":587,\"from_email\":\"noreply@miowsis.com (default)\",\"verification_token_generation\":\"Using crypto.randomUUID()\",\"email_template\":\"Custom HTML template with styled button\"}},\"error_handling\":{\"custom_error_page\":\"/src/app/auth/error/page.tsx\",\"error_types_handled\":[\"Configuration\",\"AccessDenied\",\"Verification\",\"OAuthAccountNotLinked\",\"OAuthCallback\",\"EmailCreateAccount\",\"Signin\",\"OAuthSignin\",\"CredentialsSignin\",\"SessionRequired\"],\"error_page_features\":[\"User-friendly error messages\",\"Suggestions for resolution\",\"Debug info in development mode\",\"Retry and go back options\",\"Link to support\"]},\"security_configuration\":{\"session_strategy\":\"JWT\",\"session_max_age\":\"30 days\",\"jwt_max_age\":\"30 days\",\"supabase_adapter\":\"Conditional - only if credentials present\",\"csrf_protection\":\"Configured with token expiry and refresh threshold\",\"security_headers\":[\"X-Frame-Options: DENY\",\"X-Content-Type-Options: nosniff\",\"Referrer-Policy: strict-origin-when-cross-origin\"]},\"redirect_configuration\":{\"auth_pages\":{\"signIn\":\"/auth/signin\",\"signOut\":\"/auth/signout\",\"error\":\"/auth/error\",\"verifyRequest\":\"/auth/verify-request\",\"newUser\":\"/onboarding\"},\"redirect_rules\":[\"/signin -> /auth/signin\",\"/signup -> /auth/signin\"],\"callback_url_handling\":\"Preserves callbackUrl parameter through auth flow\"},\"middleware_configuration\":{\"public_routes\":[\"/\",\"/auth/*\",\"/terms\",\"/privacy\",\"/api/auth\",\"/api/health\"],\"protected_routes\":[\"/dashboard\",\"/portfolios\",\"/market\",\"/settings\",\"/profile\"],\"admin_routes\":[\"/admin\"],\"auth_check_methods\":[\"NextAuth session token\",\"Supabase session\"],\"role_based_access\":\"RBAC system with admin role checking\"},\"issues_found\":{\"whitelabel_error_fix\":{\"status\":\"Already fixed\",\"custom_404_page\":\"/src/app/not-found.tsx exists\",\"custom_error_page\":\"/src/app/auth/error/page.tsx exists\"},\"google_oauth_redirect_uri\":{\"status\":\"Needs verification\",\"expected_uri\":\"http://localhost:3000/api/auth/callback/google (development)\",\"production_uri\":\"Should match NEXT_PUBLIC_APP_URL + /api/auth/callback/google\",\"recommendation\":\"Verify Google Cloud Console OAuth app has correct redirect URIs\"},\"environment_variables_needed\":[\"GOOGLE_CLIENT_ID\",\"GOOGLE_CLIENT_SECRET\",\"NEXTAUTH_URL\",\"NEXTAUTH_SECRET\",\"EMAIL_SERVER_USER\",\"EMAIL_SERVER_PASSWORD\"]},\"recommendations\":{\"1\":\"Ensure Google OAuth app in Google Cloud Console has redirect URI: {NEXTAUTH_URL}/api/auth/callback/google\",\"2\":\"Generate strong NEXTAUTH_SECRET using: openssl rand -base64 32\",\"3\":\"For production, use proper email service instead of Gmail SMTP\",\"4\":\"Enable audit logging for authentication events\",\"5\":\"Consider implementing rate limiting on auth endpoints\",\"6\":\"Monitor failed authentication attempts\"}}",
+      "type": "object",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-19T18:04:31.713Z",
+      "updatedAt": "2025-06-19T18:04:31.713Z",
+      "lastAccessedAt": "2025-06-19T18:04:31.713Z",
+      "version": 1,
+      "size": 3526,
+      "compressed": true,
+      "checksum": "4aced4ef7f6fc72b94ba79d7c0d34a1488356c0b756c8e6c802808675b2f55d2",
+      "references": [],
+      "dependencies": []
+    },
+    {
+      "id": "entry_mc3oyr47_9j8hbr090",
+      "key": "swarm-auto-centralized-1750356084712/playwright-tester/results",
+      "value": "\"{\\n  \\\"test_summary\\\": {\\n    \\\"test_name\\\": \\\"Google Sign-In Flow Test\\\",\\n    \\\"test_time\\\": \\\"2025-06-19T18:01:30Z\\\",\\n    \\\"test_status\\\": \\\"Failed\\\",\\n    \\\"primary_issue\\\": \\\"OAuth callback error - authentication flow not completing\\\"\\n  },\\n  \\\"error_details\\\": {\\n    \\\"error_url\\\": \\\"/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fdashboard&error=OAuthCallback\\\",\\n    \\\"error_message\\\": \\\"Sign In Required - An error occurred during sign in\\\",\\n    \\\"console_errors\\\": [\\n      {\\n        \\\"type\\\": \\\"401 Unauthorized\\\",\\n        \\\"url\\\": \\\"/api/auth/csrf\\\",\\n        \\\"message\\\": \\\"[next-auth][error][CLIENT_FETCH_ERROR] - Failed to fetch CSRF token\\\"\\n      },\\n      {\\n        \\\"type\\\": \\\"500 Internal Server Error\\\",\\n        \\\"url\\\": \\\"/api/auth/session\\\",\\n        \\\"message\\\": \\\"Unexpected token <, <\\\\!DOCTYPE ... is not valid JSON - API returning HTML instead of JSON\\\"\\n      }\\n    ]\\n  },\\n  \\\"oauth_flow_sequence\\\": {\\n    \\\"step1\\\": \\\"User clicks Continue with Google button\\\",\\n    \\\"step2\\\": \\\"POST request to /api/auth/signin/google returns 200\\\",\\n    \\\"step3\\\": \\\"GET request to /api/auth/signin?csrf=true returns 302 redirect\\\",\\n    \\\"step4\\\": \\\"Redirected back to /auth/signin with callbackUrl parameter\\\",\\n    \\\"step5\\\": \\\"OAuth callback at /api/auth/callback/google returns 302 to error page\\\",\\n    \\\"step6\\\": \\\"Final redirect to /auth/signin with error=OAuthCallback\\\"\\n  },\\n  \\\"network_requests\\\": {\\n    \\\"auth_endpoints\\\": [\\n      \\\"GET /api/auth/providers => 200 OK\\\",\\n      \\\"GET /api/auth/csrf => 401 Unauthorized\\\",\\n      \\\"POST /api/auth/_log => 200 OK\\\",\\n      \\\"POST /api/auth/signin/google => 200 OK\\\",\\n      \\\"GET /api/auth/signin?csrf=true => 302 Found\\\",\\n      \\\"GET /api/auth/callback/google => 302 Found (redirects to error)\\\",\\n      \\\"GET /api/auth/error?error=OAuthCallback => 302 Found\\\",\\n      \\\"GET /api/auth/session => 500 Internal Server Error (returns HTML)\\\"\\n    ]\\n  },\\n  \\\"screenshots\\\": [\\n    {\\n      \\\"filename\\\": \\\"google-signin-error.png\\\",\\n      \\\"description\\\": \\\"Sign-in page after failed OAuth attempt\\\"\\n    },\\n    {\\n      \\\"filename\\\": \\\"oauth-callback-error.png\\\",\\n      \\\"description\\\": \\\"Sign-in page showing error message after OAuth callback failure\\\"\\n    },\\n    {\\n      \\\"filename\\\": \\\"auth-error-page.png\\\",\\n      \\\"description\\\": \\\"Dedicated authentication error page\\\"\\n    }\\n  ],\\n  \\\"root_causes\\\": [\\n    \\\"NextAuth CSRF token endpoint returning 401 Unauthorized\\\",\\n    \\\"Session endpoint returning HTML instead of JSON (500 error)\\\",\\n    \\\"OAuth callback handler failing and redirecting to error page\\\",\\n    \\\"Authentication middleware or API routes may not be properly configured\\\"\\n  ],\\n  \\\"404_error_note\\\": \\\"While monitoring the flow, I did not encounter a direct 404 error page. However, there were 404 errors for webpack hot-update files which are unrelated to the auth flow. The main issue is OAuth callback failure, not a 404 page.\\\"\\n}\"",
+      "type": "string",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-19T18:05:28.903Z",
+      "updatedAt": "2025-06-19T18:05:28.903Z",
+      "lastAccessedAt": "2025-06-19T18:05:28.903Z",
+      "version": 1,
+      "size": 3349,
+      "compressed": true,
+      "checksum": "179ca9bb185c8a652e5a12d98f4fe1221cd0bfc7e37f1e7b5e73a3efb86f5aee",
+      "references": [],
+      "dependencies": []
     }
   ],
   "statistics": {
     "overview": {
-      "totalEntries": 12,
+      "totalEntries": 19,
       "totalSize": null,
-      "compressedEntries": 6,
+      "compressedEntries": 10,
       "compressionRatio": 0,
       "indexSize": 100,
-      "memoryUsage": 7907696,
+      "memoryUsage": 7123384,
       "diskUsage": 0
     },
     "distribution": {
@@ -479,8 +726,8 @@
           "size": null
         },
         "default": {
-          "count": 11,
-          "size": 17155
+          "count": 18,
+          "size": 33189
         }
       },
       "byType": {
@@ -489,12 +736,12 @@
           "size": null
         },
         "string": {
-          "count": 8,
-          "size": 10630
+          "count": 9,
+          "size": 13979
         },
         "object": {
-          "count": 3,
-          "size": 6525
+          "count": 9,
+          "size": 19210
         }
       },
       "byOwner": {
@@ -503,8 +750,8 @@
           "size": null
         },
         "system": {
-          "count": 11,
-          "size": 17155
+          "count": 18,
+          "size": 33189
         }
       },
       "byAccessLevel": {
@@ -513,17 +760,17 @@
           "size": null
         },
         "shared": {
-          "count": 11,
-          "size": 17155
+          "count": 18,
+          "size": 33189
         }
       }
     },
     "temporal": {
-      "entriesCreatedLast24h": 11,
-      "entriesUpdatedLast24h": 11,
-      "entriesAccessedLast24h": 12,
+      "entriesCreatedLast24h": 18,
+      "entriesUpdatedLast24h": 18,
+      "entriesAccessedLast24h": 19,
       "oldestEntry": "1970-01-01T00:00:00.000Z",
-      "newestEntry": "2025-06-19T15:16:53.696Z"
+      "newestEntry": "2025-06-19T18:05:28.903Z"
     },
     "performance": {
       "averageQueryTime": 0,

@@ -1,0 +1,13 @@
+{
+  "objective": "i have supabase configured for email login and singin iwth google config. update the login/signup/email/createaccount flow to use supabase authentication flow. use supabse mcp and for testing use playwrite. use context7 for latest documentation",
+  "strategy": "auto",
+  "mode": "centralized",
+  "maxAgents": 5,
+  "timeout": 60,
+  "parallel": false,
+  "monitor": false,
+  "output": "json",
+  "outputDir": "./reports",
+  "timestamp": "2025-06-19T18:16:34.138Z",
+  "id": "swarm-auto-centralized-1750356994138"
+}

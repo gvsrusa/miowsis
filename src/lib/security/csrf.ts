@@ -2,12 +2,12 @@ import { randomBytes } from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
-
-// CSRF token configuration
-const CSRF_TOKEN_LENGTH = 32
-const CSRF_HEADER_NAME = 'X-CSRF-Token'
-const CSRF_COOKIE_NAME = 'csrf-token'
-const CSRF_TOKEN_EXPIRY = 60 * 60 * 1000 // 1 hour
+import { 
+  CSRF_TOKEN_LENGTH, 
+  CSRF_HEADER_NAME, 
+  CSRF_COOKIE_NAME, 
+  CSRF_TOKEN_EXPIRY 
+} from './csrf-config'
 
 // In-memory token store (for development - use Redis/DB in production)
 const tokenStore = new Map<string, { token: string; expires: number }>()
@@ -162,8 +162,5 @@ export async function validateCSRFProtection(
   }
 }
 
-// Export constants for client-side use
-export const CSRF_CONFIG = {
-  headerName: CSRF_HEADER_NAME,
-  cookieName: CSRF_COOKIE_NAME,
-} as const
+// Re-export config for convenience
+export { CSRF_CONFIG } from './csrf-config'

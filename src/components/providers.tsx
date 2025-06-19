@@ -2,8 +2,7 @@
 
 import { type ReactNode } from 'react'
 
-import { SessionProvider } from 'next-auth/react'
-
+import { AuthProvider } from '@/contexts/auth-context'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 
@@ -13,7 +12,7 @@ interface ProvidersProps {
 
 export function Providers({ children }: ProvidersProps) {
   return (
-    <SessionProvider>
+    <AuthProvider>
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
@@ -23,6 +22,6 @@ export function Providers({ children }: ProvidersProps) {
         {children}
         <Toaster />
       </ThemeProvider>
-    </SessionProvider>
+    </AuthProvider>
   )
 }

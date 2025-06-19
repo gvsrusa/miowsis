@@ -9,6 +9,8 @@ const publicRoutes = [
   '/',
   '/auth/signin',
   '/auth/signup', 
+  '/auth/callback',
+  '/auth/reset-password',
   '/auth/error',
   '/auth/verify-request',
   '/auth/signout',
@@ -16,7 +18,6 @@ const publicRoutes = [
   '/privacy',
   '/contact',
   '/about',
-  '/api/auth',
   '/api/health'
 ]
 
@@ -53,23 +54,14 @@ function isAdminRoute(pathname: string): boolean {
   return adminRoutes.some(route => pathname.startsWith(route))
 }
 
-async function checkAuthWithNextAuth(request: NextRequest): Promise<boolean> {
-  // Check NextAuth session token
-  const sessionToken = request.cookies.get('next-auth.session-token')?.value ||
-                      request.cookies.get('__Secure-next-auth.session-token')?.value
-  
-  if (!sessionToken) return false
-  
-  // For a more robust check, you could verify the JWT token here
-  // For now, we'll trust the presence of the session token
-  return true
-}
+// Removed checkAuthWithNextAuth - using only Supabase authentication now
 
-async function checkAuthWithSupabase(request: NextRequest): Promise<{ isAuthenticated: boolean, user: any }> {
+async function checkAuthWithSupabase(request: NextRequest): Promise<{ isAuthenticated: boolean, user: any, session: any }> {
   try {
     // Only proceed if Supabase credentials are available
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      return { isAuthenticated: false, user: null }
+      console.warn('Supabase credentials not available in middleware')
+      return { isAuthenticated: false, user: null, session: null }
     }
 
     const supabase = createServerClient<Database>(
@@ -90,16 +82,21 @@ async function checkAuthWithSupabase(request: NextRequest): Promise<{ isAuthenti
     
     if (error) {
       console.error('Supabase auth error in middleware:', error)
-      return { isAuthenticated: false, user: null }
+      return { isAuthenticated: false, user: null, session: null }
+    }
+
+    if (session?.user) {
+      console.log('Authenticated user in middleware:', session.user.email)
     }
 
     return { 
       isAuthenticated: !!session?.user, 
-      user: session?.user || null 
+      user: session?.user || null,
+      session: session || null
     }
   } catch (error) {
     console.error('Error checking Supabase auth:', error)
-    return { isAuthenticated: false, user: null }
+    return { isAuthenticated: false, user: null, session: null }
   }
 }
 
@@ -122,13 +119,9 @@ export async function middleware(request: NextRequest) {
     },
   })
 
-  // Check authentication using both NextAuth and Supabase
-  const [hasNextAuthSession, supabaseAuth] = await Promise.all([
-    checkAuthWithNextAuth(request),
-    checkAuthWithSupabase(request)
-  ])
-
-  const isAuthenticated = hasNextAuthSession || supabaseAuth.isAuthenticated
+  // Check authentication using Supabase only
+  const supabaseAuth = await checkAuthWithSupabase(request)
+  const isAuthenticated = supabaseAuth.isAuthenticated
 
   // Handle protected routes
   if (isProtectedRoute(pathname)) {
@@ -149,36 +142,40 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(signInUrl)
     }
 
-    // Check role access for admin routes
-    let userId: string | null = null
-    
-    // Try to get user ID from NextAuth session
-    const sessionToken = request.cookies.get('next-auth.session-token')?.value ||
-                        request.cookies.get('__Secure-next-auth.session-token')?.value
-    
-    // If NextAuth session exists, we'll use it (you might need to decode JWT to get user ID)
-    // For now, we'll use Supabase auth if available
+    // Check role access for admin routes using Supabase user
     if (supabaseAuth.isAuthenticated && supabaseAuth.user) {
-      userId = supabaseAuth.user.id
-    }
-    
-    if (userId) {
-      const { hasAccess, redirectPath, reason } = await checkRouteAccess(pathname, userId)
+      const userId = supabaseAuth.user.id
       
-      if (!hasAccess) {
-        console.warn(`Access denied to ${pathname} for user ${userId}: ${reason}`)
-        if (redirectPath) {
-          const redirectUrl = new URL(redirectPath, request.url)
-          redirectUrl.searchParams.set('error', 'AccessDenied')
-          redirectUrl.searchParams.set('reason', reason || 'Insufficient permissions')
-          return NextResponse.redirect(redirectUrl)
-        } else {
-          return NextResponse.json(
-            { error: 'Access Denied', message: reason || 'Insufficient permissions' },
-            { status: 403 }
-          )
+      try {
+        const { hasAccess, redirectPath, reason } = await checkRouteAccess(pathname, userId)
+        
+        if (!hasAccess) {
+          console.warn(`Access denied to ${pathname} for user ${userId}: ${reason}`)
+          if (redirectPath) {
+            const redirectUrl = new URL(redirectPath, request.url)
+            redirectUrl.searchParams.set('error', 'AccessDenied')
+            redirectUrl.searchParams.set('reason', reason || 'Insufficient permissions')
+            return NextResponse.redirect(redirectUrl)
+          } else {
+            return NextResponse.json(
+              { error: 'Access Denied', message: reason || 'Insufficient permissions' },
+              { status: 403 }
+            )
+          }
         }
+      } catch (error) {
+        console.error('Error checking route access:', error)
+        return NextResponse.json(
+          { error: 'Internal Error', message: 'Failed to check permissions' },
+          { status: 500 }
+        )
       }
+    } else {
+      // No valid user session for admin route
+      const signInUrl = new URL('/auth/signin', request.url)
+      signInUrl.searchParams.set('callbackUrl', request.url)
+      signInUrl.searchParams.set('error', 'SessionRequired')
+      return NextResponse.redirect(signInUrl)
     }
   }
 
@@ -231,7 +228,14 @@ export async function middleware(request: NextRequest) {
         }
       )
 
-      await supabase.auth.getSession()
+      // Refresh the session to ensure it's up to date
+      const { data: { session } } = await supabase.auth.getSession()
+      
+      if (session) {
+        // Add user info to request headers for use in API routes
+        response.headers.set('x-user-id', session.user.id)
+        response.headers.set('x-user-email', session.user.email || '')
+      }
     } catch (error) {
       console.error('Error refreshing Supabase session:', error)
     }

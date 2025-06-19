@@ -1,0 +1,13 @@
+{
+  "objective": " 1. Remove ignoreBuildErrors and ignoreDuringBuilds from next.config.ts\n  2. Implement CSRF tokens for state-changing operations\n  3. Add proper role verification for admin routes\n  4. Configure JWT expiration (recommend 30 days)",
+  "strategy": "auto",
+  "mode": "centralized",
+  "maxAgents": 5,
+  "timeout": 60,
+  "parallel": false,
+  "monitor": false,
+  "output": "json",
+  "outputDir": "./reports",
+  "timestamp": "2025-06-19T15:10:51.264Z",
+  "id": "swarm-auto-centralized-1750345851264"
+}

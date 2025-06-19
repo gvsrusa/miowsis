@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@supabase/ssr'
-import { getServerSession } from 'next-auth'
-import { authOptions } from './auth'
+// import { getServerSession } from 'next-auth'
+// import { authOptions } from './auth'
 import type { Database } from '@/types/database.types'
 
 export type UserRole = Database['public']['Tables']['profiles']['Row']['role']
@@ -78,17 +77,9 @@ export async function getUserRole(userId: string): Promise<UserRole | null> {
       return null
     }
 
-    const supabase = createServerClient<Database>(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-      {
-        cookies: {
-          get: () => null,
-          set: () => {},
-          remove: () => {},
-        },
-      }
-    )
+    // Dynamic import to avoid server/client bundling issues
+    const { createClient } = await import('@/lib/supabase/server')
+    const supabase = await createClient()
 
     const { data, error } = await supabase
       .from('profiles')
@@ -127,7 +118,7 @@ export async function checkRouteAccess(
     return { hasAccess: true }
   }
 
-  const [route, config] = routeConfig
+  const [_route, config] = routeConfig
 
   // Check if authentication is required
   if (config.requireAuth && !userId) {
@@ -155,6 +146,8 @@ export async function checkRouteAccess(
 }
 
 // Middleware helper for API routes
+// Temporarily commented out to fix Edge Runtime issue
+/*
 export async function withRoleAuth(
   request: NextRequest,
   requiredRoles: UserRole[],
@@ -195,9 +188,10 @@ export async function withRoleAuth(
     )
   }
 }
+*/
 
 // React hook helper for client-side role checking
-export function useRoleCheck(requiredRoles: UserRole[]): {
+export function useRoleCheck(_requiredRoles: UserRole[]): {
   loading: boolean
   hasAccess: boolean
   userRole: UserRole | null

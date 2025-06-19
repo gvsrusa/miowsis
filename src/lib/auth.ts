@@ -23,8 +23,11 @@ function hasValidGoogleCredentials(): boolean {
 }
 
 function hasValidEmailCredentials(): boolean {
-  return isValidCredential(process.env.EMAIL_SERVER_USER) && 
-         isValidCredential(process.env.EMAIL_SERVER_PASSWORD)
+  // For email, check specific requirements since "resend" is a valid username
+  const hasUser = !!(process.env.EMAIL_SERVER_USER && process.env.EMAIL_SERVER_USER.length > 0)
+  const hasPassword = isValidCredential(process.env.EMAIL_SERVER_PASSWORD)
+  const hasHost = !!(process.env.EMAIL_SERVER_HOST && process.env.EMAIL_SERVER_HOST.length > 0)
+  return hasUser && hasPassword && hasHost
 }
 
 function hasValidSupabaseCredentials(): boolean {
@@ -40,6 +43,22 @@ if (hasValidGoogleCredentials()) {
   providers.push(GoogleProvider({
     clientId: process.env.GOOGLE_CLIENT_ID!,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+    authorization: {
+      params: {
+        prompt: 'consent',
+        access_type: 'offline',
+        response_type: 'code'
+      }
+    },
+    // Ensure profile data is properly mapped
+    profile(profile) {
+      return {
+        id: profile.sub,
+        name: profile.name,
+        email: profile.email,
+        image: profile.picture,
+      }
+    },
   }))
   console.log('✅ Google OAuth provider enabled')
 } else {
@@ -64,12 +83,13 @@ if (hasValidEmailCredentials()) {
     from: process.env.EMAIL_FROM || 'noreply@miowsis.com',
     maxAge: 24 * 60 * 60, // 24 hours
     generateVerificationToken: () => {
-      return crypto.randomUUID().replace(/-/g, '')
+      // Use globalThis.crypto for Edge Runtime compatibility
+      return globalThis.crypto.randomUUID().replace(/-/g, '')
     },
     sendVerificationRequest: async ({ identifier: email, url }) => {
       const { host } = new URL(url)
       
-      const transporter = nodemailer.createTransporter({
+      const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_SERVER_HOST || 'smtp.gmail.com',
         port: parseInt(process.env.EMAIL_SERVER_PORT || '587'),
         secure: process.env.EMAIL_SERVER_SECURE === 'true',
@@ -163,15 +183,41 @@ export const authOptions: NextAuthOptions = {
       }
       return session
     },
-    async signIn({ user, account, email }) {
-      // Add validation for email provider
-      if (account?.provider === 'email') {
-        if (!user.email) {
-          console.error('Email sign-in attempted without email address')
-          return false
+    async signIn({ user, account, profile }) {
+      try {
+        // Add validation for email provider
+        if (account?.provider === 'email') {
+          if (!user.email) {
+            console.error('Email sign-in attempted without email address')
+            return false
+          }
         }
+        
+        // Add validation for OAuth providers
+        if (account?.provider === 'google') {
+          if (!user.email) {
+            console.error('Google sign-in attempted without email address')
+            return false
+          }
+          // Log OAuth callback for debugging
+          console.log('Google OAuth sign-in:', {
+            email: user.email,
+            provider: account.provider,
+            accountId: account.providerAccountId
+          })
+        }
+        
+        return true
+      } catch (error) {
+        console.error('Error during sign-in callback:', error)
+        return false
       }
-      return true
+    },
+    async redirect({ url, baseUrl }) {
+      // Ensure redirects are to the same site
+      if (url.startsWith('/')) return `${baseUrl}${url}`
+      else if (new URL(url).origin === baseUrl) return url
+      return baseUrl
     },
   },
   pages: {
@@ -182,4 +228,30 @@ export const authOptions: NextAuthOptions = {
     newUser: '/onboarding',
   },
   debug: process.env.NODE_ENV === 'development',
+  events: {
+    async signIn({ user, account, profile, isNewUser }) {
+      console.log('Sign-in event:', {
+        userId: user?.id,
+        provider: account?.provider,
+        isNewUser,
+        timestamp: new Date().toISOString()
+      })
+    },
+    async signOut({ session, token }) {
+      console.log('Sign-out event:', {
+        userId: token?.id || session?.user?.id,
+        timestamp: new Date().toISOString()
+      })
+    },
+    async linkAccount({ user, account, profile }) {
+      console.log('Account linked:', {
+        userId: user.id,
+        provider: account.provider,
+        timestamp: new Date().toISOString()
+      })
+    },
+    async session({ session, token }) {
+      // Can be used for session tracking
+    },
+  },
 }

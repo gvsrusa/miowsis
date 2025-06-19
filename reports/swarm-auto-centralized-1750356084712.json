@@ -1,0 +1,13 @@
+{
+  "objective": "when i click on signin with google button it gives the Whitelabel Error Page                                                                                           │\n│   │                                                                                                                                                                      │\n│   │   This application has no configured error view, so you are seeing this as a fallback.                                                                               │\n│   │                                                                                                                                                                      │\n│   │                                                                                                                                                                      │\n│   │                                                                                                                                                                      │\n│   │   Thu Jun 19 12:57:47 CDT 2025                                                                                                                                       │\n│   │                                                                                                                                                                      │\n│   │   [49bf1ff8-34] There was an unexpected error (type=Not Found, status=404). page. try to login with  playwrie mcp and test the flow  ",
+  "strategy": "auto",
+  "mode": "centralized",
+  "maxAgents": 5,
+  "timeout": 60,
+  "parallel": false,
+  "monitor": false,
+  "output": "json",
+  "outputDir": "./reports",
+  "timestamp": "2025-06-19T18:01:24.712Z",
+  "id": "swarm-auto-centralized-1750356084712"
+}
