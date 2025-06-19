@@ -33,6 +33,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useCSRF } from '@/hooks/use-csrf'
 
 
 const createPortfolioSchema = z.object({
@@ -61,6 +62,7 @@ export default function PortfoliosPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [isCreateOpen, setIsCreateOpen] = useState(false)
   const [isCreating, setIsCreating] = useState(false)
+  const { getHeaders } = useCSRF()
 
   const {
     register,
@@ -109,7 +111,7 @@ export default function PortfoliosPage() {
     try {
       const response = await fetch('/api/portfolios', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: getHeaders(),
         body: JSON.stringify(data),
       })
 
@@ -135,7 +137,7 @@ export default function PortfoliosPage() {
     try {
       const response = await fetch(`/api/portfolios/${portfolioId}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: getHeaders(),
         body: JSON.stringify({ is_active: true }),
       })
 
@@ -159,6 +161,7 @@ export default function PortfoliosPage() {
     try {
       const response = await fetch(`/api/portfolios/${portfolioId}`, {
         method: 'DELETE',
+        headers: getHeaders(),
       })
 
       if (!response.ok) {

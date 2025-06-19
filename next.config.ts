@@ -3,15 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Build optimizations
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
+    // ESLint will run during builds to ensure code quality
+    ignoreDuringBuilds: false,
   },
   typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    ignoreBuildErrors: true,
+    // TypeScript errors will fail the build to ensure type safety
+    ignoreBuildErrors: false,
   },
 
   // Cross-origin and security configurations

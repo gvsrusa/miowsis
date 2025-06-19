@@ -5,6 +5,7 @@ import { z } from 'zod'
 
 import { authOptions } from '@/lib/auth'
 import { PortfolioService } from '@/lib/portfolio/portfolio.service'
+import { validateCSRFProtection } from '@/lib/security/csrf'
 
 const createPortfolioSchema = z.object({
   name: z.string().min(1).max(100),
@@ -37,7 +38,16 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions)
+    // Validate CSRF token
+    const csrfValidation = await validateCSRFProtection(request)
+    if (!csrfValidation.valid) {
+      return NextResponse.json(
+        { error: csrfValidation.error || 'CSRF validation failed' },
+        { status: csrfValidation.error === 'Unauthorized' ? 401 : 403 }
+      )
+    }
+    
+    const session = csrfValidation.session || await getServerSession(authOptions)
     
     if (!session?.user?.id) {
       return NextResponse.json(

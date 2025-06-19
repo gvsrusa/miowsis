@@ -4,6 +4,8 @@ import EmailProvider from 'next-auth/providers/email'
 import GoogleProvider from 'next-auth/providers/google'
 import nodemailer from 'nodemailer'
 import { logAuthValidation } from './auth-validation'
+import { getUserRole } from './rbac'
+import type { UserRole } from './rbac'
 
 // Validate auth configuration on startup
 if (process.env.NODE_ENV === 'development') {
@@ -130,12 +132,20 @@ export const authOptions: NextAuthOptions = {
   } : {}),
   session: {
     strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
+  },
+  jwt: {
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
     async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id
         token.email = user.email
+        // Fetch user role when user signs in
+        const role = await getUserRole(user.id)
+        token.role = role
       }
       if (account) {
         token.provider = account.provider
@@ -145,6 +155,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (session?.user && token) {
         session.user.id = token.id as string
+        session.user.role = token.role as UserRole
         // Add provider info to session for debugging
         if (process.env.NODE_ENV === 'development') {
           ;(session as any).provider = token.provider

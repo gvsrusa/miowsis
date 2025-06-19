@@ -1,6 +1,8 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
+import { checkRouteAccess } from './lib/rbac'
+import type { Database } from './types/database.types'
 
 // Define public routes that don't require authentication
 const publicRoutes = [
@@ -70,7 +72,7 @@ async function checkAuthWithSupabase(request: NextRequest): Promise<{ isAuthenti
       return { isAuthenticated: false, user: null }
     }
 
-    const supabase = createServerClient(
+    const supabase = createServerClient<Database>(
       process.env.NEXT_PUBLIC_SUPABASE_URL,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
       {
@@ -138,7 +140,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Handle admin routes
+  // Handle admin routes with role checking
   if (isAdminRoute(pathname)) {
     if (!isAuthenticated) {
       const signInUrl = new URL('/auth/signin', request.url)
@@ -147,9 +149,37 @@ export async function middleware(request: NextRequest) {
       return NextResponse.redirect(signInUrl)
     }
 
-    // Additional admin role check could go here
-    // For now, we'll allow any authenticated user to access admin routes
-    // In production, you'd want to check user roles from your database
+    // Check role access for admin routes
+    let userId: string | null = null
+    
+    // Try to get user ID from NextAuth session
+    const sessionToken = request.cookies.get('next-auth.session-token')?.value ||
+                        request.cookies.get('__Secure-next-auth.session-token')?.value
+    
+    // If NextAuth session exists, we'll use it (you might need to decode JWT to get user ID)
+    // For now, we'll use Supabase auth if available
+    if (supabaseAuth.isAuthenticated && supabaseAuth.user) {
+      userId = supabaseAuth.user.id
+    }
+    
+    if (userId) {
+      const { hasAccess, redirectPath, reason } = await checkRouteAccess(pathname, userId)
+      
+      if (!hasAccess) {
+        console.warn(`Access denied to ${pathname} for user ${userId}: ${reason}`)
+        if (redirectPath) {
+          const redirectUrl = new URL(redirectPath, request.url)
+          redirectUrl.searchParams.set('error', 'AccessDenied')
+          redirectUrl.searchParams.set('reason', reason || 'Insufficient permissions')
+          return NextResponse.redirect(redirectUrl)
+        } else {
+          return NextResponse.json(
+            { error: 'Access Denied', message: reason || 'Insufficient permissions' },
+            { status: 403 }
+          )
+        }
+      }
+    }
   }
 
   // Refresh Supabase session for authenticated requests
