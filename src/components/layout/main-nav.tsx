@@ -12,7 +12,9 @@ import {
   Menu,
   X,
   User,
-  LogOut
+  LogOut,
+  TrendingUp,
+  Settings
 } from 'lucide-react'
 import { useState } from 'react'
 import { useSession, signOut } from 'next-auth/react'
@@ -30,8 +32,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
   { name: 'Portfolios', href: '/portfolios', icon: Briefcase },
+  { name: 'Market', href: '/market', icon: TrendingUp },
   { name: 'Achievements', href: '/achievements', icon: Trophy },
   { name: 'AI Assistant', href: '/ai-assistant', icon: Bot },
+  { name: 'Settings', href: '/settings', icon: Settings },
 ]
 
 export function MainNav() {

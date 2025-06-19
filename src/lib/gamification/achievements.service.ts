@@ -322,8 +322,6 @@ export class AchievementsService {
       query = query.gte('updated_at', weekAgo.toISOString())
     }
     
-    const { data: leaderboard } = await query
-    
     interface LeaderboardEntry {
       user_id: string
       total_points: number
@@ -334,7 +332,9 @@ export class AchievementsService {
       }
     }
     
-    return (leaderboard || []).map((entry: LeaderboardEntry, index) => ({
+    const { data: leaderboard } = await query as { data: LeaderboardEntry[] | null }
+    
+    return (leaderboard || []).map((entry, index) => ({
       userId: entry.user_id,
       username: entry.profiles?.full_name || 'Anonymous',
       avatar: entry.profiles?.avatar_url,

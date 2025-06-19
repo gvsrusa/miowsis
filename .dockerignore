@@ -1,0 +1,71 @@
+# Dependencies
+node_modules
+npm-debug.log*
+yarn-error.log*
+
+# Testing
+coverage
+.nyc_output
+playwright-report
+test-results
+
+# Next.js
+.next
+out
+.vercel
+
+# Development
+.env.local
+.env.development
+.env.test
+.env*.local
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+.github
+
+# Documentation
+README.md
+docs
+*.md
+
+# Build artifacts
+dist
+build
+
+# Logs
+logs
+*.log
+
+# Temporary files
+tmp
+temp
+.cache
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+
+# Misc
+.editorconfig
+.eslintcache
+.prettierignore
+renovate.json

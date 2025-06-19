@@ -1,0 +1,188 @@
+name: Dependency Management
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Weekly on Monday
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  update-dependencies:
+    name: Update Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Update npm dependencies
+        run: |
+          npx npm-check-updates -u --target minor
+          npm install
+          npm audit fix
+
+      - name: Test updated dependencies
+        run: |
+          npm run test
+          npm run build
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update dependencies'
+          title: 'chore: automated dependency updates'
+          body: |
+            ## Automated Dependency Updates
+            
+            This PR contains automated dependency updates for security and bug fixes.
+            
+            ### Changes
+            - Updated npm dependencies to latest minor versions
+            - Applied security fixes from npm audit
+            
+            ### Checklist
+            - [ ] All tests pass
+            - [ ] Build succeeds
+            - [ ] No breaking changes detected
+            
+            Please review the changes and merge if everything looks good.
+          branch: deps/automated-update
+          delete-branch: true
+
+  renovate:
+    name: Renovate Bot
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Self-hosted Renovate
+        uses: renovatebot/github-action@v40.3.2
+        with:
+          configurationFile: .github/renovate.json
+          token: ${{ secrets.RENOVATE_TOKEN }}
+
+  check-outdated:
+    name: Check Outdated Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Check for outdated packages
+        run: |
+          npm outdated --json > outdated.json || true
+          
+          # Parse and create report
+          node -e "
+          const fs = require('fs');
+          const outdated = JSON.parse(fs.readFileSync('outdated.json', 'utf8'));
+          
+          let report = '## Outdated Packages Report\\n\\n';
+          report += '| Package | Current | Wanted | Latest | Type |\\n';
+          report += '|---------|---------|--------|--------|------|\\n';
+          
+          for (const [pkg, info] of Object.entries(outdated)) {
+            report += \`| \${pkg} | \${info.current} | \${info.wanted} | \${info.latest} | \${info.type} |\\n\`;
+          }
+          
+          fs.writeFileSync('outdated-report.md', report);
+          "
+
+      - name: Upload outdated packages report
+        uses: actions/upload-artifact@v4
+        with:
+          name: outdated-packages-report
+          path: outdated-report.md
+
+  vulnerability-report:
+    name: Vulnerability Report
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate vulnerability report
+        run: |
+          npm audit --json > audit.json || true
+          
+          # Create detailed report
+          node -e "
+          const fs = require('fs');
+          const audit = JSON.parse(fs.readFileSync('audit.json', 'utf8'));
+          
+          let report = '## Vulnerability Report\\n\\n';
+          report += \`Generated: \${new Date().toISOString()}\\n\\n\`;
+          
+          if (audit.metadata) {
+            report += '### Summary\\n';
+            report += \`- Total: \${audit.metadata.vulnerabilities.total}\\n\`;
+            report += \`- Critical: \${audit.metadata.vulnerabilities.critical}\\n\`;
+            report += \`- High: \${audit.metadata.vulnerabilities.high}\\n\`;
+            report += \`- Moderate: \${audit.metadata.vulnerabilities.moderate}\\n\`;
+            report += \`- Low: \${audit.metadata.vulnerabilities.low}\\n\\n\`;
+          }
+          
+          if (audit.vulnerabilities) {
+            report += '### Details\\n\\n';
+            for (const [pkg, vuln] of Object.entries(audit.vulnerabilities)) {
+              report += \`#### \${pkg}\\n\`;
+              report += \`- Severity: \${vuln.severity}\\n\`;
+              report += \`- Via: \${vuln.via.join(', ')}\\n\`;
+              report += \`- Range: \${vuln.range}\\n\\n\`;
+            }
+          }
+          
+          fs.writeFileSync('vulnerability-report.md', report);
+          "
+
+      - name: Upload vulnerability report
+        uses: actions/upload-artifact@v4
+        with:
+          name: vulnerability-report
+          path: vulnerability-report.md
+
+      - name: Create issue if critical vulnerabilities found
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const audit = JSON.parse(fs.readFileSync('audit.json', 'utf8'));
+            
+            if (audit.metadata && audit.metadata.vulnerabilities.critical > 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: '🚨 Critical security vulnerabilities detected',
+                body: `Critical vulnerabilities have been detected in the dependencies.
+                
+                **Summary:**
+                - Critical: ${audit.metadata.vulnerabilities.critical}
+                - High: ${audit.metadata.vulnerabilities.high}
+                
+                Please review the [vulnerability report](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}) and take immediate action.`,
+                labels: ['security', 'critical', 'dependencies']
+              });
+            }

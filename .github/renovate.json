@@ -1,0 +1,52 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "schedule:weekly",
+    ":pinAllExceptPeerDependencies"
+  ],
+  "timezone": "UTC",
+  "schedule": ["before 3am on Monday"],
+  "labels": ["dependencies", "renovate"],
+  "assignees": ["@devops-team"],
+  "reviewers": ["@tech-lead"],
+  "packageRules": [
+    {
+      "description": "Automatically merge minor and patch updates for dev dependencies",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "description": "Group all non-major updates together",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch"
+    },
+    {
+      "description": "Disable updates for specific packages",
+      "matchPackageNames": ["react", "react-dom"],
+      "enabled": false
+    },
+    {
+      "description": "Security updates",
+      "matchDatasources": ["npm"],
+      "matchUpdateTypes": ["patch"],
+      "labels": ["security"],
+      "prPriority": 10
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "assignees": ["@security-team"],
+    "reviewers": ["@tech-lead"],
+    "prPriority": 20
+  },
+  "prConcurrentLimit": 5,
+  "prCreation": "immediate",
+  "automergeType": "pr",
+  "postUpdateOptions": ["npmDedupe"],
+  "npm": {
+    "minimumReleaseAge": "3 days"
+  }
+}

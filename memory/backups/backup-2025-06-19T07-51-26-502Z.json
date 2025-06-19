@@ -1,0 +1,94 @@
+{
+  "timestamp": "2025-06-19T07:51:26.502Z",
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "entry_mc3313c3_e4ml34lk3",
+      "key": "swarm-auto-centralized-1750319354899/frontend/analysis",
+      "value": "Initial analysis completed. Found: \n- Existing pages: Dashboard, Portfolios, Achievements, AI Assistant\n- Design uses shadcn/ui components with clean gradient backgrounds\n- Dashboard uses widget-based system with react-grid-layout\n- Portfolio page has card-based layout with animations\n- Navigation is in MainNav component\n- Missing pages: Market, Settings, Profile\n- Consistent design patterns: Card components, gradient backgrounds, responsive layouts",
+      "type": "string",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-19T07:51:26.499Z",
+      "updatedAt": "2025-06-19T07:51:26.499Z",
+      "lastAccessedAt": "2025-06-19T07:51:26.499Z",
+      "version": 1,
+      "size": 491,
+      "compressed": false,
+      "checksum": "7b54bbea6e8a1159c4e4af276f8a853e11078588e30d71f3ff2a0ac2ba7662c7",
+      "references": [],
+      "dependencies": []
+    }
+  ],
+  "statistics": {
+    "overview": {
+      "totalEntries": 1,
+      "totalSize": 491,
+      "compressedEntries": 0,
+      "compressionRatio": 1,
+      "indexSize": 50,
+      "memoryUsage": 7632232,
+      "diskUsage": 0
+    },
+    "distribution": {
+      "byNamespace": {
+        "default": {
+          "count": 1,
+          "size": 491
+        }
+      },
+      "byType": {
+        "string": {
+          "count": 1,
+          "size": 491
+        }
+      },
+      "byOwner": {
+        "system": {
+          "count": 1,
+          "size": 491
+        }
+      },
+      "byAccessLevel": {
+        "shared": {
+          "count": 1,
+          "size": 491
+        }
+      }
+    },
+    "temporal": {
+      "entriesCreatedLast24h": 1,
+      "entriesUpdatedLast24h": 1,
+      "entriesAccessedLast24h": 1,
+      "oldestEntry": "2025-06-19T07:51:26.499Z",
+      "newestEntry": "2025-06-19T07:51:26.499Z"
+    },
+    "performance": {
+      "averageQueryTime": 0,
+      "averageWriteTime": 1,
+      "cacheHitRatio": 0,
+      "indexEfficiency": 0.95
+    },
+    "health": {
+      "expiredEntries": 0,
+      "orphanedReferences": 0,
+      "duplicateKeys": 0,
+      "corruptedEntries": 0,
+      "recommendedCleanup": false
+    },
+    "optimization": {
+      "suggestions": [],
+      "potentialSavings": {
+        "compression": 0,
+        "cleanup": 0,
+        "deduplication": 0
+      },
+      "indexOptimization": [
+        "Consider periodic index rebuilding for optimal performance"
+      ]
+    }
+  }
+}

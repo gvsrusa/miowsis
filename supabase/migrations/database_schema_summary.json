@@ -1,0 +1,85 @@
+{
+  "project": "MIOwSIS",
+  "description": "Complete database schema for sustainable investment platform",
+  "created_at": "2025-06-19",
+  "total_migrations": 9,
+  "total_tables": 50,
+  "total_functions": 25,
+  "total_triggers": 15,
+  "total_indexes": 100,
+  "key_features": {
+    "security": {
+      "row_level_security": true,
+      "encryption": "bank_accounts, tokens",
+      "audit_logging": true,
+      "session_tracking": true
+    },
+    "performance": {
+      "materialized_views": 3,
+      "partial_indexes": true,
+      "composite_indexes": true,
+      "autovacuum_optimized": true
+    },
+    "automation": {
+      "scheduled_jobs": true,
+      "event_triggers": true,
+      "smart_calculations": true,
+      "achievement_system": true
+    }
+  },
+  "migrations": [
+    {
+      "file": "001_init_extensions_and_types.sql",
+      "description": "Database initialization with extensions and custom types",
+      "key_components": ["PostgreSQL extensions", "Custom ENUM types", "Schema organization"]
+    },
+    {
+      "file": "002_auth_and_profiles.sql", 
+      "description": "User authentication, profiles, KYC, and audit logging",
+      "key_components": ["User profiles", "KYC documents", "Bank accounts", "Audit logs", "RLS policies"]
+    },
+    {
+      "file": "003_portfolios_assets_holdings.sql",
+      "description": "Portfolio management, assets, and holdings",
+      "key_components": ["Portfolios", "Assets", "Holdings", "Price history", "Performance tracking"]
+    },
+    {
+      "file": "004_transactions_and_orders.sql",
+      "description": "Financial transactions and investment orders",
+      "key_components": ["Transactions", "Investment orders", "Order fills", "Recurring investments"]
+    },
+    {
+      "file": "005_automation_and_roundup.sql",
+      "description": "Automated investing and round-up features",
+      "key_components": ["Automation rules", "Round-up accumulator", "Smart suggestions", "Market conditions"]
+    },
+    {
+      "file": "006_esg_and_impact.sql",
+      "description": "ESG metrics and impact tracking",
+      "key_components": ["ESG metrics", "Impact tracking", "ESG goals", "Certifications"]
+    },
+    {
+      "file": "007_gamification_achievements.sql",
+      "description": "Gamification, achievements, and social features",
+      "key_components": ["Achievements", "User progress", "Leaderboards", "Challenges", "Badges"]
+    },
+    {
+      "file": "008_functions_and_triggers.sql",
+      "description": "Database functions, triggers, and stored procedures",
+      "key_components": ["Portfolio calculations", "Achievement checking", "Automation execution", "Audit triggers"]
+    },
+    {
+      "file": "009_performance_indexes_optimizations.sql",
+      "description": "Performance optimizations and monitoring",
+      "key_components": ["Advanced indexes", "Materialized views", "Performance monitoring", "Database health"]
+    }
+  ],
+  "deployment_notes": {
+    "order": "Run migrations 001-009 in sequence",
+    "idempotent": true,
+    "testing": "Test in development before production",
+    "backup": "Always backup before major migrations",
+    "monitoring": "Monitor performance after deployment"
+  },
+  "key_prefix": "swarm-auto-centralized-1750319354899/database/"
+}

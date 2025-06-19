@@ -1,9 +1,9 @@
 {
-  "version": "1.0.70",
+  "version": "1.0.72",
   "project": {
     "name": "miowsis",
     "type": "claude-flow",
-    "created": "2025-06-18T01:52:04.390Z"
+    "created": "2025-06-19T07:47:45.749Z"
   },
   "features": {
     "swarm": true,

@@ -65,7 +65,7 @@ export class TransactionService {
       if (data.type === 'buy') {
         await this.updateHoldingsForBuy(data.portfolio_id, data.asset_id, data.quantity, data.price)
       } else if (data.type === 'sell') {
-        await this.updateHoldingsForSell(data.portfolio_id, data.asset_id, data.quantity, data.price)
+        await this.updateHoldingsForSell(data.portfolio_id, data.asset_id, data.quantity)
       }
       
       // Mark transaction as completed

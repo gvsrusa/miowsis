@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: miowsis-config
+data:
+  NEXT_PUBLIC_APP_NAME: "MIOwSIS"
+  NEXT_PUBLIC_APP_URL: "https://miowsis.com"
+  LOG_LEVEL: "info"
+  LOG_FORMAT: "json"
+  RATE_LIMIT_WINDOW_MS: "60000"
+  RATE_LIMIT_MAX_REQUESTS: "100"
+  SESSION_TIMEOUT_MINUTES: "30"
+  SESSION_EXTEND_ON_ACTIVITY: "true"
+  DATABASE_POOL_MIN: "10"
+  DATABASE_POOL_MAX: "50"
+  REDIS_URL: "redis://redis-service:6379"
+  PROMETHEUS_METRICS_PORT: "9090"
