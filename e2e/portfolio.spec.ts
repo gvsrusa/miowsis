@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test'
 
 // Helper to set up authenticated session
-async function setupAuthenticatedSession(page) {
+async function setupAuthenticatedSession(page: any) {
   await page.addInitScript(() => {
     window.localStorage.setItem('auth-token', 'mock-token')
   })
   
   // Mock session API
-  await page.route('**/api/auth/session', async route => {
+  await page.route('**/api/auth/session', async (route: any) => {
     await route.fulfill({
       status: 200,
       body: JSON.stringify({
@@ -23,7 +23,7 @@ async function setupAuthenticatedSession(page) {
 }
 
 test.describe('Portfolio Management', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }: { page: any }) => {
     await setupAuthenticatedSession(page)
     await page.goto('/portfolios')
   })

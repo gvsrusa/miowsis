@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { BarChart3, LineChart, PieChart, TrendingUp } from 'lucide-react'
+import { BarChart3, LineChart, PieChart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 type ChartType = 'line' | 'bar' | 'pie' | 'area'

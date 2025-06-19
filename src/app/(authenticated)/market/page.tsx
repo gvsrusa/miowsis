@@ -33,7 +33,6 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from '@/components/ui/sheet'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'

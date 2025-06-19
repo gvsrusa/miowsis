@@ -253,7 +253,7 @@ export class AssetService {
     for (const asset of assets) {
       const { data: currentAsset } = await supabase
         .from('assets')
-        .select('current_price, high_24h, low_24h')
+        .select('id, current_price, high_24h, low_24h')
         .eq('symbol', asset.symbol)
         .single()
       

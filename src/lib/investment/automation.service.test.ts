@@ -2,7 +2,7 @@ import { AutomationService } from './automation.service'
 import { TransactionService } from './transaction.service'
 import { PortfolioService } from '../portfolio/portfolio.service'
 import { createClient } from '@/lib/supabase/server'
-import { createMockSupabaseClient, mockAssets } from '@/__tests__/fixtures'
+import { createMockSupabaseClient } from '@/__tests__/fixtures'
 
 jest.mock('@/lib/supabase/server')
 jest.mock('./transaction.service')
@@ -16,6 +16,11 @@ describe('AutomationService', () => {
   beforeEach(() => {
     jest.clearAllMocks()
     ;(createClient as jest.Mock).mockResolvedValue(mockSupabase)
+    
+    // Add missing methods to mockSupabase._chain
+    mockSupabase._chain.lte = jest.fn().mockReturnThis()
+    mockSupabase._chain.in = jest.fn().mockReturnThis()
+    mockSupabase._chain.gte = jest.fn().mockReturnThis()
     
     // Mock Date.now() for consistent testing
     jest.useFakeTimers()

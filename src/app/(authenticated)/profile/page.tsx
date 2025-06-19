@@ -4,11 +4,8 @@ import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 import { 
-  User, 
-  Mail, 
   Calendar, 
   Target,
-  Briefcase,
   Award,
   TrendingUp,
   Leaf,
@@ -114,7 +111,7 @@ const mockAchievements: Achievement[] = [
 export default function ProfilePage() {
   const { data: session, status } = useSession()
   const [profile, setProfile] = useState<UserProfile>(mockProfile)
-  const [achievements, setAchievements] = useState<Achievement[]>(mockAchievements)
+  const [achievements] = useState<Achievement[]>(mockAchievements)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [editedProfile, setEditedProfile] = useState(profile)
   const [isLoading, setIsLoading] = useState(false)
@@ -151,7 +148,7 @@ export default function ProfilePage() {
       setProfile(editedProfile)
       setIsEditDialogOpen(false)
       toast.success('Profile updated successfully')
-    } catch (error) {
+    } catch (_error) {
       toast.error('Failed to update profile')
     } finally {
       setIsLoading(false)

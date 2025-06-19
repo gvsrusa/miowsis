@@ -13,7 +13,6 @@ import {
   Smartphone,
   Moon,
   Sun,
-  Check,
   ChevronRight
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -32,7 +31,6 @@ import {
 } from '@/components/ui/select'
 import { useTheme } from 'next-themes'
 import { toast } from 'sonner'
-import { cn } from '@/lib/utils'
 
 interface NotificationSettings {
   emailNotifications: boolean
@@ -88,7 +86,7 @@ export default function SettingsPage() {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000))
       toast.success('Profile updated successfully')
-    } catch (error) {
+    } catch (_error) {
       toast.error('Failed to update profile')
     } finally {
       setIsLoading(false)

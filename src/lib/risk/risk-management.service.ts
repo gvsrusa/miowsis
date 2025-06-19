@@ -1,6 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
 import { PortfolioAnalyticsService } from '@/lib/portfolio/analytics.service'
-import { AssetService } from '@/lib/market/asset.service'
 
 export interface RiskProfile {
   userId: string
@@ -414,13 +413,13 @@ export class RiskManagementService {
       .sort((a: any, b: any) => b.exposure - a.exposure)
     
     const topHoldingExposure = exposures[0]?.exposure || 0
-    const top5Exposure = exposures.slice(0, 5).reduce((sum, e) => sum + e.exposure, 0)
+    const top5Exposure = exposures.slice(0, 5).reduce((sum: number, e: any) => sum + e.exposure, 0)
     
     // Check violations (assuming 25% single asset limit)
     const singleAssetLimit = 25
     const violations = exposures
-      .filter(e => e.exposure > singleAssetLimit)
-      .map(e => ({ ...e, limit: singleAssetLimit }))
+      .filter((e: any) => e.exposure > singleAssetLimit)
+      .map((e: any) => ({ ...e, limit: singleAssetLimit }))
     
     // Determine risk level
     let level: 'low' | 'medium' | 'high' = 'low'
@@ -439,7 +438,7 @@ export class RiskManagementService {
     }
   }
   
-  private static async assessMarketRisk(portfolio: any, analytics: any): Promise<MarketRisk> {
+  private static async assessMarketRisk(_portfolio: any, analytics: any): Promise<MarketRisk> {
     return {
       beta: analytics.performance.beta || 1,
       correlation: analytics.risk.correlation.toSP500 || 0,
@@ -512,7 +511,7 @@ export class RiskManagementService {
     return { isIlliquid: false, liquidationDays: 1 }
   }
   
-  private static async assessCurrencyRisk(portfolio: any): Promise<CurrencyRisk> {
+  private static async assessCurrencyRisk(_portfolio: any): Promise<CurrencyRisk> {
     // Simplified - assumes USD base
     return {
       exposures: [
@@ -664,7 +663,7 @@ export class RiskManagementService {
     return 'very_high'
   }
   
-  private static assessProfileAlignment(profile: RiskProfile, riskScore: number, portfolio: any): any {
+  private static assessProfileAlignment(profile: RiskProfile, riskScore: number, _portfolio: any): any {
     const targetRiskScore = {
       conservative: 25,
       moderate: 50,
@@ -733,7 +732,7 @@ export class RiskManagementService {
         moderate: 50,
         aggressive: 75,
         very_aggressive: 90,
-      }[data.riskProfile.riskTolerance]
+      }[data.riskProfile.riskTolerance as keyof { conservative: number; moderate: number; aggressive: number; very_aggressive: number; }]
       
       if (Math.abs(data.overallRiskScore - expectedRisk) > 25) {
         alerts.push({
@@ -783,7 +782,7 @@ export class RiskManagementService {
     }
   }
   
-  private static identifyUnderweightSectors(portfolio: any, profile: RiskProfile): string[] {
+  private static identifyUnderweightSectors(portfolio: any, _profile: RiskProfile): string[] {
     // Simplified - return sectors that should be added for diversification
     const currentSectors = new Set(portfolio.holdings?.map((h: any) => h.asset.sector).filter(Boolean))
     const recommendedSectors = ['Technology', 'Healthcare', 'Financials', 'Consumer', 'Industrials']
@@ -791,7 +790,7 @@ export class RiskManagementService {
     return recommendedSectors.filter(s => !currentSectors.has(s)).slice(0, 3)
   }
   
-  private static async findSuitableAssets(sector: string, profile: RiskProfile): Promise<any[]> {
+  private static async findSuitableAssets(sector: string, _profile: RiskProfile): Promise<any[]> {
     // Placeholder - would query assets based on sector and risk profile
     return [
       {
@@ -802,7 +801,7 @@ export class RiskManagementService {
     ]
   }
   
-  private static estimateRiskReduction(portfolio: any, suggestions: any[]): number {
+  private static estimateRiskReduction(_portfolio: any, suggestions: any[]): number {
     // Simplified calculation
     let reduction = 0
     

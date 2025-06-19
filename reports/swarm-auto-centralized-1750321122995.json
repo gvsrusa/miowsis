@@ -1,0 +1,13 @@
+{
+  "objective": "now enable lint and typescript and try and continue",
+  "strategy": "auto",
+  "mode": "centralized",
+  "maxAgents": 5,
+  "timeout": 60,
+  "parallel": true,
+  "monitor": false,
+  "output": "json",
+  "outputDir": "./reports",
+  "timestamp": "2025-06-19T08:18:42.995Z",
+  "id": "swarm-auto-centralized-1750321122995"
+}

@@ -287,7 +287,7 @@ export class RealtimeService {
   unsubscribeAll(): void {
     this.stopPriceSimulation()
     
-    this.channels.forEach((channel, name) => {
+    this.channels.forEach((channel, _name) => {
       channel.unsubscribe()
     })
     
@@ -333,7 +333,7 @@ export class RealtimeService {
     // Trigger portfolio recalculation
     this.broadcast('holding.update', {
       portfolioId,
-      holdingId: payload.new?.id || payload.old?.id,
+      holdingId: (payload.new as any)?.id || (payload.old as any)?.id,
       changeType: payload.eventType,
     })
   }
@@ -345,13 +345,13 @@ export class RealtimeService {
     if (!newData || !oldData) return
     
     const priceUpdate: PriceUpdate = {
-      assetId: newData.id,
-      symbol: newData.symbol,
-      price: newData.current_price,
-      previousPrice: oldData.current_price,
-      change: newData.current_price - oldData.current_price,
-      changePercentage: ((newData.current_price - oldData.current_price) / oldData.current_price) * 100,
-      volume: newData.volume || 0,
+      assetId: (newData as any).id,
+      symbol: (newData as any).symbol,
+      price: (newData as any).current_price,
+      previousPrice: (oldData as any).current_price,
+      change: (newData as any).current_price - (oldData as any).current_price,
+      changePercentage: (((newData as any).current_price - (oldData as any).current_price) / (oldData as any).current_price) * 100,
+      volume: (newData as any).volume || 0,
       timestamp: new Date().toISOString(),
     }
     

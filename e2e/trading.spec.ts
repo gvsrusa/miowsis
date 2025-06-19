@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test'
 
 // Helper to set up authenticated session
-async function setupAuthenticatedSession(page) {
+async function setupAuthenticatedSession(page: any) {
   await page.addInitScript(() => {
     window.localStorage.setItem('auth-token', 'mock-token')
   })
   
   // Mock session API
-  await page.route('**/api/auth/session', async route => {
+  await page.route('**/api/auth/session', async (route: any) => {
     await route.fulfill({
       status: 200,
       body: JSON.stringify({
@@ -22,7 +22,7 @@ async function setupAuthenticatedSession(page) {
   })
   
   // Mock active portfolio
-  await page.route('**/api/portfolios/active', async route => {
+  await page.route('**/api/portfolios/active', async (route: any) => {
     await route.fulfill({
       status: 200,
       body: JSON.stringify({
@@ -39,7 +39,7 @@ async function setupAuthenticatedSession(page) {
 }
 
 test.describe('Trading Flow', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }: { page: any }) => {
     await setupAuthenticatedSession(page)
     await page.goto('/trade')
   })
@@ -225,7 +225,7 @@ test.describe('Trading Flow', () => {
     // Mock sell transaction
     await page.route('**/api/transactions', async route => {
       if (route.request().method() === 'POST') {
-        const body = await route.request().json()
+        const body = await (route.request() as any).json()
         if (body.type === 'sell') {
           await route.fulfill({
             status: 201,

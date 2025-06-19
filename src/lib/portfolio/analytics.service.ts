@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server'
-import { AssetService } from '@/lib/market/asset.service'
 
 export interface PortfolioAnalytics {
   portfolioId: string
@@ -654,72 +653,72 @@ export class PortfolioAnalyticsService {
   }
   
   // Additional helper methods would go here...
-  private static calculateReturnForPeriod(returns: any[], startDate: Date, endDate: Date): number {
+  private static calculateReturnForPeriod(_returns: any[], _startDate: Date, _endDate: Date): number {
     // Implementation
     return 0
   }
   
-  private static async calculateAlphaBeta(returns: any[]): Promise<{ alpha: number; beta: number }> {
+  private static async calculateAlphaBeta(_returns: any[]): Promise<{ alpha: number; beta: number }> {
     // Implementation
     return { alpha: 0, beta: 0 }
   }
   
-  private static calculateMaxDrawdown(returns: any[]): number {
+  private static calculateMaxDrawdown(_returns: any[]): number {
     // Implementation
     return 0
   }
   
-  private static calculateMaxDrawdownDetails(returns: any[]): any {
+  private static calculateMaxDrawdownDetails(_returns: any[]): any {
     // Implementation
     return { value: 0, startDate: '', endDate: '', duration: 0 }
   }
   
-  private static calculateWinRate(transactions: any[]): number {
+  private static calculateWinRate(_transactions: any[]): number {
     // Implementation
     return 0
   }
   
-  private static findExtremes(returns: any[]): { allTimeHigh: number; allTimeLow: number } {
+  private static findExtremes(_returns: any[]): { allTimeHigh: number; allTimeLow: number } {
     // Implementation
     return { allTimeHigh: 0, allTimeLow: 0 }
   }
   
-  private static calculateVaR(returns: any[], confidence: number): number {
+  private static calculateVaR(_returns: any[], _confidence: number): number {
     // Implementation
     return 0
   }
   
-  private static calculateDownsideDeviation(returns: any[]): number {
+  private static calculateDownsideDeviation(_returns: any[]): number {
     // Implementation
     return 0
   }
   
-  private static async calculateMarketCorrelation(returns: any[]): Promise<{ toMarket: number; toSP500: number }> {
+  private static async calculateMarketCorrelation(_returns: any[]): Promise<{ toMarket: number; toSP500: number }> {
     // Implementation
     return { toMarket: 0, toSP500: 0 }
   }
   
-  private static calculateOverallRiskScore(factors: any): number {
+  private static calculateOverallRiskScore(_factors: any): number {
     // Implementation
     return 5
   }
   
-  private static getUniqueValues(items: any[], property: string): string[] {
+  private static getUniqueValues(_items: any[], _property: string): string[] {
     // Implementation
     return []
   }
   
-  private static calculateDiversityScore(holdings: any[], property: string): number {
+  private static calculateDiversityScore(_holdings: any[], _property: string): number {
     // Implementation using HHI
     return 50
   }
   
-  private static generateDiversificationRecommendations(data: any): string[] {
+  private static generateDiversificationRecommendations(_data: any): string[] {
     // Implementation
     return []
   }
   
-  private static calculateCarbonFootprint(holdings: any[]): number {
+  private static calculateCarbonFootprint(_holdings: any[]): number {
     // Implementation
     return 0
   }

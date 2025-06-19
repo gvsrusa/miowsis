@@ -655,7 +655,7 @@ export class NotificationService {
     if (!preferences.quietHours.enabled) return false
     
     const now = new Date()
-    const timezone = preferences.quietHours.timezone || 'UTC'
+    const _timezone = preferences.quietHours.timezone || 'UTC'
     
     // Convert to user's timezone and check
     // Simplified implementation - would use proper timezone library in production
@@ -688,7 +688,7 @@ export class NotificationService {
   }
   
   private static async sendThroughChannels(
-    notification: any,
+    _notification: any,
     channels: NotificationChannel[]
   ): Promise<void> {
     for (const channel of channels) {
