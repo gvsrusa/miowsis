@@ -547,7 +547,8 @@ Import trace for requested module:
  ✓ Compiled in 480ms (796 modules)
  ✓ Compiled in 617ms (796 modules)
  ✓ Compiled in 568ms (796 modules)
-/app/api/auth/[...nextauth]/route.js:410:629)
+[?25h
+i/auth/[...nextauth]/route.js:410:629)
     at __webpack_require__.X (.next/server/webpack-runtime.js:168:21) {
   type: 'TypeError',
   page: '/api/auth/error'
@@ -1046,3 +1047,4 @@ TypeError: Cannot read properties of undefined (reading 'call')
 }
  GET / 500 in 852ms
  ○ Compiling /_not-found ...
+[?25h

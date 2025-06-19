@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { motion } from 'framer-motion'
 import { ArrowRight, BarChart3, Globe, Shield, Sparkles, TrendingUp } from 'lucide-react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/contexts/auth-context'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
