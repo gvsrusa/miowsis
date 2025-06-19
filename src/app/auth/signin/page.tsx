@@ -1,11 +1,13 @@
 'use client'
 
-import { useState, Suspense } from 'react'
+import { useState, Suspense, useEffect } from 'react'
 
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
 import { signIn } from 'next-auth/react'
+
+import { AlertCircle } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
@@ -17,8 +19,37 @@ import { Label } from '@/components/ui/label'
 function SignInForm() {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
+  const error = searchParams.get('error')
   const [email, setEmail] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+
+  // Pre-fill email if provided in URL params
+  useEffect(() => {
+    const emailParam = searchParams.get('email')
+    if (emailParam) {
+      setEmail(emailParam)
+    }
+  }, [searchParams])
+
+  // Error messages for different error types
+  const getErrorMessage = (error: string | null) => {
+    if (!error) return null
+    
+    switch (error) {
+      case 'SessionRequired':
+        return 'Please sign in to access this page'
+      case 'AccessDenied':
+        return 'Access denied. Please check your account status'
+      case 'Configuration':
+        return 'Authentication is temporarily unavailable'
+      case 'CredentialsSignin':
+        return 'Invalid email or password'
+      default:
+        return 'An error occurred during sign in'
+    }
+  }
+
+  const errorMessage = getErrorMessage(error)
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -57,6 +88,22 @@ function SignInForm() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
+          {errorMessage && (
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+              <div className="flex items-start space-x-3">
+                <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
+                <div>
+                  <h4 className="text-sm font-medium text-red-800 dark:text-red-200">
+                    Sign In Required
+                  </h4>
+                  <p className="text-sm text-red-700 dark:text-red-300 mt-1">
+                    {errorMessage}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+          
           <div className="space-y-2">
             <Button
               variant="outline"
