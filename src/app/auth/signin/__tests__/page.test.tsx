@@ -1,8 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { signIn } from 'next-auth/react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams , type ReadonlyURLSearchParams } from 'next/navigation'
 import SignInPage from '../page'
-import { ReadonlyURLSearchParams } from 'next/navigation'
 
 // Mock next-auth/react
 jest.mock('next-auth/react', () => ({

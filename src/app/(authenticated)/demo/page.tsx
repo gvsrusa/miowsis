@@ -1,5 +1,7 @@
 'use client'
 
+import { DollarSign, TrendingUp, Users, BarChart3 } from 'lucide-react'
+
 import { 
   InvestmentCard, 
   PortfolioSummaryCard, 
@@ -7,7 +9,6 @@ import {
   ESGScoreDisplay, 
   ChartPlaceholder 
 } from '@/components/investment'
-import { DollarSign, TrendingUp, Users, BarChart3 } from 'lucide-react'
 
 export default function DemoPage() {
   return (
@@ -103,7 +104,7 @@ export default function DemoPage() {
               returnsPercentage={12.5}
               esgScore={88}
               holdings={12}
-              isActive={true}
+              isActive
             />
             <PortfolioSummaryCard
               name="Tech Sustainability"
@@ -135,14 +136,14 @@ export default function DemoPage() {
               environmentScore={88}
               socialScore={82}
               governanceScore={85}
-              showDetails={true}
+              showDetails
             />
             <ESGScoreDisplay
               overallScore={72}
               environmentScore={75}
               socialScore={68}
               governanceScore={73}
-              showDetails={true}
+              showDetails
             />
           </div>
         </section>

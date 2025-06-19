@@ -1,6 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
-import { TransactionService } from './transaction.service'
+
 import { PortfolioService } from '../portfolio/portfolio.service'
+
+import { TransactionService } from './transaction.service'
 
 export type InvestmentFrequency = 'daily' | 'weekly' | 'biweekly' | 'monthly'
 export type InvestmentTrigger = 'schedule' | 'round_up' | 'goal_based' | 'market_dip'

@@ -40,6 +40,9 @@ export const createMockSupabaseClient = () => {
   const mockNeq = jest.fn()
   const mockGt = jest.fn()
   const mockLt = jest.fn()
+  const mockGte = jest.fn()
+  const mockLte = jest.fn()
+  const mockIn = jest.fn()
   const mockOrder = jest.fn()
   const mockLimit = jest.fn()
   const mockSingle = jest.fn()
@@ -54,6 +57,9 @@ export const createMockSupabaseClient = () => {
     neq: mockNeq.mockReturnThis(),
     gt: mockGt.mockReturnThis(),
     lt: mockLt.mockReturnThis(),
+    gte: mockGte.mockReturnThis(),
+    lte: mockLte.mockReturnThis(),
+    in: mockIn.mockReturnThis(),
     order: mockOrder.mockReturnThis(),
     limit: mockLimit.mockReturnThis(),
     single: mockSingle.mockReturnThis(),

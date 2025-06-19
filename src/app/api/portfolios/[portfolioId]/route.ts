@@ -1,8 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
+
 import { getServerSession } from 'next-auth'
+import { z } from 'zod'
+
 import { authOptions } from '@/lib/auth'
 import { PortfolioService } from '@/lib/portfolio/portfolio.service'
-import { z } from 'zod'
 
 const updatePortfolioSchema = z.object({
   name: z.string().min(1).max(100).optional(),
@@ -12,7 +14,7 @@ const updatePortfolioSchema = z.object({
 })
 
 export async function GET(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ portfolioId: string }> }
 ) {
   const { portfolioId } = await params
@@ -90,7 +92,7 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ portfolioId: string }> }
 ) {
   const { portfolioId } = await params

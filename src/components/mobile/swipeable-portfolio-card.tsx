@@ -1,9 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, useMotionValue, useTransform, PanInfo } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+
+import { motion, useMotionValue, useTransform, type PanInfo } from 'framer-motion'
 import { TrendingUp, TrendingDown, MoreVertical } from 'lucide-react'
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
 interface SwipeablePortfolioCardProps {

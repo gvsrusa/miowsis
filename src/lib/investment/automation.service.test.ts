@@ -17,11 +17,6 @@ describe('AutomationService', () => {
     jest.clearAllMocks()
     ;(createClient as jest.Mock).mockResolvedValue(mockSupabase)
     
-    // Add missing methods to mockSupabase._chain
-    mockSupabase._chain.lte = jest.fn().mockReturnThis()
-    mockSupabase._chain.in = jest.fn().mockReturnThis()
-    mockSupabase._chain.gte = jest.fn().mockReturnThis()
-    
     // Mock Date.now() for consistent testing
     jest.useFakeTimers()
     jest.setSystemTime(new Date('2024-01-15T10:00:00Z'))

@@ -1,8 +1,9 @@
 'use client'
 
+import { Brain, Sparkles, TrendingUp, Shield } from 'lucide-react'
+
 import { AIAssistant } from '@/components/ai/ai-assistant'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Brain, Sparkles, TrendingUp, Shield } from 'lucide-react'
 
 export default function AIAssistantPage() {
   return (

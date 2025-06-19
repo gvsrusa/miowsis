@@ -1,9 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+
 import { motion, AnimatePresence } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import { 
   DollarSign, 
   TrendingUp, 
@@ -15,8 +14,12 @@ import {
   Briefcase,
   Home
 } from 'lucide-react'
-import { SwipeablePortfolioCard } from './swipeable-portfolio-card'
+
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
+
+import { SwipeablePortfolioCard } from './swipeable-portfolio-card'
 
 interface MobileDashboardProps {
   data: {
@@ -49,7 +52,7 @@ export function MobileDashboard({ data }: MobileDashboardProps) {
   const [activeTab, setActiveTab] = useState('home')
   const [currentPortfolioIndex, setCurrentPortfolioIndex] = useState(0)
   
-  const portfolio = data.portfolio
+  const {portfolio} = data
   const portfolios = data.portfolios || []
   const isPositiveReturn = portfolio?.total_returns ? portfolio.total_returns >= 0 : true
 

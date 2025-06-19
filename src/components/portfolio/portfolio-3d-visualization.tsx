@@ -1,12 +1,16 @@
 'use client'
 
 import { useRef, useState, useMemo } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+
 import { OrbitControls, Text, Html, PerspectiveCamera, Line } from '@react-three/drei'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Info, Maximize2, Eye, EyeOff } from 'lucide-react'
-import * as THREE from 'three'
+
+
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+
+import type * as THREE from 'three'
 
 interface AssetNode {
   id: string
@@ -174,9 +178,9 @@ function PortfolioScene({ nodes }: { nodes: AssetNode[] }) {
       </mesh>
       
       <OrbitControls 
-        enablePan={true}
-        enableZoom={true}
-        enableRotate={true}
+        enablePan
+        enableZoom
+        enableRotate
         autoRotate={!hoveredId}
         autoRotateSpeed={0.5}
       />

@@ -1,19 +1,22 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
+
 import { redirect } from 'next/navigation'
+
+import confetti from 'canvas-confetti'
 import { motion } from 'framer-motion'
+import { Trophy, Sparkles } from 'lucide-react'
+import { useSession } from 'next-auth/react'
+import { toast } from 'sonner'
+
 import { AchievementsDisplay } from '@/components/gamification/achievements-display'
 import { Leaderboard } from '@/components/gamification/leaderboard'
 import { Card, CardContent } from '@/components/ui/card'
-import { toast } from 'sonner'
-import { Trophy, Sparkles } from 'lucide-react'
-import confetti from 'canvas-confetti'
 import { 
-  Achievement, 
-  UserStats, 
-  LeaderboardEntry
+  type Achievement, 
+  type UserStats, 
+  type LeaderboardEntry
 } from '@/lib/gamification/achievements.service'
 
 // Mock data for development

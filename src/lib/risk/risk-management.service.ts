@@ -1,5 +1,5 @@
-import { createClient } from '@/lib/supabase/server'
 import { PortfolioAnalyticsService } from '@/lib/portfolio/analytics.service'
+import { createClient } from '@/lib/supabase/server'
 
 export interface RiskProfile {
   userId: string
@@ -612,7 +612,7 @@ export class RiskManagementService {
     
     portfolio.holdings?.forEach((h: any) => {
       const assetType = h.asset.asset_type
-      const sector = h.asset.sector
+      const {sector} = h.asset
       
       const impact = scenario.impacts[assetType] || scenario.impacts[sector] || scenario.impacts.other || -10
       

@@ -1,6 +1,12 @@
 'use client'
 
+import Link from 'next/link'
+
+import { Bell, Moon, Sun, Menu } from 'lucide-react'
 import { useSession, signOut } from 'next-auth/react'
+import { useTheme } from 'next-themes'
+
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -10,11 +16,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Bell, Moon, Sun, Menu } from 'lucide-react'
-import { useTheme } from 'next-themes'
-import Link from 'next/link'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+
 import { DashboardNav } from './nav'
 
 export function DashboardHeader() {

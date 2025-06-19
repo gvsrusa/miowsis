@@ -1,0 +1,45 @@
+
+> miowsis@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.3.3 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://10.0.0.144:3000
+   - Environments: .env.local, .env.development, .env
+
+ ✓ Starting...
+ ⚠ Invalid next.config.ts options detected: 
+ ⚠     Unrecognized key(s) in object: 'allowedOrigins', 'serverComponentsExternalPackages' at "experimental"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ⚠ `experimental.serverComponentsExternalPackages` has been moved to `serverExternalPackages`. Please update your next.config.ts file accordingly.
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+ ○ Compiling middleware ...
+ ✓ Compiled middleware in 538ms
+ ✓ Ready in 1605ms
+ ⚠ Webpack is configured while Turbopack is not, which may cause problems.
+ ⚠ See instructions if you need to configure Turbopack:
+  https://nextjs.org/docs/app/api-reference/next-config-js/turbo
+
+ ○ Compiling /api/auth/[...nextauth] ...
+ ✓ Compiled /api/auth/[...nextauth] in 2.1s
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ HEAD /api/auth/session 400 in 2826ms
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+   ▲ Next.js 15.3.3 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://10.0.0.144:3000
+   - Environments: .env.local, .env.development, .env
+
+ ✓ Starting...
+ ○ Compiling middleware ...
+ ✓ Compiled middleware in 608ms
+ ✓ Ready in 1692ms
+ ⚠ Webpack is configured while Turbopack is not, which may cause problems.
+ ⚠ See instructions if you need to configure Turbopack:
+  https://nextjs.org/docs/app/api-reference/next-config-js/turbo
+

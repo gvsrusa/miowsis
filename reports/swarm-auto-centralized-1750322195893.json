@@ -1,0 +1,13 @@
+{
+  "objective": "enable eslint in all config files and package json for all environments and enable typescript and build and run the app. fix errors all if occur",
+  "strategy": "auto",
+  "mode": "centralized",
+  "maxAgents": 5,
+  "timeout": 60,
+  "parallel": true,
+  "monitor": false,
+  "output": "json",
+  "outputDir": "./reports",
+  "timestamp": "2025-06-19T08:36:35.893Z",
+  "id": "swarm-auto-centralized-1750322195893"
+}

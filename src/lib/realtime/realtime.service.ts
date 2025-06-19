@@ -1,5 +1,6 @@
+import { type RealtimeChannel, type RealtimePostgresChangesPayload } from '@supabase/supabase-js'
+
 import { createClient } from '@/lib/supabase/client'
-import { RealtimeChannel, RealtimePostgresChangesPayload } from '@supabase/supabase-js'
 
 export type RealtimeEvent = 
   | 'portfolio.update'

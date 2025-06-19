@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
+
 import { register } from '@/lib/monitoring/metrics';
 
 export async function GET(request: NextRequest) {

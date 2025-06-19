@@ -2,7 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import OnboardingPage from '../page'
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
+import { type AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 
 // Mock next-auth/react
 jest.mock('next-auth/react', () => ({

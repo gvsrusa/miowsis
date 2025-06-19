@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
+
 import {
   LayoutDashboard,
   Wallet,
@@ -15,6 +15,8 @@ import {
   Target,
   Clock,
 } from 'lucide-react'
+
+import { cn } from '@/lib/utils'
 
 const navItems = [
   {

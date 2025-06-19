@@ -1,13 +1,18 @@
 'use client'
 
-import { signIn } from 'next-auth/react'
+import { useState, Suspense } from 'react'
+
+import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+
+import { signIn } from 'next-auth/react'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { useState, Suspense } from 'react'
-import Link from 'next/link'
+
+
 
 function SignInForm() {
   const searchParams = useSearchParams()
@@ -132,10 +137,10 @@ export default function SignInPage() {
         <Card className="w-full max-w-md">
           <CardContent className="p-8">
             <div className="animate-pulse space-y-4">
-              <div className="h-8 bg-gray-200 rounded w-3/4 mx-auto"></div>
-              <div className="h-4 bg-gray-200 rounded"></div>
-              <div className="h-10 bg-gray-200 rounded"></div>
-              <div className="h-10 bg-gray-200 rounded"></div>
+              <div className="h-8 bg-gray-200 rounded w-3/4 mx-auto" />
+              <div className="h-4 bg-gray-200 rounded" />
+              <div className="h-10 bg-gray-200 rounded" />
+              <div className="h-10 bg-gray-200 rounded" />
             </div>
           </CardContent>
         </Card>

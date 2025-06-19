@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
+
 import { redirect } from 'next/navigation'
+
+import { motion } from 'framer-motion'
 import { 
   Search, 
   Filter, 
@@ -14,12 +16,12 @@ import {
   BarChart3,
   Info
 } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { useSession } from 'next-auth/react'
+
 import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Skeleton } from '@/components/ui/skeleton'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
 import {
   Select,
   SelectContent,
@@ -34,7 +36,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet'
-import { motion } from 'framer-motion'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
 
 interface Investment {

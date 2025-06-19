@@ -1,13 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+
+import { motion, AnimatePresence } from 'framer-motion'
+import { Trophy, Target, Flame, Star, Lock, TrendingUp } from 'lucide-react'
+
+import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
-import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Trophy, Target, Flame, Star, Lock, TrendingUp } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Achievement, AchievementCategory, UserStats } from '@/lib/gamification/achievements.service'
+import { type Achievement, type AchievementCategory, type UserStats } from '@/lib/gamification/achievements.service'
 import { cn } from '@/lib/utils'
 
 interface AchievementsDisplayProps {

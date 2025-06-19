@@ -1,11 +1,14 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
-import { redirect } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
-import { Skeleton } from '@/components/ui/skeleton'
+
+import { redirect } from 'next/navigation'
+
+import { useSession } from 'next-auth/react'
+
 import { WidgetDashboard } from '@/components/dashboard/widget-dashboard'
+import { Skeleton } from '@/components/ui/skeleton'
+import { createClient } from '@/lib/supabase/client'
 
 interface UserProfile {
   id: string

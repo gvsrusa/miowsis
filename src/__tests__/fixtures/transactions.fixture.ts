@@ -1,5 +1,5 @@
-import { mockUsers } from './users.fixture'
 import { mockPortfolios } from './portfolios.fixture'
+import { mockUsers } from './users.fixture'
 
 export interface Transaction {
   id: string

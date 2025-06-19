@@ -1,5 +1,5 @@
-import winston from 'winston';
 import { LoggingWinston } from '@google-cloud/logging-winston';
+import winston from 'winston';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 const isProduction = process.env.NODE_ENV === 'production';

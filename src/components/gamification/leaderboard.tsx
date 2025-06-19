@@ -1,13 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+
+import { motion } from 'framer-motion'
+import { Trophy, Medal, Award, Crown, TrendingUp } from 'lucide-react'
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Trophy, Medal, Award, Crown, TrendingUp } from 'lucide-react'
-import { motion } from 'framer-motion'
-import { LeaderboardEntry } from '@/lib/gamification/achievements.service'
+import { type LeaderboardEntry } from '@/lib/gamification/achievements.service'
 import { cn } from '@/lib/utils'
 
 interface LeaderboardProps {
@@ -153,7 +155,7 @@ export function Leaderboard({
                   </div>
                   <LeaderboardRow
                     entry={currentUserEntry}
-                    isCurrentUser={true}
+                    isCurrentUser
                     index={11}
                   />
                 </>

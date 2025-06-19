@@ -1,4 +1,4 @@
-import { Database } from '@/types/database'
+import { type Database } from '@/types/database'
 
 type Profile = Database['public']['Tables']['profiles']['Row']
 

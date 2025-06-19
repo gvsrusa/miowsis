@@ -1,5 +1,5 @@
-import { createClient } from '@/lib/supabase/server'
 import { RealtimeService } from '@/lib/realtime/realtime.service'
+import { createClient } from '@/lib/supabase/server'
 
 export type NotificationType = 
   | 'transaction'
@@ -180,6 +180,7 @@ export class NotificationService {
     const { data, error } = await supabase
       .from('notifications')
       .insert(notifications)
+      .select()
     
     if (error) throw error
     
@@ -655,7 +656,7 @@ export class NotificationService {
     if (!preferences.quietHours.enabled) return false
     
     const now = new Date()
-    const _timezone = preferences.quietHours.timezone || 'UTC'
+    // const timezone = preferences.quietHours.timezone || 'UTC'
     
     // Convert to user's timezone and check
     // Simplified implementation - would use proper timezone library in production
@@ -688,13 +689,13 @@ export class NotificationService {
   }
   
   private static async sendThroughChannels(
-    _notification: any,
+    notification: any,
     channels: NotificationChannel[]
   ): Promise<void> {
     for (const channel of channels) {
       switch (channel) {
         case 'email':
-          // await this.sendEmail(notification)
+          await this.sendEmail(notification)
           break
         case 'push':
           // await this.sendPushNotification(notification)
@@ -706,6 +707,76 @@ export class NotificationService {
           // Already handled by database insert
           break
       }
+    }
+  }
+
+  private static async sendEmail(notification: any): Promise<void> {
+    try {
+      const nodemailer = require('nodemailer')
+      
+      // Get user email
+      const supabase = await createClient()
+      const { data: user } = await supabase
+        .from('users')
+        .select('email')
+        .eq('id', notification.user_id)
+        .single()
+      
+      if (!user?.email) {
+        console.warn('No email found for user:', notification.user_id)
+        return
+      }
+
+      const transporter = nodemailer.createTransporter({
+        host: process.env.EMAIL_SERVER_HOST || 'smtp.gmail.com',
+        port: parseInt(process.env.EMAIL_SERVER_PORT || '587'),
+        secure: process.env.EMAIL_SERVER_SECURE === 'true' || false,
+        auth: {
+          user: process.env.EMAIL_SERVER_USER!,
+          pass: process.env.EMAIL_SERVER_PASSWORD!,
+        },
+        tls: {
+          rejectUnauthorized: false, // For development only
+        },
+      })
+
+      const actionButton = notification.action_url 
+        ? `<div style="text-align: center; margin: 20px 0;">
+             <a href="${process.env.NEXTAUTH_URL || 'http://localhost:3000'}${notification.action_url}" 
+                style="background-color: #0070f3; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block;">
+               View Details
+             </a>
+           </div>`
+        : ''
+
+      await transporter.sendMail({
+        from: process.env.EMAIL_FROM || 'noreply@miowsis.com',
+        to: user.email,
+        subject: `MIOwSIS - ${notification.title}`,
+        text: `${notification.title}\n\n${notification.message}\n\nThis is a notification from MIOwSIS.`,
+        html: `
+          <div style="max-width: 600px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;">
+            <div style="text-align: center; margin-bottom: 30px;">
+              <h1 style="color: #0070f3; margin: 0;">MIOwSIS</h1>
+            </div>
+            <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <h2 style="color: #333; margin: 0 0 15px 0;">${notification.title}</h2>
+              <p style="color: #666; font-size: 16px; line-height: 1.5; margin: 0;">${notification.message}</p>
+            </div>
+            ${actionButton}
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+              <p style="color: #999; font-size: 12px; margin: 0;">
+                This is an automated notification from MIOwSIS. Please do not reply to this email.
+              </p>
+            </div>
+          </div>
+        `,
+      })
+
+      console.log('Email sent successfully to:', user.email)
+    } catch (error) {
+      console.error('Failed to send email notification:', error)
+      // Don't throw error to prevent notification creation from failing
     }
   }
   

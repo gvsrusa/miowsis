@@ -1,11 +1,13 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { Responsive, WidthProvider, Layout } from 'react-grid-layout'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+
 import { ArrowUpRight, ArrowDownRight, Leaf, Plus, Send, CreditCard, Target, Settings2, X } from 'lucide-react'
+import { Responsive, WidthProvider, type Layout } from 'react-grid-layout'
+
 import { AIAssistant } from '@/components/ai/ai-assistant'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 
@@ -78,7 +80,7 @@ export function WidgetDashboard({ data }: WidgetDashboardProps) {
     [activeWidgets]
   )
 
-  const handleLayoutChange = (currentLayout: Layout[], allLayouts: Record<string, Layout[]>) => {
+  const handleLayoutChange = (_currentLayout: Layout[], allLayouts: Record<string, Layout[]>) => {
     setLayouts(allLayouts as typeof defaultLayouts)
     // Save to localStorage or database
     localStorage.setItem('dashboard-layouts', JSON.stringify(allLayouts))
@@ -220,7 +222,7 @@ function renderWidgetContent(type: string, data: WidgetData) {
 }
 
 function PortfolioOverviewWidget({ data }: { data: WidgetData }) {
-  const portfolio = data.portfolio
+  const {portfolio} = data
   const returnsPercentage = portfolio?.total_invested 
     ? ((portfolio.total_returns / portfolio.total_invested) * 100).toFixed(2)
     : '0.00'
@@ -271,7 +273,7 @@ function PortfolioOverviewWidget({ data }: { data: WidgetData }) {
 }
 
 function ESGImpactWidget({ data }: { data: WidgetData }) {
-  const portfolio = data.portfolio
+  const {portfolio} = data
 
   return (
     <>

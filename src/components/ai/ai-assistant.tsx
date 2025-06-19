@@ -1,13 +1,15 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Bot, Send, Loader2, Sparkles, TrendingUp, Lightbulb, AlertTriangle } from 'lucide-react'
+
 import { motion, AnimatePresence } from 'framer-motion'
+import { Bot, Send, Loader2, Sparkles, TrendingUp, Lightbulb, AlertTriangle } from 'lucide-react'
+
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 interface Message {
   id: string

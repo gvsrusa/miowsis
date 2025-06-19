@@ -1,4 +1,5 @@
-import { Database } from '@/types/database'
+import { type Database } from '@/types/database'
+
 import { mockUsers } from './users.fixture'
 
 type Portfolio = Database['public']['Tables']['portfolios']['Row']

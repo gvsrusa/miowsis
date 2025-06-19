@@ -1,8 +1,11 @@
 'use client'
 
-import { ReactNode } from 'react'
-import { useSession } from 'next-auth/react'
+import { type ReactNode } from 'react'
+
 import { redirect } from 'next/navigation'
+
+import { useSession } from 'next-auth/react'
+
 import { MainNav } from '@/components/layout/main-nav'
 
 interface DashboardLayoutProps {

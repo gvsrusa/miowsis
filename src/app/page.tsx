@@ -1,11 +1,13 @@
 'use client'
 
+import Link from 'next/link'
+
+import { motion } from 'framer-motion'
+import { ArrowRight, BarChart3, Globe, Shield, Sparkles, TrendingUp } from 'lucide-react'
+import { useSession } from 'next-auth/react'
+
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { ArrowRight, BarChart3, Globe, Shield, Sparkles, TrendingUp } from 'lucide-react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { useSession } from 'next-auth/react'
 
 export default function HomePage() {
   const { data: session } = useSession()

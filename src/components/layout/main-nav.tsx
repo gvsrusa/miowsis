@@ -1,9 +1,10 @@
 'use client'
 
+import { useState } from 'react'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
+
 import { 
   Home, 
   Briefcase, 
@@ -16,9 +17,11 @@ import {
   TrendingUp,
   Settings
 } from 'lucide-react'
-import { useState } from 'react'
 import { useSession, signOut } from 'next-auth/react'
+
 import { ModeToggle } from '@/components/mode-toggle'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,7 +30,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { cn } from '@/lib/utils'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },

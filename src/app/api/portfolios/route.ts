@@ -1,8 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
+
 import { getServerSession } from 'next-auth'
+import { z } from 'zod'
+
 import { authOptions } from '@/lib/auth'
 import { PortfolioService } from '@/lib/portfolio/portfolio.service'
-import { z } from 'zod'
 
 const createPortfolioSchema = z.object({
   name: z.string().min(1).max(100),

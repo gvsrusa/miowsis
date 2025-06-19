@@ -1,8 +1,10 @@
-import { ReactNode } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { type ReactNode } from 'react'
+
+import { TrendingUp, TrendingDown, Leaf, Info } from 'lucide-react'
+
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { TrendingUp, TrendingDown, Leaf, Info } from 'lucide-react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
 interface InvestmentCardProps {

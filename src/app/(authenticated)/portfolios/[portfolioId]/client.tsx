@@ -1,16 +1,21 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
+
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
+
 import { ArrowLeft, TrendingUp, TrendingDown, Activity, DollarSign, Leaf, RefreshCw } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { useSession } from 'next-auth/react'
+import { toast } from 'sonner'
+
+import { Portfolio3DVisualization } from '@/components/portfolio/portfolio-3d-visualization'
 import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Portfolio3DVisualization } from '@/components/portfolio/portfolio-3d-visualization'
-import { toast } from 'sonner'
-import Link from 'next/link'
+
+
 
 interface PortfolioDetails {
   id: string
