@@ -7,7 +7,7 @@ import { useRouter, redirect } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle2 } from 'lucide-react'
-import { useSession } from 'next-auth/react'
+import { useAuth } from '@/contexts/auth-context'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -38,7 +38,7 @@ interface OnboardingData {
 }
 
 export default function OnboardingPage() {
-  const { data: session, status } = useSession()
+  const { user, loading: authLoading } = useAuth()
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const [onboardingData, setOnboardingData] = useState<OnboardingData>({})
@@ -52,11 +52,11 @@ export default function OnboardingPage() {
     resolver: zodResolver(personalInfoSchema),
   })
 
-  if (status === 'loading') {
+  if (authLoading) {
     return <div>Loading...</div>
   }
 
-  if (status === 'unauthenticated') {
+  if (!authLoading && !user) {
     redirect('/auth/signin')
   }
 
@@ -99,7 +99,7 @@ export default function OnboardingPage() {
             esg: onboardingData.esgPreferences,
           },
         })
-        .eq('id', session?.user?.id)
+        .eq('id', user?.id)
 
       if (!error) {
         router.push('/dashboard')

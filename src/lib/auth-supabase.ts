@@ -98,10 +98,16 @@ export class SupabaseAuthService {
   // Sign in with OAuth provider (Google)
   async signInWithOAuth(provider: Provider, redirectTo?: string): Promise<{ error?: AuthError }> {
     try {
+      // Create callback URL with the final destination in the state parameter
+      const callbackUrl = new URL(`${window.location.origin}/auth/callback`)
+      if (redirectTo) {
+        callbackUrl.searchParams.set('state', redirectTo)
+      }
+
       const { error } = await this.supabase.auth.signInWithOAuth({
         provider,
         options: {
-          redirectTo: redirectTo || `${window.location.origin}/auth/callback`,
+          redirectTo: callbackUrl.toString(),
         }
       })
 

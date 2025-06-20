@@ -1,6 +1,6 @@
 import { randomBytes } from 'crypto'
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
+import { getServerSession, type Session } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { 
   CSRF_TOKEN_LENGTH, 
@@ -129,7 +129,7 @@ export async function createOrRefreshCSRFToken(sessionId: string): Promise<CSRFT
  */
 export async function validateCSRFProtection(
   request: NextRequest
-): Promise<{ valid: boolean; error?: string; session?: any }> {
+): Promise<{ valid: boolean; error?: string; session?: Session | null }> {
   // Skip CSRF protection for GET and HEAD requests
   if (request.method === 'GET' || request.method === 'HEAD') {
     return { valid: true }

@@ -9,7 +9,7 @@ export interface Achievement {
   tier: 'bronze' | 'silver' | 'gold' | 'platinum'
   points: number
   icon: string
-  requirements: Record<string, any>
+  requirements: Record<string, string | number | boolean>
   created_at: string
 }
 
@@ -19,7 +19,7 @@ export interface UserAchievement {
   achievement_id: string
   earned_at: string
   progress: number
-  metadata: Record<string, any>
+  metadata: Record<string, string | number | boolean>
 }
 
 export const mockAchievements: Record<string, Achievement> = {

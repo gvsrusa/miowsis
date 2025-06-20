@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { checkRouteAccess } from './lib/rbac'
 import type { Database } from './types/database.types'
+import { logWarn, logError, logInfo } from './lib/monitoring/edge-logger'
 
 // Define public routes that don't require authentication
 const publicRoutes = [
@@ -56,11 +57,15 @@ function isAdminRoute(pathname: string): boolean {
 
 // Removed checkAuthWithNextAuth - using only Supabase authentication now
 
-async function checkAuthWithSupabase(request: NextRequest): Promise<{ isAuthenticated: boolean, user: any, session: any }> {
+async function checkAuthWithSupabase(request: NextRequest): Promise<{ 
+  isAuthenticated: boolean, 
+  user: { id: string; email?: string } | null, 
+  session: { user: { id: string; email?: string } } | null 
+}> {
   try {
     // Only proceed if Supabase credentials are available
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      console.warn('Supabase credentials not available in middleware')
+      logWarn('Supabase credentials not available in middleware')
       return { isAuthenticated: false, user: null, session: null }
     }
 
@@ -81,12 +86,12 @@ async function checkAuthWithSupabase(request: NextRequest): Promise<{ isAuthenti
     const { data: { session }, error } = await supabase.auth.getSession()
     
     if (error) {
-      console.error('Supabase auth error in middleware:', error)
+      logError(new Error('Supabase auth error in middleware'), { error })
       return { isAuthenticated: false, user: null, session: null }
     }
 
     if (session?.user) {
-      console.log('Authenticated user in middleware:', session.user.email)
+      logInfo('Authenticated user in middleware', { email: session.user.email })
     }
 
     return { 
@@ -95,13 +100,13 @@ async function checkAuthWithSupabase(request: NextRequest): Promise<{ isAuthenti
       session: session || null
     }
   } catch (error) {
-    console.error('Error checking Supabase auth:', error)
+    logError(error instanceof Error ? error : new Error('Error checking Supabase auth'), { error })
     return { isAuthenticated: false, user: null, session: null }
   }
 }
 
 export async function middleware(request: NextRequest) {
-  const { pathname, searchParams } = request.nextUrl
+  const { pathname } = request.nextUrl
   
   // Skip middleware for API routes that don't need auth
   if (pathname.startsWith('/api/') && !pathname.startsWith('/api/auth')) {
@@ -150,7 +155,7 @@ export async function middleware(request: NextRequest) {
         const { hasAccess, redirectPath, reason } = await checkRouteAccess(pathname, userId)
         
         if (!hasAccess) {
-          console.warn(`Access denied to ${pathname} for user ${userId}: ${reason}`)
+          logWarn(`Access denied to ${pathname} for user ${userId}: ${reason}`, { pathname, userId, reason })
           if (redirectPath) {
             const redirectUrl = new URL(redirectPath, request.url)
             redirectUrl.searchParams.set('error', 'AccessDenied')
@@ -164,7 +169,7 @@ export async function middleware(request: NextRequest) {
           }
         }
       } catch (error) {
-        console.error('Error checking route access:', error)
+        logError(error instanceof Error ? error : new Error('Error checking route access'), { error })
         return NextResponse.json(
           { error: 'Internal Error', message: 'Failed to check permissions' },
           { status: 500 }
@@ -237,7 +242,7 @@ export async function middleware(request: NextRequest) {
         response.headers.set('x-user-email', session.user.email || '')
       }
     } catch (error) {
-      console.error('Error refreshing Supabase session:', error)
+      logError(error instanceof Error ? error : new Error('Error refreshing Supabase session'), { error })
     }
   }
 

@@ -60,13 +60,14 @@ export const POST = createSecuredHandler(
       const validatedData = requestSchema.parse(body)
       
       // Log the action for audit trail
-      console.log('Secured action performed:', {
-        userId,
-        userEmail,
-        userRole,
-        action: validatedData.action,
-        timestamp: new Date().toISOString(),
-      })
+      // TODO: Replace with proper logging
+      // logInfo('Secured action performed', {
+      //   userId,
+      //   userEmail,
+      //   userRole,
+      //   action: validatedData.action,
+      //   timestamp: new Date().toISOString(),
+      // })
       
       // Perform role-specific logic
       let responseMessage = `Action '${validatedData.action}' performed successfully`
@@ -130,12 +131,13 @@ export const DELETE = createSecuredHandler(
     const { userId, userRole } = context
     
     // Only admins can reach this point
-    console.log('Admin action performed:', {
-      userId,
-      userRole,
-      action: 'delete',
-      timestamp: new Date().toISOString(),
-    })
+    // TODO: Replace with proper logging
+    // logInfo('Admin action performed', {
+    //   userId,
+    //   userRole,
+    //   action: 'delete',
+    //   timestamp: new Date().toISOString(),
+    // })
     
     return NextResponse.json({
       success: true,

@@ -4,7 +4,7 @@ import { type ReactNode } from 'react'
 
 import { redirect } from 'next/navigation'
 
-import { useSession } from 'next-auth/react'
+import { useAuth } from '@/contexts/auth-context'
 
 import { MainNav } from '@/components/layout/main-nav'
 
@@ -13,9 +13,9 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const { status } = useSession()
+  const { user, loading } = useAuth()
 
-  if (status === 'unauthenticated') {
+  if (!loading && !user) {
     redirect('/auth/signin')
   }
 

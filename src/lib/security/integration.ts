@@ -10,8 +10,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { 
   validateCSRFToken, 
-  getCSRFTokenFromRequest,
-  withCSRFProtection 
+  getCSRFTokenFromRequest
 } from './csrf'
 import { 
   getUserRole, 
@@ -153,7 +152,7 @@ export async function performSecurityChecks(
 /**
  * Create a secured API route handler with all security features
  */
-export function createSecuredHandler<T extends any[] = []>(
+export function createSecuredHandler<T extends unknown[] = []>(
   options: {
     requireAuth?: boolean
     requireRoles?: UserRole[]
@@ -248,12 +247,11 @@ export async function applySecurityMiddleware(
   // Log security events if audit logging is enabled
   if (SecurityContext.features.AUDIT_LOGGING) {
     // This would integrate with your logging system
-    console.log('Security audit:', {
-      requestId,
-      method: request.method,
-      pathname,
-      timestamp: new Date().toISOString(),
-    })
+    // TODO: Replace with proper audit logging
+    // logAudit('Security event', requestId, pathname, {
+    //   method: request.method,
+    //   timestamp: new Date().toISOString(),
+    // })
   }
 
   return response

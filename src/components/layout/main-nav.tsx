@@ -17,7 +17,7 @@ import {
   TrendingUp,
   Settings
 } from 'lucide-react'
-import { useSession, signOut } from 'next-auth/react'
+import { useAuth } from '@/contexts/auth-context'
 
 import { ModeToggle } from '@/components/mode-toggle'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -43,7 +43,7 @@ const navigation = [
 
 export function MainNav() {
   const pathname = usePathname()
-  const { data: session } = useSession()
+  const { user, signOut } = useAuth()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -83,14 +83,14 @@ export function MainNav() {
           <div className="flex items-center gap-4">
             <ModeToggle />
             
-            {session ? (
+            {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src={session.user?.image || ''} />
+                      <AvatarImage src={user.avatar_url || ''} />
                       <AvatarFallback>
-                        {session.user?.name?.charAt(0) || 'U'}
+                        {user.name?.charAt(0) || 'U'}
                       </AvatarFallback>
                     </Avatar>
                   </Button>
@@ -99,10 +99,10 @@ export function MainNav() {
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                       <p className="text-sm font-medium leading-none">
-                        {session.user?.name || 'User'}
+                        {user.name || 'User'}
                       </p>
                       <p className="text-xs leading-none text-muted-foreground">
-                        {session.user?.email}
+                        {user.email}
                       </p>
                     </div>
                   </DropdownMenuLabel>
@@ -116,7 +116,10 @@ export function MainNav() {
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     className="flex items-center text-red-600"
-                    onClick={() => signOut({ callbackUrl: '/' })}
+                    onClick={async () => {
+                      await signOut()
+                      window.location.href = '/'
+                    }}
                   >
                     <LogOut className="mr-2 h-4 w-4" />
                     Sign out

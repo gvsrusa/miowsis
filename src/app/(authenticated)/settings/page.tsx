@@ -90,6 +90,7 @@ export default function SettingsPage() {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000))
       toast.success('Profile updated successfully')
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (_error) {
       toast.error('Failed to update profile')
     } finally {

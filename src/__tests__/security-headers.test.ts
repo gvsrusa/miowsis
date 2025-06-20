@@ -1,7 +1,17 @@
 import nextConfig from '../../next.config'
 
+interface NextConfigHeader {
+  key: string
+  value: string
+}
+
+interface NextConfigHeaderGroup {
+  source: string
+  headers: NextConfigHeader[]
+}
+
 describe('Security Headers Configuration', () => {
-  let headers: any[]
+  let headers: NextConfigHeaderGroup[]
 
   beforeAll(async () => {
     // Get headers from the Next.js configuration
@@ -16,7 +26,7 @@ describe('Security Headers Configuration', () => {
       expect(config).toBeDefined()
       
       const headerMap = new Map(
-        config.headers.map((h: any) => [h.key, h.value])
+        config.headers.map((h) => [h.key, h.value])
       )
 
       // Check CORS headers
@@ -27,7 +37,7 @@ describe('Security Headers Configuration', () => {
 
     it('should set appropriate origin header based on environment', () => {
       const config = apiHeaders()
-      const originHeader = config.headers.find((h: any) => h.key === 'Access-Control-Allow-Origin')
+      const originHeader = config.headers.find((h) => h.key === 'Access-Control-Allow-Origin')
       
       // In test environment, it should use development settings
       expect(originHeader.value).toContain('http://localhost:3000')
@@ -41,7 +51,7 @@ describe('Security Headers Configuration', () => {
 
     it('should set X-Frame-Options to DENY', () => {
       const config = securityHeaders()
-      const header = config.headers.find((h: any) => h.key === 'X-Frame-Options')
+      const header = config.headers.find((h) => h.key === 'X-Frame-Options')
       
       expect(header).toBeDefined()
       expect(header.value).toBe('DENY')
@@ -49,7 +59,7 @@ describe('Security Headers Configuration', () => {
 
     it('should set X-Content-Type-Options to nosniff', () => {
       const config = securityHeaders()
-      const header = config.headers.find((h: any) => h.key === 'X-Content-Type-Options')
+      const header = config.headers.find((h) => h.key === 'X-Content-Type-Options')
       
       expect(header).toBeDefined()
       expect(header.value).toBe('nosniff')
@@ -57,7 +67,7 @@ describe('Security Headers Configuration', () => {
 
     it('should set Referrer-Policy', () => {
       const config = securityHeaders()
-      const header = config.headers.find((h: any) => h.key === 'Referrer-Policy')
+      const header = config.headers.find((h) => h.key === 'Referrer-Policy')
       
       expect(header).toBeDefined()
       expect(header.value).toBe('strict-origin-when-cross-origin')
@@ -73,7 +83,7 @@ describe('Security Headers Configuration', () => {
     const allHeaders = () => {
       const allHeaderKeys = new Set<string>()
       headers.forEach(config => {
-        config.headers.forEach((h: any) => allHeaderKeys.add(h.key))
+        config.headers.forEach((h) => allHeaderKeys.add(h.key))
       })
       return allHeaderKeys
     }

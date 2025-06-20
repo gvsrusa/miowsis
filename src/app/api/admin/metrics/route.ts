@@ -41,7 +41,34 @@ export async function GET(request: NextRequest) {
           break
       }
 
-      const metrics: any = {}
+      interface Metrics {
+        users?: {
+          total: number
+          active: number
+          new: number
+          verified: number
+        }
+        transactions?: {
+          total: number
+          volume: number
+          fees: number
+          byType: Record<string, number>
+        }
+        portfolios?: {
+          count: number
+          totalValue: number
+          totalInvested: number
+          totalReturns: number
+          averageValue: number
+        }
+        revenue?: {
+          total: number
+          daily: Record<string, number>
+          average: number
+        }
+      }
+
+      const metrics: Metrics = {}
 
       // User metrics
       if (metric === 'all' || metric === 'users') {

@@ -244,7 +244,7 @@ export default function AdminUsersPage() {
                         className="text-blue-600 hover:text-blue-900"
                         onClick={() => {
                           // View user details
-                          console.log('View user:', user.id)
+                          // TODO: Implement view user details
                         }}
                       >
                         View Details

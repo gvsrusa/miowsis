@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 // import { getServerSession } from 'next-auth'
 // import { authOptions } from './auth'
 import type { Database } from '@/types/database.types'
+import { logError, logWarn } from '@/lib/monitoring/edge-logger'
 
 export type UserRole = Database['public']['Tables']['profiles']['Row']['role']
 
@@ -73,7 +74,7 @@ export function hasRole(userRole: UserRole | null, requiredRoles: UserRole[]): b
 export async function getUserRole(userId: string): Promise<UserRole | null> {
   try {
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-      console.error('Supabase credentials not configured')
+      logError(new Error('Supabase credentials not configured'))
       return null
     }
 
@@ -88,13 +89,13 @@ export async function getUserRole(userId: string): Promise<UserRole | null> {
       .single()
 
     if (error) {
-      console.error('Error fetching user role:', error)
+      logError(new Error('Error fetching user role'), { error })
       return null
     }
 
     return data?.role || null
   } catch (error) {
-    console.error('Error in getUserRole:', error)
+    logError(error instanceof Error ? error : new Error('Error in getUserRole'), { error })
     return null
   }
 }
@@ -145,27 +146,52 @@ export async function checkRouteAccess(
   return { hasAccess: true }
 }
 
-// Middleware helper for API routes
-// Temporarily commented out to fix Edge Runtime issue
-/*
+// Middleware helper for API routes - Edge Runtime compatible
 export async function withRoleAuth(
   request: NextRequest,
   requiredRoles: UserRole[],
   handler: (req: NextRequest, userId: string, userRole: UserRole) => Promise<NextResponse>
 ): Promise<NextResponse> {
   try {
-    // Get session from NextAuth
-    const session = await getServerSession(authOptions)
+    // Get user ID from request headers (set by middleware)
+    const userId = request.headers.get('x-user-id')
     
-    if (!session?.user?.id) {
-      return NextResponse.json(
-        { error: 'Unauthorized', message: 'Authentication required' },
-        { status: 401 }
-      )
+    if (!userId) {
+      // Try to get from Supabase directly
+      const { createClient } = await import('@/lib/supabase/server')
+      const supabase = await createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      
+      if (!user) {
+        return NextResponse.json(
+          { error: 'Unauthorized', message: 'Authentication required' },
+          { status: 401 }
+        )
+      }
+      
+      // Use the user ID from Supabase
+      const userIdFromAuth = user.id
+      
+      // Get user role
+      const userRole = await getUserRole(userIdFromAuth)
+      
+      if (!userRole || !hasRole(userRole, requiredRoles)) {
+        return NextResponse.json(
+          { 
+            error: 'Forbidden', 
+            message: `Required role: ${requiredRoles.join(' or ')}`,
+            currentRole: userRole 
+          },
+          { status: 403 }
+        )
+      }
+
+      // Call the handler with authenticated user info
+      return await handler(request, userIdFromAuth, userRole)
     }
 
     // Get user role
-    const userRole = await getUserRole(session.user.id)
+    const userRole = await getUserRole(userId)
     
     if (!userRole || !hasRole(userRole, requiredRoles)) {
       return NextResponse.json(
@@ -179,16 +205,15 @@ export async function withRoleAuth(
     }
 
     // Call the handler with authenticated user info
-    return await handler(request, session.user.id, userRole)
+    return await handler(request, userId, userRole)
   } catch (error) {
-    console.error('Role auth error:', error)
+    logError(error instanceof Error ? error : new Error('Role auth error'), { error })
     return NextResponse.json(
       { error: 'Internal Server Error', message: 'Authentication check failed' },
       { status: 500 }
     )
   }
 }
-*/
 
 // React hook helper for client-side role checking
 export function useRoleCheck(_requiredRoles: UserRole[]): {

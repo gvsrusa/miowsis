@@ -152,6 +152,7 @@ export default function ProfilePage() {
       setProfile(editedProfile)
       setIsEditDialogOpen(false)
       toast.success('Profile updated successfully')
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (_error) {
       toast.error('Failed to update profile')
     } finally {

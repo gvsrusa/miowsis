@@ -2,1049 +2,134 @@
 > miowsis@0.1.0 dev
 > next dev
 
- ⚠ Port 3000 is in use, using available port 3001 instead.
    ▲ Next.js 15.3.3
-   - Local:        http://localhost:3001
-   - Network:      http://10.0.1.104:3001
+   - Local:        http://localhost:3000
+   - Network:      http://10.0.2.167:3000
    - Environments: .env.local, .env.development, .env
 
  ✓ Starting...
- ✓ Ready in 1468ms
+ ✓ Ready in 1391ms
  ○ Compiling /middleware ...
- ✓ Compiled /middleware in 1178ms (231 modules)
+ ✓ Compiled /middleware in 1114ms (231 modules)
  ○ Compiling / ...
 <w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (100kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
- ✓ Compiled / in 5.9s (1553 modules)
- GET /?id=665f39a7-c541-477b-a90b-323366fcec52&vscodeBrowserReqId=1750355138925 200 in 6868ms
- GET / 200 in 131ms
- ○ Compiling /api/auth/[...nextauth] ...
- ✓ Compiled /api/auth/[...nextauth] in 717ms (858 modules)
- ✓ Compiled in 846ms (693 modules)
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- GET /favicon.ico 200 in 3405ms
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 766ms (1915 modules)
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 4101ms
- GET / 200 in 996ms
- GET /_next/static/webpack/0abe93c2f7194842.webpack.hot-update.json 404 in 1019ms
- GET / 200 in 212ms
- GET /favicon.ico 200 in 20ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 163ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- ○ Compiling /auth/signin ...
- ✓ Compiled /auth/signin in 815ms (1936 modules)
- GET /auth/signin 200 in 981ms
- ✓ Compiled in 72ms (688 modules)
- GET /?id=8a886027-4e4e-489c-bc12-be0d79993c2b&vscodeBrowserReqId=1750355454833 200 in 185ms
- ○ Compiling /terms ...
- ✓ Compiled /terms in 517ms (1544 modules)
- GET /terms 200 in 723ms
- ✓ Compiled in 80ms (688 modules)
- ✓ Compiled /privacy in 312ms (1546 modules)
- GET /privacy 200 in 398ms
- ✓ Compiled /api/auth/[...nextauth] in 266ms (1237 modules)
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/providers 200 in 531ms
- ○ Compiling /api/auth/csrf ...
- ✓ Compiled /api/auth/csrf in 626ms (1940 modules)
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/csrf 401 in 862ms
- POST /api/auth/_log 200 in 70ms
- POST /api/auth/signin/email 200 in 64ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- GET / 200 in 231ms
+ ✓ Compiled / in 6.6s (1690 modules)
+ GET / 200 in 7797ms
  ○ Compiling /favicon.ico ...
- ✓ Compiled /favicon.ico in 645ms (874 modules)
- GET /favicon.ico 200 in 737ms
- GET /favicon.ico 200 in 6ms
+ ✓ Compiled /favicon.ico in 1166ms (944 modules)
+ GET /favicon.ico 200 in 1272ms
+ GET / 200 in 295ms
+ GET /favicon.ico 200 in 16ms
  ⚠ Blocked cross-origin request from 127.0.0.1 to /_next/* resource. To allow this, configure "allowedDevOrigins" in next.config
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
- ✓ Compiled /api/auth/[...nextauth] in 224ms (1251 modules)
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 394ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- GET /auth/signin 200 in 54ms
- GET /api/auth/providers 200 in 23ms
- ✓ Compiled /api/auth/csrf in 284ms (1254 modules)
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/csrf 401 in 386ms
- POST /api/auth/_log 200 in 18ms
- POST /api/auth/signin/google 200 in 16ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- ✓ Compiled in 1286ms (702 modules)
- ✓ Compiled in 173ms (688 modules)
- ✓ Compiled in 490ms (702 modules)
- ✓ Compiled in 517ms (702 modules)
- ✓ Compiled in 694ms (702 modules)
- ✓ Compiled in 759ms (702 modules)
- ✓ Compiled in 674ms (702 modules)
- ✓ Compiled in 1593ms (1571 modules)
- ✓ Compiled in 495ms (707 modules)
- ✓ Compiled in 1427ms (1583 modules)
- ✓ Compiled in 65ms (698 modules)
- ✓ Compiled in 82ms (698 modules)
- ✓ Compiled in 73ms (698 modules)
- ✓ Compiled in 504ms (712 modules)
- ✓ Compiled in 480ms (712 modules)
- ✓ Compiled in 1162ms (1577 modules)
- ✓ Compiled in 66ms (701 modules)
- ✓ Compiled in 62ms (701 modules)
- ✓ Compiled in 488ms (715 modules)
- ✓ Compiled in 68ms (701 modules)
- ✓ Compiled in 557ms (715 modules)
- ✓ Compiled in 88ms (701 modules)
- ✓ Compiled in 550ms (715 modules)
- ✓ Compiled in 76ms (701 modules)
- ✓ Compiled in 668ms (715 modules)
- ✓ Compiled in 178ms (701 modules)
- ✓ Compiled in 66ms (701 modules)
- ✓ Compiled in 475ms (715 modules)
- ✓ Compiled in 640ms (715 modules)
- ✓ Compiled in 538ms (715 modules)
- ✓ Compiled in 509ms (715 modules)
- ✓ Compiled in 503ms (715 modules)
- ✓ Compiled in 557ms (715 modules)
- ✓ Compiled in 833ms (715 modules)
- ✓ Compiled in 85ms (701 modules)
- ✓ Compiled in 608ms (715 modules)
- ✓ Compiled in 514ms (715 modules)
- ✓ Compiled in 475ms (715 modules)
- ✓ Compiled in 470ms (715 modules)
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/workspaces/miowsis/.next/cache/webpack/client-development/0.pack.gz_' -> '/workspaces/miowsis/.next/cache/webpack/client-development/0.pack.gz'
- ✓ Compiled in 1457ms (1784 modules)
- ✓ Compiled in 95ms (782 modules)
- ✓ Compiled in 1065ms (1784 modules)
- ✓ Compiled in 67ms (782 modules)
- ✓ Compiled in 636ms (1021 modules)
- ✓ Compiled in 546ms (1027 modules)
- ✓ Compiled in 527ms (796 modules)
- ✓ Compiled in 679ms (796 modules)
- ✓ Compiled in 506ms (796 modules)
- ✓ Compiled in 480ms (796 modules)
- ✓ Compiled in 617ms (796 modules)
- ✓ Compiled in 568ms (796 modules)
-[?25h
-i/auth/[...nextauth]/route.js:410:629)
-    at __webpack_require__.X (.next/server/webpack-runtime.js:168:21) {
-  type: 'TypeError',
-  page: '/api/auth/error'
-}
- POST /api/auth/_log 500 in 754ms
- GET /api/auth/error 500 in 725ms
- ✓ Compiled in 1574ms (2317 modules)
- ✓ Compiled in 84ms (948 modules)
- ✓ Compiled in 502ms (962 modules)
- ✓ Compiled in 523ms (962 modules)
- ✓ Compiled in 1000ms (2311 modules)
- ✓ Compiled in 191ms (951 modules)
- ✓ Compiled in 700ms (965 modules)
- ✓ Compiled in 702ms (1932 modules)
- ✓ Compiled in 588ms (964 modules)
- ✓ Compiled in 684ms (964 modules)
- GET / 200 in 348ms
- ○ Compiling /api/auth/[...nextauth] ...
- ✓ Compiled /api/auth/[...nextauth] in 760ms (1303 modules)
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- GET / 200 in 581ms
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/workspaces/miowsis/.next/cache/webpack/client-development/0.pack.gz_' -> '/workspaces/miowsis/.next/cache/webpack/client-development/0.pack.gz'
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 2246ms
+ ○ Compiling /auth/signin ...
+ ✓ Compiled /auth/signin in 1080ms (1715 modules)
+ GET /auth/signin 200 in 1194ms
+ GET / 200 in 39ms
+ GET /favicon.ico 200 in 37ms
+ ✓ Compiled in 140ms (742 modules)
+ ✓ Compiled in 84ms (742 modules)
+ GET /?code=7c0f0397-1c29-4edd-95c9-1b0c3f93887f 200 in 206ms
+ GET /favicon.ico 200 in 15ms
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+Authenticated user in middleware: gvsrusa@gmail.com
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+ ✓ Compiled /_not-found in 303ms (1705 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 457ms
  GET /auth/signin 200 in 19ms
- GET /api/auth/providers 200 in 28ms
- ⨯ Failed to generate static paths for /api/auth/[...nextauth]:
-[TypeError: Cannot read properties of undefined (reading 'definition')] {
-  type: 'TypeError'
-}
- ✓ Compiled /api/auth/csrf in 416ms (1318 modules)
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/csrf 401 in 637ms
- GET /auth/signin 200 in 90ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- POST /api/auth/_log 200 in 721ms
- POST /api/auth/signin/google 200 in 722ms
- GET /api/auth/signin?csrf=true 302 in 22ms
- GET /auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fdashboard 200 in 211ms
- GET /api/auth/session 200 in 26ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-[next-auth][error][OAUTH_CALLBACK_ERROR] 
-https://next-auth.js.org/errors#oauth_callback_error State cookie was missing. {
-  error: [Error [OAuthCallbackError]: State cookie was missing.] {
-    code: undefined
-  },
-  providerId: 'google',
-  message: 'State cookie was missing.'
-}
- GET /api/auth/callback/google 302 in 161ms
- GET /api/auth/error?error=OAuthCallback 302 in 6ms
- GET /api/auth/signin?error=OAuthCallback 302 in 6ms
- GET /auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fdashboard&error=OAuthCallback 200 in 57ms
- GET /api/auth/session 200 in 14ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- GET / 200 in 125ms
- ✓ Compiled /favicon.ico in 431ms (938 modules)
- GET /favicon.ico 200 in 603ms
- ✓ Compiled /api/auth/[...nextauth] in 234ms (1317 modules)
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 390ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- GET /auth/signin 200 in 59ms
- GET /api/auth/providers 200 in 25ms
- ✓ Compiled /api/auth/csrf in 225ms (1320 modules)
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/csrf 401 in 319ms
- POST /api/auth/_log 200 in 21ms
- POST /api/auth/signin/google 200 in 23ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- GET /auth/signin 200 in 123ms
- GET /api/auth/session 200 in 26ms
-✅ Authentication configuration is valid
-✅ Google OAuth provider enabled
-✅ Email provider enabled
- ✓ Compiled in 595ms (964 modules)
- ✓ Compiled in 662ms (964 modules)
- ✓ Compiled in 651ms (964 modules)
- ✓ Compiled in 530ms (964 modules)
- ✓ Compiled in 522ms (964 modules)
- ✓ Compiled in 488ms (964 modules)
- ✓ Compiled in 850ms (964 modules)
- ✓ Compiled in 83ms (950 modules)
- ✓ Compiled in 491ms (964 modules)
- ✓ Compiled in 487ms (964 modules)
- ✓ Compiled in 478ms (964 modules)
- ✓ Compiled in 464ms (964 modules)
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
+ GET /?code=d4d846d9-1c9a-43a9-973f-1a2497ff7b4a 200 in 82ms
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+Authenticated user in middleware: gvsrusa@gmail.com
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 36ms
+ GET /favicon.ico 200 in 17ms
  ○ Compiling /_error ...
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- GET / 500 in 9192ms
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- GET / 500 in 14ms
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/app/auth/signin/page.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/workspaces/miowsis/.next/cache/webpack/client-development/0.pack.gz_' -> '/workspaces/miowsis/.next/cache/webpack/client-development/0.pack.gz'
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ⨯ ./src/lib/supabase/server.ts
-Error:   [31mx[0m You're importing a component that needs "next/headers". That only works in a Server Component which is not supported in the pages/ directory. Read more: https://nextjs.org/docs/app/building-your-application/rendering/server-components
-  [31m|[0m
-
-   ,-[[36;1;4m/workspaces/miowsis/src/lib/supabase/server.ts[0m:1:1]
- [2m1[0m | import { cookies } from 'next/headers'
-   : [35;1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
- [2m2[0m | 
- [2m3[0m | import { createServerClient, type CookieOptions } from '@supabase/ssr'
-   `----
-
-Import trace for requested module:
-./src/lib/supabase/server.ts
-./src/lib/auth-supabase.ts
-./src/contexts/auth-context.tsx
-./src/components/providers.tsx
- ✓ Compiled /_not-found in 1652ms (2122 modules)
- ✓ Compiled in 1056ms (2122 modules)
- ✓ Compiled in 82ms (1032 modules)
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/workspaces/miowsis/.next/cache/webpack/client-development/0.pack.gz_' -> '/workspaces/miowsis/.next/cache/webpack/client-development/0.pack.gz'
- ✓ Compiled in 598ms (1271 modules)
- ✓ Compiled in 662ms (1277 modules)
- ✓ Compiled in 503ms (1046 modules)
- ✓ Compiled in 532ms (1046 modules)
- ✓ Compiled in 528ms (1046 modules)
- ✓ Compiled in 488ms (1046 modules)
- ✓ Compiled in 677ms (1046 modules)
- ✓ Compiled in 98ms (1032 modules)
- ⨯ TypeError: Cannot read properties of undefined (reading 'call')
-    at Object.t [as require] (.next/server/webpack-runtime.js:1:128)
-    at JSON.parse (<anonymous>) {
-  digest: '3011439352'
-}
-TypeError: Cannot read properties of undefined (reading 'call')
-    at Object.t [as require] (.next/server/webpack-runtime.js:1:128)
-    at JSON.parse (<anonymous>)
- ⨯ TypeError: Cannot read properties of undefined (reading 'call')
-    at Object.t [as require] (.next/server/webpack-runtime.js:1:128)
-    at JSON.parse (<anonymous>) {
-  page: '/'
-}
- GET / 500 in 852ms
- ○ Compiling /_not-found ...
+ ✓ Compiled /_error in 2.7s (2009 modules)
+ ✓ Compiled in 107ms (990 modules)
+ GET / 200 in 1022ms
+ GET / 200 in 18ms
+ HEAD / 404 in 3376ms
+ GET /_next/static/css/app/layout.css?v=1750383966441 404 in 222ms
+ GET /_next/static/css/app/layout.css?v=1750383966441 404 in 56ms
+ ✓ Compiled /favicon.ico in 378ms (1035 modules)
+ GET /favicon.ico 200 in 460ms
+ ✓ Compiled in 1368ms (1003 modules)
+ GET / 200 in 72ms
+ GET /_next/static/css/app/layout.css?v=1750384737949 404 in 169ms
+ GET /_next/static/css/app/layout.css?v=1750384737949 404 in 56ms
+ ✓ Compiled in 160ms (989 modules)
+ ✓ Compiled in 738ms (1003 modules)
+ GET / 200 in 22ms
+ GET /_next/static/css/app/layout.css?v=1750384807386 404 in 49ms
+ GET /_next/static/css/app/layout.css?v=1750384807386 404 in 53ms
+ ✓ Compiled in 127ms (989 modules)
+ ✓ Compiled in 1914ms (1980 modules)
+ GET / 200 in 132ms
+ GET /_next/static/css/app/layout.css?v=1750384822943 404 in 170ms
+ GET /_next/static/css/app/layout.css?v=1750384822943 404 in 58ms
+ ✓ Compiled in 198ms (989 modules)
+ ✓ Compiled in 507ms (1003 modules)
+ GET / 200 in 16ms
+ GET /_next/static/css/app/layout.css?v=1750384836525 404 in 42ms
+ GET /_next/static/css/app/layout.css?v=1750384836525 404 in 46ms
+ ✓ Compiled in 570ms (1003 modules)
+ GET / 200 in 19ms
+ GET /_next/static/css/app/layout.css?v=1750384850445 404 in 48ms
+ GET /_next/static/css/app/layout.css?v=1750384850445 404 in 44ms
+ ✓ Compiled in 712ms (1003 modules)
+ GET / 200 in 43ms
+ GET /_next/static/css/app/layout.css?v=1750384863422 404 in 104ms
+ GET /_next/static/css/app/layout.css?v=1750384863422 404 in 58ms
+ ✓ Compiled in 551ms (1003 modules)
+ GET / 200 in 16ms
+ GET /_next/static/css/app/layout.css?v=1750384876259 404 in 50ms
+ GET /_next/static/css/app/layout.css?v=1750384876259 404 in 48ms
+ ✓ Compiled in 561ms (1003 modules)
+ GET / 200 in 20ms
+ GET /_next/static/css/app/layout.css?v=1750384893280 404 in 46ms
+ GET /_next/static/css/app/layout.css?v=1750384893280 404 in 47ms
+ ✓ Compiled in 519ms (1003 modules)
+ GET / 200 in 18ms
+ GET /_next/static/css/app/layout.css?v=1750384911455 404 in 45ms
+ GET /_next/static/css/app/layout.css?v=1750384911455 404 in 42ms
+ ✓ Compiled in 502ms (1003 modules)
+ GET / 200 in 104ms
+ GET /_next/static/css/app/layout.css?v=1750384918524 404 in 64ms
+ GET /_next/static/css/app/layout.css?v=1750384918524 404 in 38ms
+ ✓ Compiled in 503ms (1003 modules)
+ GET / 200 in 25ms
+ GET /_next/static/css/app/layout.css?v=1750384945480 404 in 46ms
+ GET /_next/static/css/app/layout.css?v=1750384945480 404 in 49ms
+ ✓ Compiled in 506ms (1003 modules)
+ GET / 200 in 16ms
+ GET /_next/static/css/app/layout.css?v=1750384951490 404 in 41ms
+ GET /_next/static/css/app/layout.css?v=1750384951490 404 in 39ms
+ GET / 200 in 121ms
+ GET /_next/static/css/app/layout.css?v=1750385098486 404 in 60ms
+ GET /_next/static/chunks/main-app.js?v=1750385098486 404 in 204ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 203ms
+ GET /_next/static/chunks/app/error.js 404 in 197ms
+ GET /_next/static/chunks/app/not-found.js 404 in 185ms
+ GET /_next/static/chunks/app/global-error.js 404 in 54ms
+ ○ Compiling /auth/signin ...
+ ✓ Compiled /auth/signin in 1032ms (992 modules)
+ GET /auth/signin 200 in 1307ms
+ GET /_next/static/css/app/layout.css?v=1750385154376 404 in 65ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 231ms
+ GET /_next/static/chunks/app/error.js 404 in 230ms
+ GET /_next/static/chunks/main-app.js?v=1750385154376 404 in 235ms
+ GET /_next/static/chunks/app/not-found.js 404 in 182ms
+ GET /_next/static/chunks/app/global-error.js 404 in 48ms
+ ○ Compiling /auth/signup ...
+ ✓ Compiled /auth/signup in 1414ms (1983 modules)
+ GET /auth/signup 200 in 1688ms
+ ✓ Compiled /_not-found in 273ms (993 modules)
+ GET /_next/static/css/app/layout.css?v=1750385334704 404 in 608ms
+ GET /_next/static/chunks/main-app.js?v=1750385334704 404 in 614ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 614ms
+ GET /_next/static/chunks/app/error.js 404 in 613ms
+ GET /_next/static/chunks/app/not-found.js 404 in 607ms
+ ✓ Compiled in 494ms (993 modules)
+ GET /_next/static/chunks/app/global-error.js 404 in 127ms
+ ✓ Compiled in 83ms (993 modules)
 [?25h

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { redirect } from 'next/navigation'
 
-import { useSession } from 'next-auth/react'
+import { useAuth } from '@/contexts/auth-context'
 
 import { WidgetDashboard } from '@/components/dashboard/widget-dashboard'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -26,14 +26,14 @@ interface Portfolio {
 }
 
 export default function DashboardPage() {
-  const { data: session, status } = useSession()
+  const { user, loading: authLoading } = useAuth()
   const [profile, setProfile] = useState<UserProfile | null>(null)
   const [portfolio, setPortfolio] = useState<Portfolio | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     async function loadDashboardData() {
-      if (!session?.user?.id) return
+      if (!user?.id) return
 
       const supabase = createClient()
 
@@ -41,7 +41,7 @@ export default function DashboardPage() {
       const { data: profileData } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', session.user.id)
+        .eq('id', user.id)
         .single()
 
       if (profileData) {
@@ -56,7 +56,7 @@ export default function DashboardPage() {
       const { data: portfolioData } = await supabase
         .from('portfolios')
         .select('*')
-        .eq('user_id', session.user.id)
+        .eq('user_id', user.id)
         .eq('is_active', true)
         .single()
 
@@ -67,18 +67,18 @@ export default function DashboardPage() {
       setIsLoading(false)
     }
 
-    if (status === 'authenticated') {
+    if (user && !authLoading) {
       loadDashboardData()
     }
-  }, [session, status])
+  }, [user, authLoading])
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
+    if (!authLoading && !user) {
       redirect('/auth/signin')
     }
-  }, [status])
+  }, [user, authLoading])
 
-  if (status === 'loading' || isLoading) {
+  if (authLoading || isLoading) {
     return <DashboardSkeleton />
   }
 

@@ -6,7 +6,6 @@
  * and other security features.
  */
 
-import type { NextAuthOptions } from 'next-auth'
 import type { UserRole } from '@/lib/rbac'
 
 // Security feature flags

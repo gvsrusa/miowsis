@@ -67,7 +67,7 @@ export default function DemoPage() {
               change={4.32}
               changePercentage={1.78}
               esgScore={82}
-              onDetailsClick={() => console.log('Details clicked')}
+              onDetailsClick={() => {}}
             />
             <InvestmentCard
               symbol="ICLN"
@@ -77,7 +77,7 @@ export default function DemoPage() {
               change={-0.12}
               changePercentage={-0.65}
               esgScore={91}
-              onDetailsClick={() => console.log('Details clicked')}
+              onDetailsClick={() => {}}
             />
             <InvestmentCard
               symbol="GRNB"
@@ -87,7 +87,7 @@ export default function DemoPage() {
               change={0.08}
               changePercentage={0.15}
               esgScore={94}
-              onDetailsClick={() => console.log('Details clicked')}
+              onDetailsClick={() => {}}
             />
           </div>
         </section>

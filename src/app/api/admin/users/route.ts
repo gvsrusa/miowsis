@@ -123,7 +123,7 @@ export async function PATCH(request: NextRequest) {
         .reduce((obj, key) => {
           obj[key] = updates[key]
           return obj
-        }, {} as any)
+        }, {} as Record<string, unknown>)
 
       if (Object.keys(filteredUpdates).length === 0) {
         return NextResponse.json(

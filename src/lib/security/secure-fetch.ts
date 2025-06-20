@@ -69,9 +69,9 @@ export async function secureFetch(
 /**
  * Type-safe wrapper for JSON API requests with CSRF protection
  */
-export async function secureApi<T = any>(
+export async function secureApi<T = unknown>(
   url: string,
-  options: RequestInit & { body?: any } = {}
+  options: RequestInit & { body?: unknown } = {}
 ): Promise<{ data?: T; error?: string }> {
   try {
     const response = await secureFetch(url, {
@@ -95,7 +95,7 @@ export async function secureApi<T = any>(
       return { data }
     }
     
-    return { data: undefined as any }
+    return { data: undefined as T }
   } catch (error) {
     console.error('API request failed:', error)
     return { error: error instanceof Error ? error.message : 'Request failed' }

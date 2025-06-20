@@ -7,23 +7,23 @@ export * from './achievements.fixture'
 
 // Test data generators
 export const generateTestData = {
-  user: (overrides?: any) => {
+  user: (overrides?: Record<string, unknown>) => {
     const { createMockUser } = require('./users.fixture')
     return createMockUser(overrides)
   },
-  portfolio: (userId: string, overrides?: any) => {
+  portfolio: (userId: string, overrides?: Record<string, unknown>) => {
     const { createMockPortfolio } = require('./portfolios.fixture')
     return createMockPortfolio(userId, overrides)
   },
-  transaction: (userId: string, portfolioId: string, overrides?: any) => {
+  transaction: (userId: string, portfolioId: string, overrides?: Record<string, unknown>) => {
     const { createMockTransaction } = require('./transactions.fixture')
     return createMockTransaction(userId, portfolioId, overrides)
   },
-  asset: (overrides?: any) => {
+  asset: (overrides?: Record<string, unknown>) => {
     const { createMockAsset } = require('./assets.fixture')
     return createMockAsset(overrides)
   },
-  achievement: (overrides?: any) => {
+  achievement: (overrides?: Record<string, unknown>) => {
     const { createMockAchievement } = require('./achievements.fixture')
     return createMockAchievement(overrides)
   }
@@ -99,7 +99,7 @@ export const testUtils = {
   waitForAsync: (ms: number = 100) => new Promise(resolve => setTimeout(resolve, ms)),
   
   // Mock fetch responses
-  mockFetchResponse: (data: any, status = 200) => {
+  mockFetchResponse: (data: unknown, status = 200) => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: status >= 200 && status < 300,
       status,
@@ -123,7 +123,7 @@ export const testUtils = {
   }),
   
   // Mock session
-  mockSessionContext: (session: any = null) => ({
+  mockSessionContext: (session: { user?: { id: string; email?: string } } | null = null) => ({
     data: session,
     status: session ? 'authenticated' : 'unauthenticated',
     update: jest.fn(),

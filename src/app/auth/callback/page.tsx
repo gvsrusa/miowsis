@@ -28,7 +28,7 @@ export default function AuthCallbackPage() {
         }
 
         if (code) {
-          console.log('Processing OAuth callback with code:', code)
+          // Processing OAuth callback
           
           const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
           
@@ -40,7 +40,7 @@ export default function AuthCallbackPage() {
           }
 
           if (data.session) {
-            console.log('OAuth authentication successful:', data.user?.email)
+            // OAuth authentication successful
             setStatus('success')
             
             // Redirect to dashboard or callback URL after a short delay
