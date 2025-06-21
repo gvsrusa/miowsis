@@ -1,5 +1,70 @@
 import type { NextConfig } from "next";
 
+// PWA Configuration (if using next-pwa)
+const withPWA = (() => {
+  try {
+    const pwa = require('@ducanh2912/next-pwa').default;
+    return pwa({
+      dest: 'public',
+      register: true,
+      skipWaiting: true,
+      disable: process.env.NODE_ENV === 'development',
+      // CRITICAL: Exclude auth routes from service worker
+      runtimeCaching: [
+        {
+          urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'google-fonts',
+            expiration: {
+              maxEntries: 10,
+              maxAgeSeconds: 365 * 24 * 60 * 60 // 365 days
+            }
+          }
+        },
+        {
+          urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'static-images',
+            expiration: {
+              maxEntries: 64,
+              maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
+            }
+          }
+        },
+        {
+          urlPattern: /\.(?:js|css)$/i,
+          handler: 'StaleWhileRevalidate',
+          options: {
+            cacheName: 'static-js-css',
+            expiration: {
+              maxEntries: 64,
+              maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
+            }
+          }
+        }
+      ],
+      // IMPORTANT: Exclude all auth-related routes from service worker
+      navigateFallbackDenylist: [
+        /\/api\/auth\/.*/,  // NextAuth API routes
+        /\/auth\/.*/,        // Auth pages
+        /\/api\/.*/,         // All API routes
+        /\/_next\/.*/,       // Next.js internals
+      ],
+      buildExcludes: [
+        /middleware-manifest\.json$/,
+        /middleware-runtime\.js$/,
+        /_middleware\.js$/,
+        /^.+\/middleware\.js$/
+      ]
+    });
+  } catch (e) {
+    // PWA package not installed, return identity function
+    return (config: NextConfig) => config;
+  }
+})();
+
 const nextConfig: NextConfig = {
   // Build optimizations
   eslint: {
@@ -162,4 +227,5 @@ const nextConfig: NextConfig = {
   ]
 };
 
-export default nextConfig;
+// Export with PWA wrapper if available
+export default withPWA(nextConfig);

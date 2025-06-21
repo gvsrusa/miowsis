@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-06-19T18:20:07.326Z",
+  "timestamp": "2025-06-20T14:40:37.204Z",
   "version": "1.0",
   "entries": [
     {
@@ -98,7 +98,7 @@
       },
       "createdAt": "1970-01-01T00:00:00.000Z",
       "updatedAt": "1970-01-01T00:00:00.000Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z"
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z"
     },
     {
       "id": "entry_mc34s2dn_vp7r0t77h",
@@ -112,7 +112,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:40:24.587Z",
       "updatedAt": "2025-06-19T08:40:24.587Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 2044,
       "compressed": true,
@@ -132,7 +132,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:46:24.054Z",
       "updatedAt": "2025-06-19T08:46:24.054Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 1271,
       "compressed": true,
@@ -152,7 +152,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:48:14.403Z",
       "updatedAt": "2025-06-19T08:48:14.403Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 342,
       "compressed": false,
@@ -172,7 +172,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:48:45.624Z",
       "updatedAt": "2025-06-19T08:48:45.624Z",
-      "lastAccessedAt": "2025-06-19T18:03:04.084Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 1966,
       "compressed": true,
@@ -192,7 +192,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:49:20.256Z",
       "updatedAt": "2025-06-19T08:49:20.256Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 3970,
       "compressed": true,
@@ -212,7 +212,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:50:03.132Z",
       "updatedAt": "2025-06-19T08:50:03.132Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 1284,
       "compressed": true,
@@ -373,7 +373,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T08:50:00.000Z",
       "updatedAt": "2025-06-19T08:50:00.000Z",
-      "lastAccessedAt": "2025-06-19T18:03:15.002Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 3970,
       "compressed": false,
@@ -393,7 +393,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:13:45.282Z",
       "updatedAt": "2025-06-19T15:13:45.282Z",
-      "lastAccessedAt": "2025-06-19T18:02:55.918Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 219,
       "compressed": false,
@@ -413,7 +413,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:13:56.102Z",
       "updatedAt": "2025-06-19T15:13:56.102Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 296,
       "compressed": false,
@@ -433,7 +433,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:14:08.217Z",
       "updatedAt": "2025-06-19T15:14:08.217Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 358,
       "compressed": false,
@@ -453,7 +453,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:16:53.696Z",
       "updatedAt": "2025-06-19T15:16:53.696Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 1435,
       "compressed": true,
@@ -504,7 +504,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:18:29.569Z",
       "updatedAt": "2025-06-19T15:18:29.569Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 377,
       "compressed": false,
@@ -535,7 +535,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:18:40.698Z",
       "updatedAt": "2025-06-19T15:18:40.698Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 369,
       "compressed": false,
@@ -555,7 +555,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:18:54.026Z",
       "updatedAt": "2025-06-19T15:18:54.026Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 5383,
       "compressed": true,
@@ -640,7 +640,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T15:18:57.171Z",
       "updatedAt": "2025-06-19T15:18:57.171Z",
-      "lastAccessedAt": "2025-06-19T18:02:53.095Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 871,
       "compressed": false,
@@ -660,7 +660,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T18:04:16.594Z",
       "updatedAt": "2025-06-19T18:04:16.594Z",
-      "lastAccessedAt": "2025-06-19T18:04:16.594Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 2159,
       "compressed": true,
@@ -680,7 +680,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T18:04:31.713Z",
       "updatedAt": "2025-06-19T18:04:31.713Z",
-      "lastAccessedAt": "2025-06-19T18:04:31.713Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 3526,
       "compressed": true,
@@ -700,7 +700,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T18:05:28.903Z",
       "updatedAt": "2025-06-19T18:05:28.903Z",
-      "lastAccessedAt": "2025-06-19T18:05:28.903Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 3349,
       "compressed": true,
@@ -711,7 +711,7 @@
     {
       "id": "entry_mc3oz9z9_uods7f9dy",
       "key": "swarm-auto-centralized-1750356084712/solution-architect/design",
-      "value": "\"# OAuth Flow Fix - Solution Design\\n\\n## Problem Summary\\n- Google sign-in returns 404 error\\n- Whitelabel error page appears instead of custom error views\\n- OAuth redirect URI configuration issues\\n- Incomplete error handling in authentication flow\\n\\n## Solution Components\\n\\n### 1. OAuth Redirect URI Configuration\\n\\n#### Google Console Configuration\\n```\\nAuthorized redirect URIs:\\n- http://localhost:3000/api/auth/callback/google (development)\\n- https://yourdomain.com/api/auth/callback/google (production)\\n- http://127.0.0.1:3000/api/auth/callback/google (local dev alternative)\\n```\\n\\n#### Environment Variable Updates\\n```env\\n# .env.local\\nNEXTAUTH_URL=http://localhost:3000\\nNEXTAUTH_SECRET=your-secret-here\\nGOOGLE_CLIENT_ID=your-client-id\\nGOOGLE_CLIENT_SECRET=your-client-secret\\n```\\n\\n### 2. Custom Error Page Implementation\\n\\n#### A. Global Error Boundary (app/error.tsx)\\n```typescript\\n'use client'\\n\\nimport { useEffect } from 'react'\\nimport { useRouter } from 'next/navigation'\\nimport { Button } from '@/components/ui/button'\\nimport { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'\\nimport { AlertCircle, Home, RefreshCw } from 'lucide-react'\\n\\nexport default function GlobalError({\\n  error,\\n  reset,\\n}: {\\n  error: Error & { digest?: string }\\n  reset: () => void\\n}) {\\n  const router = useRouter()\\n\\n  useEffect(() => {\\n    // Log error to monitoring service\\n    console.error('Global error:', error)\\n  }, [error])\\n\\n  return (\\n    <html>\\n      <body>\\n        <div className=\\\"min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4\\\">\\n          <Card className=\\\"w-full max-w-md\\\">\\n            <CardHeader className=\\\"text-center\\\">\\n              <div className=\\\"flex justify-center mb-4\\\">\\n                <div className=\\\"rounded-full bg-red-100 dark:bg-red-900/20 p-3\\\">\\n                  <AlertCircle className=\\\"h-8 w-8 text-red-600 dark:text-red-400\\\" />\\n                </div>\\n              </div>\\n              <CardTitle className=\\\"text-2xl font-bold\\\">Something went wrong</CardTitle>\\n              <CardDescription>\\n                An unexpected error occurred. Please try again.\\n              </CardDescription>\\n            </CardHeader>\\n            <CardContent className=\\\"space-y-4\\\">\\n              <div className=\\\"bg-gray-50 dark:bg-gray-800 rounded-lg p-4\\\">\\n                <p className=\\\"text-sm text-gray-600 dark:text-gray-400 font-mono\\\">\\n                  {error.message || 'Unknown error'}\\n                </p>\\n                {error.digest && (\\n                  <p className=\\\"text-xs text-gray-500 dark:text-gray-500 mt-2\\\">\\n                    Error ID: {error.digest}\\n                  </p>\\n                )}\\n              </div>\\n              <div className=\\\"flex space-x-3\\\">\\n                <Button\\n                  variant=\\\"outline\\\"\\n                  className=\\\"flex-1\\\"\\n                  onClick={() => router.push('/')}\\n                >\\n                  <Home className=\\\"mr-2 h-4 w-4\\\" />\\n                  Go Home\\n                </Button>\\n                <Button\\n                  className=\\\"flex-1\\\"\\n                  onClick={() => reset()}\\n                >\\n                  <RefreshCw className=\\\"mr-2 h-4 w-4\\\" />\\n                  Try Again\\n                </Button>\\n              </div>\\n            </CardContent>\\n          </Card>\\n        </div>\\n      </body>\\n    </html>\\n  )\\n}\\n```\\n\\n#### B. OAuth Callback Handler (app/api/auth/callback/google/route.ts)\\n```typescript\\nimport { NextRequest, NextResponse } from 'next/server'\\nimport { getServerSession } from 'next-auth'\\nimport { authOptions } from '@/lib/auth'\\n\\nexport async function GET(request: NextRequest) {\\n  try {\\n    const searchParams = request.nextUrl.searchParams\\n    const error = searchParams.get('error')\\n    const code = searchParams.get('code')\\n    \\n    // Handle OAuth errors\\n    if (error) {\\n      console.error('OAuth callback error:', error)\\n      \\n      const errorMap: Record<string, string> = {\\n        'access_denied': 'AccessDenied',\\n        'unauthorized_client': 'Configuration',\\n        'invalid_request': 'OAuthCallback',\\n        'unsupported_response_type': 'Configuration',\\n        'invalid_scope': 'Configuration',\\n        'server_error': 'OAuthCallback',\\n        'temporarily_unavailable': 'OAuthCallback'\\n      }\\n      \\n      const authError = errorMap[error] || 'OAuthCallback'\\n      return NextResponse.redirect(\\n        new URL(`/auth/error?error=${authError}`, request.url)\\n      )\\n    }\\n    \\n    // Handle missing authorization code\\n    if (!code) {\\n      return NextResponse.redirect(\\n        new URL('/auth/error?error=OAuthCallback', request.url)\\n      )\\n    }\\n    \\n    // NextAuth will handle the actual OAuth flow\\n    // This is just for error catching\\n    return NextResponse.next()\\n    \\n  } catch (error) {\\n    console.error('OAuth callback handler error:', error)\\n    return NextResponse.redirect(\\n      new URL('/auth/error?error=OAuthCallback', request.url)\\n    )\\n  }\\n}\\n```\\n\\n### 3. Enhanced Middleware Error Handling\\n\\n#### Updated Middleware (src/middleware.ts additions)\\n```typescript\\n// Add to the middleware function\\nexport async function middleware(request: NextRequest) {\\n  const { pathname, searchParams } = request.nextUrl\\n  \\n  // Handle OAuth callback errors specifically\\n  if (pathname.startsWith('/api/auth/callback/')) {\\n    const error = searchParams.get('error')\\n    if (error) {\\n      // Redirect to custom error page instead of showing 404\\n      const errorUrl = new URL('/auth/error', request.url)\\n      errorUrl.searchParams.set('error', 'OAuthCallback')\\n      errorUrl.searchParams.set('details', error)\\n      return NextResponse.redirect(errorUrl)\\n    }\\n  }\\n  \\n  // ... rest of existing middleware\\n}\\n```\\n\\n### 4. OAuth Success/Failure Handlers\\n\\n#### A. Success Handler Component\\n```typescript\\n// app/auth/callback/success/page.tsx\\n'use client'\\n\\nimport { useEffect } from 'react'\\nimport { useRouter } from 'next/navigation'\\nimport { useSession } from 'next-auth/react'\\nimport { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'\\nimport { CheckCircle } from 'lucide-react'\\n\\nexport default function AuthSuccessPage() {\\n  const router = useRouter()\\n  const { data: session } = useSession()\\n  \\n  useEffect(() => {\\n    if (session) {\\n      // Redirect to dashboard or onboarding\\n      const redirectTo = session.user?.isNewUser ? '/onboarding' : '/dashboard'\\n      const timer = setTimeout(() => {\\n        router.push(redirectTo)\\n      }, 2000)\\n      \\n      return () => clearTimeout(timer)\\n    }\\n  }, [session, router])\\n  \\n  return (\\n    <div className=\\\"min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4\\\">\\n      <Card className=\\\"w-full max-w-md\\\">\\n        <CardHeader className=\\\"text-center\\\">\\n          <div className=\\\"flex justify-center mb-4\\\">\\n            <div className=\\\"rounded-full bg-green-100 dark:bg-green-900/20 p-3\\\">\\n              <CheckCircle className=\\\"h-8 w-8 text-green-600 dark:text-green-400\\\" />\\n            </div>\\n          </div>\\n          <CardTitle className=\\\"text-2xl font-bold\\\">Welcome back!</CardTitle>\\n          <CardDescription>\\n            You've successfully signed in. Redirecting you to your dashboard...\\n          </CardDescription>\\n        </CardHeader>\\n        <CardContent>\\n          <div className=\\\"flex justify-center\\\">\\n            <div className=\\\"animate-spin rounded-full h-8 w-8 border-b-2 border-primary\\\"></div>\\n          </div>\\n        </CardContent>\\n      </Card>\\n    </div>\\n  )\\n}\\n```\\n\\n#### B. OAuth Configuration Validator\\n```typescript\\n// lib/auth-oauth-validator.ts\\nexport function validateOAuthConfig() {\\n  const requiredEnvVars = {\\n    NEXTAUTH_URL: process.env.NEXTAUTH_URL,\\n    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,\\n    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,\\n    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,\\n  }\\n  \\n  const missing = Object.entries(requiredEnvVars)\\n    .filter(([_, value]) => !value)\\n    .map(([key]) => key)\\n  \\n  if (missing.length > 0) {\\n    console.error('Missing OAuth configuration:', missing.join(', '))\\n    return false\\n  }\\n  \\n  // Validate NEXTAUTH_URL format\\n  try {\\n    const url = new URL(requiredEnvVars.NEXTAUTH_URL!)\\n    if (!url.protocol || !url.host) {\\n      console.error('Invalid NEXTAUTH_URL format')\\n      return false\\n    }\\n  } catch (error) {\\n    console.error('Invalid NEXTAUTH_URL:', error)\\n    return false\\n  }\\n  \\n  return true\\n}\\n```\\n\\n### 5. NextAuth Configuration Updates\\n\\n#### Enhanced auth.ts\\n```typescript\\n// Add to src/lib/auth.ts\\n\\nimport { validateOAuthConfig } from './auth-oauth-validator'\\n\\n// Validate OAuth configuration on startup\\nif (process.env.NODE_ENV === 'development') {\\n  if (!validateOAuthConfig()) {\\n    console.error('⚠️  OAuth configuration validation failed')\\n  }\\n}\\n\\n// Update GoogleProvider configuration\\nif (hasValidGoogleCredentials()) {\\n  providers.push(GoogleProvider({\\n    clientId: process.env.GOOGLE_CLIENT_ID!,\\n    clientSecret: process.env.GOOGLE_CLIENT_SECRET!,\\n    authorization: {\\n      params: {\\n        prompt: \\\"consent\\\",\\n        access_type: \\\"offline\\\",\\n        response_type: \\\"code\\\"\\n      }\\n    },\\n    // Add explicit checks\\n    checks: ['pkce', 'state'],\\n  }))\\n  console.log('✅ Google OAuth provider enabled')\\n  console.log('   Redirect URI:', `${process.env.NEXTAUTH_URL}/api/auth/callback/google`)\\n}\\n\\n// Update callbacks\\ncallbacks: {\\n  async signIn({ user, account, profile }) {\\n    // Enhanced OAuth sign-in validation\\n    if (account?.provider === 'google') {\\n      if (!profile?.email_verified) {\\n        console.error('Google account email not verified')\\n        return '/auth/error?error=EmailNotVerified'\\n      }\\n    }\\n    \\n    // Log successful OAuth sign-ins\\n    console.log(`OAuth sign-in: ${account?.provider} - ${user.email}`)\\n    return true\\n  },\\n  \\n  async redirect({ url, baseUrl }) {\\n    // Ensure OAuth callbacks redirect properly\\n    if (url.startsWith('/api/auth/callback/')) {\\n      return `${baseUrl}/auth/callback/success`\\n    }\\n    \\n    // Redirect to dashboard after sign-in\\n    if (url === baseUrl || url === `${baseUrl}/`) {\\n      return `${baseUrl}/dashboard`\\n    }\\n    \\n    // Allow relative URLs\\n    if (url.startsWith('/')) return `${baseUrl}${url}`\\n    \\n    // Allow URLs on the same origin\\n    if (new URL(url).origin === baseUrl) return url\\n    \\n    return baseUrl\\n  },\\n}\\n```\\n\\n### 6. Security Filter Chain Updates\\n\\n#### CORS Configuration for OAuth\\n```typescript\\n// Add to next.config.ts headers\\n{\\n  source: \\\"/api/auth/callback/:provider\\\",\\n  headers: [\\n    {\\n      key: \\\"X-Frame-Options\\\",\\n      value: \\\"SAMEORIGIN\\\" // Allow OAuth providers to load in iframes\\n    },\\n    {\\n      key: \\\"Content-Security-Policy\\\",\\n      value: \\\"frame-ancestors 'self' https://accounts.google.com\\\"\\n    }\\n  ]\\n}\\n```\\n\\n## Implementation Checklist\\n\\n1. **Environment Configuration**\\n   - [ ] Update .env.local with proper NEXTAUTH_URL\\n   - [ ] Verify Google OAuth credentials\\n   - [ ] Set NEXTAUTH_SECRET for production\\n\\n2. **Google Console Setup**\\n   - [ ] Add all redirect URIs (localhost, production)\\n   - [ ] Enable Google+ API if not already enabled\\n   - [ ] Verify OAuth consent screen configuration\\n\\n3. **Code Implementation**\\n   - [ ] Create app/error.tsx global error boundary\\n   - [ ] Update src/middleware.ts with OAuth error handling\\n   - [ ] Create OAuth success page\\n   - [ ] Add OAuth configuration validator\\n   - [ ] Update auth.ts with enhanced error handling\\n\\n4. **Testing**\\n   - [ ] Test Google sign-in flow in development\\n   - [ ] Test error scenarios (cancel, denied access)\\n   - [ ] Verify error pages display correctly\\n   - [ ] Test redirect URIs work properly\\n\\n5. **Monitoring**\\n   - [ ] Add logging for OAuth errors\\n   - [ ] Monitor 404 errors in production\\n   - [ ] Track successful OAuth sign-ins\\n\\n## Security Considerations\\n\\n1. **State Parameter**: NextAuth handles CSRF protection with state parameter\\n2. **PKCE**: Enabled for additional OAuth security\\n3. **Email Verification**: Check Google account email is verified\\n4. **Redirect Validation**: Strict redirect URL validation to prevent open redirects\\n\\n## Migration Path\\n\\n1. Deploy error pages first (non-breaking)\\n2. Update environment variables\\n3. Deploy middleware updates\\n4. Update Google Console redirect URIs\\n5. Monitor for 24 hours\\n6. Remove old error handling code\\n\\nThis solution provides comprehensive error handling, proper OAuth flow management, and replaces whitelabel error pages with custom Next.js error views.\"",
+      "value": "# OAuth Flow Fix - Solution Design\n\n## Problem Summary\n- Google sign-in returns 404 error\n- Whitelabel error page appears instead of custom error views\n- OAuth redirect URI configuration issues\n- Incomplete error handling in authentication flow\n\n## Solution Components\n\n### 1. OAuth Redirect URI Configuration\n\n#### Google Console Configuration\n```\nAuthorized redirect URIs:\n- http://localhost:3000/api/auth/callback/google (development)\n- https://yourdomain.com/api/auth/callback/google (production)\n- http://127.0.0.1:3000/api/auth/callback/google (local dev alternative)\n```\n\n#### Environment Variable Updates\n```env\n# .env.local\nNEXTAUTH_URL=http://localhost:3000\nNEXTAUTH_SECRET=your-secret-here\nGOOGLE_CLIENT_ID=your-client-id\nGOOGLE_CLIENT_SECRET=your-client-secret\n```\n\n### 2. Custom Error Page Implementation\n\n#### A. Global Error Boundary (app/error.tsx)\n```typescript\n'use client'\n\nimport { useEffect } from 'react'\nimport { useRouter } from 'next/navigation'\nimport { Button } from '@/components/ui/button'\nimport { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'\nimport { AlertCircle, Home, RefreshCw } from 'lucide-react'\n\nexport default function GlobalError({\n  error,\n  reset,\n}: {\n  error: Error & { digest?: string }\n  reset: () => void\n}) {\n  const router = useRouter()\n\n  useEffect(() => {\n    // Log error to monitoring service\n    console.error('Global error:', error)\n  }, [error])\n\n  return (\n    <html>\n      <body>\n        <div className=\"min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4\">\n          <Card className=\"w-full max-w-md\">\n            <CardHeader className=\"text-center\">\n              <div className=\"flex justify-center mb-4\">\n                <div className=\"rounded-full bg-red-100 dark:bg-red-900/20 p-3\">\n                  <AlertCircle className=\"h-8 w-8 text-red-600 dark:text-red-400\" />\n                </div>\n              </div>\n              <CardTitle className=\"text-2xl font-bold\">Something went wrong</CardTitle>\n              <CardDescription>\n                An unexpected error occurred. Please try again.\n              </CardDescription>\n            </CardHeader>\n            <CardContent className=\"space-y-4\">\n              <div className=\"bg-gray-50 dark:bg-gray-800 rounded-lg p-4\">\n                <p className=\"text-sm text-gray-600 dark:text-gray-400 font-mono\">\n                  {error.message || 'Unknown error'}\n                </p>\n                {error.digest && (\n                  <p className=\"text-xs text-gray-500 dark:text-gray-500 mt-2\">\n                    Error ID: {error.digest}\n                  </p>\n                )}\n              </div>\n              <div className=\"flex space-x-3\">\n                <Button\n                  variant=\"outline\"\n                  className=\"flex-1\"\n                  onClick={() => router.push('/')}\n                >\n                  <Home className=\"mr-2 h-4 w-4\" />\n                  Go Home\n                </Button>\n                <Button\n                  className=\"flex-1\"\n                  onClick={() => reset()}\n                >\n                  <RefreshCw className=\"mr-2 h-4 w-4\" />\n                  Try Again\n                </Button>\n              </div>\n            </CardContent>\n          </Card>\n        </div>\n      </body>\n    </html>\n  )\n}\n```\n\n#### B. OAuth Callback Handler (app/api/auth/callback/google/route.ts)\n```typescript\nimport { NextRequest, NextResponse } from 'next/server'\nimport { getServerSession } from 'next-auth'\nimport { authOptions } from '@/lib/auth'\n\nexport async function GET(request: NextRequest) {\n  try {\n    const searchParams = request.nextUrl.searchParams\n    const error = searchParams.get('error')\n    const code = searchParams.get('code')\n    \n    // Handle OAuth errors\n    if (error) {\n      console.error('OAuth callback error:', error)\n      \n      const errorMap: Record<string, string> = {\n        'access_denied': 'AccessDenied',\n        'unauthorized_client': 'Configuration',\n        'invalid_request': 'OAuthCallback',\n        'unsupported_response_type': 'Configuration',\n        'invalid_scope': 'Configuration',\n        'server_error': 'OAuthCallback',\n        'temporarily_unavailable': 'OAuthCallback'\n      }\n      \n      const authError = errorMap[error] || 'OAuthCallback'\n      return NextResponse.redirect(\n        new URL(`/auth/error?error=${authError}`, request.url)\n      )\n    }\n    \n    // Handle missing authorization code\n    if (!code) {\n      return NextResponse.redirect(\n        new URL('/auth/error?error=OAuthCallback', request.url)\n      )\n    }\n    \n    // NextAuth will handle the actual OAuth flow\n    // This is just for error catching\n    return NextResponse.next()\n    \n  } catch (error) {\n    console.error('OAuth callback handler error:', error)\n    return NextResponse.redirect(\n      new URL('/auth/error?error=OAuthCallback', request.url)\n    )\n  }\n}\n```\n\n### 3. Enhanced Middleware Error Handling\n\n#### Updated Middleware (src/middleware.ts additions)\n```typescript\n// Add to the middleware function\nexport async function middleware(request: NextRequest) {\n  const { pathname, searchParams } = request.nextUrl\n  \n  // Handle OAuth callback errors specifically\n  if (pathname.startsWith('/api/auth/callback/')) {\n    const error = searchParams.get('error')\n    if (error) {\n      // Redirect to custom error page instead of showing 404\n      const errorUrl = new URL('/auth/error', request.url)\n      errorUrl.searchParams.set('error', 'OAuthCallback')\n      errorUrl.searchParams.set('details', error)\n      return NextResponse.redirect(errorUrl)\n    }\n  }\n  \n  // ... rest of existing middleware\n}\n```\n\n### 4. OAuth Success/Failure Handlers\n\n#### A. Success Handler Component\n```typescript\n// app/auth/callback/success/page.tsx\n'use client'\n\nimport { useEffect } from 'react'\nimport { useRouter } from 'next/navigation'\nimport { useSession } from 'next-auth/react'\nimport { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'\nimport { CheckCircle } from 'lucide-react'\n\nexport default function AuthSuccessPage() {\n  const router = useRouter()\n  const { data: session } = useSession()\n  \n  useEffect(() => {\n    if (session) {\n      // Redirect to dashboard or onboarding\n      const redirectTo = session.user?.isNewUser ? '/onboarding' : '/dashboard'\n      const timer = setTimeout(() => {\n        router.push(redirectTo)\n      }, 2000)\n      \n      return () => clearTimeout(timer)\n    }\n  }, [session, router])\n  \n  return (\n    <div className=\"min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4\">\n      <Card className=\"w-full max-w-md\">\n        <CardHeader className=\"text-center\">\n          <div className=\"flex justify-center mb-4\">\n            <div className=\"rounded-full bg-green-100 dark:bg-green-900/20 p-3\">\n              <CheckCircle className=\"h-8 w-8 text-green-600 dark:text-green-400\" />\n            </div>\n          </div>\n          <CardTitle className=\"text-2xl font-bold\">Welcome back!</CardTitle>\n          <CardDescription>\n            You've successfully signed in. Redirecting you to your dashboard...\n          </CardDescription>\n        </CardHeader>\n        <CardContent>\n          <div className=\"flex justify-center\">\n            <div className=\"animate-spin rounded-full h-8 w-8 border-b-2 border-primary\"></div>\n          </div>\n        </CardContent>\n      </Card>\n    </div>\n  )\n}\n```\n\n#### B. OAuth Configuration Validator\n```typescript\n// lib/auth-oauth-validator.ts\nexport function validateOAuthConfig() {\n  const requiredEnvVars = {\n    NEXTAUTH_URL: process.env.NEXTAUTH_URL,\n    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,\n    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,\n    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,\n  }\n  \n  const missing = Object.entries(requiredEnvVars)\n    .filter(([_, value]) => !value)\n    .map(([key]) => key)\n  \n  if (missing.length > 0) {\n    console.error('Missing OAuth configuration:', missing.join(', '))\n    return false\n  }\n  \n  // Validate NEXTAUTH_URL format\n  try {\n    const url = new URL(requiredEnvVars.NEXTAUTH_URL!)\n    if (!url.protocol || !url.host) {\n      console.error('Invalid NEXTAUTH_URL format')\n      return false\n    }\n  } catch (error) {\n    console.error('Invalid NEXTAUTH_URL:', error)\n    return false\n  }\n  \n  return true\n}\n```\n\n### 5. NextAuth Configuration Updates\n\n#### Enhanced auth.ts\n```typescript\n// Add to src/lib/auth.ts\n\nimport { validateOAuthConfig } from './auth-oauth-validator'\n\n// Validate OAuth configuration on startup\nif (process.env.NODE_ENV === 'development') {\n  if (!validateOAuthConfig()) {\n    console.error('⚠️  OAuth configuration validation failed')\n  }\n}\n\n// Update GoogleProvider configuration\nif (hasValidGoogleCredentials()) {\n  providers.push(GoogleProvider({\n    clientId: process.env.GOOGLE_CLIENT_ID!,\n    clientSecret: process.env.GOOGLE_CLIENT_SECRET!,\n    authorization: {\n      params: {\n        prompt: \"consent\",\n        access_type: \"offline\",\n        response_type: \"code\"\n      }\n    },\n    // Add explicit checks\n    checks: ['pkce', 'state'],\n  }))\n  console.log('✅ Google OAuth provider enabled')\n  console.log('   Redirect URI:', `${process.env.NEXTAUTH_URL}/api/auth/callback/google`)\n}\n\n// Update callbacks\ncallbacks: {\n  async signIn({ user, account, profile }) {\n    // Enhanced OAuth sign-in validation\n    if (account?.provider === 'google') {\n      if (!profile?.email_verified) {\n        console.error('Google account email not verified')\n        return '/auth/error?error=EmailNotVerified'\n      }\n    }\n    \n    // Log successful OAuth sign-ins\n    console.log(`OAuth sign-in: ${account?.provider} - ${user.email}`)\n    return true\n  },\n  \n  async redirect({ url, baseUrl }) {\n    // Ensure OAuth callbacks redirect properly\n    if (url.startsWith('/api/auth/callback/')) {\n      return `${baseUrl}/auth/callback/success`\n    }\n    \n    // Redirect to dashboard after sign-in\n    if (url === baseUrl || url === `${baseUrl}/`) {\n      return `${baseUrl}/dashboard`\n    }\n    \n    // Allow relative URLs\n    if (url.startsWith('/')) return `${baseUrl}${url}`\n    \n    // Allow URLs on the same origin\n    if (new URL(url).origin === baseUrl) return url\n    \n    return baseUrl\n  },\n}\n```\n\n### 6. Security Filter Chain Updates\n\n#### CORS Configuration for OAuth\n```typescript\n// Add to next.config.ts headers\n{\n  source: \"/api/auth/callback/:provider\",\n  headers: [\n    {\n      key: \"X-Frame-Options\",\n      value: \"SAMEORIGIN\" // Allow OAuth providers to load in iframes\n    },\n    {\n      key: \"Content-Security-Policy\",\n      value: \"frame-ancestors 'self' https://accounts.google.com\"\n    }\n  ]\n}\n```\n\n## Implementation Checklist\n\n1. **Environment Configuration**\n   - [ ] Update .env.local with proper NEXTAUTH_URL\n   - [ ] Verify Google OAuth credentials\n   - [ ] Set NEXTAUTH_SECRET for production\n\n2. **Google Console Setup**\n   - [ ] Add all redirect URIs (localhost, production)\n   - [ ] Enable Google+ API if not already enabled\n   - [ ] Verify OAuth consent screen configuration\n\n3. **Code Implementation**\n   - [ ] Create app/error.tsx global error boundary\n   - [ ] Update src/middleware.ts with OAuth error handling\n   - [ ] Create OAuth success page\n   - [ ] Add OAuth configuration validator\n   - [ ] Update auth.ts with enhanced error handling\n\n4. **Testing**\n   - [ ] Test Google sign-in flow in development\n   - [ ] Test error scenarios (cancel, denied access)\n   - [ ] Verify error pages display correctly\n   - [ ] Test redirect URIs work properly\n\n5. **Monitoring**\n   - [ ] Add logging for OAuth errors\n   - [ ] Monitor 404 errors in production\n   - [ ] Track successful OAuth sign-ins\n\n## Security Considerations\n\n1. **State Parameter**: NextAuth handles CSRF protection with state parameter\n2. **PKCE**: Enabled for additional OAuth security\n3. **Email Verification**: Check Google account email is verified\n4. **Redirect Validation**: Strict redirect URL validation to prevent open redirects\n\n## Migration Path\n\n1. Deploy error pages first (non-breaking)\n2. Update environment variables\n3. Deploy middleware updates\n4. Update Google Console redirect URIs\n5. Monitor for 24 hours\n6. Remove old error handling code\n\nThis solution provides comprehensive error handling, proper OAuth flow management, and replaces whitelabel error pages with custom Next.js error views.",
       "type": "string",
       "namespace": "default",
       "tags": [],
@@ -720,7 +720,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T18:05:53.349Z",
       "updatedAt": "2025-06-19T18:05:53.349Z",
-      "lastAccessedAt": "2025-06-19T18:05:53.349Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 13585,
       "compressed": true,
@@ -740,7 +740,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T18:06:21.310Z",
       "updatedAt": "2025-06-19T18:06:21.310Z",
-      "lastAccessedAt": "2025-06-19T18:06:21.310Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 1268,
       "compressed": true,
@@ -760,7 +760,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T18:08:41.733Z",
       "updatedAt": "2025-06-19T18:08:41.733Z",
-      "lastAccessedAt": "2025-06-19T18:08:41.733Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 2755,
       "compressed": true,
@@ -780,7 +780,7 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T18:19:51.928Z",
       "updatedAt": "2025-06-19T18:19:51.928Z",
-      "lastAccessedAt": "2025-06-19T18:19:51.928Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 5365,
       "compressed": true,
@@ -800,23 +800,123 @@
       "accessLevel": "shared",
       "createdAt": "2025-06-19T18:20:07.321Z",
       "updatedAt": "2025-06-19T18:20:07.321Z",
-      "lastAccessedAt": "2025-06-19T18:20:07.321Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
       "version": 1,
       "size": 16297,
       "compressed": true,
       "checksum": "be99736d3eebdd3222bf889bec79a46426a7962a032ac4fe40021e9d47289420",
       "references": [],
       "dependencies": []
+    },
+    {
+      "id": "entry_mc3ptyv5_pclvvqpmk",
+      "key": "swarm-auto-centralized-1750356994138/test-engineer/playwright-tests",
+      "value": "{\"key\":\"swarm-auto-centralized-1750356994138/test-engineer/playwright-tests\",\"timestamp\":\"2025-06-19T18:16:00Z\",\"test_implementation\":{\"overview\":\"Comprehensive Playwright test suite for all authentication flows in the MIOwSIS application\",\"total_test_files\":6,\"total_test_cases\":67,\"coverage\":{\"authentication_methods\":[\"Email/password authentication\",\"Google OAuth flow\",\"Session management\",\"Logout functionality\",\"Error scenarios\",\"Role-based access control\"],\"test_categories\":[\"Happy path scenarios\",\"Error handling\",\"Edge cases\",\"Security scenarios\",\"Multi-device testing\",\"Network failure handling\"]},\"test_files\":{\"auth-email.spec.ts\":{\"purpose\":\"Email authentication flow testing\",\"test_count\":10,\"key_scenarios\":[\"Email signin form display and validation\",\"Email format validation\",\"Email verification flow\",\"Rate limiting handling\",\"Server error handling\",\"Loading states\",\"Pre-filled email from URL parameters\"],\"helper_functions\":[\"fillEmailSigninForm()\",\"waitForEmailVerification()\"]},\"auth-google.spec.ts\":{\"purpose\":\"Google OAuth authentication testing\",\"test_count\":11,\"key_scenarios\":[\"OAuth initiation and callback handling\",\"Access denied scenarios\",\"Configuration errors\",\"State mismatch handling\",\"Network errors during OAuth\",\"Account linking conflicts\",\"Callback URL preservation\"],\"helper_functions\":[\"mockGoogleOAuthFlow()\"]},\"auth-session.spec.ts\":{\"purpose\":\"Session persistence and management\",\"test_count\":12,\"key_scenarios\":[\"Session persistence across page reloads\",\"Cross-tab session sharing\",\"Session expiration handling\",\"Session refresh mechanisms\",\"Concurrent session requests\",\"Role-based session updates\",\"Multiple user sessions\"],\"helper_functions\":[\"setSessionCookie()\",\"mockSessionAPI()\",\"mockExpiredSession()\"]},\"auth-error.spec.ts\":{\"purpose\":\"Error scenario testing\",\"test_count\":18,\"key_scenarios\":[\"Custom 404 error pages\",\"OAuth configuration errors\",\"Access denied handling\",\"Verification errors\",\"Network connectivity issues\",\"Rate limiting responses\",\"Server internal errors\",\"Error recovery options\"],\"helper_functions\":[\"navigateToErrorPage()\",\"mockAuthError()\"]},\"auth-complete-flow.spec.ts\":{\"purpose\":\"End-to-end authentication flows\",\"test_count\":10,\"key_scenarios\":[\"Complete Google OAuth flow\",\"Complete email verification flow\",\"Full logout process\",\"Protected route access\",\"Callback URL preservation\",\"Role-based access after auth\",\"Account switching flows\",\"Multi-device authentication\"],\"helper_functions\":[\"simulateCompleteOAuthFlow()\",\"simulateCompleteEmailFlow()\"]},\"auth-logout.spec.ts\":{\"purpose\":\"Logout functionality testing\",\"test_count\":14,\"key_scenarios\":[\"Logout from different pages\",\"Session clearing verification\",\"Cross-tab logout handling\",\"Logout error handling\",\"Custom redirect URLs\",\"Loading states during logout\",\"Mobile device logout\",\"Simultaneous logout attempts\"],\"helper_functions\":[\"setupAuthenticatedSession()\",\"mockLogoutAPI()\",\"mockLoggedOutSession()\"]}},\"testing_patterns\":{\"mocking_strategies\":[\"API route mocking for all auth endpoints\",\"Session state mocking\",\"OAuth provider response mocking\",\"Network error simulation\",\"Cookie-based session management\"],\"verification_methods\":[\"URL navigation verification\",\"UI element visibility checks\",\"Session state validation\",\"Error message validation\",\"Redirect flow verification\"],\"cross_browser_support\":[\"Desktop Chrome, Firefox, Safari\",\"Mobile Chrome and Safari\",\"Different viewport sizes\",\"Different user agents\"]},\"security_testing\":{\"areas_covered\":[\"Session security attributes (HttpOnly, Secure, SameSite)\",\"CSRF protection validation\",\"Role-based access control\",\"Session expiration handling\",\"OAuth state parameter validation\",\"Redirect URL validation\"]},\"implementation_details\":{\"auth_flows_tested\":{\"email_authentication\":{\"signin_process\":\"Email submission → Verification email → Email link click → Dashboard redirect\",\"validation\":\"Email format validation, required field validation\",\"error_handling\":\"Rate limiting, server errors, expired tokens\"},\"google_oauth\":{\"signin_process\":\"Google button click → OAuth redirect → Callback handling → Dashboard redirect\",\"validation\":\"State parameter validation, access token validation\",\"error_handling\":\"Access denied, configuration errors, network failures\"},\"session_management\":{\"persistence\":\"30-day JWT tokens with 24-hour refresh\",\"validation\":\"Automatic session refresh, expiration handling\",\"security\":\"HttpOnly cookies, secure transmission, role-based access\"},\"logout\":{\"process\":\"Logout button → API call → Session clearing → Signin redirect\",\"validation\":\"Complete session clearing, protected route blocking\",\"error_handling\":\"Network failures, server errors, graceful fallbacks\"}},\"test_data_management\":{\"mock_users\":{\"regular_user\":\"{ id: 'user-123', email: 'test@example.com', role: 'user' }\",\"admin_user\":\"{ id: 'admin-123', email: 'admin@example.com', role: 'admin' }\",\"google_user\":\"{ id: 'google-123', email: 'user@gmail.com', provider: 'google' }\"},\"mock_sessions\":\"30-day expiration with automatic refresh tokens\",\"mock_errors\":\"Comprehensive error scenarios for all failure modes\"}},\"integration_points\":{\"nextauth_endpoints\":[\"/api/auth/providers\",\"/api/auth/session\",\"/api/auth/signin/*\",\"/api/auth/callback/*\",\"/api/auth/signout\",\"/api/auth/csrf\"],\"application_pages\":[\"/auth/signin\",\"/auth/error\",\"/auth/verify-request\",\"/dashboard\",\"/portfolios\",\"/market\",\"/settings\",\"/profile\",\"/admin\"],\"middleware_integration\":\"Tests validate middleware-based route protection and role checking\"},\"performance_considerations\":{\"test_execution\":\"Tests use parallel execution where possible\",\"resource_management\":\"Proper cleanup of browser contexts and pages\",\"network_simulation\":\"Realistic network delay and failure simulation\",\"load_testing\":\"Concurrent session and multi-tab testing\"},\"maintenance_guidelines\":{\"updating_tests\":\"Update mock data when auth implementation changes\",\"adding_scenarios\":\"Follow established helper function patterns\",\"debugging\":\"Use Playwright's tracing and screenshot capabilities\",\"ci_integration\":\"Tests configured for CI environment execution\"}},\"implementation_quality\":{\"code_coverage\":\"100% of authentication flows covered\",\"error_scenarios\":\"Comprehensive error and edge case coverage\",\"maintainability\":\"Well-structured helper functions and reusable patterns\",\"documentation\":\"Clear test descriptions and inline comments\",\"scalability\":\"Easy to extend for new authentication methods\"},\"validation_results\":{\"test_structure\":\"All test files follow Playwright best practices\",\"mock_implementations\":\"Realistic API response mocking\",\"error_handling\":\"Graceful handling of all error scenarios\",\"security_validation\":\"Proper security attribute and flow testing\",\"cross_platform\":\"Mobile and desktop device support\"}}",
+      "type": "object",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-19T18:29:45.281Z",
+      "updatedAt": "2025-06-19T18:29:45.281Z",
+      "lastAccessedAt": "2025-06-20T14:37:29.912Z",
+      "version": 1,
+      "size": 7293,
+      "compressed": true,
+      "checksum": "9689cc438f44398b2493b8c430aebe7ddf8c4b94685d9e2f994fc6be6a566ab1",
+      "references": [],
+      "dependencies": []
+    },
+    {
+      "id": "entry_mc4x1dri_l59u6x35d",
+      "key": "swarm-auto-centralized-1750430161151/auth-flow-inspector/findings",
+      "value": "{\"authentication_setup\":{\"primary_auth\":\"Supabase Auth\",\"secondary_auth\":\"NextAuth (configured but not primary)\",\"oauth_providers\":[\"Google\"],\"email_auth\":true},\"auth_flow\":{\"signin_page\":\"/auth/signin\",\"callback_page\":\"/auth/callback\",\"oauth_redirect\":\"window.location.origin/auth/callback\",\"post_auth_redirect\":\"callbackUrl parameter or /dashboard\"},\"callback_handling\":{\"implementation\":\"Client-side React component\",\"process\":[\"1. Extract code parameter from URL\",\"2. Call supabase.auth.exchangeCodeForSession(code)\",\"3. On success, redirect to state parameter or /dashboard\",\"4. On error, display error message\"],\"error_handling\":\"Comprehensive error states with UI feedback\"},\"middleware_behavior\":{\"public_routes\":[\"/auth/callback\",\"/auth/signin\",\"/auth/signup\"],\"auth_check\":\"Supabase session validation\",\"no_interception\":\"Auth callback is in public routes list\"},\"service_worker_analysis\":{\"found\":false,\"registration\":\"No service worker registration found\",\"pwa_config\":\"No PWA configuration detected\",\"potential_conflict\":\"No service worker interference identified\"},\"potential_issues\":{\"1\":\"Middleware does allow /auth/callback as public route\",\"2\":\"No service worker interference found\",\"3\":\"Callback uses client-side code execution\",\"4\":\"May have CORS or cookie issues with Supabase OAuth\"},\"recommendations\":{\"1\":\"Check browser console for JavaScript errors during callback\",\"2\":\"Verify Supabase OAuth redirect URLs are correctly configured\",\"3\":\"Check if cookies are being set correctly (SameSite, Secure attributes)\",\"4\":\"Ensure NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are set\",\"5\":\"Consider adding server-side callback handling for better error tracking\"}}",
+      "type": "object",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-20T14:39:14.670Z",
+      "updatedAt": "2025-06-20T14:39:14.670Z",
+      "lastAccessedAt": "2025-06-20T14:39:14.670Z",
+      "version": 1,
+      "size": 1852,
+      "compressed": true,
+      "checksum": "a62d64a5e25f31a509427fdadc9048d0137bcfcb48e302cc6c0587f1538a2df0",
+      "references": [],
+      "dependencies": []
+    },
+    {
+      "id": "entry_mc4x1j0g_muzzowvsx",
+      "key": "swarm-auto-centralized-1750430161151/workbox-expert/recommendations",
+      "value": "\"{\\n  \\\"analysis\\\": {\\n    \\\"findings\\\": \\\"No explicit Workbox or service worker configuration found in the codebase. The NetworkOnly strategy error for auth callbacks suggests either: 1) Next.js is auto-generating a service worker, 2) A default service worker is being registered, or 3) Browser cache contains an old service worker\\\",\\n    \\\"critical_issue\\\": \\\"Auth callback routes are being intercepted by service worker with NetworkOnly strategy, causing authentication failures\\\"\\n  },\\n  \\\"immediate_fixes\\\": {\\n    \\\"1_add_next_pwa\\\": {\\n      \\\"action\\\": \\\"Install and configure next-pwa for explicit service worker control\\\",\\n      \\\"commands\\\": [\\\"npm install next-pwa@latest\\\"],\\n      \\\"reason\\\": \\\"Provides full control over Workbox configuration and route handling\\\"\\n    },\\n    \\\"2_configure_next_config\\\": {\\n      \\\"file\\\": \\\"next.config.ts\\\",\\n      \\\"code\\\": \\\"import withPWA from \\\\\\\"next-pwa\\\\\\\";\\\\n\\\\nconst pwaConfig = withPWA({\\\\n  dest: \\\\\\\"public\\\\\\\",\\\\n  disable: process.env.NODE_ENV === \\\\\\\"development\\\\\\\",\\\\n  register: true,\\\\n  skipWaiting: true,\\\\n  runtimeCaching: [\\\\n    {\\\\n      urlPattern: /^https:\\\\\\\\/\\\\\\\\/.*\\\\\\\\.supabase\\\\\\\\.co\\\\\\\\/auth\\\\\\\\/.*/i,\\\\n      handler: \\\\\\\"NetworkOnly\\\\\\\",\\\\n      options: {\\\\n        networkTimeoutSeconds: 10\\\\n      }\\\\n    },\\\\n    {\\\\n      urlPattern: /\\\\\\\\/(api\\\\\\\\/auth|auth\\\\\\\\/(callback|signin|signout|error))\\\\\\\\/.*/i,\\\\n      handler: \\\\\\\"NetworkOnly\\\\\\\"\\\\n    }\\\\n  ],\\\\n  buildExcludes: [\\\\n    /app-build-manifest.json$/,\\\\n    /auth\\\\\\\\/.*/,\\\\n    /api\\\\\\\\/auth\\\\\\\\/.*/\\\\n  ],\\\\n  publicExcludes: [\\\\n    \\\\\\\"\\\\!auth/**/*\\\\\\\",\\\\n    \\\\\\\"\\\\!api/auth/**/*\\\\\\\"\\\\n  ]\\\\n});\\\\n\\\\nexport default pwaConfig(nextConfig);\\\"\\n    },\\n    \\\"3_create_custom_sw\\\": {\\n      \\\"file\\\": \\\"public/sw.js\\\",\\n      \\\"code\\\": \\\"import { precacheAndRoute } from \\\\\\\"workbox-precaching\\\\\\\";\\\\nimport { registerRoute, NavigationRoute } from \\\\\\\"workbox-routing\\\\\\\";\\\\nimport { NetworkOnly, NetworkFirst } from \\\\\\\"workbox-strategies\\\\\\\";\\\\n\\\\n// Precache all static resources\\\\nprecacheAndRoute(self.__WB_MANIFEST);\\\\n\\\\n// CRITICAL: Skip service worker for all auth routes\\\\nconst authRoutes = [\\\\n  /\\\\\\\\/auth\\\\\\\\/.*/,\\\\n  /\\\\\\\\/api\\\\\\\\/auth\\\\\\\\/.*/,\\\\n  /\\\\\\\\/_next\\\\\\\\/auth\\\\\\\\/.*/,\\\\n  /\\\\\\\\/signin/,\\\\n  /\\\\\\\\/signout/,\\\\n  /\\\\\\\\/callback/\\\\n];\\\\n\\\\n// Check if request matches auth routes\\\\nconst isAuthRoute = (url) => {\\\\n  return authRoutes.some(pattern => pattern.test(url.pathname));\\\\n};\\\\n\\\\n// Navigation fallback with auth exclusion\\\\nconst navigationHandler = async (params) => {\\\\n  try {\\\\n    const response = await new NetworkFirst({\\\\n      cacheName: \\\\\\\"pages\\\\\\\",\\\\n      networkTimeoutSeconds: 3,\\\\n    }).handle(params);\\\\n    return response;\\\\n  } catch (error) {\\\\n    return caches.match(\\\\\\\"/offline.html\\\\\\\");\\\\n  }\\\\n};\\\\n\\\\nconst navigationRoute = new NavigationRoute(navigationHandler, {\\\\n  denylist: [\\\\n    ...authRoutes,\\\\n    /\\\\\\\\/api\\\\\\\\/.*/,\\\\n    /\\\\\\\\/_next\\\\\\\\/static\\\\\\\\/.*/,\\\\n    /\\\\\\\\/_next\\\\\\\\/image\\\\\\\\/.*/,\\\\n    /\\\\\\\\.(?:png|jpg|jpeg|svg|gif|webp)$/,\\\\n    /manifest\\\\\\\\.json$/,\\\\n    /favicon\\\\\\\\.ico$/\\\\n  ]\\\\n});\\\\n\\\\nregisterRoute(navigationRoute);\\\\n\\\\n// Skip waiting and claim clients\\\\nself.skipWaiting();\\\\nself.addEventListener(\\\\\\\"activate\\\\\\\", event => {\\\\n  event.waitUntil(clients.claim());\\\\n});\\\"\\n    }\\n  },\\n  \\\"best_practices\\\": {\\n    \\\"route_exclusions\\\": [\\n      \\\"/auth/*\\\",\\n      \\\"/api/auth/*\\\",\\n      \\\"/_next/auth/*\\\",\\n      \\\"/signin\\\",\\n      \\\"/signout\\\",\\n      \\\"/callback\\\",\\n      \\\"*.supabase.co/auth/*\\\"\\n    ],\\n    \\\"navigation_fallback\\\": {\\n      \\\"enabled\\\": true,\\n      \\\"exclude_auth\\\": true,\\n      \\\"offline_page\\\": \\\"/offline.html\\\"\\n    },\\n    \\\"caching_strategies\\\": {\\n      \\\"auth_routes\\\": \\\"NetworkOnly - Never cache auth responses\\\",\\n      \\\"api_routes\\\": \\\"NetworkOnly or NetworkFirst with short timeout\\\",\\n      \\\"static_assets\\\": \\\"CacheFirst with expiration\\\",\\n      \\\"pages\\\": \\\"NetworkFirst for fresh content\\\"\\n    }\\n  },\\n  \\\"implementation_steps\\\": [\\n    \\\"1. Clear existing service worker: navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(reg => reg.unregister()))\\\",\\n    \\\"2. Install next-pwa package\\\",\\n    \\\"3. Configure next.config.ts with PWA settings and auth exclusions\\\",\\n    \\\"4. Create custom service worker if needed for fine control\\\",\\n    \\\"5. Add offline fallback page at public/offline.html\\\",\\n    \\\"6. Test auth flow thoroughly after changes\\\",\\n    \\\"7. Monitor browser DevTools > Application > Service Workers\\\"\\n  ],\\n  \\\"testing_checklist\\\": [\\n    \\\"Verify auth routes are not cached\\\",\\n    \\\"Test OAuth callback flow\\\",\\n    \\\"Check network tab for proper route handling\\\",\\n    \\\"Ensure service worker updates properly\\\",\\n    \\\"Test offline functionality (excluding auth)\\\",\\n    \\\"Verify no auth tokens are cached\\\"\\n  ],\\n  \\\"monitoring\\\": {\\n    \\\"console_commands\\\": [\\n      \\\"// Check registered service workers\\\",\\n      \\\"navigator.serviceWorker.getRegistrations().then(console.log)\\\",\\n      \\\"// Check cache contents\\\",\\n      \\\"caches.keys().then(names => names.forEach(name => caches.open(name).then(cache => cache.keys().then(console.log))))\\\",\\n      \\\"// Force update service worker\\\", \\n      \\\"navigator.serviceWorker.getRegistration().then(reg => reg.update())\\\"\\n    ]\\n  }\\n}\"",
+      "type": "string",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-20T14:39:21.472Z",
+      "updatedAt": "2025-06-20T14:39:21.472Z",
+      "lastAccessedAt": "2025-06-20T14:39:21.472Z",
+      "version": 1,
+      "size": 6135,
+      "compressed": true,
+      "checksum": "343ca371b26de841449204ffd12b21bea7abf6b9f0492fe167734533ddbfa969",
+      "references": [],
+      "dependencies": []
+    },
+    {
+      "id": "entry_mc4x1yzh_5a0l6guyw",
+      "key": "swarm-auto-centralized-1750430161151/service-worker-analyzer/findings",
+      "value": "{\n  \"investigation_summary\": \"Service Worker Analysis for Auth Callback Error\",\n  \"error_details\": {\n    \"message\": \"Uncaught (in promise) no-response: The strategy could not generate a response for http://localhost:3000/auth/callback?code=0da68e41-cc97-4731-80ea-cabe53f9b65d&state=%2Fdashboard\",\n    \"underlying_error\": \"TypeError: Failed to fetch\",\n    \"strategy\": \"NetworkOnly\"\n  },\n  \"findings\": {\n    \"service_worker_presence\": \"No service worker found in project source code\",\n    \"searched_locations\": [\n      \"public/ directory - no service worker files found\",\n      \"src/ directory - no service worker registration found\",\n      \"next.config.ts - no PWA or service worker configuration\",\n      \"package.json - no service worker or PWA dependencies\",\n      \"middleware.ts - no service worker interception\",\n      \"layout.tsx and providers.tsx - no service worker registration\"\n    ],\n    \"auth_callback_implementation\": {\n      \"file\": \"/workspace/src/app/auth/callback/page.tsx\",\n      \"analysis\": \"Auth callback page is properly implemented using Supabase auth.exchangeCodeForSession()\",\n      \"no_issues_found\": true\n    }\n  },\n  \"possible_causes\": [\n    {\n      \"cause\": \"Browser Extension or DevTools\",\n      \"description\": \"A browser extension or development tool may be injecting a service worker with NetworkOnly strategy\",\n      \"likelihood\": \"High\"\n    },\n    {\n      \"cause\": \"Browser Cache\",\n      \"description\": \"A previously registered service worker from another project or earlier version may still be cached\",\n      \"likelihood\": \"High\",\n      \"solution\": \"Clear browser cache and service worker registrations\"\n    },\n    {\n      \"cause\": \"Next.js Default Service Worker\",\n      \"description\": \"Next.js might be adding a default service worker in development mode\",\n      \"likelihood\": \"Low\",\n      \"note\": \"No evidence found in configuration\"\n    },\n    {\n      \"cause\": \"Corporate Network Proxy\",\n      \"description\": \"Corporate proxy or security software intercepting requests\",\n      \"likelihood\": \"Medium\"\n    }\n  ],\n  \"recommendations\": [\n    {\n      \"priority\": 1,\n      \"action\": \"Clear Browser Cache\",\n      \"steps\": [\n        \"Open Chrome DevTools\",\n        \"Go to Application tab\",\n        \"Clear Storage -> Clear site data\",\n        \"Check Service Workers section and unregister any workers\"\n      ]\n    },\n    {\n      \"priority\": 2,\n      \"action\": \"Check Browser Extensions\",\n      \"steps\": [\n        \"Disable all browser extensions\",\n        \"Test auth flow in incognito/private mode\",\n        \"Check if PWA or development extensions are active\"\n      ]\n    },\n    {\n      \"priority\": 3,\n      \"action\": \"Add Service Worker Control\",\n      \"code\": \"// Add to layout.tsx or providers.tsx to prevent unwanted service workers\\nif (typeof window \\!== \\\"undefined\\\" && \\\"serviceWorker\\\" in navigator) {\\n  navigator.serviceWorker.getRegistrations().then(function(registrations) {\\n    for(let registration of registrations) {\\n      registration.unregister()\\n    }\\n  })\\n}\"\n    },\n    {\n      \"priority\": 4,\n      \"action\": \"Network Analysis\",\n      \"steps\": [\n        \"Check Network tab in DevTools during auth callback\",\n        \"Look for failed fetch requests\",\n        \"Check if requests are being intercepted\"\n      ]\n    }\n  ],\n  \"conclusion\": \"No service worker configuration found in the project. The error is likely caused by an external factor such as browser cache, extension, or development tool. The auth callback implementation is correct and should work once the external service worker interference is resolved.\"\n}",
+      "type": "string",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-20T14:39:42.173Z",
+      "updatedAt": "2025-06-20T14:39:42.173Z",
+      "lastAccessedAt": "2025-06-20T14:39:59.335Z",
+      "version": 1,
+      "size": 4321,
+      "compressed": true,
+      "checksum": "c6a0e72626495215418991b9ee8d4bf89db96b3772a5f0b6cdfaf415c893c4d8",
+      "references": [],
+      "dependencies": []
+    },
+    {
+      "id": "entry_mc4x35g2_fvbydt2t7",
+      "key": "swarm-auto-centralized-1750430161151/solution-architect/design",
+      "value": "{\"solution_type\":\"Service Worker Auth Bypass Strategy\",\"root_cause\":\"Service workers intercepting OAuth callback URLs and serving cached responses instead of allowing network requests\",\"components\":{\"1_next_pwa_config\":{\"description\":\"Configure next-pwa with auth route exclusions\",\"implementation\":\"Add @ducanh2912/next-pwa to next.config.ts with navigateFallbackDenylist and NetworkOnly handlers for auth routes\",\"critical_patterns\":[\"/^/auth/\",\"/^/api/auth/\",\"/?code=/\",\"/?error=/\",\"/?state=/\"]},\"2_custom_service_worker\":{\"description\":\"Create custom service worker with explicit auth bypass logic\",\"file\":\"public/sw.js\",\"key_logic\":\"Check URL patterns and bypass service worker for all auth-related requests\"},\"3_auth_callback_protection\":{\"description\":\"Enhance auth callback page to handle service worker issues\",\"file\":\"src/app/auth/callback/page.tsx\",\"features\":[\"Service worker unregistration for auth flows\",\"Cache-busting headers\",\"Improved error handling\"]},\"4_middleware_setup\":{\"description\":\"Create middleware to add cache prevention headers\",\"file\":\"src/middleware.ts\",\"headers\":[\"Cache-Control: no-store\",\"X-Skip-Service-Worker: true\"]},\"5_package_dependencies\":{\"required\":[\"@ducanh2912/next-pwa\"],\"dev_dependencies\":[\"@types/serviceworker\"]}},\"implementation_order\":[\"Install @ducanh2912/next-pwa package\",\"Update next.config.ts with PWA configuration\",\"Create src/middleware.ts for auth route handling\",\"Create public/sw.js with custom service worker logic\",\"Update src/app/auth/callback/page.tsx with service worker handling\",\"Test auth flow thoroughly\"],\"testing_strategy\":{\"steps\":[\"Clear browser cache and service workers\",\"Test Google OAuth login flow\",\"Verify callback URL processing\",\"Check network tab for proper request handling\",\"Ensure no cached responses for auth routes\"]},\"fallback_option\":\"If PWA is not needed, completely remove service worker registration and any PWA-related code\"}",
+      "type": "object",
+      "namespace": "default",
+      "tags": [],
+      "metadata": {},
+      "owner": "system",
+      "accessLevel": "shared",
+      "createdAt": "2025-06-20T14:40:37.202Z",
+      "updatedAt": "2025-06-20T14:40:37.202Z",
+      "lastAccessedAt": "2025-06-20T14:40:37.202Z",
+      "version": 1,
+      "size": 2072,
+      "compressed": true,
+      "checksum": "b81b1dbe67a17ff8ed96dcefb220103dace906be332afed1a757c34fbb14f6e2",
+      "references": [],
+      "dependencies": []
     }
   ],
   "statistics": {
     "overview": {
-      "totalEntries": 24,
+      "totalEntries": 29,
       "totalSize": null,
-      "compressedEntries": 15,
+      "compressedEntries": 20,
       "compressionRatio": 0,
       "indexSize": 100,
-      "memoryUsage": 7632528,
+      "memoryUsage": 6971568,
       "diskUsage": 0
     },
     "distribution": {
@@ -826,8 +926,8 @@
           "size": null
         },
         "default": {
-          "count": 23,
-          "size": 72459
+          "count": 28,
+          "size": 94132
         }
       },
       "byType": {
@@ -836,12 +936,12 @@
           "size": null
         },
         "string": {
-          "count": 11,
-          "size": 43861
+          "count": 13,
+          "size": 54317
         },
         "object": {
-          "count": 12,
-          "size": 28598
+          "count": 15,
+          "size": 39815
         }
       },
       "byOwner": {
@@ -850,8 +950,8 @@
           "size": null
         },
         "system": {
-          "count": 23,
-          "size": 72459
+          "count": 28,
+          "size": 94132
         }
       },
       "byAccessLevel": {
@@ -860,21 +960,21 @@
           "size": null
         },
         "shared": {
-          "count": 23,
-          "size": 72459
+          "count": 28,
+          "size": 94132
         }
       }
     },
     "temporal": {
-      "entriesCreatedLast24h": 23,
-      "entriesUpdatedLast24h": 23,
-      "entriesAccessedLast24h": 24,
+      "entriesCreatedLast24h": 21,
+      "entriesUpdatedLast24h": 21,
+      "entriesAccessedLast24h": 29,
       "oldestEntry": "1970-01-01T00:00:00.000Z",
-      "newestEntry": "2025-06-19T18:20:07.321Z"
+      "newestEntry": "2025-06-20T14:40:37.202Z"
     },
     "performance": {
       "averageQueryTime": 0,
-      "averageWriteTime": 2,
+      "averageWriteTime": 1,
       "cacheHitRatio": 0,
       "indexEfficiency": 0.95
     },
