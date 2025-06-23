@@ -108,13 +108,52 @@ async function checkAuthWithSupabase(request: NextRequest): Promise<{
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   
+  // Block all service worker related requests
+  if (
+    pathname.includes('/sw.js') ||
+    pathname.includes('/workbox') ||
+    pathname.includes('/service-worker') ||
+    pathname === '/sw.js' ||
+    pathname === '/service-worker.js' ||
+    pathname.endsWith('.js.map') && pathname.includes('workbox')
+  ) {
+    // Return a script that unregisters service workers
+    return new NextResponse(
+      `
+      // Service workers are disabled
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister();
+          }
+        });
+      }
+      `,
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/javascript',
+          'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+          'Service-Worker-Allowed': '/',
+        },
+      }
+    );
+  }
+  
   // Skip middleware for API routes that don't need auth
   if (pathname.startsWith('/api/') && !pathname.startsWith('/api/auth')) {
     return NextResponse.next()
   }
 
-  // Always allow public routes
+  // Always allow public routes with cache prevention for auth routes
   if (isPublicRoute(pathname)) {
+    if (pathname.includes('/auth/') || pathname.includes('/api/auth/')) {
+      const response = NextResponse.next()
+      response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+      response.headers.set('Pragma', 'no-cache')
+      response.headers.set('Expires', '0')
+      return response
+    }
     return NextResponse.next()
   }
 

@@ -20,45 +20,62 @@ export default function AuthCallbackPage() {
         const code = searchParams.get('code')
         const error = searchParams.get('error')
         
+        console.log('[Auth Callback] Starting with code:', code?.substring(0, 10) + '...')
+        console.log('[Auth Callback] URL:', window.location.href)
+        
         if (error) {
-          console.error('OAuth error:', error)
+          console.error('[Auth Callback] OAuth error:', error)
           setError(error)
           setStatus('error')
           return
         }
 
-        if (code) {
-          // Processing OAuth callback
-          
-          const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
-          
-          if (exchangeError) {
-            console.error('Error exchanging code for session:', exchangeError)
-            setError(exchangeError.message)
-            setStatus('error')
-            return
-          }
-
-          if (data.session) {
-            // OAuth authentication successful
-            setStatus('success')
-            
-            // Redirect to dashboard or callback URL after a short delay
-            setTimeout(() => {
-              const callbackUrl = searchParams.get('state') || '/dashboard'
-              router.push(callbackUrl)
-            }, 2000)
-          } else {
-            setError('No session created')
-            setStatus('error')
-          }
-        } else {
+        if (!code) {
+          console.error('[Auth Callback] No authorization code received')
           setError('No authorization code received')
+          setStatus('error')
+          return
+        }
+
+        // Check if already authenticated
+        const { data: { session: currentSession } } = await supabase.auth.getSession()
+        console.log('[Auth Callback] Current session:', currentSession?.user?.email)
+        
+        if (currentSession) {
+          console.log('[Auth Callback] Already authenticated, redirecting...')
+          setStatus('success')
+          const callbackUrl = searchParams.get('state') || '/dashboard'
+          router.push(callbackUrl)
+          return
+        }
+
+        // Exchange code for session
+        console.log('[Auth Callback] Exchanging code for session...')
+        const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
+        
+        if (exchangeError) {
+          console.error('[Auth Callback] Exchange error:', exchangeError)
+          setError(exchangeError.message)
+          setStatus('error')
+          return
+        }
+
+        console.log('[Auth Callback] Exchange successful:', data?.session?.user?.email)
+        
+        if (data?.session) {
+          setStatus('success')
+          // Redirect immediately
+          const callbackUrl = searchParams.get('state') || '/dashboard'
+          console.log('[Auth Callback] Redirecting to:', callbackUrl)
+          router.push(callbackUrl)
+        } else {
+          console.error('[Auth Callback] No session in response')
+          setError('No session created')
           setStatus('error')
         }
       } catch (err) {
-        console.error('Auth callback error:', err)
-        setError('Authentication failed')
+        console.error('[Auth Callback] Unexpected error:', err)
+        setError(err instanceof Error ? err.message : 'Authentication failed')
         setStatus('error')
       }
     }
