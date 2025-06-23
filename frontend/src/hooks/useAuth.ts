@@ -1,32 +1,46 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useSupabaseAuth } from './useSupabaseAuth';
 import { RootState, AppDispatch } from '@/store';
-import { verifyToken, logout } from '@/store/slices/authSlice';
+import { setAuthState, logout as logoutAction } from '@/store/slices/authSlice';
 
 export const useAuth = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { user, isAuthenticated, isLoading, error, token } = useSelector(
-    (state: RootState) => state.auth
-  );
-
+  const supabaseAuth = useSupabaseAuth();
+  
+  // Sync Supabase auth state with Redux store
   useEffect(() => {
-    if (token && !isAuthenticated && !isLoading) {
-      dispatch(verifyToken());
+    if (supabaseAuth.user && supabaseAuth.session) {
+      dispatch(setAuthState({
+        user: supabaseAuth.user,
+        token: supabaseAuth.session.access_token,
+        refreshToken: supabaseAuth.session.refresh_token,
+        isAuthenticated: true,
+        isLoading: false,
+        error: null,
+      }));
+    } else if (!supabaseAuth.isLoading && !supabaseAuth.user) {
+      dispatch(logoutAction());
     }
-  }, [dispatch, token, isAuthenticated, isLoading]);
+  }, [dispatch, supabaseAuth.user, supabaseAuth.session, supabaseAuth.isLoading]);
 
   const handleLogout = async () => {
-    await dispatch(logout());
-    navigate('/');
+    try {
+      await supabaseAuth.logout();
+      dispatch(logoutAction());
+      navigate('/');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
   };
 
   return {
-    user,
-    isAuthenticated,
-    isLoading,
-    error,
+    user: supabaseAuth.user,
+    isAuthenticated: supabaseAuth.isAuthenticated,
+    isLoading: supabaseAuth.isLoading,
+    error: supabaseAuth.error,
     logout: handleLogout
   };
 };

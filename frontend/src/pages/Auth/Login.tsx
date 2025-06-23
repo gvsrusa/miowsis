@@ -24,8 +24,9 @@ import {
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
+import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
 import { AppDispatch, RootState } from '@/store';
-import { login, clearError } from '@/store/slices/authSlice';
+import { clearError } from '@/store/slices/authSlice';
 import Logo from '@components/Logo/Logo';
 
 interface LoginFormData {
@@ -37,7 +38,7 @@ const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
-  const { isLoading, error } = useSelector((state: RootState) => state.auth);
+  const { login, signInWithGoogle, isLoading, error, clearError: clearAuthError } = useSupabaseAuth();
   const [showPassword, setShowPassword] = useState(false);
 
   const from = location.state?.from?.pathname || '/dashboard';
@@ -49,16 +50,31 @@ const Login: React.FC = () => {
   } = useForm<LoginFormData>();
 
   const onSubmit = async (data: LoginFormData) => {
-    dispatch(clearError());
-    const result = await dispatch(login(data));
-    if (login.fulfilled.match(result)) {
+    try {
+      clearAuthError();
+      await login(data.email, data.password);
       navigate(from, { replace: true });
+    } catch (error) {
+      // Error is handled by the auth context
+      console.error('Login failed:', error);
     }
   };
 
   const handleBiometricLogin = () => {
     // Implement biometric authentication
-    console.log('Biometric login');
+    // This would integrate with WebAuthn API or similar
+    console.log('Biometric login - WebAuthn integration needed');
+    // TODO: Implement WebAuthn biometric authentication
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      clearAuthError();
+      await signInWithGoogle();
+      // Redirect will be handled by Supabase
+    } catch (error) {
+      console.error('Google sign-in failed:', error);
+    }
   };
 
   return (
@@ -184,6 +200,7 @@ const Login: React.FC = () => {
                   variant="outlined"
                   size="large"
                   startIcon={<Google />}
+                  onClick={handleGoogleSignIn}
                   sx={{ mb: 3 }}
                 >
                   Continue with Google

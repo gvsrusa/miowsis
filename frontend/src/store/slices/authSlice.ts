@@ -75,6 +75,39 @@ const authSlice = createSlice({
       if (state.user) {
         state.user = { ...state.user, ...action.payload };
       }
+    },
+    setAuthState: (state, action: PayloadAction<{
+      user: User;
+      token: string;
+      refreshToken: string;
+      isAuthenticated: boolean;
+      isLoading: boolean;
+      error: string | null;
+    }>) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.refreshToken = action.payload.refreshToken;
+      state.isAuthenticated = action.payload.isAuthenticated;
+      state.isLoading = action.payload.isLoading;
+      state.error = action.payload.error;
+      
+      // Store tokens in localStorage
+      if (action.payload.token) {
+        localStorage.setItem('accessToken', action.payload.token);
+      }
+      if (action.payload.refreshToken) {
+        localStorage.setItem('refreshToken', action.payload.refreshToken);
+      }
+    },
+    clearAuthState: (state) => {
+      state.user = null;
+      state.token = null;
+      state.refreshToken = null;
+      state.isAuthenticated = false;
+      state.isLoading = false;
+      state.error = null;
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
     }
   },
   extraReducers: (builder) => {
@@ -144,5 +177,5 @@ const authSlice = createSlice({
   }
 });
 
-export const { clearError, updateUser } = authSlice.actions;
+export const { clearError, updateUser, setAuthState, clearAuthState } = authSlice.actions;
 export default authSlice.reducer;

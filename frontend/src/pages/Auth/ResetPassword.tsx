@@ -1,41 +1,26 @@
-import React, { useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Box,
   Button,
   Card,
   CardContent,
   Container,
-  Divider,
-  IconButton,
-  InputAdornment,
   TextField,
   Typography,
   Alert,
-  Link,
   CircularProgress,
-  Grid,
-  LinearProgress
+  IconButton,
+  InputAdornment,
+  LinearProgress,
 } from '@mui/material';
-import {
-  Visibility,
-  VisibilityOff,
-  Google,
-  Check,
-  Close
-} from '@mui/icons-material';
+import { Visibility, VisibilityOff, Check, Close } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
-import { AppDispatch, RootState } from '@/store';
-import Logo from '@components/Logo/Logo';
 import { useSupabaseAuth } from '@/hooks/useSupabaseAuth';
-import { clearError } from '@/store/slices/authSlice';
+import Logo from '@components/Logo/Logo';
 
-interface RegisterFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
+interface ResetPasswordFormData {
   password: string;
   confirmPassword: string;
 }
@@ -46,28 +31,29 @@ interface PasswordStrength {
   color: string;
 }
 
-const Register: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+const ResetPassword: React.FC = () => {
   const navigate = useNavigate();
-  const { register: registerUser, signInWithGoogle, isLoading, error, clearError: clearAuthError } = useSupabaseAuth();
+  const [searchParams] = useSearchParams();
+  const { updatePassword, error, clearError } = useSupabaseAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState<PasswordStrength>({
     score: 0,
     label: 'Weak',
-    color: 'error'
+    color: 'error',
   });
 
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors }
-  } = useForm<RegisterFormData>();
+    formState: { errors },
+  } = useForm<ResetPasswordFormData>();
 
   const password = watch('password');
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (password) {
       const strength = calculatePasswordStrength(password);
       setPasswordStrength(strength);
@@ -89,30 +75,19 @@ const Register: React.FC = () => {
     return { score: 100, label: 'Strong', color: 'success' };
   };
 
-  const onSubmit = async (data: RegisterFormData) => {
+  const onSubmit = async (data: ResetPasswordFormData) => {
     try {
-      clearAuthError();
-      const { confirmPassword, ...userData } = data;
-      await registerUser(userData);
-      navigate('/onboarding');
-    } catch (error: any) {
-      // Error is handled by the auth context
-      console.error('Registration failed:', error);
-      // Check if it's an email confirmation error
-      if (error.message?.includes('email')) {
-        // Show success message for email confirmation
-        alert('Please check your email to confirm your account before signing in.');
-      }
-    }
-  };
-
-  const handleGoogleSignUp = async () => {
-    try {
-      clearAuthError();
-      await signInWithGoogle();
-      // Redirect will be handled by Supabase
+      setIsLoading(true);
+      clearError();
+      await updatePassword(data.password);
+      
+      // Show success message and redirect
+      alert('Password updated successfully!');
+      navigate('/login');
     } catch (error) {
-      console.error('Google sign-up failed:', error);
+      console.error('Password reset failed:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -121,7 +96,7 @@ const Register: React.FC = () => {
     { regex: /[a-z]/, text: 'One lowercase letter' },
     { regex: /[A-Z]/, text: 'One uppercase letter' },
     { regex: /[0-9]/, text: 'One number' },
-    { regex: /[^A-Za-z0-9]/, text: 'One special character' }
+    { regex: /[^A-Za-z0-9]/, text: 'One special character' },
   ];
 
   return (
@@ -131,7 +106,6 @@ const Register: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-        py: 4
       }}
     >
       <Container maxWidth="sm">
@@ -147,10 +121,10 @@ const Register: React.FC = () => {
                   <Logo sx={{ fontSize: 64 }} />
                 </Box>
                 <Typography variant="h4" fontWeight={600} gutterBottom>
-                  Create Your Account
+                  Reset Your Password
                 </Typography>
                 <Typography variant="body1" color="textSecondary">
-                  Start your investment journey with MIOwSIS
+                  Enter your new password below
                 </Typography>
               </Box>
 
@@ -161,60 +135,19 @@ const Register: React.FC = () => {
               )}
 
               <form onSubmit={handleSubmit(onSubmit)}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      label="First Name"
-                      {...register('firstName', {
-                        required: 'First name is required'
-                      })}
-                      error={!!errors.firstName}
-                      helperText={errors.firstName?.message}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      fullWidth
-                      label="Last Name"
-                      {...register('lastName', {
-                        required: 'Last name is required'
-                      })}
-                      error={!!errors.lastName}
-                      helperText={errors.lastName?.message}
-                    />
-                  </Grid>
-                </Grid>
-
                 <TextField
                   fullWidth
-                  label="Email"
-                  type="email"
-                  margin="normal"
-                  {...register('email', {
-                    required: 'Email is required',
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Invalid email address'
-                    }
-                  })}
-                  error={!!errors.email}
-                  helperText={errors.email?.message}
-                />
-
-                <TextField
-                  fullWidth
-                  label="Password"
+                  label="New Password"
                   type={showPassword ? 'text' : 'password'}
                   margin="normal"
                   {...register('password', {
                     required: 'Password is required',
                     validate: (value) => {
                       const allRequirementsMet = passwordRequirements.every(
-                        req => req.regex.test(value)
+                        (req) => req.regex.test(value)
                       );
                       return allRequirementsMet || 'Password does not meet requirements';
-                    }
+                    },
                   })}
                   error={!!errors.password}
                   helperText={errors.password?.message}
@@ -228,7 +161,7 @@ const Register: React.FC = () => {
                           {showPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                       </InputAdornment>
-                    )
+                    ),
                   }}
                 />
 
@@ -268,12 +201,12 @@ const Register: React.FC = () => {
 
                 <TextField
                   fullWidth
-                  label="Confirm Password"
+                  label="Confirm New Password"
                   type={showConfirmPassword ? 'text' : 'password'}
                   margin="normal"
                   {...register('confirmPassword', {
                     required: 'Please confirm your password',
-                    validate: (value) => value === password || 'Passwords do not match'
+                    validate: (value) => value === password || 'Passwords do not match',
                   })}
                   error={!!errors.confirmPassword}
                   helperText={errors.confirmPassword?.message}
@@ -287,7 +220,7 @@ const Register: React.FC = () => {
                           {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                       </InputAdornment>
-                    )
+                    ),
                   }}
                 />
 
@@ -299,52 +232,15 @@ const Register: React.FC = () => {
                   disabled={isLoading}
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  {isLoading ? <CircularProgress size={24} /> : 'Create Account'}
+                  {isLoading ? <CircularProgress size={24} /> : 'Update Password'}
                 </Button>
-
-                <Divider sx={{ my: 3 }}>OR</Divider>
-
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  size="large"
-                  startIcon={<Google />}
-                  onClick={handleGoogleSignUp}
-                  sx={{ mb: 3 }}
-                >
-                  Sign up with Google
-                </Button>
-
-                <Typography variant="body2" textAlign="center">
-                  Already have an account?{' '}
-                  <Link component={RouterLink} to="/login" fontWeight={500}>
-                    Sign in
-                  </Link>
-                </Typography>
               </form>
             </CardContent>
           </Card>
-
-          <Typography
-            variant="caption"
-            color="textSecondary"
-            textAlign="center"
-            display="block"
-            mt={3}
-          >
-            By creating an account, you agree to our{' '}
-            <Link href="/terms" target="_blank">
-              Terms of Service
-            </Link>{' '}
-            and{' '}
-            <Link href="/privacy" target="_blank">
-              Privacy Policy
-            </Link>
-          </Typography>
         </motion.div>
       </Container>
     </Box>
   );
 };
 
-export default Register;
+export default ResetPassword;

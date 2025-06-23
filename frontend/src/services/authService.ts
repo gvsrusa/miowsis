@@ -1,8 +1,5 @@
-import axios from 'axios';
-import { mockAuthService } from './mockAuthService';
-
-const API_URL = '/api/users/auth';
-const USE_MOCK = true; // Set to false when backend is available
+import { supabaseAuthService } from './supabaseAuthService';
+import type { User, AuthResponse as SupabaseAuthResponse } from './supabaseAuthService';
 
 export interface LoginCredentials {
   email: string;
@@ -20,65 +17,114 @@ export interface RegisterData {
 export interface AuthResponse {
   accessToken: string;
   refreshToken: string;
-  user: {
-    id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    profileImage?: string;
-    emailVerified: boolean;
-    kycStatus: 'pending' | 'verified' | 'rejected';
-    onboardingComplete: boolean;
-    biometricEnabled: boolean;
-  };
+  user: User;
 }
 
 class AuthService {
   async login(credentials: LoginCredentials): Promise<{ data: AuthResponse }> {
-    if (USE_MOCK) {
-      return mockAuthService.login(credentials) as Promise<{ data: AuthResponse }>;
+    try {
+      const response = await supabaseAuthService.login(credentials);
+      return {
+        data: {
+          accessToken: response.session.access_token,
+          refreshToken: response.session.refresh_token,
+          user: response.user,
+        },
+      };
+    } catch (error) {
+      console.error('Auth service login error:', error);
+      throw error;
     }
-    const response = await axios.post(`${API_URL}/login`, credentials);
-    return response;
   }
 
   async register(userData: RegisterData): Promise<{ data: AuthResponse }> {
-    if (USE_MOCK) {
-      return mockAuthService.register(userData) as Promise<{ data: AuthResponse }>;
+    try {
+      const response = await supabaseAuthService.register(userData);
+      return {
+        data: {
+          accessToken: response.session.access_token,
+          refreshToken: response.session.refresh_token,
+          user: response.user,
+        },
+      };
+    } catch (error) {
+      console.error('Auth service register error:', error);
+      throw error;
     }
-    const response = await axios.post(`${API_URL}/register`, userData);
-    return response;
   }
 
   async logout(): Promise<void> {
-    if (USE_MOCK) {
-      return mockAuthService.logout();
-    }
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      await axios.post(`${API_URL}/logout`, null, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+    try {
+      await supabaseAuthService.logout();
+    } catch (error) {
+      console.error('Auth service logout error:', error);
+      throw error;
     }
   }
 
   async refreshToken(refreshToken: string): Promise<{ data: AuthResponse }> {
-    if (USE_MOCK) {
-      return mockAuthService.refreshToken(refreshToken) as Promise<{ data: AuthResponse }>;
+    try {
+      const response = await supabaseAuthService.refreshSession();
+      if (!response) {
+        throw new Error('Failed to refresh token');
+      }
+      return {
+        data: {
+          accessToken: response.session.access_token,
+          refreshToken: response.session.refresh_token,
+          user: response.user,
+        },
+      };
+    } catch (error) {
+      console.error('Auth service refresh token error:', error);
+      throw error;
     }
-    const response = await axios.post(`${API_URL}/refresh`, { refreshToken });
-    return response;
   }
 
   async verifyToken(): Promise<{ data: AuthResponse }> {
-    if (USE_MOCK) {
-      return mockAuthService.verifyToken() as Promise<{ data: AuthResponse }>;
+    try {
+      const response = await supabaseAuthService.getCurrentSession();
+      if (!response) {
+        throw new Error('No valid session found');
+      }
+      return {
+        data: {
+          accessToken: response.session.access_token,
+          refreshToken: response.session.refresh_token,
+          user: response.user,
+        },
+      };
+    } catch (error) {
+      console.error('Auth service verify token error:', error);
+      throw error;
     }
-    const token = localStorage.getItem('accessToken');
-    const response = await axios.get(`${API_URL}/verify`, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    return response;
+  }
+
+  async signInWithGoogle(): Promise<void> {
+    try {
+      await supabaseAuthService.signInWithGoogle();
+    } catch (error) {
+      console.error('Auth service Google sign-in error:', error);
+      throw error;
+    }
+  }
+
+  async resetPassword(email: string): Promise<void> {
+    try {
+      await supabaseAuthService.resetPassword(email);
+    } catch (error) {
+      console.error('Auth service reset password error:', error);
+      throw error;
+    }
+  }
+
+  async updateProfile(updates: Partial<User>): Promise<User> {
+    try {
+      return await supabaseAuthService.updateUserProfile(updates);
+    } catch (error) {
+      console.error('Auth service update profile error:', error);
+      throw error;
+    }
   }
 }
 
